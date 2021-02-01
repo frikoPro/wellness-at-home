@@ -1,0 +1,17 @@
+@media screen and (min-width: 1441px) {
+	.img {
+		height: 100vh;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 1440px) {
+	.img {
+		height: 100%;
+		width: 100%;
+	}
+
+	.opacity {
+		opacity: 1 !important;
+	}
+}

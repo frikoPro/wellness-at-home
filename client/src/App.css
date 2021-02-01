@@ -1,0 +1,67 @@
+/*PC*/
+@media screen and (min-width: 992px) {
+	.opacity {
+		background-color: rgba(0, 0, 0, 0);
+	}
+	.notOpacity {
+		background-color: rgba(0, 0, 0, 255);
+	}
+
+	.suppliercard {
+		width: 1349px;
+		height: 727px;
+		background-color: white;
+		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	}
+
+	.text-responsive-h1 {
+		font-size: 2.5vw;
+	}
+
+	.text-responsive-p {
+		font-size: 1.5vw;
+	}
+}
+
+/*MOBILE*/
+@media screen and (max-width: 991px) {
+	.opacity {
+		background-color: black;
+	}
+
+	.mt-nav {
+		margin-top: 56px;
+	}
+
+	.text-responsive-h1 {
+		font-size: 2.5vh;
+	}
+
+	.text-responsive-p {
+		font-size: 1.5vh;
+	}
+}
+
+.suppliercard {
+	background-color: white;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.animate-fade-1 {
+	animation: fade 4s;
+}
+
+.animate-fade-2 {
+	animation: fade 4s;
+	animation-delay: 2s;
+	animation-fill-mode: backwards;
+}
