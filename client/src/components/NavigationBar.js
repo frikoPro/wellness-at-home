@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 import wellnessLogo from '../images/wellnessLogo.png';
+import styled from "styled-components";
 
 const NavigationBar = () => {
 	const [opacity, setOpacity] = useState(true);
@@ -34,6 +35,25 @@ const NavigationBar = () => {
 			</Navbar.Brand>
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="mr-auto ml-auto">
+
+					<NavDropdownStyled title="Spabad" id="collapsible-nav-dropdown">
+						<divStyled>
+							<NavDropdownItemStyled href="#action/3.1">Svenska Pro</NavDropdownItemStyled>
+							<NavDropdown.Item href="#action/3.1">VIKEN</NavDropdown.Item>
+							<NavDropdown.Item href="#action/3.1">FJORDEN</NavDropdown.Item>
+							<NavDropdown.Item href="#action/3.1">FLODEN</NavDropdown.Item>
+						</divStyled>
+						<NavDropdown.Divider />
+						<NavDropdown.Item href="#action/3.2">Svenska Bad</NavDropdown.Item>
+						<NavDropdown.Item href="#action/3.2">EARL</NavDropdown.Item>
+						<NavDropdown.Item href="#action/3.2">VANCOUVER</NavDropdown.Item>
+						<NavDropdown.Item href="#action/3.2">VANCOUVER BLACK EDITION</NavDropdown.Item>
+						<NavDropdown.Item href="#action/3.2">DALLAS</NavDropdown.Item>
+						<NavDropdown.Divider />
+						<NavDropdown.Item href="#action/3.3">Nordpool Spa</NavDropdown.Item>
+						<NavDropdown.Item href="#action/3.3">TOR</NavDropdown.Item>
+						<NavDropdown.Item href="#action/3.3">SAREK</NavDropdown.Item>
+					</NavDropdownStyled>
 					<Nav.Link>Spabad</Nav.Link>
 					<Nav.Link>Nettbutikk</Nav.Link>
 					<Nav.Link>Nyheter</Nav.Link>
@@ -88,3 +108,15 @@ const NavigationBar = () => {
 };
 
 export default NavigationBar;
+
+//does not affect the dropdown items
+const NavDropdownStyled = styled(NavDropdown)`
+    //border: 2px red solid;
+`;
+
+const NavDropdownItemStyled = styled(NavDropdown.Item)`
+	border: 2px red solid;
+`;
+const divStyled = styled.div`
+	border: 2px red solid;
+`;
