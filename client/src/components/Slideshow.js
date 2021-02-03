@@ -1,20 +1,18 @@
-import { useRef, useLayoutEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
-
 import slideImg1 from '../images/slideImg1.png';
+import slideImg2 from '../images/slide2.jpg';
 
-const Slideshow = ({ test, setTest, slideItem }) => {
+const Slideshow = ({ slideItem }) => {
 	return (
 		<Carousel className="mt-nav">
 			<Carousel.Item>
-				<Carousel.Caption
-					style={{
-						top: '50%',
-						left: '50%',
-						transform: 'translate(-50%, -50%)',
-						bottom: 'initial',
-						width: '70vw',
-					}}>
+				<img
+					className="w-100 slideshow"
+					ref={slideItem}
+					src={slideImg1}
+					alt="First slide slideshow"
+				/>
+				<Carousel.Caption>
 					<h1 className="text-responsive-h1 animate-fade-1">
 						Velkommen til Wellness at home
 					</h1>
@@ -24,12 +22,12 @@ const Slideshow = ({ test, setTest, slideItem }) => {
 						libero, a pharetra augue mollis interdum.
 					</p>
 				</Carousel.Caption>
+			</Carousel.Item>
+			<Carousel.Item>
 				<img
-					className="w-100"
-					ref={slideItem}
-					src={slideImg1}
-					alt="First slide"
-				/>
+					className="w-100 slideshow"
+					alt="Second slide slideshow"
+					src={slideImg2}></img>
 			</Carousel.Item>
 		</Carousel>
 	);

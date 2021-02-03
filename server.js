@@ -26,7 +26,7 @@ const usersRouter = require('./routes/users');
 const imageRouter = require('./routes/uploadImages');
 
 app.use(express.static(path.join(__dirname, '/client/build')));
-app.use(express.static(path.join(__dirname, '/images')));
+app.use('/static', express.static(path.join(__dirname, '/client/src/images')));
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);

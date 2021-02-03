@@ -113,11 +113,7 @@ const HomePage = () => {
 
 	return (
 		<>
-			<Slideshow
-				test={slideShowScrollPos}
-				setTest={setSlideShowScrollPos}
-				slideItem={slideShowRef}
-			/>
+			<Slideshow slideItem={slideShowRef} />
 
 			<Container fluid className="overflow-hidden">
 				<Row className="justify-content-center w-100 mx-auto m-5">
