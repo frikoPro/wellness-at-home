@@ -32,7 +32,7 @@ const NavigationBar = () => {
 			expand="lg"
 			fixed="top"
 			variant="dark"
-			className={opacity ? 'opacity' : 'notOpacity'}>
+			className="not-opacity">
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 			<Navbar.Brand href="/">
 				<img
@@ -65,7 +65,6 @@ const NavigationBar = () => {
 						<NavDropdown.Item href="#action/3.3">TOR</NavDropdown.Item>
 						<NavDropdown.Item href="#action/3.3">SAREK</NavDropdown.Item>
 					</NavDropdownStyled>
-					<Nav.Link>Spabad</Nav.Link>
 					<Nav.Link>Nettbutikk</Nav.Link>
 					<Nav.Link>Nyheter</Nav.Link>
 					<Nav.Link>Arrangementer</Nav.Link>
