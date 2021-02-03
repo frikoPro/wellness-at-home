@@ -43,28 +43,31 @@ const NavigationBar = () => {
 			</Navbar.Brand>
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="mr-auto ml-auto">
-					<NavDropdownStyled title="Spabad" id="collapsible-nav-dropdown">
-						<divStyled>
-							<NavDropdownItemStyled href="#action/3.1">
-								Svenska Pro
-							</NavDropdownItemStyled>
-							<NavDropdown.Item href="#action/3.1">VIKEN</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.1">FJORDEN</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.1">FLODEN</NavDropdown.Item>
-						</divStyled>
+					<NavDropdown title="Spabad" id="collapsible-nav-dropdown">
+						<NavDropdown.Item href="#action/1.1" className="font-weight-bold">
+							Svenska Pro
+						</NavDropdown.Item>
+						<NavDropdown.Item href="#action/1.2">VIKEN</NavDropdown.Item>
+						<NavDropdown.Item href="#action/1.3">FJORDEN</NavDropdown.Item>
+						<NavDropdown.Item href="#action/1.4">FLODEN</NavDropdown.Item>
+
 						<NavDropdown.Divider />
-						<NavDropdown.Item href="#action/3.2">Svenska Bad</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.2">EARL</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.2">VANCOUVER</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.2">
+						<NavDropdown.Item href="#action/2.1" className="font-weight-bold">
+							Svenska Bad
+						</NavDropdown.Item>
+						<NavDropdown.Item href="#action/2.2">EARL</NavDropdown.Item>
+						<NavDropdown.Item href="#action/2.3">VANCOUVER</NavDropdown.Item>
+						<NavDropdown.Item href="#action/2.4">
 							VANCOUVER BLACK EDITION
 						</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.2">DALLAS</NavDropdown.Item>
+						<NavDropdown.Item href="#action/3.1">DALLAS</NavDropdown.Item>
 						<NavDropdown.Divider />
-						<NavDropdown.Item href="#action/3.3">Nordpool Spa</NavDropdown.Item>
+						<NavDropdown.Item href="#action/3.2" className="font-weight-bold">
+							Nordpool Spa
+						</NavDropdown.Item>
 						<NavDropdown.Item href="#action/3.3">TOR</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.3">SAREK</NavDropdown.Item>
-					</NavDropdownStyled>
+						<NavDropdown.Item href="#action/3.4">SAREK</NavDropdown.Item>
+					</NavDropdown>
 					<Nav.Link>Nettbutikk</Nav.Link>
 					<Nav.Link>Nyheter</Nav.Link>
 					<Nav.Link>Arrangementer</Nav.Link>
@@ -118,15 +121,6 @@ const NavigationBar = () => {
 };
 
 export default NavigationBar;
-
-//does not affect the dropdown items
-const NavDropdownStyled = styled(NavDropdown)`
-	//border: 2px red solid;
-`;
-
-const NavDropdownItemStyled = styled(NavDropdown.Item)`
-	border: 2px red solid;
-`;
 
 const NavBarStyled = styled(Navbar)`
 	background-color: rgba(0, 0, 0, ${({ opacity }) => opacity});

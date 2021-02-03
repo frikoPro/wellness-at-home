@@ -2,7 +2,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 
 const Footer = () => {
 	return (
-		<div className="mt-5" style={{ flexShrink: '0', backgroundColor: 'black' }}>
+		<div className="mt-5" style={{ backgroundColor: 'black' }}>
 			<Navbar variant="dark">
 				<Nav className="mr-auto">
 					<Nav.Link>
