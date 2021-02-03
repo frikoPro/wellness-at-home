@@ -2,7 +2,7 @@ import { Col, Container, Row, Button } from 'react-bootstrap';
 
 const SupplierCard = ({ image, logo }) => {
 	return (
-		<Container className="suppliercard p-0 mt-5">
+		<Container className="bg-white shadow p-0 mt-5">
 			<Row className="m-0" style={{ height: '100%' }}>
 				<Col md={6} className="p-0 d-none d-md-block">
 					<img

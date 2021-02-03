@@ -1,12 +1,5 @@
 /*PC*/
 @media screen and (min-width: 992px) {
-	.opacity {
-		background-color: rgba(0, 0, 0, 0);
-	}
-	.notOpacity {
-		background-color: rgba(0, 0, 0, 255);
-	}
-
 	.suppliercard {
 		width: 1349px;
 		height: 727px;
@@ -25,8 +18,8 @@
 
 /*MOBILE*/
 @media screen and (max-width: 991px) {
-	.opacity {
-		background-color: black;
+	.not-opacity {
+		background-color: black !important;
 	}
 
 	.mt-nav {
@@ -45,23 +38,4 @@
 .suppliercard {
 	background-color: white;
 	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-@keyframes fade {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-.animate-fade-1 {
-	animation: fade 4s;
-}
-
-.animate-fade-2 {
-	animation: fade 4s;
-	animation-delay: 2s;
-	animation-fill-mode: backwards;
 }
