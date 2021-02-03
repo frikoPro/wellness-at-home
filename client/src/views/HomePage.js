@@ -1,9 +1,10 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useContext, useLayoutEffect, useRef, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import Slideshow from '../components/Slideshow';
 import SupplierCard from '../components/SupplierCard';
+import { ScrollContext } from '../contexts/ScrollContext';
 import nordpoolCardImg from '../images/nordpoolCardImg.png';
 import nordpoolLogo from '../images/nordpoolLogo.png';
 import svenskaBadImg from '../images/svenskaBadImg.png';
@@ -41,11 +42,15 @@ const HomePage = () => {
 		},
 	]);
 
+	const [slideShowScrollPos, setSlideShowScrollPos, slideShowRef] = useContext(
+		ScrollContext
+	);
+
 	useLayoutEffect(() => {
 		const getTopPos = (element) => element.getBoundingClientRect().top;
 		const getHeight = (element) => element.offsetHeight;
 
-		const onload = () => {
+		const getNewPos = () => {
 			const scrollY = window.scrollY;
 			const scrollX = window.scrollX;
 
@@ -61,6 +66,10 @@ const HomePage = () => {
 				newArray.push(alteredItem);
 			});
 
+			setSlideShowScrollPos(
+				getTopPos(slideShowRef.current) + getHeight(slideShowRef.current)
+			);
+
 			doShow(newArray);
 
 			window.scrollTo(scrollX, scrollY);
@@ -68,9 +77,9 @@ const HomePage = () => {
 			checkElementPos();
 		};
 
-		window.onload = onload;
+		window.onload = getNewPos;
 
-		window.onresize = onload;
+		window.onresize = getNewPos;
 
 		const onScroll = () => {
 			checkElementPos();
@@ -104,7 +113,11 @@ const HomePage = () => {
 
 	return (
 		<>
-			<Slideshow />
+			<Slideshow
+				test={slideShowScrollPos}
+				setTest={setSlideShowScrollPos}
+				slideItem={slideShowRef}
+			/>
 
 			<Container fluid className="overflow-hidden">
 				<Row className="justify-content-center w-100 mx-auto m-5">

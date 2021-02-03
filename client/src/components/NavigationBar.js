@@ -1,25 +1,33 @@
-import { useState, useEffect } from 'react';
-import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import { useState, useContext, useLayoutEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import wellnessLogo from '../images/wellnessLogo.png';
-import styled from "styled-components";
+import styled from 'styled-components';
+import { ScrollContext } from '../contexts/ScrollContext';
 
 const NavigationBar = () => {
-	const [opacity, setOpacity] = useState(true);
+	const [opacity, setOpacity] = useState(0);
 
-	useEffect(() => {
+	let location = useLocation();
+
+	const [slideShowScrollPos] = useContext(ScrollContext);
+
+	useLayoutEffect(() => {
+		// set opacity on navbar depending on scrollPos
 		const onScroll = () => {
-			if (window.scrollY >= 1000) {
-				setOpacity(false);
+			if (location.pathname === '/') {
+				setOpacity(window.scrollY / slideShowScrollPos);
 			} else {
-				setOpacity(true);
+				setOpacity(1);
 			}
 		};
 		window.addEventListener('scroll', onScroll);
 		return () => window.removeEventListener('scroll', onScroll);
-	}, []);
+	});
 
 	return (
-		<Navbar
+		<NavBarStyled
+			opacity={opacity}
 			collapseOnSelect
 			expand="lg"
 			fixed="top"
@@ -35,10 +43,11 @@ const NavigationBar = () => {
 			</Navbar.Brand>
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="mr-auto ml-auto">
-
 					<NavDropdownStyled title="Spabad" id="collapsible-nav-dropdown">
 						<divStyled>
-							<NavDropdownItemStyled href="#action/3.1">Svenska Pro</NavDropdownItemStyled>
+							<NavDropdownItemStyled href="#action/3.1">
+								Svenska Pro
+							</NavDropdownItemStyled>
 							<NavDropdown.Item href="#action/3.1">VIKEN</NavDropdown.Item>
 							<NavDropdown.Item href="#action/3.1">FJORDEN</NavDropdown.Item>
 							<NavDropdown.Item href="#action/3.1">FLODEN</NavDropdown.Item>
@@ -47,7 +56,9 @@ const NavigationBar = () => {
 						<NavDropdown.Item href="#action/3.2">Svenska Bad</NavDropdown.Item>
 						<NavDropdown.Item href="#action/3.2">EARL</NavDropdown.Item>
 						<NavDropdown.Item href="#action/3.2">VANCOUVER</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.2">VANCOUVER BLACK EDITION</NavDropdown.Item>
+						<NavDropdown.Item href="#action/3.2">
+							VANCOUVER BLACK EDITION
+						</NavDropdown.Item>
 						<NavDropdown.Item href="#action/3.2">DALLAS</NavDropdown.Item>
 						<NavDropdown.Divider />
 						<NavDropdown.Item href="#action/3.3">Nordpool Spa</NavDropdown.Item>
@@ -103,7 +114,7 @@ const NavigationBar = () => {
 					</Nav.Link>
 				</Nav>
 			</Navbar.Collapse>
-		</Navbar>
+		</NavBarStyled>
 	);
 };
 
@@ -111,12 +122,13 @@ export default NavigationBar;
 
 //does not affect the dropdown items
 const NavDropdownStyled = styled(NavDropdown)`
-    //border: 2px red solid;
+	//border: 2px red solid;
 `;
 
 const NavDropdownItemStyled = styled(NavDropdown.Item)`
 	border: 2px red solid;
 `;
-const divStyled = styled.div`
-	border: 2px red solid;
+
+const NavBarStyled = styled(Navbar)`
+	background-color: rgba(0, 0, 0, ${({ opacity }) => opacity});
 `;

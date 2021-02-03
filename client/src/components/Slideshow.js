@@ -1,7 +1,9 @@
+import { useRef, useLayoutEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
+
 import slideImg1 from '../images/slideImg1.png';
 
-const Slideshow = () => {
+const Slideshow = ({ test, setTest, slideItem }) => {
 	return (
 		<Carousel className="mt-nav">
 			<Carousel.Item>
@@ -22,7 +24,12 @@ const Slideshow = () => {
 						libero, a pharetra augue mollis interdum.
 					</p>
 				</Carousel.Caption>
-				<img className="w-100" src={slideImg1} alt="First slide" />
+				<img
+					className="w-100"
+					ref={slideItem}
+					src={slideImg1}
+					alt="First slide"
+				/>
 			</Carousel.Item>
 		</Carousel>
 	);
