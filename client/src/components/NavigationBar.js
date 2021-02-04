@@ -12,6 +12,7 @@ const NavigationBar = () => {
 	const [open, setOpen] = useState(false);
 
 	const dropdown = useRef(null);
+
 	return (
 		<NavBarStyled
 			opacity={opacity}
@@ -49,8 +50,8 @@ const NavigationBar = () => {
 						onMouseOver={() => setOpen(true)}
 						onMouseOut={() => setOpen(false)}
 						ref={dropdown}
-						dropdownRef={dropdown}
-						isCollapsed={isCollapsed}
+						dropdownref={dropdown}
+						iscollapsed={isCollapsed}
 						open={open}
 						className="shadow dropmenu">
 						<Col className="text-center">
@@ -141,10 +142,9 @@ export default NavigationBar;
 
 const NavBarStyled = styled(Navbar)`
 	background-color: rgba(0, 0, 0, ${({ opacity }) => opacity});
-	height: 61px;
 `;
 
 const Dropdown = styled(Row)`
-	max-height: ${({ open, dropdownRef }) =>
-		open ? dropdownRef.current.scrollHeight + 20 + 'px' : '0'};
+	max-height: ${({ open, dropdownref }) =>
+		open ? dropdownref.current.scrollHeight + 20 + 'px' : '0'};
 `;
