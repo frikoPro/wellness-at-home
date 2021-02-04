@@ -13,12 +13,13 @@ import svenskaBadLogo from '../images/svenskaBadLogo.png';
 const HomePage = () => {
 	const { homepageEl } = useContext(ScrollContext);
 
-	const [homePageEl] = homepageEl;
+	const [homePageEl, slideshowRef] = homepageEl;
 
 	return (
 		<>
-			<Slideshow />
-
+			<div ref={slideshowRef}>
+				<Slideshow />
+			</div>
 			<Container fluid className="overflow-hidden">
 				<Row className="justify-content-center w-100 mx-auto m-5">
 					<Div
