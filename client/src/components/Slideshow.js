@@ -10,7 +10,7 @@ const Slideshow = () => {
 	const [slideShowSCrollPos, slideItem] = slideshow;
 
 	return (
-		<Carousel className="mt-nav">
+		<Carousel className="mt-slide">
 			<Carousel.Item>
 				<img
 					className="w-100 slideshow"

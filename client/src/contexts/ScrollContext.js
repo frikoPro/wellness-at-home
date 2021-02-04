@@ -7,10 +7,6 @@ export const ScrollProvider = (props) => {
 	// Bottom position of slideshow Y-axis
 	const [slideShowScrollPos, setSlideShowScrollPos] = useState(0);
 
-	const slideItem = useRef(null);
-
-	const location = useLocation();
-
 	//Positon of elements on homepage
 	const [homePageEl, setHomePageEl] = useState([
 		{
@@ -43,6 +39,14 @@ export const ScrollProvider = (props) => {
 		},
 	]);
 
+	const [opacity, setOpacity] = useState(0);
+
+	const [isNavCollapsed, setCollapse] = useState(false);
+
+	const slideItem = useRef(null);
+
+	const location = useLocation();
+
 	useEffect(() => {
 		const getTopPos = (element) => element.getBoundingClientRect().top;
 		const getHeight = (element) => element.offsetHeight;
@@ -72,6 +76,8 @@ export const ScrollProvider = (props) => {
 			window.scrollTo(scrollX, scrollY);
 
 			checkElementPos();
+
+			setCollapse(window.innerWidth < 992 ? true : false);
 		};
 
 		if (location.pathname === '/') {
@@ -80,10 +86,13 @@ export const ScrollProvider = (props) => {
 			window.onresize = getNewPos;
 
 			const onScroll = () => {
+				setOpacity(window.scrollY / slideShowScrollPos);
 				checkElementPos();
 			};
 			window.addEventListener('scroll', onScroll);
 			return () => window.removeEventListener('scroll', onScroll);
+		} else {
+			setOpacity(1);
 		}
 	});
 
@@ -115,6 +124,7 @@ export const ScrollProvider = (props) => {
 			value={{
 				slideshow: [slideShowScrollPos, slideItem],
 				homepageEl: [homePageEl, setHomePageEl],
+				navbar: [opacity, isNavCollapsed],
 			}}>
 			{props.children}
 		</ScrollContext.Provider>
