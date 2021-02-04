@@ -1,20 +1,13 @@
 import { Carousel } from 'react-bootstrap';
 import slideImg1 from '../images/slideImg1.png';
 import slideImg2 from '../images/slide2.jpg';
-import { useContext } from 'react';
-import { ScrollContext } from '../contexts/ScrollContext';
 
 const Slideshow = () => {
-	const { slideshow } = useContext(ScrollContext);
-
-	const [slideShowSCrollPos, slideItem] = slideshow;
-
 	return (
 		<Carousel className="mt-slide">
 			<Carousel.Item>
 				<img
 					className="w-100 slideshow"
-					ref={slideItem}
 					src={slideImg1}
 					alt="First slide slideshow"
 				/>

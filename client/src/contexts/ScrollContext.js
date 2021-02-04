@@ -43,7 +43,7 @@ export const ScrollProvider = (props) => {
 
 	const [isNavCollapsed, setCollapse] = useState(false);
 
-	const slideItem = useRef(null);
+	const slideshowRef = useRef(null);
 
 	const location = useLocation();
 
@@ -68,7 +68,7 @@ export const ScrollProvider = (props) => {
 			});
 
 			setSlideShowScrollPos(
-				getTopPos(slideItem.current) + getHeight(slideItem.current)
+				getTopPos(slideshowRef.current) + getHeight(slideshowRef.current)
 			);
 
 			setHomePageEl(newArray);
@@ -122,8 +122,7 @@ export const ScrollProvider = (props) => {
 	return (
 		<ScrollContext.Provider
 			value={{
-				slideshow: [slideShowScrollPos, slideItem],
-				homepageEl: [homePageEl, setHomePageEl],
+				homepageEl: [homePageEl, slideshowRef],
 				navbar: [opacity, isNavCollapsed],
 			}}>
 			{props.children}
