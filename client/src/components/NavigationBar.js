@@ -30,10 +30,19 @@ const NavigationBar = () => {
 			</Navbar.Brand>
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="mr-auto ml-auto ">
-					<Nav.Link
+					{/* Had to make a div on top of Nav.Link Spabad to fire the event correctly */}
+					<div
+						style={{
+							position: 'absolute',
+							height: '61px',
+							width: '61px',
+						}}
 						onMouseOver={() => setOpen(true)}
-						onMouseOut={() => setOpen(false)}
-						style={{ height: '61px' }}>
+						onMouseOut={() => setOpen(false)}></div>
+					<Nav.Link
+						style={{ zIndex: '1' }}
+						onMouseOver={() => setOpen(true)}
+						onMouseOut={() => setOpen(false)}>
 						Spabad
 					</Nav.Link>
 					<Dropdown
@@ -132,6 +141,7 @@ export default NavigationBar;
 
 const NavBarStyled = styled(Navbar)`
 	background-color: rgba(0, 0, 0, ${({ opacity }) => opacity});
+	height: 61px;
 `;
 
 const Dropdown = styled(Row)`
