@@ -10,19 +10,21 @@ const NavigationBar = () => {
 
 	let location = useLocation();
 
-	const [slideShowScrollPos] = useContext(ScrollContext);
+	const { slideshow } = useContext(ScrollContext);
+
+	const [slideShowScrollPos] = slideshow;
 
 	useLayoutEffect(() => {
-		// set opacity on navbar depending on scrollPos
 		const onScroll = () => {
-			if (location.pathname === '/') {
-				setOpacity(window.scrollY / slideShowScrollPos);
-			} else {
-				setOpacity(1);
-			}
+			setOpacity(window.scrollY / slideShowScrollPos);
 		};
-		window.addEventListener('scroll', onScroll);
-		return () => window.removeEventListener('scroll', onScroll);
+
+		if (location.pathname === '/') {
+			window.addEventListener('scroll', onScroll);
+			return () => window.removeEventListener('scroll', onScroll);
+		} else {
+			setOpacity(1);
+		}
 	});
 
 	return (
