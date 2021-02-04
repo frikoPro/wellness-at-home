@@ -9,19 +9,24 @@ const Routes = () => {
 	return (
 		<BrowserRouter>
 			<ScrollProvider>
-				<NavigationBar />
+				<header>
+					<NavigationBar />
+				</header>
 
 				<div style={{ flex: '1 0 auto' }}>
 					<Switch>
-						<Route exact path="/">
-							<HomePage />
-						</Route>
-						<Route path="/test">
-							<Test />
-						</Route>
+						<main style={{ minHeight: '100vh', marginBottom: '200px' }}>
+							<Route exact path="/">
+								<HomePage />
+							</Route>
+							<Route path="/test">
+								<Test />
+							</Route>
+						</main>
 					</Switch>
 				</div>
 			</ScrollProvider>
+
 			<Footer />
 		</BrowserRouter>
 	);

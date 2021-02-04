@@ -13,7 +13,7 @@ import svenskaBadLogo from '../images/svenskaBadLogo.png';
 const HomePage = () => {
 	const { homepageEl } = useContext(ScrollContext);
 
-	const [homePageEl, setHomePageEl] = homepageEl;
+	const [homePageEl] = homepageEl;
 
 	return (
 		<>
