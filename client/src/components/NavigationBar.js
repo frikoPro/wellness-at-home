@@ -1,17 +1,17 @@
-import { useContext, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { useContext, useRef, useState } from 'react';
+import { Col, Nav, Navbar, Row } from 'react-bootstrap';
 import wellnessLogo from '../images/wellnessLogo.png';
 import styled from 'styled-components';
 import { ScrollContext } from '../contexts/ScrollContext';
 
 const NavigationBar = () => {
-	let location = useLocation();
-
 	const { navbar } = useContext(ScrollContext);
 
 	const [opacity, isCollapsed] = navbar;
 
+	const [open, setOpen] = useState(false);
+
+	const dropdown = useRef(null);
 	return (
 		<NavBarStyled
 			opacity={opacity}
@@ -29,39 +29,51 @@ const NavigationBar = () => {
 					style={{ height: '100%' }}></img>
 			</Navbar.Brand>
 			<Navbar.Collapse id="responsive-navbar-nav">
-				<Nav className="mr-auto ml-auto">
-					<NavDropdown title="Spabad" id="collapsible-nav-dropdown">
-						<NavDropdown.Item href="#action/1.1" className="font-weight-bold">
-							Svenska Pro
-						</NavDropdown.Item>
-						<NavDropdown.Item href="#action/1.2">VIKEN</NavDropdown.Item>
-						<NavDropdown.Item href="#action/1.3">FJORDEN</NavDropdown.Item>
-						<NavDropdown.Item href="#action/1.4">FLODEN</NavDropdown.Item>
+				<Nav className="mr-auto ml-auto ">
+					<Nav.Link
+						onMouseOver={() => setOpen(true)}
+						onMouseOut={() => setOpen(false)}>
+						Spabad
+					</Nav.Link>
+					<Dropdown
+						onMouseOver={() => setOpen(true)}
+						onMouseOut={() => setOpen(false)}
+						ref={dropdown}
+						dropdownRef={dropdown}
+						isCollapsed={isCollapsed}
+						open={open}
+						className="shadow dropmenu">
+						<Col className="text-center">
+							<h6 className="m-3"> Svenska Bad Pro</h6>
+							<p className="dropmenu-item">VIKEN</p>
+							<p className="dropmenu-item">FJORDEN</p>
+							<p className="dropmenu-item">FLODEN</p>
+						</Col>
+						<Col
+							style={{ borderLeft: '1px solid rgb(50,50,50)' }}
+							className="text-center">
+							<h6 className="m-3">Svenska Bad</h6>
 
-						<NavDropdown.Divider />
-						<NavDropdown.Item href="#action/2.1" className="font-weight-bold">
-							Svenska Bad
-						</NavDropdown.Item>
-						<NavDropdown.Item href="#action/2.2">EARL</NavDropdown.Item>
-						<NavDropdown.Item href="#action/2.3">VANCOUVER</NavDropdown.Item>
-						<NavDropdown.Item href="#action/2.4">
-							VANCOUVER BLACK EDITION
-						</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.1">DALLAS</NavDropdown.Item>
-						<NavDropdown.Divider />
-						<NavDropdown.Item href="#action/3.2" className="font-weight-bold">
-							Nordpool Spa
-						</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.3">TOR</NavDropdown.Item>
-						<NavDropdown.Item href="#action/3.4">SAREK</NavDropdown.Item>
-					</NavDropdown>
-					<Nav.Link>Nettbutikk</Nav.Link>
-					<Nav.Link>Nyheter</Nav.Link>
-					<Nav.Link>Arrangementer</Nav.Link>
-					<Nav.Link>Support</Nav.Link>
+							<p className="mt-2 dropmenu-item">EARL</p>
+							<p className="mt-2 dropmenu-item">VANCOUVER</p>
+							<p className="mt-2 dropmenu-item">VANCOUVER BLACK EDITION</p>
+							<p className="mt-2 dropmenu-item">DALLAS</p>
+						</Col>
+						<Col
+							style={{ borderLeft: '1px solid rgb(50,50,50)' }}
+							className="text-center">
+							<h6 className="text-center m-3">Nordpool Spa</h6>
+							<p className="mt-2 dropmenu-item">TOR</p>
+							<p className="mt-2 dropmenu-item">SAREK</p>
+						</Col>
+					</Dropdown>
+					<Nav.Link className="nav-item">Nettbutikk</Nav.Link>
+					<Nav.Link className="nav-item">Nyheter</Nav.Link>
+					<Nav.Link className="nav-item">Arrangementer</Nav.Link>
+					<Nav.Link className="nav-item">Support</Nav.Link>
 				</Nav>
 				<Nav>
-					<Nav.Link>
+					<Nav.Link className="nav-item">
 						{isCollapsed ? (
 							'Search'
 						) : (
@@ -84,7 +96,7 @@ const NavigationBar = () => {
 							</svg>
 						)}
 					</Nav.Link>
-					<Nav.Link>
+					<Nav.Link className="nav-item">
 						{isCollapsed ? (
 							'Handlekurv'
 						) : (
@@ -119,4 +131,9 @@ export default NavigationBar;
 
 const NavBarStyled = styled(Navbar)`
 	background-color: rgba(0, 0, 0, ${({ opacity }) => opacity});
+`;
+
+const Dropdown = styled(Row)`
+	max-height: ${({ open, dropdownRef }) =>
+		open ? dropdownRef.current.scrollHeight + 20 + 'px' : '0'};
 `;
