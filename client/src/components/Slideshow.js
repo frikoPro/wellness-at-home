@@ -1,8 +1,14 @@
 import { Carousel } from 'react-bootstrap';
 import slideImg1 from '../images/slideImg1.png';
 import slideImg2 from '../images/slide2.jpg';
+import { useContext } from 'react';
+import { ScrollContext } from '../contexts/ScrollContext';
 
-const Slideshow = ({ slideItem }) => {
+const Slideshow = () => {
+	const { slideshow } = useContext(ScrollContext);
+
+	const [slideShowSCrollPos, slideItem] = slideshow;
+
 	return (
 		<Carousel className="mt-nav">
 			<Carousel.Item>
