@@ -32,7 +32,8 @@ const NavigationBar = () => {
 				<Nav className="mr-auto ml-auto ">
 					<Nav.Link
 						onMouseOver={() => setOpen(true)}
-						onMouseOut={() => setOpen(false)}>
+						onMouseOut={() => setOpen(false)}
+						style={{ height: '61px' }}>
 						Spabad
 					</Nav.Link>
 					<Dropdown
