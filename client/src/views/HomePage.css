@@ -108,9 +108,15 @@
 .hover-gold:hover {
 	color: #ffc107 !important;
 	cursor: pointer;
+	text-decoration: #ffc107 underline;
 }
 
 .dropmenu-item-header {
+	color: white;
 	height: 35px;
 	border-bottom: 2px solid rgb(50, 50, 50);
+}
+
+.dropmenu-item {
+	color: white;
 }
