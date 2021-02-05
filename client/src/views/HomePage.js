@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import styled from 'styled-components';
+import './HomePage.css';
 
 import Slideshow from '../components/Slideshow';
 import SupplierCard from '../components/SupplierCard';
