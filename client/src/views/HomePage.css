@@ -29,6 +29,10 @@
 		flex-flow: row;
 		transition: max-height 0.5s ease-out;
 	}
+
+	.dropmenu-col {
+		border-left: 2px solid rgb(50, 50, 50);
+	}
 }
 
 /*MOBILE*/
@@ -104,4 +108,9 @@
 .hover-gold:hover {
 	color: #ffc107 !important;
 	cursor: pointer;
+}
+
+.dropmenu-item-header {
+	height: 35px;
+	border-bottom: 2px solid rgb(50, 50, 50);
 }
