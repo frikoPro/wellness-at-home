@@ -56,7 +56,11 @@ const NavigationBar = () => {
 						open={open}
 						className="shadow dropmenu">
 						<Col className="text-center">
-							<h6 className="m-3 hover-gold"> Svenska Bad Pro</h6>
+							<h5
+								className="m-3 hover-gold"
+								style={{ borderBottom: '1px solid rgb(50,50,50)' }}>
+								Svenska Bad Pro
+							</h5>
 							<p className="dropmenu-item hover-gold">VIKEN</p>
 							<p className="dropmenu-item hover-gold">FJORDEN</p>
 							<p className="dropmenu-item hover-gold">FLODEN</p>
@@ -64,7 +68,11 @@ const NavigationBar = () => {
 						<Col
 							style={{ borderLeft: '1px solid rgb(50,50,50)' }}
 							className="text-center">
-							<h6 className="m-3 hover-gold">Svenska Bad</h6>
+							<h5
+								className="m-3 hover-gold"
+								style={{ borderBottom: '1px solid rgb(50,50,50)' }}>
+								Svenska Bad
+							</h5>
 
 							<p className="mt-2 dropmenu-item hover-gold">EARL</p>
 							<p className="mt-2 dropmenu-item hover-gold">VANCOUVER</p>
@@ -76,7 +84,11 @@ const NavigationBar = () => {
 						<Col
 							style={{ borderLeft: '1px solid rgb(50,50,50)' }}
 							className="text-center">
-							<h6 className="text-center m-3 hover-gold">Nordpool Spa</h6>
+							<h5
+								className="text-center m-3 hover-gold"
+								style={{ borderBottom: '1px solid rgb(50,50,50)' }}>
+								Nordpool Spa
+							</h5>
 							<p className="mt-2 dropmenu-item hover-gold">TOR</p>
 							<p className="mt-2 dropmenu-item hover-gold">SAREK</p>
 						</Col>
