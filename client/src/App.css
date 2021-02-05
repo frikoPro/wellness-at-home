@@ -10,6 +10,7 @@
 
 	.slideshow {
 		height: 100vh;
+		object-fit: cover;
 	}
 
 	.dropmenu {
@@ -41,15 +42,14 @@
 	}
 
 	.text-responsive-h1 {
-		font-size: 1.5vh;
+		font-size: 2.5vw;
 	}
 
 	.text-responsive-p {
-		font-size: 0.7vh;
+		font-size: 2vw;
 	}
-
 	.slideshow {
-		height: 40vh;
+		height: 100vh;
 		object-fit: cover;
 	}
 
