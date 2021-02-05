@@ -4,7 +4,7 @@ import slideImg2 from '../images/slide2.jpg';
 
 const Slideshow = () => {
 	return (
-		<Carousel className="mt-slide" style={{ top: '-6vh' }}>
+		<Carousel className="mt-slide">
 			<Carousel.Item>
 				<img
 					className="w-100 slideshow"

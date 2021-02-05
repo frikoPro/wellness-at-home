@@ -18,7 +18,7 @@ const HomePage = () => {
 
 	return (
 		<>
-			<div ref={slideshowRef}>
+			<div ref={slideshowRef} style={{ position: 'relative', top: '-58px' }}>
 				<Slideshow />
 			</div>
 			<Container fluid className="overflow-hidden">

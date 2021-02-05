@@ -10,12 +10,12 @@ const Routes = () => {
 	return (
 		<BrowserRouter>
 			<ScrollProvider>
-				<header style={{ height: '6vh' }}>
+				<header>
 					<NavigationBar />
 				</header>
 
 				<Switch>
-					<main style={{ minHeight: '88vh' }}>
+					<main>
 						<Route exact path="/">
 							<HomePage />
 						</Route>

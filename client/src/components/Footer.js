@@ -2,13 +2,9 @@ import { Nav, Navbar } from 'react-bootstrap';
 
 const Footer = () => {
 	return (
-		<Navbar
-			sticky="bottom"
-			as="footer"
-			style={{ backgroundColor: 'black', height: '6vh', marginTop: '200px' }}
-			variant="dark">
+		<Navbar sticky="bottom" as="footer" variant="dark">
 			<Nav className="mr-auto">
-				<Nav.Link>
+				<Nav.Link className="p-0">
 					<svg
 						width="80"
 						height="34"
