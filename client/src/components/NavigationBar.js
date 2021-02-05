@@ -56,21 +56,15 @@ const NavigationBar = () => {
 						open={open}
 						className="shadow dropmenu">
 						<Col className="text-center">
-							<h5
-								className="m-3 hover-gold"
-								style={{ borderBottom: '1px solid rgb(50,50,50)' }}>
+							<h5 className="m-3 hover-gold dropmenu-item-header">
 								Svenska Bad Pro
 							</h5>
 							<p className="dropmenu-item hover-gold">VIKEN</p>
 							<p className="dropmenu-item hover-gold">FJORDEN</p>
 							<p className="dropmenu-item hover-gold">FLODEN</p>
 						</Col>
-						<Col
-							style={{ borderLeft: '1px solid rgb(50,50,50)' }}
-							className="text-center">
-							<h5
-								className="m-3 hover-gold"
-								style={{ borderBottom: '1px solid rgb(50,50,50)' }}>
+						<Col className="text-center dropmenu-col">
+							<h5 className="m-3 hover-gold dropmenu-item-header">
 								Svenska Bad
 							</h5>
 
@@ -81,12 +75,8 @@ const NavigationBar = () => {
 							</p>
 							<p className="mt-2 dropmenu-item hover-gold">DALLAS</p>
 						</Col>
-						<Col
-							style={{ borderLeft: '1px solid rgb(50,50,50)' }}
-							className="text-center">
-							<h5
-								className="text-center m-3 hover-gold"
-								style={{ borderBottom: '1px solid rgb(50,50,50)' }}>
+						<Col className="text-center dropmenu-col">
+							<h5 className="text-center m-3 hover-gold dropmenu-item-header">
 								Nordpool Spa
 							</h5>
 							<p className="mt-2 dropmenu-item hover-gold">TOR</p>
