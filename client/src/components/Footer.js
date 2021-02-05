@@ -5,7 +5,7 @@ const Footer = () => {
 		<Navbar
 			sticky="bottom"
 			as="footer"
-			style={{ backgroundColor: 'black' }}
+			style={{ backgroundColor: 'black', height: '6vh', marginTop: '200px' }}
 			variant="dark">
 			<Nav className="mr-auto">
 				<Nav.Link>
