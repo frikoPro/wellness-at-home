@@ -1,0 +1,26 @@
+html,
+body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+header {
+	height: 58px;
+}
+
+main {
+	flex: auto;
+	min-height: 88vh;
+}
+
+footer {
+	margin-top: 200px;
+	background-color: black;
+}
