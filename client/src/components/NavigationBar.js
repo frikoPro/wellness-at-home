@@ -43,7 +43,8 @@ const NavigationBar = () => {
 					<Nav.Link
 						style={{ zIndex: '1' }}
 						onMouseOver={() => setOpen(true)}
-						onMouseOut={() => setOpen(false)}>
+						onMouseOut={() => setOpen(false)}
+						className="hover-gold">
 						Spabad
 					</Nav.Link>
 					<Dropdown
@@ -55,36 +56,38 @@ const NavigationBar = () => {
 						open={open}
 						className="shadow dropmenu">
 						<Col className="text-center">
-							<h6 className="m-3"> Svenska Bad Pro</h6>
-							<p className="dropmenu-item">VIKEN</p>
-							<p className="dropmenu-item">FJORDEN</p>
-							<p className="dropmenu-item">FLODEN</p>
+							<h6 className="m-3 hover-gold"> Svenska Bad Pro</h6>
+							<p className="dropmenu-item hover-gold">VIKEN</p>
+							<p className="dropmenu-item hover-gold">FJORDEN</p>
+							<p className="dropmenu-item hover-gold">FLODEN</p>
 						</Col>
 						<Col
 							style={{ borderLeft: '1px solid rgb(50,50,50)' }}
 							className="text-center">
-							<h6 className="m-3">Svenska Bad</h6>
+							<h6 className="m-3 hover-gold">Svenska Bad</h6>
 
-							<p className="mt-2 dropmenu-item">EARL</p>
-							<p className="mt-2 dropmenu-item">VANCOUVER</p>
-							<p className="mt-2 dropmenu-item">VANCOUVER BLACK EDITION</p>
-							<p className="mt-2 dropmenu-item">DALLAS</p>
+							<p className="mt-2 dropmenu-item hover-gold">EARL</p>
+							<p className="mt-2 dropmenu-item hover-gold">VANCOUVER</p>
+							<p className="mt-2 dropmenu-item hover-gold">
+								VANCOUVER BLACK EDITION
+							</p>
+							<p className="mt-2 dropmenu-item hover-gold">DALLAS</p>
 						</Col>
 						<Col
 							style={{ borderLeft: '1px solid rgb(50,50,50)' }}
 							className="text-center">
-							<h6 className="text-center m-3">Nordpool Spa</h6>
-							<p className="mt-2 dropmenu-item">TOR</p>
-							<p className="mt-2 dropmenu-item">SAREK</p>
+							<h6 className="text-center m-3 hover-gold">Nordpool Spa</h6>
+							<p className="mt-2 dropmenu-item hover-gold">TOR</p>
+							<p className="mt-2 dropmenu-item hover-gold">SAREK</p>
 						</Col>
 					</Dropdown>
-					<Nav.Link className="nav-item">Nettbutikk</Nav.Link>
-					<Nav.Link className="nav-item">Nyheter</Nav.Link>
-					<Nav.Link className="nav-item">Arrangementer</Nav.Link>
-					<Nav.Link className="nav-item">Support</Nav.Link>
+					<Nav.Link className="nav-item hover-gold">Nettbutikk</Nav.Link>
+					<Nav.Link className="nav-item hover-gold">Nyheter</Nav.Link>
+					<Nav.Link className="nav-item hover-gold">Arrangementer</Nav.Link>
+					<Nav.Link className="nav-item hover-gold">Support</Nav.Link>
 				</Nav>
 				<Nav>
-					<Nav.Link className="nav-item">
+					<Nav.Link className="nav-item hover-gold">
 						{isCollapsed ? (
 							'Search'
 						) : (
@@ -107,7 +110,7 @@ const NavigationBar = () => {
 							</svg>
 						)}
 					</Nav.Link>
-					<Nav.Link className="nav-item">
+					<Nav.Link className="nav-item hover-gold">
 						{isCollapsed ? (
 							'Handlekurv'
 						) : (

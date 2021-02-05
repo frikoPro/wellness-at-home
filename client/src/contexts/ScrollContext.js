@@ -39,6 +39,7 @@ export const ScrollProvider = (props) => {
 		},
 	]);
 
+	//Opacity value for homepage
 	const [opacity, setOpacity] = useState(0);
 
 	const [isNavCollapsed, setCollapse] = useState(false);
