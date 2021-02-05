@@ -1,6 +1,7 @@
 import { useContext, useRef, useState } from 'react';
 import { Col, Nav, Navbar, Row } from 'react-bootstrap';
 import wellnessLogo from '../images/wellnessLogo.png';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ScrollContext } from '../contexts/ScrollContext';
 
@@ -56,31 +57,54 @@ const NavigationBar = () => {
 						open={open}
 						className="shadow dropmenu">
 						<Col className="text-center">
-							<h5 className="m-3 hover-gold dropmenu-item-header">
-								Svenska Bad Pro
-							</h5>
-							<p className="dropmenu-item hover-gold">VIKEN</p>
-							<p className="dropmenu-item hover-gold">FJORDEN</p>
-							<p className="dropmenu-item hover-gold">FLODEN</p>
+							<a href="/svenskabadpro">
+								<h5 className="m-3 hover-gold dropmenu-item-header">
+									Svenska Bad Pro
+								</h5>
+							</a>
+							<a href="/svenskabadpro/viken">
+								<p className="dropmenu-item hover-gold">VIKEN</p>
+							</a>
+							<a href="/svenskabadpro/fjorden">
+								<p className="dropmenu-item hover-gold">FJORDEN</p>
+							</a>
+							<a href="/svenskabadpro/floden">
+								<p className="dropmenu-item hover-gold">FLODEN</p>
+							</a>
 						</Col>
 						<Col className="text-center dropmenu-col">
-							<h5 className="m-3 hover-gold dropmenu-item-header">
-								Svenska Bad
-							</h5>
-
-							<p className="mt-2 dropmenu-item hover-gold">EARL</p>
-							<p className="mt-2 dropmenu-item hover-gold">VANCOUVER</p>
-							<p className="mt-2 dropmenu-item hover-gold">
-								VANCOUVER BLACK EDITION
-							</p>
-							<p className="mt-2 dropmenu-item hover-gold">DALLAS</p>
+							<a href="/svenskabad/">
+								<h5 className="m-3 hover-gold dropmenu-item-header">
+									Svenska Bad
+								</h5>
+							</a>
+							<a href="/svenskabad/earl">
+								<p className="mt-2 dropmenu-item hover-gold">EARL</p>
+							</a>
+							<a href="/svenskabad/vancouver">
+								<p className="mt-2 dropmenu-item hover-gold">VANCOUVER</p>
+							</a>
+							<a href="/svenskabad/vancouver-black-edition">
+								<p className="mt-2 dropmenu-item hover-gold">
+									VANCOUVER BLACK EDITION
+								</p>
+							</a>
+							<a href="/svenskabad/dallas">
+								<p className="mt-2 dropmenu-item hover-gold">DALLAS</p>
+							</a>
 						</Col>
 						<Col className="text-center dropmenu-col">
-							<h5 className="text-center m-3 hover-gold dropmenu-item-header">
-								Nordpool Spa
-							</h5>
-							<p className="mt-2 dropmenu-item hover-gold">TOR</p>
-							<p className="mt-2 dropmenu-item hover-gold">SAREK</p>
+							<a href="/nordpool">
+								<h5 className="text-center m-3 hover-gold dropmenu-item-header">
+									Nordpool Spa
+								</h5>
+							</a>
+							<a href="/nordpool/tor">
+								<p className="mt-2 dropmenu-item hover-gold">TOR</p>
+							</a>
+							<a href="/nordpool/sarek">
+								<p className="mt-2 dropmenu-item hover-gold">SAREK</p>
+							</a>
 						</Col>
 					</Dropdown>
 					<Nav.Link className="nav-item hover-gold">Nettbutikk</Nav.Link>
