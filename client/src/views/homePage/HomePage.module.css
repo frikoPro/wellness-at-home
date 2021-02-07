@@ -1,0 +1,58 @@
+/*PC*/
+@media screen and (min-width: 992px) {
+	.textResponsiveH1 {
+		font-size: 2.5vw;
+	}
+
+	.textResponsiveP {
+		font-size: 1.5vw;
+	}
+
+	.slideshow {
+		height: 100vh;
+	}
+}
+
+/*MOBILE*/
+@media screen and (max-width: 991px) {
+	.mtSlide {
+		margin-top: 56px;
+	}
+
+	.textResponsiveH1 {
+		font-size: 2.5vw;
+	}
+
+	.textResponsiveP {
+		font-size: 2vw;
+	}
+
+	.slideshow {
+		height: 40vh;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.slideshow {
+		height: 30vh;
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.animateFade1 {
+	animation: fade 4s;
+}
+
+.animateFade2 {
+	animation: fade 4s;
+	animation-delay: 2s;
+	animation-fill-mode: backwards;
+}

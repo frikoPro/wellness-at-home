@@ -23,11 +23,14 @@ connection.once('open', () => {
 
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
+const imageRouter = require('./routes/uploadImages');
 
 app.use(express.static(path.join(__dirname, '/client/build')));
+app.use('/static', express.static(path.join(__dirname, '/client/src/images')));
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
+app.use('/images', imageRouter);
 
 app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, '/client/build/index.html'));
