@@ -1,33 +1,25 @@
 import { Carousel } from 'react-bootstrap';
-import slideImg1 from '../images/slideImg1.png';
-import slideImg2 from '../images/slide2.jpg';
 
-const Slideshow = () => {
+const Slideshow = ({ styling, slideContent, id }) => {
 	return (
-		<Carousel className="mt-slide">
-			<Carousel.Item>
-				<img
-					className="w-100 slideshow"
-					src={slideImg1}
-					alt="First slide slideshow"
-				/>
-				<Carousel.Caption>
-					<h1 className="text-responsive-h1 animate-fade-1">
-						Velkommen til Wellness at home
-					</h1>
-					<p className="text-responsive-p animate-fade-2">
-						Nulla vitae elit libero, a pharetra augue mollis interdum.Nulla
-						vitae elit libero, a pharetra augue mollis interdum.Nulla vitae elit
-						libero, a pharetra augue mollis interdum.
-					</p>
-				</Carousel.Caption>
-			</Carousel.Item>
-			<Carousel.Item>
-				<img
-					className="w-100 slideshow"
-					alt="Second slide slideshow"
-					src={slideImg2}></img>
-			</Carousel.Item>
+		<Carousel id={id} className={styling.mtSlide}>
+			{slideContent.map((item, i) => (
+				<Carousel.Item key={i}>
+					<img
+						src={item.image}
+						alt={`${i + 1}. slideshow`}
+						className={`d-block w-100 ${styling.slideshow}`}></img>
+					<Carousel.Caption>
+						<h1
+							className={`${styling.textResponsiveH1} ${styling.animateFade1}`}>
+							{item.textHead}
+						</h1>
+						<p className={`${styling.textResponsiveP} ${styling.animateFade2}`}>
+							{item.textP}
+						</p>
+					</Carousel.Caption>
+				</Carousel.Item>
+			))}
 		</Carousel>
 	);
 };
