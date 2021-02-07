@@ -20,6 +20,7 @@ const NavigationBar = () => {
 
 	return (
 		<Navbar
+			style={{backgroundColor: "black"}}
 			collapseOnSelect
 			expand="lg"
 			fixed="top"
@@ -56,7 +57,7 @@ const NavigationBar = () => {
 					</NavDropdownStyled>
 					<Nav.Link>Spabad</Nav.Link>
 					<Nav.Link>Nettbutikk</Nav.Link>
-					<Nav.Link>Nyheter</Nav.Link>
+					<Nav.Link href="Nyheter">Nyheter</Nav.Link>
 					<Nav.Link>Arrangementer</Nav.Link>
 					<Nav.Link>Support</Nav.Link>
 				</Nav>
