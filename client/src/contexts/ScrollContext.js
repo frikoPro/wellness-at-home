@@ -42,7 +42,7 @@ export const ScrollProvider = (props) => {
 	//Opacity value for homepage
 	const [opacity, setOpacity] = useState(0);
 
-	const [isNavCollapsed, setCollapse] = useState(false);
+	const isNavCollapsed = window.innerWidth < 992 ? true : false;
 
 	const slideshowRef = useRef(null);
 
@@ -77,8 +77,6 @@ export const ScrollProvider = (props) => {
 			window.scrollTo(scrollX, scrollY);
 
 			checkElementPos();
-
-			setCollapse(window.innerWidth < 992 ? true : false);
 		};
 
 		if (location.pathname === '/') {

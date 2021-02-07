@@ -1,25 +1,42 @@
 import { useContext } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import styled from 'styled-components';
-import './HomePage.css';
+import styles from './HomePage.module.css';
 
-import Slideshow from '../components/Slideshow';
-import SupplierCard from '../components/SupplierCard';
-import { ScrollContext } from '../contexts/ScrollContext';
-import nordpoolCardImg from '../images/nordpoolCardImg.png';
-import nordpoolLogo from '../images/nordpoolLogo.png';
-import svenskaBadImg from '../images/svenskaBadImg.png';
-import svenskaBadLogo from '../images/svenskaBadLogo.png';
+import Slideshow from '../../components/Slideshow';
+import SupplierCard from '../../components/SupplierCard';
+import { ScrollContext } from '../../contexts/ScrollContext';
+import nordpoolCardImg from '../../images/nordpoolCardImg.png';
+import nordpoolLogo from '../../images/nordpoolLogo.png';
+import svenskaBadImg from '../../images/svenskaBadImg.png';
+import svenskaBadLogo from '../../images/svenskaBadLogo.png';
+
+import slideImg1 from '../../images/slideImg1.png';
+import slideImg2 from '../../images/slide2.jpg';
 
 const HomePage = () => {
 	const { homepageEl } = useContext(ScrollContext);
 
 	const [homePageEl, slideshowRef] = homepageEl;
 
+	const slideContent = [
+		{
+			image: slideImg1,
+			textHead: 'Velkommen til Wellness at home',
+			textP:
+				'Nulla vitae elit libero, a pharetra augue mollis interdum.Nullavitae elit libero, a pharetra augue mollis interdum.Nulla vitae elit libero, a pharetra augue mollis interdum.',
+		},
+		{
+			image: slideImg2,
+			textHead: '',
+			textP: '',
+		},
+	];
+
 	return (
 		<>
-			<div ref={slideshowRef} style={{ position: 'relative', top: '-58px' }}>
-				<Slideshow />
+			<div ref={slideshowRef} style={{ position: 'relative', top: '-61px' }}>
+				<Slideshow slideContent={slideContent} styling={styles} />
 			</div>
 			<Container fluid className="overflow-hidden">
 				<Row className="justify-content-center w-100 mx-auto m-5">

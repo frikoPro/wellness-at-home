@@ -1,0 +1,12 @@
+.slideshow {
+	object-fit: contain;
+	height: 50vh;
+}
+
+.marginBottomLine {
+	border-bottom: 2px solid rgb(221, 220, 220);
+}
+
+.textUnderLine {
+	text-decoration: underline;
+}

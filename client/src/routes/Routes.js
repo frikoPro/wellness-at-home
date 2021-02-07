@@ -1,10 +1,10 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Footer from '../components/Footer';
-import NavigationBar from '../components/NavigationBar';
+import NavigationBar from '../components/navbar/NavigationBar';
 import Test from '../components/Test';
 import { ScrollProvider } from '../contexts/ScrollContext';
-import HomePage from '../views/HomePage';
-import ProductPage from '../views/ProductPage';
+import HomePage from '../views/homePage/HomePage';
+import ProductPage from '../views/productPage/ProductPage';
 
 const Routes = () => {
 	return (
