@@ -1,0 +1,69 @@
+/* PC */
+
+@media screen and (min-width: 992px) {
+	.dropmenu {
+		position: absolute;
+		background-color: black;
+		color: white;
+		min-width: 80%;
+		z-index: 1;
+		left: 50%;
+		top: 61px;
+		border-radius: 0 0 15px 15px;
+		margin-left: auto;
+		margin-right: auto;
+		overflow: hidden;
+		transform: translateX(-50%);
+		flex-flow: row;
+		transition: max-height 0.5s ease-out;
+	}
+
+	.dropmenuCol {
+		border-left: 2px solid rgb(50, 50, 50);
+	}
+}
+
+/* MOBILE */
+@media screen and (max-width: 991px) {
+	.dropmenu {
+		position: relative;
+		color: white;
+		margin-right: auto;
+		z-index: 1;
+		border-radius: 0 0 15px 15px;
+		overflow-y: scroll;
+		height: 200px;
+		flex-flow: column;
+		transition: max-height 0.5s ease-out;
+	}
+
+	.dropmenuItem {
+		text-align: left;
+		margin-left: 50px;
+	}
+
+	.notOpacity {
+		background-color: black !important;
+	}
+}
+
+.hoverGold:hover {
+	color: #ffc107 !important;
+	cursor: pointer;
+	text-decoration: #ffc107 underline;
+}
+
+.dropmenuItemHeader {
+	color: white;
+	height: 35px;
+	border-bottom: 2px solid rgb(50, 50, 50);
+}
+
+.dropmenuItem {
+	color: white;
+}
+
+.navItem {
+	margin-right: auto;
+	color: white !important;
+}
