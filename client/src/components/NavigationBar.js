@@ -83,10 +83,22 @@ const NavigationBar = () => {
 							<p className="mt-2 dropmenu-item hover-gold">SAREK</p>
 						</Col>
 					</Dropdown>
-					<Nav.Link className="nav-item hover-gold">Nettbutikk</Nav.Link>
-					<Nav.Link className="nav-item hover-gold">Nyheter</Nav.Link>
-					<Nav.Link className="nav-item hover-gold">Arrangementer</Nav.Link>
-					<Nav.Link className="nav-item hover-gold">Support</Nav.Link>
+					<Nav.Link className={`${styling.navItem} ${styling.hoverGold}`}>
+						Nettbutikk
+					</Nav.Link>
+					<Nav.Link
+						href="/Nyheter"
+						className={`${styling.navItem} ${styling.hoverGold}`}>
+						Nyheter
+					</Nav.Link>
+					<Nav.Link className={`${styling.navItem} ${styling.hoverGold}`}>
+						Arrangementer
+					</Nav.Link>
+					<Nav.Link
+						href="/Support"
+					 	className={`${styling.navItem} ${styling.hoverGold}`}>
+						Support
+					</Nav.Link>
 				</Nav>
 				<Nav>
 					<Nav.Link className="nav-item hover-gold">
