@@ -1,8 +1,21 @@
 import { Carousel } from 'react-bootstrap';
 
-const Slideshow = ({ styling, slideContent, id }) => {
+const Slideshow = ({
+	styling,
+	slideContent,
+	indicators,
+	activeIndex,
+	setIndex,
+	classId,
+	interval,
+}) => {
 	return (
-		<Carousel id={id} className={styling.mtSlide}>
+		<Carousel
+			indicators={indicators}
+			activeIndex={activeIndex}
+			onSelect={(newIndx) => setIndex(newIndx)}
+			className={`${styling.mtSlide} ${classId}`}
+			interval={interval}>
 			{slideContent.map((item, i) => (
 				<Carousel.Item key={i}>
 					<img

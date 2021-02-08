@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import styles from './HomePage.module.css';
@@ -33,10 +33,17 @@ const HomePage = () => {
 		},
 	];
 
+	const [currentSlideImg, setCurrentSlideImg] = useState(0);
+
 	return (
 		<>
 			<div ref={slideshowRef} style={{ position: 'relative', top: '-61px' }}>
-				<Slideshow slideContent={slideContent} styling={styles} />
+				<Slideshow
+					slideContent={slideContent}
+					setIndex={(index) => setCurrentSlideImg(index)}
+					activeIndex={currentSlideImg}
+					styling={styles}
+				/>
 			</div>
 			<Container fluid className="overflow-hidden">
 				<Row className="justify-content-center w-100 mx-auto m-5">
