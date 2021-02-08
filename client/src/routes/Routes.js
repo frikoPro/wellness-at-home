@@ -5,6 +5,8 @@ import Test from '../components/Test';
 import { ScrollProvider } from '../contexts/ScrollContext';
 import HomePage from '../views/homePage/HomePage';
 import ProductPage from '../views/productPage/ProductPage';
+import Nyheter from "../views/Nyheter";
+
 
 const Routes = () => {
 	return (
@@ -21,6 +23,9 @@ const Routes = () => {
 						</Route>
 						<Route path="/test">
 							<Test />
+						</Route>
+						<Route path="/Nyheter">
+							<Nyheter/>
 						</Route>
 						<Route path="/nordpool/:id">
 							<ProductPage />

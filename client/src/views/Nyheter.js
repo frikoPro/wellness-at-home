@@ -3,7 +3,7 @@ import { Facebook } from 'reactjs-social-embed'
 import "./Nyheter.css"
 const axios = require('axios');
 
-const Nyheter = newChild => {
+const Nyheter = () => {
 
     const pageID = process.env.REACT_APP_FACEBOOK_ID
     const token = process.env.REACT_APP_FACEBOOK_TOKEN
