@@ -135,9 +135,11 @@ const NavigationBar = () => {
 					<Nav.Link className={`${styling.navItem} ${styling.hoverGold}`}>
 						Nettbutikk
 					</Nav.Link>
-						<Nav.Link href="Nyheter" className={`${styling.navItem} ${styling.hoverGold}`}>
-							Nyheter
-						</Nav.Link>
+					<Nav.Link
+						href="/Nyheter"
+						className={`${styling.navItem} ${styling.hoverGold}`}>
+						Nyheter
+					</Nav.Link>
 					<Nav.Link className={`${styling.navItem} ${styling.hoverGold}`}>
 						Arrangementer
 					</Nav.Link>
