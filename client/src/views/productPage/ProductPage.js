@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import ScrollDiv from '../../components/ScrollDiv';
 import Slideshow from '../../components/Slideshow';
 import sarekImg1 from '../../images/sarekimg1.png';
 import sarekimg2 from '../../images/sarekimg2.png';
@@ -16,20 +17,37 @@ const ProductPage = () => {
 			textP: '',
 		},
 		{ image: sarekimg2, textHead: '', textP: '' },
+		{ image: sarekimg2, textHead: '', textP: '' },
+		{ image: sarekimg2, textHead: '', textP: '' },
+		{ image: sarekimg2, textHead: '', textP: '' },
+		{ image: sarekimg2, textHead: '', textP: '' },
+		{ image: sarekimg2, textHead: '', textP: '' },
 	];
 
+	const [activeSlideImg, setActiveSlideImg] = useState(0);
+
 	return (
-		<Container className="shadow" style={{ backgroundColor: 'white' }}>
+		<Container
+			className="shadow"
+			style={{ backgroundColor: 'white', marginTop: '5%' }}>
 			<Row>
 				<Col xl={12} className="mx-auto">
 					<Slideshow
-						id="productPage"
+						classId="productPage"
+						interval={null}
+						indicators={false}
 						slideContent={slideContent}
 						styling={styles}
+						activeIndex={activeSlideImg}
+						setIndex={(index) => setActiveSlideImg(index)}
 					/>
 				</Col>
 			</Row>
-			<Row className="justify-content-center align-items-center mt-5 p-5">
+			<ScrollDiv
+				content={slideContent}
+				returnFunction={(index) => setActiveSlideImg(index)}
+			/>
+			<Row className="justify-content-center align-items-center p-5">
 				<Col className={`text-center ${styles.marginBottomLine}`}>
 					<h1>{id.toUpperCase()}</h1>
 				</Col>
@@ -156,11 +174,11 @@ const ProductPage = () => {
 							<div
 								style={{
 									width: '175px',
-									height: '90%',
+									height: '70%',
 									border: '2px solid rgb(221, 220, 220)',
 									display: 'inline-block',
 								}}
-								className="mr-5"></div>
+								className="m-3"></div>
 						))}
 				</div>
 			</div>
@@ -285,7 +303,5 @@ const ProductPage = () => {
 		</Container>
 	);
 };
-
-const SlideshowStyled = styled(Slideshow)``;
 
 export default ProductPage;
