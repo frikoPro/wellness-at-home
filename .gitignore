@@ -1,6 +1,5 @@
 node_modules
 .env
-<<<<<<< HEAD
 
 # Created by https://www.toptal.com/developers/gitignore/api/webstorm+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=webstorm+all,visualstudiocode
@@ -106,6 +105,4 @@ modules.xml
 .idea/sonarlint
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm+all,visualstudiocode
-=======
 client/.eslintcache
->>>>>>> 4d38e5b63929059c2ef2c1c76d438c265fbe27be
