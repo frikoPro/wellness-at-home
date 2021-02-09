@@ -5,10 +5,8 @@ import Test from '../components/Test';
 import { ScrollProvider } from '../contexts/ScrollContext';
 import HomePage from '../views/homePage/HomePage';
 import ProductPage from '../views/productPage/ProductPage';
-import Nyheter from "../views/Nyheter";
-import Support from "../views/SupportPage";
-import SupportPage from '../views/SupportPage';
-
+import Nyheter from '../views/nyheter/Nyheter';
+import SupportPage from '../views/supportPage/SupportPage';
 
 const Routes = () => {
 	return (
@@ -27,10 +25,10 @@ const Routes = () => {
 							<Test />
 						</Route>
 						<Route path="/Nyheter">
-							<Nyheter/>
+							<Nyheter />
 						</Route>
 						<Route path="/Support">
-							<SupportPage/>
+							<SupportPage />
 						</Route>
 						<Route path="/nordpool/:id">
 							<ProductPage />
