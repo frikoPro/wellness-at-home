@@ -2,7 +2,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 
 const Footer = () => {
 	return (
-		<Navbar sticky="bottom" as="footer" variant="dark">
+		<Navbar sticky="bottom" as="footer">
 			<Nav className="mr-auto">
 				<Nav.Link className="p-0">
 					<svg
@@ -27,9 +27,13 @@ const Footer = () => {
 				</Nav.Link>
 			</Nav>
 			<Nav>
-				<Nav.Link>Om oss</Nav.Link>
-				<Nav.Link>Terms and conditions</Nav.Link>
-				<Nav.Link>Privacy and cookies policy</Nav.Link>
+				<Nav.Link className="nav-text-color hover-gold">Om oss</Nav.Link>
+				<Nav.Link className="nav-text-color hover-gold">
+					Terms and conditions
+				</Nav.Link>
+				<Nav.Link className="nav-text-color hover-gold">
+					Privacy and cookies policy
+				</Nav.Link>
 			</Nav>
 		</Navbar>
 	);
