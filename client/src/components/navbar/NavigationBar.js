@@ -138,7 +138,8 @@ const NavigationBar = () => {
 						className={`${styling.navItem} ${styling.hoverGold}`}>
 						Blogg
 					</Nav.Link>
-					<Nav.Link className={`${styling.navItem} ${styling.hoverGold}`}>
+					<Nav.Link href="/Arrangementer"
+							  className={`${styling.navItem} ${styling.hoverGold}`}>
 						Arrangementer
 					</Nav.Link>
 					<Nav.Link
