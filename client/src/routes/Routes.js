@@ -30,7 +30,7 @@ const Routes = () => {
 						<Route path="/Arrangementer">
 							<Events />
 						</Route>
-						<Route path="/Support">
+						<Route path="/Kundeserivce">
 							<SupportPage />
 						</Route>
 						<Route path="/nordpool/:id">
