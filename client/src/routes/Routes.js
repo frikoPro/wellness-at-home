@@ -7,7 +7,8 @@ import HomePage from '../views/homePage/HomePage';
 import ProductPage from '../views/productPage/ProductPage';
 import Blogg from '../views/bloggPage/Blogg';
 import SupportPage from '../views/supportPage/SupportPage';
-import Events from "../views/eventsPage/Events";
+import Webpanel from '../views/webpanel/Webpanel';
+import Events from '../views/eventsPage/Events';
 
 const Routes = () => {
 	return (
@@ -35,6 +36,9 @@ const Routes = () => {
 						</Route>
 						<Route path="/nordpool/:id">
 							<ProductPage />
+						</Route>
+						<Route path="/webpanel">
+							<Webpanel />
 						</Route>
 					</Switch>
 				</main>
