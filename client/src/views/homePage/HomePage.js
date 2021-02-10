@@ -38,7 +38,7 @@ const HomePage = () => {
 	return (
 		<>
 			<section>
-				<div ref={slideshowRef} style={{ position: 'relative', top: '-61px' }}>
+				<div ref={slideshowRef} style={{ position: 'relative', top: '-87px' }}>
 					<Slideshow
 						slideContent={slideContent}
 						setIndex={(index) => setCurrentSlideImg(index)}
