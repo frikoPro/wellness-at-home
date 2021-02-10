@@ -30,3 +30,13 @@ footer {
 .scrolled-div::-webkit-scrollbar {
 	display: none;
 }
+
+.hover-gold:hover {
+	color: #ffc107 !important;
+	cursor: pointer;
+	text-decoration: #ffc107 underline;
+}
+
+.nav-text-color {
+	color: white !important;
+}

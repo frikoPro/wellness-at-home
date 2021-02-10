@@ -132,7 +132,8 @@ const ProductPage = () => {
 						<StarRating rating={4} size={2} />
 						<p
 							className="mb-3 text-secondary"
-							onClick={() => reviewsRef.current.scrollIntoView()}>
+							style={{ cursor: 'pointer' }}
+							onClick={() => reviewsRef.current.scrollIntoView(false)}>
 							<u>Se anmeldelser ({productPageContent.userReviews.length})</u>
 						</p>
 						<Button className="btn-warning mb-sm-3">
