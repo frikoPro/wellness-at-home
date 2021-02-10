@@ -1,7 +1,30 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import styles from './SupportPage.module.css';
+import FAQList from '../../components/FAQ/FAQList'
 
 const SupportPage = () => {
+	const frequentQuestionsContent = {
+		FAQs: [
+			{
+				question: 'Hvor lang tid tar bestillingen?',
+				answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+			},
+			{
+				question: 'Har mistet brukermanual',
+				answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+			},
+			{
+				question: 'Kan man bestille med faktura?',
+				answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+			},
+			{
+				question: 'Hva er forskjellen på saltvann og klor?',
+				answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+			},
+		],
+	};
+	
+
 	return (
 		<Container>
 			<Row className="justify-content-center p-5">
@@ -9,25 +32,8 @@ const SupportPage = () => {
 					<h1>Ofte stilte spørsmål</h1>
 				</Col>
 			</Row>
-			<Row>
-				<Col className={'text-center'}>
-					<h1>Ofte stilte spørsmål</h1>
-				</Col>
-			</Row>
-			<Row>
-				<Col className={'text-center'}>
-					<h1>Ofte stilte spørsmål</h1>
-				</Col>
-			</Row>
-			<Row>
-				<Col className={'text-center'}>
-					<h1>Ofte stilte spørsmål</h1>
-				</Col>
-			</Row>
-			<Row>
-				<Col className={'text-center'}>
-					<h1>Ofte stilte spørsmål</h1>
-				</Col>
+			<Row sm={2} className="justify-content-center align-items-center ml-5">
+				<FAQList FAQs={frequentQuestionsContent.FAQs}/>
 			</Row>
 			<Row className="mt-5">
 				<Col className={'text-center'}>
