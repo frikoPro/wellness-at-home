@@ -1,9 +1,10 @@
 import React from 'react';
-import {Card, ListGroup, Row} from "react-bootstrap";
+import {Card, CardColumns, CardDeck, ListGroup, Row, Table} from "react-bootstrap";
 
 
 const Events = () => {
 let time;
+//todo: legg til bilder i arrayet
 const eventsData = [
         {
             date: 1618054898,
@@ -37,20 +38,26 @@ const eventsData = [
 // border="primary" style={{marginTop: 40}}
     return (
         <>
-            <div style={{paddingTop: 40, backgroundColor: "navajowhite"}}
+            <div style={{paddingTop: 40, backgroundColor: "lightcoral"}}
                  className="col-lg-5 col-md-5 col-sm-5 container justify-content-center">
+                <CardColumns>
             {eventsData.map((event, index) => (
-                <>
-                    <ListGroup  horizontal={'xl'}>
-                        <ListGroup.Item>{time = new Date(event.date).toLocaleDateString("en-US")}</ListGroup.Item>
-                        <ListGroup.Item>{event.City}</ListGroup.Item>
-                        <ListGroup.Item>{event.Location}</ListGroup.Item>
-                        <ListGroup.Item>{event.Address}</ListGroup.Item>
-                    </ListGroup>
-                    <br />
-                </>
+                <Card>
+                    <Card.Img variant="top" src="https://via.placeholder.com/200x100" />
+                    <Card.Body>
+                        <Card.Title>{event.Location}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{event.City}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2">{event.Address}</Card.Subtitle>
+                        <Card.Link href="#">Kart</Card.Link>
+                        <Card.Link href="#">Legg til i kalender</Card.Link>
+                    </Card.Body>
+                    <Card.Footer>
+                        <small className="text-muted">Dato: {time = new Date(event.date).toLocaleDateString("en-US")}</small>
+                    </Card.Footer>
+                </Card>
                 )
             )}
+            </CardColumns>
             </div>
         </>
     );
