@@ -20,6 +20,7 @@ const NavigationBar = () => {
 			collapseOnSelect
 			expand="lg"
 			fixed="top"
+			variant="dark"
 			className={styling.notOpacity}>
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
@@ -42,7 +43,7 @@ const NavigationBar = () => {
 						style={{ zIndex: '1' }}
 						onMouseOver={() => setOpen(true)}
 						onMouseOut={() => setOpen(false)}
-						className={`${styling.navItem} nav-text-color hover-gold`}>
+						className={`${styling.navItem} ${styling.hoverGold}`}>
 						Spabad
 					</Nav.Link>
 					<Dropdown
@@ -56,25 +57,22 @@ const NavigationBar = () => {
 						<Col className="text-center">
 							<a href="/svenskabadpro">
 								<h5
-									className={`m-3 hover-gold ${styling.dropmenuItemHeader} nav-text-color`}>
+									className={`m-3 ${styling.hoverGold} ${styling.dropmenuItemHeader}`}>
 									Svenska Bad Pro
 								</h5>
 							</a>
 							<a href="/svenskabadpro/viken">
-								<p
-									className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
+								<p className={`${styling.dropmenuItem} ${styling.hoverGold}`}>
 									VIKEN
 								</p>
 							</a>
 							<a href="/svenskabadpro/fjorden">
-								<p
-									className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
+								<p className={`${styling.dropmenuItem} ${styling.hoverGold}`}>
 									FJORDEN
 								</p>
 							</a>
 							<a href="/svenskabadpro/floden">
-								<p
-									className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
+								<p className={`${styling.dropmenuItem} ${styling.hoverGold}`}>
 									FLODEN
 								</p>
 							</a>
@@ -82,31 +80,31 @@ const NavigationBar = () => {
 						<Col className={'text-center ' + styling.dropmenuCol}>
 							<a href="/svenskabad/">
 								<h5
-									className={`m-3 hover-gold ${styling.dropmenuItemHeader} nav-text-color`}>
+									className={`m-3 ${styling.hoverGold} ${styling.dropmenuItemHeader}`}>
 									Svenska Bad
 								</h5>
 							</a>
 							<a href="/svenskabad/earl">
 								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
+									className={`mt-2 ${styling.dropmenuItem} ${styling.hoverGold}`}>
 									EARL
 								</p>
 							</a>
 							<a href="/svenskabad/vancouver">
 								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
+									className={`mt-2 ${styling.dropmenuItem} ${styling.hoverGold}`}>
 									VANCOUVER
 								</p>
 							</a>
 							<a href="/svenskabad/vancouver-black-edition">
 								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
+									className={`mt-2 ${styling.dropmenuItem} ${styling.hoverGold}`}>
 									VANCOUVER BLACK EDITION
 								</p>
 							</a>
 							<a href="/svenskabad/dallas">
 								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
+									className={`mt-2 ${styling.dropmenuItem} ${styling.hoverGold}`}>
 									DALLAS
 								</p>
 							</a>
@@ -114,43 +112,44 @@ const NavigationBar = () => {
 						<Col className={'text-center ' + styling.dropmenuCol}>
 							<a href="/nordpool">
 								<h5
-									className={`m-3 hover-gold ${styling.dropmenuItemHeader} nav-text-color`}>
+									className={`m-3 ${styling.hoverGold} ${styling.dropmenuItemHeader}`}>
 									Nordpool Spa
 								</h5>
 							</a>
 							<a href="/nordpool/tor">
 								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
+									className={`mt-2 ${styling.dropmenuItem} ${styling.hoverGold}`}>
 									TOR
 								</p>
 							</a>
 							<a href="/nordpool/sarek">
 								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
+									className={`mt-2 ${styling.dropmenuItem} ${styling.hoverGold}`}>
 									SAREK
 								</p>
 							</a>
 						</Col>
 					</Dropdown>
-					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
+					<Nav.Link className={`${styling.navItem} ${styling.hoverGold}`}>
 						Nettbutikk
 					</Nav.Link>
 					<Nav.Link
-						href="/Nyheter"
-						className={`${styling.navItem} nav-text-color hover-gold`}>
-						Nyheter
+						href="/Blogg"
+						className={`${styling.navItem} ${styling.hoverGold}`}>
+						Blogg
 					</Nav.Link>
-					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
+					<Nav.Link href="/Arrangementer"
+							  className={`${styling.navItem} ${styling.hoverGold}`}>
 						Arrangementer
 					</Nav.Link>
 					<Nav.Link
-						href="/Support"
-						className={`${styling.navItem} nav-text-color hover-gold`}>
-						Kundestøtte
+						href="/Kundeserivce"
+						className={`${styling.navItem} ${styling.hoverGold}`}>
+						Kundeserivce
 					</Nav.Link>
 				</Nav>
 				<Nav>
-					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
+					<Nav.Link className={`${styling.navItem} ${styling.hoverGold}`}>
 						{isCollapsed ? (
 							'Search'
 						) : (
@@ -173,7 +172,7 @@ const NavigationBar = () => {
 							</svg>
 						)}
 					</Nav.Link>
-					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
+					<Nav.Link className={`${styling.navItem} ${styling.hoverGold}`}>
 						{isCollapsed ? (
 							'Handlekurv'
 						) : (
