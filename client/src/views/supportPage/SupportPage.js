@@ -1,9 +1,10 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import styles from './SupportPage.module.css';
-import FAQList from '../../components/FAQ/FAQList'
+import FAQList from '../../components/FAQ/FAQList';
+import ContactCard from '../../components/ContactCard';
 
 const SupportPage = () => {
-	const frequentQuestionsContent = {
+	const supportPageContent = {
 		FAQs: [
 			{
 				question: 'Hvor lang tid tar bestillingen?',
@@ -33,39 +34,39 @@ const SupportPage = () => {
 				</Col>
 			</Row>
 			<Row sm={2} className="justify-content-center align-items-center ml-5">
-				<FAQList FAQs={frequentQuestionsContent.FAQs}/>
+				<FAQList FAQs={supportPageContent.FAQs}/>
 			</Row>
 			<Row className="mt-5">
 				<Col className={'text-center'}>
-					<h2>Finner ikke svar?</h2>
+					<h2>Finner du ikke svar?</h2>
 				</Col>
 			</Row>
 			<Row>
 				<Col className={'text-center'}>
-					<p>Send oss en mail i feltet under</p>
+					<p>Fyll ut skjemaet under så hjelper vi deg</p>
 				</Col>
 			</Row>
-			<div className="mx-auto" style={{width: "50%"}}>
-				<Form>
+			<div className="mx-auto border border-dark p-3" style={{width: "60%"}}>
+				<Form className="mx-auto" style={{width: "70%"}}>
 					<Form.Group controlId="supportForm.ControlInputName">
 						<Form.Label>Navn:</Form.Label>
-						<Form.Control/>
+						<Form.Control className="border-dark"/>
 					</Form.Group>
 					<Form.Group controlId="supportForm.ControlInputEmail">
 						<Form.Label>E-post:</Form.Label>
-						<Form.Control type="email" placeholder="navn@eksempel.no" />
+						<Form.Control className="border-dark" type="email" placeholder="navn@eksempel.no" />
 					</Form.Group>
 					<Form.Group controlId="supportForm.ControlInputPhone">
 						<Form.Label>Telefon:</Form.Label>
-						<Form.Control/>
+						<Form.Control className="border-dark"/>
 					</Form.Group>
 					<Form.Group controlId="supportForm.ControlInputProblem">
 						<Form.Label>Type problem:</Form.Label>
-						<Form.Control/>
+						<Form.Control className="border-dark"/>
 					</Form.Group>
 					<Form.Group controlId="exampleForm.ControlTextareaMessage">
 						<Form.Label>Melding:</Form.Label>
-						<Form.Control as="textarea" rows={5} />
+						<Form.Control className="border-dark" as="textarea" rows={5} />
 					</Form.Group>
 					<Button className="btn-warning">Send inn</Button>
 				</Form>
@@ -77,44 +78,12 @@ const SupportPage = () => {
 				</Col>
 			</Row>
 			
-			<Row className="mx-auto">
-				<Col md={{offset: 2}}>
-					<div>
-						<Form>
-							<Form.Label>Hans Petter Sandvold</Form.Label>
-							<Form.Group as={Row}>
-								<Form.Label column sm={4}>Telefon:</Form.Label>
-								<Col>
-									<Form.Control plaintext readOnly value="456 20 830"/>
-								</Col>
-							</Form.Group>
-							<Form.Group as={Row}>
-								<Form.Label column sm={4}>E-post:</Form.Label>
-								<Col>
-									<Form.Control plaintext readOnly value="hanspetter@wellness.no"/>
-								</Col>
-							</Form.Group>
-						</Form>
-					</div>
+			<Row>
+				<Col>
+					<ContactCard name="Hans Petter Sandvold" phone="456 20 830" email="hanspetter@wellness.no"/>
 				</Col>
 				<Col>
-					<div>
-						<Form>
-							<Form.Label>Kenneth Nygård</Form.Label>
-							<Form.Group as={Row}>
-								<Form.Label column sm={4}>Telefon</Form.Label>
-								<Col>
-									<Form.Control plaintext readOnly value="654 45 560"/>
-								</Col>
-							</Form.Group>
-							<Form.Group as={Row}>
-								<Form.Label column sm={4}>E-post</Form.Label>
-								<Col>
-									<Form.Control plaintext readOnly value="kenneth@wellness.no"/>
-								</Col>
-							</Form.Group>
-						</Form>
-					</div>
+					<ContactCard name="Kenneth Nygård" phone="654 45 560" email="kenneth@wellness.no"/>
 				</Col>
 			</Row>
 		</Container>
