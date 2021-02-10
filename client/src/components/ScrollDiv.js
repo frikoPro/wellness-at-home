@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
 const ScrollDiv = ({ content, returnFunction, size, styles }) => {
@@ -42,6 +42,15 @@ const ScrollDiv = ({ content, returnFunction, size, styles }) => {
 		imgScroll.scrollDiv.current.scrollLeft = scrollPos;
 	};
 
+	useEffect(() => {
+		let scrollDiv = imgScroll.scrollDiv;
+
+		if (scrollDiv.current.offsetWidth >= scrollDiv.current.scrollWidth) {
+			imgScroll.leftArrow.current.style.display = 'none';
+			imgScroll.rightArrow.current.style.display = 'none';
+		}
+	});
+
 	return (
 		<Row
 			className={`${styles.scrollDiv} mt-5 m-3 align-items-center justify-content-center`}>
@@ -63,7 +72,7 @@ const ScrollDiv = ({ content, returnFunction, size, styles }) => {
 				className="scrolled-div p-0">
 				{content.map((item, index) => (
 					<Col
-						xs={size}
+						xs={size * 2}
 						sm={size * 2}
 						md={size * 1.5}
 						lg={size}

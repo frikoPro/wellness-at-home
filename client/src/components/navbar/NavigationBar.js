@@ -23,13 +23,11 @@ const NavigationBar = () => {
 			variant="dark"
 			className={styling.notOpacity}>
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-			<Navbar.Brand href="/" style={{ height: '45px' }}>
-				<img
-					className=""
-					src={wellnessLogo}
-					alt=""
-					style={{ height: '100%' }}></img>
+
+			<Navbar.Brand href="/">
+				<img src={wellnessLogo} alt="" style={{ height: '61px' }}></img>
 			</Navbar.Brand>
+
 			<Navbar.Collapse id="responsive-navbar-nav">
 				<Nav className="mr-auto ml-auto ">
 					{/* Had to make a div on top of Nav.Link Spabad to fire the event correctly */}
@@ -143,7 +141,7 @@ const NavigationBar = () => {
 					<Nav.Link className={`${styling.navItem} ${styling.hoverGold}`}>
 						Arrangementer
 					</Nav.Link>
-					<Nav.Link 
+					<Nav.Link
 						href="/Support"
 						className={`${styling.navItem} ${styling.hoverGold}`}>
 						Support
