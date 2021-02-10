@@ -128,10 +128,10 @@ const ProductPage = () => {
 					</Col>
 				</Row>
 				<Row className="justify-content-between">
-					<Col sm={6} className="mx-auto p-5 text-center">
+					<Col sm={12} lg={6} className="mx-auto p-5 text-center">
 						<p>{productPageContent.aboutProduct}</p>
 					</Col>
-					<Col sm={5} className="text-center align-self-center">
+					<Col sm={12} lg={6} className="text-center align-self-center">
 						<h1 className="mb-3">{productPageContent.price}</h1>
 						<StarRating rating={4} size={2} />
 						<p
