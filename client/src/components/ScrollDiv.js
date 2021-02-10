@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-const ScrollDiv = ({ content, returnFunction }) => {
+const ScrollDiv = ({ content, returnFunction, size }) => {
 	const imgScroll = {
 		leftArrow: useRef(null),
 		scrollDiv: useRef(null),
@@ -16,57 +16,46 @@ const ScrollDiv = ({ content, returnFunction }) => {
 	const returnEmptyDivs = () => {
 		let array = [];
 
-		for (var i = 0; i < Math.abs((content.length % 5) - 5); i++) {
-			array.push(
-				<div
-					style={{
-						padding: '10%',
-					}}></div>
-			);
+		for (var i = 0; i < Math.floor(content.length / (12 / size)); i++) {
+			array.push(<Col sm={size}></Col>);
 		}
 
 		return array;
 	};
 
 	const scroll = (direction) => {
-		const scrollWidth = imgScroll.scrollDiv.current.scrollWidth;
-		const scrollLeft = imgScroll.scrollDiv.current.scrollLeft;
-		const numberOfSlides = Math.ceil(content.length / 5);
+		const scrollWidth = imgScroll.scrollDiv.current.scrollWidth - 1;
+		var scrollPos = imgScroll.scrollDiv.current.scrollLeft;
 
-		const oneScrollMove = scrollWidth / numberOfSlides;
+		const oneScrollMove = imgScroll.scrollDiv.current.offsetWidth;
 
 		if (direction === 'left') {
-			if (scrollLeft - oneScrollMove < 0) {
-				imgScroll.scrollDiv.current.scrollLeft = scrollWidth - oneScrollMove;
+			if (scrollPos === 0) {
+				scrollPos = scrollWidth - oneScrollMove;
+			} else if (scrollPos - oneScrollMove < 0) {
+				scrollPos = 0;
 			} else {
-				imgScroll.scrollDiv.current.scrollLeft -= oneScrollMove;
+				scrollPos -= oneScrollMove;
 			}
 		} else {
-			if (scrollLeft + oneScrollMove >= scrollWidth) {
-				imgScroll.scrollDiv.current.scrollLeft = 0;
+			if (scrollPos + oneScrollMove >= scrollWidth) {
+				scrollPos = 0;
 			} else {
-				imgScroll.scrollDiv.current.scrollLeft += oneScrollMove;
+				imgScroll.scrollDiv.current.scrollLeft += oneScrollMove + 1;
 			}
 		}
+		imgScroll.scrollDiv.current.scrollLeft = scrollPos;
 	};
 
 	return (
 		<Row
-			xl={2}
 			onMouseOver={() => onHoverSrollImgDiv('inline-block')}
 			onMouseOut={() => onHoverSrollImgDiv('none')}
-			className="mt-5 d-none d-sm-flex">
-			<Col xs={1} xl={2} className="productPage">
+			className="mt-5 m-3 align-items-center justify-content-center">
+			<Col sm={2} className="productPage d-none d-xl-flex">
 				<span
 					ref={imgScroll.leftArrow}
-					className="carousel-control-prev-icon"
-					style={{
-						display: 'none',
-						position: 'relative',
-						left: '50%',
-						top: '50%',
-						transform: 'translate(-50%, -50%)',
-					}}
+					className="carousel-control-prev-icon mx-auto"
 					onClick={() => scroll('left')}></span>
 			</Col>
 
@@ -75,41 +64,37 @@ const ScrollDiv = ({ content, returnFunction }) => {
 				style={{
 					display: 'flex',
 					overflowX: 'auto',
-					flexWrap: 'nowrap',
-					width: '100%',
 					scrollBehavior: 'smooth',
 				}}
 				className="mx-auto scrolled-div p-0">
 				{content.map((item, index) => (
-					<img
-						src={item.image}
-						style={{
-							width: '19%',
-							marginRight: '1%',
-						}}
-						alt={index}
-						onClick={() => returnFunction(index)}
-						className="my-auto"></img>
+					<Col
+						xs={size * 2}
+						sm={size}
+						className="align-self-center"
+						onClick={() => returnFunction(index)}>
+						<img src={item.image} alt={index} className="w-100"></img>
+						{'name' in item ? (
+							<p className="text-center mt-2">{item.name}</p>
+						) : (
+							<p></p>
+						)}
+					</Col>
 				))}
 				{returnEmptyDivs().map((item) => item)}
 			</Col>
 
-			<Col xs={1} xl={2} className="productPage">
+			<Col sm={2} className="productPage d-none d-xl-flex">
 				<span
 					ref={imgScroll.rightArrow}
-					className="carousel-control-next-icon"
-					style={{
-						display: 'none',
-
-						position: 'relative',
-						left: '50%',
-						top: '50%',
-						transform: 'translate(-50%, -50%)',
-					}}
+					className="carousel-control-next-icon mx-auto"
 					onClick={() => scroll('right')}></span>
 			</Col>
 		</Row>
 	);
 };
 
+ScrollDiv.defaultProps = {
+	returnFunction: () => {},
+};
 export default ScrollDiv;
