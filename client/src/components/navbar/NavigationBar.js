@@ -146,7 +146,7 @@ const NavigationBar = () => {
 					<Nav.Link
 						href="/Support"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
-						Support
+						Kundestøtte
 					</Nav.Link>
 				</Nav>
 				<Nav>
