@@ -7,6 +7,7 @@ import HomePage from '../views/homePage/HomePage';
 import ProductPage from '../views/productPage/ProductPage';
 import Blogg from '../views/bloggPage/Blogg';
 import SupportPage from '../views/supportPage/SupportPage';
+import Events from "../views/eventsPage/Events";
 
 const Routes = () => {
 	return (
@@ -25,6 +26,9 @@ const Routes = () => {
 						</Route>
 						<Route path="/blogg">
 							<Blogg />
+						</Route>
+						<Route path="/Arrangementer">
+							<Events />
 						</Route>
 						<Route path="/Support">
 							<SupportPage />
