@@ -1,5 +1,4 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import styles from './SupportPage.module.css';
 import FAQList from '../../components/FAQ/FAQList';
 import ContactCard from '../../components/ContactCard';
 
@@ -24,10 +23,11 @@ const SupportPage = () => {
 			},
 		],
 	};
-	
 
 	return (
-		<Container>
+		<Container 
+			className="shadow"
+			style={{ backgroundColor: 'white', marginTop: '5%' }}>
 			<Row className="justify-content-center p-5">
 				<Col className={'text-center'}>
 					<h1>Ofte stilte spørsmål</h1>
@@ -78,12 +78,12 @@ const SupportPage = () => {
 				</Col>
 			</Row>
 			
-			<Row>
+			<Row className="pb-5">
 				<Col>
-					<ContactCard name="Hans Petter Sandvold" phone="456 20 830" email="hanspetter@wellness.no"/>
+					<ContactCard name="Hans Petter Sandvold" phone="456 20 830" email="hanspetter@wellnessathome.no"/>
 				</Col>
 				<Col>
-					<ContactCard name="Kenneth Nygård" phone="654 45 560" email="kenneth@wellness.no"/>
+					<ContactCard name="Kenneth Nygård" phone="654 45 560" email="kenneth@wellnessathome.no"/>
 				</Col>
 			</Row>
 		</Container>
