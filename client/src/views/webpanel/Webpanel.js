@@ -8,7 +8,9 @@ const Webpanel = () => {
 	const uploadImage = () => {
 		let data = new FormData();
 
-		data.append('file', images);
+		images.forEach((image) => {
+			data.append('multi-files', image);
+		});
 
 		axios({
 			method: 'POST',
@@ -27,8 +29,8 @@ const Webpanel = () => {
 							<Card.Title>Last opp bilde</Card.Title>
 							<input
 								type="file"
-								name="file"
-								onChange={(e) => setImages(e.target.files[0])}
+								name="multi-files"
+								onChange={(e) => setImages([...e.target.files])}
 								multiple
 							/>
 							<input
