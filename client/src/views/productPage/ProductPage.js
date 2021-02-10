@@ -20,10 +20,6 @@ const ProductPage = () => {
 				textP: '',
 			},
 			{ image: sarekimg2, textHead: '', textP: '' },
-			{ image: sarekimg2, textHead: '', textP: '' },
-			{ image: sarekimg2, textHead: '', textP: '' },
-			{ image: sarekimg2, textHead: '', textP: '' },
-			{ image: sarekimg2, textHead: '', textP: '' },
 		],
 
 		aboutProduct:
