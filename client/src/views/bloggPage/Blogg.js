@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Facebook} from 'reactjs-social-embed';
-import {Card, Row} from "react-bootstrap";
-
+import {Row} from "react-bootstrap";
 const axios = require('axios');
 
-const Nyheter = () => {
+const Blogg = () => {
     const pageID = process.env.REACT_APP_FACEBOOK_ID;
     const token = process.env.REACT_APP_FACEBOOK_TOKEN;
     const url = `https://graph.facebook.com/${pageID}/feed?access_token=${token}`;
@@ -17,7 +16,7 @@ const Nyheter = () => {
     return (
         <>
             {fbData.map((post) => (
-                <div style={{paddingTop: 20}}
+                <div style={{paddingTop: 40}}
                      className="col-lg-5 col-md-5 col-sm-5 container justify-content-center">
                     <Row>
                             <Facebook type="post"
@@ -31,4 +30,4 @@ const Nyheter = () => {
         </>
     );
 };
-export default Nyheter;
+export default Blogg;

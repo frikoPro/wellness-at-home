@@ -27,7 +27,6 @@
 @media screen and (max-width: 991px) {
 	.dropmenu {
 		position: relative;
-		color: white;
 		margin-right: auto;
 		z-index: 1;
 		border-radius: 0 0 15px 15px;
@@ -47,23 +46,11 @@
 	}
 }
 
-.hoverGold:hover {
-	color: #ffc107 !important;
-	cursor: pointer;
-	text-decoration: #ffc107 underline;
-}
-
 .dropmenuItemHeader {
-	color: white;
 	height: 35px;
 	border-bottom: 2px solid rgb(50, 50, 50);
 }
 
-.dropmenuItem {
-	color: white;
-}
-
 .navItem {
 	margin-right: auto;
-	color: white !important;
 }

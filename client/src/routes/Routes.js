@@ -5,8 +5,9 @@ import Test from '../components/Test';
 import { ScrollProvider } from '../contexts/ScrollContext';
 import HomePage from '../views/homePage/HomePage';
 import ProductPage from '../views/productPage/ProductPage';
-import Nyheter from '../views/nyheter/Nyheter';
+import Blogg from '../views/bloggPage/Blogg';
 import SupportPage from '../views/supportPage/SupportPage';
+import Events from "../views/eventsPage/Events";
 
 const Routes = () => {
 	return (
@@ -23,8 +24,11 @@ const Routes = () => {
 						<Route path="/test">
 							<Test />
 						</Route>
-						<Route path="/Nyheter">
-							<Nyheter />
+						<Route path="/blogg">
+							<Blogg />
+						</Route>
+						<Route path="/Arrangementer">
+							<Events />
 						</Route>
 						<Route path="/Support">
 							<SupportPage />
