@@ -15,9 +15,8 @@ const Routes = () => {
 				<header>
 					<NavigationBar />
 				</header>
-
-				<Switch>
-					<main>
+				<main>
+					<Switch>
 						<Route exact path="/">
 							<HomePage />
 						</Route>
@@ -33,8 +32,8 @@ const Routes = () => {
 						<Route path="/nordpool/:id">
 							<ProductPage />
 						</Route>
-					</main>
-				</Switch>
+					</Switch>
+				</main>
 			</ScrollProvider>
 
 			<Footer />

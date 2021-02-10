@@ -5,7 +5,7 @@ const UserReviewList = ({ userReviews }) => {
 	return (
 		<Row className="justify-content-center">
 			{userReviews.map((review, index) => (
-				<Col sm={10}>
+				<Col sm={10} key={index}>
 					<UserReview {...review} key={index} />
 				</Col>
 			))}

@@ -12,7 +12,7 @@ const ScrollDiv = ({ content, returnFunction, size, styles }) => {
 		let array = [];
 
 		for (var i = 0; i < Math.floor(content.length / (12 / size)); i++) {
-			array.push(<Col sm={size}></Col>);
+			array.push(<Col key={i} sm={size}></Col>);
 		}
 
 		return array;
@@ -68,6 +68,7 @@ const ScrollDiv = ({ content, returnFunction, size, styles }) => {
 						md={size * 1.5}
 						lg={size}
 						className="align-self-center"
+						key={index}
 						onClick={() => returnFunction(index)}>
 						<img src={item.image} alt={index} className="w-100"></img>
 						{'name' in item ? (

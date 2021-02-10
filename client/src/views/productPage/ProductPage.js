@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { useRef, useState } from 'react';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import ScrollDiv from '../../components/ScrollDiv';
 import Slideshow from '../../components/Slideshow';
@@ -83,11 +83,11 @@ const ProductPage = () => {
 			newArray.push(array.splice(0, 9));
 		}
 
-		array = newArray.map((arr) => (
-			<Col sm={6}>
+		array = newArray.map((arr, index) => (
+			<Col sm={6} key={index}>
 				<ul style={{ listStyleType: 'none' }}>
-					{arr.map((item) => (
-						<li>{item}</li>
+					{arr.map((item, index) => (
+						<li key={index}>{item}</li>
 					))}
 				</ul>
 			</Col>
