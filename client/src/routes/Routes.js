@@ -7,6 +7,7 @@ import HomePage from '../views/homePage/HomePage';
 import ProductPage from '../views/productPage/ProductPage';
 import Nyheter from '../views/nyheter/Nyheter';
 import SupportPage from '../views/supportPage/SupportPage';
+import Webpanel from '../views/webpanel/Webpanel';
 
 const Routes = () => {
 	return (
@@ -31,6 +32,9 @@ const Routes = () => {
 						</Route>
 						<Route path="/nordpool/:id">
 							<ProductPage />
+						</Route>
+						<Route path="/webpanel">
+							<Webpanel />
 						</Route>
 					</Switch>
 				</main>
