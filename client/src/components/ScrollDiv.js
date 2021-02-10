@@ -1,16 +1,11 @@
 import { useRef } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-const ScrollDiv = ({ content, returnFunction, size }) => {
+const ScrollDiv = ({ content, returnFunction, size, styles }) => {
 	const imgScroll = {
 		leftArrow: useRef(null),
 		scrollDiv: useRef(null),
 		rightArrow: useRef(null),
-	};
-
-	const onHoverSrollImgDiv = (display) => {
-		imgScroll.leftArrow.current.style.display = display;
-		imgScroll.rightArrow.current.style.display = display;
 	};
 
 	const returnEmptyDivs = () => {
@@ -49,28 +44,29 @@ const ScrollDiv = ({ content, returnFunction, size }) => {
 
 	return (
 		<Row
-			onMouseOver={() => onHoverSrollImgDiv('inline-block')}
-			onMouseOut={() => onHoverSrollImgDiv('none')}
-			className="mt-5 m-3 align-items-center justify-content-center">
-			<Col sm={2} className="productPage d-none d-xl-flex">
+			className={`${styles.scrollDiv} mt-5 m-3 align-items-center justify-content-center`}>
+			<Col sm={1} className="productPage">
 				<span
 					ref={imgScroll.leftArrow}
-					className="carousel-control-prev-icon mx-auto"
+					className={`${styles.leftArrow} carousel-control-prev-icon`}
 					onClick={() => scroll('left')}></span>
 			</Col>
 
 			<Col
+				sm={8}
 				ref={imgScroll.scrollDiv}
 				style={{
 					display: 'flex',
 					overflowX: 'auto',
 					scrollBehavior: 'smooth',
 				}}
-				className="mx-auto scrolled-div p-0">
+				className="scrolled-div p-0">
 				{content.map((item, index) => (
 					<Col
-						xs={size * 2}
-						sm={size}
+						xs={size}
+						sm={size * 2}
+						md={size * 1.5}
+						lg={size}
 						className="align-self-center"
 						onClick={() => returnFunction(index)}>
 						<img src={item.image} alt={index} className="w-100"></img>
@@ -84,10 +80,10 @@ const ScrollDiv = ({ content, returnFunction, size }) => {
 				{returnEmptyDivs().map((item) => item)}
 			</Col>
 
-			<Col sm={2} className="productPage d-none d-xl-flex">
+			<Col sm={1} className="productPage text-right">
 				<span
 					ref={imgScroll.rightArrow}
-					className="carousel-control-next-icon mx-auto"
+					className={`${styles.rightArrow} carousel-control-next-icon`}
 					onClick={() => scroll('right')}></span>
 			</Col>
 		</Row>

@@ -20,6 +20,10 @@ const ProductPage = () => {
 				textP: '',
 			},
 			{ image: sarekimg2, textHead: '', textP: '' },
+			{ image: sarekimg2, textHead: '', textP: '' },
+			{ image: sarekimg2, textHead: '', textP: '' },
+			{ image: sarekimg2, textHead: '', textP: '' },
+			{ image: sarekimg2, textHead: '', textP: '' },
 		],
 
 		aboutProduct:
@@ -112,6 +116,7 @@ const ProductPage = () => {
 				</Row>
 				<ScrollDiv
 					content={productPageContent.images}
+					styles={styles}
 					returnFunction={(index) => setActiveSlideImg(index)}
 					size={2}
 				/>
@@ -158,7 +163,11 @@ const ProductPage = () => {
 					</Col>
 				</Row>
 
-				<ScrollDiv content={productPageContent.relatedProducts} size={3} />
+				<ScrollDiv
+					content={productPageContent.relatedProducts}
+					styles={styles}
+					size={3}
+				/>
 			</section>
 			<section ref={reviewsRef}>
 				<Row className="justify-content-center align-items-center mt-5 p-5">
