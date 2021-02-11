@@ -19,7 +19,7 @@ const Slideshow = ({
 			{slideContent.map((item, i) => (
 				<Carousel.Item key={i}>
 					<img
-						src={item.image}
+						src={`http://localhost:8080/${item.filename}`}
 						alt={`${i + 1}. slideshow`}
 						className={`d-block w-100 ${styling.slideshow}`}></img>
 					<Carousel.Caption>
@@ -35,6 +35,10 @@ const Slideshow = ({
 			))}
 		</Carousel>
 	);
+};
+
+Slideshow.defaultProps = {
+	slideContent: [],
 };
 
 export default Slideshow;

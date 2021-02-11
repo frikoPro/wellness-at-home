@@ -11,9 +11,6 @@ import nordpoolLogo from '../../images/nordpoolLogo.png';
 import svenskaBadImg from '../../images/svenskaBadImg.png';
 import svenskaBadLogo from '../../images/svenskaBadLogo.png';
 
-import slideImg1 from '../../images/slideImg1.png';
-import slideImg2 from '../../images/slide2.jpg';
-
 const HomePage = () => {
 	const { homepageEl } = useContext(ScrollContext);
 
@@ -21,13 +18,13 @@ const HomePage = () => {
 
 	const slideContent = [
 		{
-			image: slideImg1,
+			filename: 'slideimg1.png',
 			textHead: 'Velkommen til Wellness at home',
 			textP:
 				'Nulla vitae elit libero, a pharetra augue mollis interdum.Nullavitae elit libero, a pharetra augue mollis interdum.Nulla vitae elit libero, a pharetra augue mollis interdum.',
 		},
 		{
-			image: slideImg2,
+			filename: 'slide2.jpg',
 			textHead: '',
 			textP: '',
 		},
