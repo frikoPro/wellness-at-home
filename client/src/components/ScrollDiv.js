@@ -79,7 +79,10 @@ const ScrollDiv = ({ content, returnFunction, size, styles }) => {
 						className="align-self-center"
 						key={index}
 						onClick={() => returnFunction(index)}>
-						<img src={item.image} alt={index} className="w-100"></img>
+						<img
+							src={`http://localhost:8080/${item.filename}`}
+							alt={index}
+							className="w-100"></img>
 						{'name' in item ? (
 							<p className="text-center mt-2">{item.name}</p>
 						) : (
@@ -102,5 +105,6 @@ const ScrollDiv = ({ content, returnFunction, size, styles }) => {
 
 ScrollDiv.defaultProps = {
 	returnFunction: () => {},
+	content: [],
 };
 export default ScrollDiv;
