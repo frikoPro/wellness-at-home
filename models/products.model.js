@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ImagesSchema = new Schema({
-	path: {
+	filename: {
 		type: String,
 		required: true,
 		unique: true,
@@ -17,7 +17,6 @@ const UserReviews = new Schema(
 	{
 		rating: Number,
 		author: String,
-		date: { type: String, required: true },
 		header: String,
 		text: String,
 	},

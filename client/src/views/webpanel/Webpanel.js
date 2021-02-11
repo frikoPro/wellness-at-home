@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 
 const Webpanel = () => {
@@ -19,6 +19,12 @@ const Webpanel = () => {
 			config: { headers: { 'Content-Type': 'multipart/form-data' } },
 		}).then((response) => console.log(response.data));
 	};
+
+	useEffect(() => {
+		axios
+			.get('http://localhost:8080/products')
+			.then((response) => console.log(response.data));
+	});
 
 	return (
 		<Container fluid>
