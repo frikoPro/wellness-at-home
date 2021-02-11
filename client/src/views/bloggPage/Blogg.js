@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Row} from "react-bootstrap";
-import ReactDOM from 'react-dom'
 
 const axios = require('axios');
 
@@ -11,67 +10,41 @@ const Blogg = () => {
     let [fbData, setFbData] = useState([]);
 
     useEffect(() => {
-        axios.get(url).then((response) => setFbData(response.data.data));
+        axios.get(url).then((response) => {
+            const data = response.data.data;
+            const newData = data.map(item => {
+                return {...item, page_id: item.id.split("_")[0], post_id: item.id.split("_")[1]}
+            })
+            console.log(newData)
+            setFbData(newData)
+            window?.FB?.XFBML?.parse() //Loads the JS SDK again so that the "slower" elements gets detected when they render
+        });
     }, [url]);
-//       style={{margin: '5px', padding: '5px', width: 800, height: 680}}> style={{paddingTop: 40}}
 
-    const facebookEl = (postID: string) => {
-        const url = `https://www.facebook.com/102417811874407/posts/${postID}&adapt_container_width=true`
-        const iframeBase = 'https://www.facebook.com/plugins/post.php?href=';
-        const iframeSrc = `${iframeBase}${url}`;
-        const element = <iframe
-            style={{
-                marginTop: 40,
-                //width: 400,
-                overflow: "hidden", maxHeight: 700
-            }}
-            src={iframeSrc}
-            scrolling="no"
-            frameBorder={0}
-            width="100%"
-       />
+//       style={{margin: '5px', padding: '5px', width: 800, height: 680}}>
+    // <div className="fb-post" data-href="https://www.facebook.com/102417811874407/posts/106722811443907/" data-width="500" data-show-text="true"></div>
 
 
-
-       // const obj = document.body.getElementsByTagName("iframe")
-        //console.log([...obj])
-        return element
-    }
-    return (
-        <>
-            {fbData.map((post) => (
-                    <div
-                        key={post.id}
-                        style={{
-                            maxWidth: 640, overflow: 'auto',
-                        }}
-                        className="col-lg-5 col-md-5 col-sm-5 container justify-content-center ">
+    return (<div> {fbData.map((post) => (
+                <div style={{paddingTop: 40}}
+                     className="col-lg-5 col-md-5 col-sm-5 container justify-content-center">
+                    <Row>
+                        <div
+                            key={post.post_id}
+                            className="fb-post"
+                            data-href={`https://www.facebook.com/102417811874407/posts/${post.post_id}/`}
+                            data-width="500"
+                            data-show-text="true"
+                        />
+                    </Row>
 
 
-                        <Row style={{
-                            overflow: "auto", textAlign: "center",
+                </div>
 
-                            display: "inline-block"
-                        }}>
-                            {facebookEl(post.id.split("_")[1])}
-                        </Row>
-                    </div>
-                )
-            )}
-        </>
+            )
+        )} </div>
+
     );
 };
-export default Blogg;
 
-class SmartIFrame extends React.Component {
-    render() {
-        return <iframe srcDoc={this.props.srcDoc}
-                       scrolling="no"
-                       frameBorder={0}
-                       width="100%"
-                       onLoad = {e => setTimeout(() => {
-                           const obj = ReactDOM.findDOMNode(this);
-                           obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-                       }, 50)}/>
-    }
-}
+export default Blogg;
