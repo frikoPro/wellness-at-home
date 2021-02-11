@@ -13,4 +13,8 @@ const UserReviewList = ({ userReviews }) => {
 	);
 };
 
+UserReviewList.defaultProps = {
+	userReviews: [],
+};
+
 export default UserReviewList;

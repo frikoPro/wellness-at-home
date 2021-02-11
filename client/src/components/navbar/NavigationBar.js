@@ -61,19 +61,19 @@ const NavigationBar = () => {
 									Svenska Bad Pro
 								</h5>
 							</a>
-							<a href="/svenskabadpro/viken">
+							<a href="/spabad/viken">
 								<p
 									className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
 									VIKEN
 								</p>
 							</a>
-							<a href="/svenskabadpro/fjorden">
+							<a href="/spabad/fjorden">
 								<p
 									className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
 									FJORDEN
 								</p>
 							</a>
-							<a href="/svenskabadpro/floden">
+							<a href="/spabad/floden">
 								<p
 									className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
 									FLODEN
@@ -87,25 +87,25 @@ const NavigationBar = () => {
 									Svenska Bad
 								</h5>
 							</a>
-							<a href="/svenskabad/earl">
+							<a href="/spabad/earl">
 								<p
 									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
 									EARL
 								</p>
 							</a>
-							<a href="/svenskabad/vancouver">
+							<a href="/spabad/vancouver">
 								<p
 									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
 									VANCOUVER
 								</p>
 							</a>
-							<a href="/svenskabad/vancouver-black-edition">
+							<a href="/spabad/vancouver-black-edition">
 								<p
 									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
 									VANCOUVER BLACK EDITION
 								</p>
 							</a>
-							<a href="/svenskabad/dallas">
+							<a href="/spabad/dallas">
 								<p
 									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
 									DALLAS
@@ -119,13 +119,13 @@ const NavigationBar = () => {
 									Nordpool Spa
 								</h5>
 							</a>
-							<a href="/nordpool/tor">
+							<a href="/spabad/tor">
 								<p
 									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
 									TOR
 								</p>
 							</a>
-							<a href="/nordpool/sarek">
+							<a href="/spabad/sarek">
 								<p
 									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
 									SAREK
