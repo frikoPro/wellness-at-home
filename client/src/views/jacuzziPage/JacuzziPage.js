@@ -13,14 +13,14 @@ import { JacuzziContext } from '../../contexts/JacuzziContext';
 const JacuzziPage = () => {
 	let { id } = useParams();
 
-	const getProductByName = useContext(JacuzziContext);
+	const products = useContext(JacuzziContext);
 
 	const [jacuzziPageContent, setPageContent] = useState({});
 
 	const [averageRating, setAverageRating] = useState(0);
 
 	useEffect(() => {
-		let tempObj = getProductByName(id);
+		let tempObj = products.find((product) => product.name === id);
 
 		if (tempObj !== undefined) {
 			const renderTechSpec = () => {
@@ -54,7 +54,7 @@ const JacuzziPage = () => {
 			renderTechSpec();
 			setPageContent({ ...tempObj });
 		}
-	}, [getProductByName, id]);
+	}, [products, id]);
 
 	const [activeSlideImg, setActiveSlideImg] = useState(0);
 

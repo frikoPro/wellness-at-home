@@ -1,6 +1,6 @@
 import { Col, Container, Row, Button } from 'react-bootstrap';
 
-const SupplierCard = ({ image, logo }) => {
+const SupplierCard = ({ image, logo, text }) => {
 	return (
 		<Row className="justify-content-center w-100 mx-auto">
 			<Container className="bg-white shadow p-0 mt-5">
@@ -21,15 +21,7 @@ const SupplierCard = ({ image, logo }) => {
 								style={{ width: '60%', height: '40%' }}></img>
 						</Row>
 						<Row className="justify-content-center">
-							<span className="pr-5 pl-5 text-center">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-								enim ad minim veniam, quis nostrud exercitation ullamco laboris
-								nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-								in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-								nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-								sunt in culpa qui officia deserunt mollit anim id est laborum.
-							</span>
+							<span className="pr-5 pl-5 text-center">{text}</span>
 						</Row>
 						<Row className="justify-content-center m-5">
 							<Button className="btn-warning">Les mer</Button>
