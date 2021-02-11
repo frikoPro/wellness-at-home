@@ -4,12 +4,10 @@ import styled from 'styled-components';
 import styles from './HomePage.module.css';
 
 import Slideshow from '../../components/Slideshow';
-import SupplierCard from '../../components/SupplierCard';
+
 import { ScrollContext } from '../../contexts/ScrollContext';
-import nordpoolCardImg from '../../images/nordpoolCardImg.png';
-import nordpoolLogo from '../../images/nordpoolLogo.png';
-import svenskaBadImg from '../../images/svenskaBadImg.png';
-import svenskaBadLogo from '../../images/svenskaBadLogo.png';
+
+import SupplierCardList from '../../components/supplierCard/SupplierCardList';
 
 const HomePage = () => {
 	const { homepageEl } = useContext(ScrollContext);
@@ -70,7 +68,7 @@ const HomePage = () => {
 					</Row>
 				</section>
 
-				<StyledSection
+				{/* <StyledSection
 					ref={homePageEl[2].ref}
 					animate={homePageEl[2].show}
 					animatePercent={homePageEl[2].percent}>
@@ -82,22 +80,14 @@ const HomePage = () => {
 					animate={homePageEl[3].show}
 					animatePercent={homePageEl[3].percent}>
 					<SupplierCard image={svenskaBadImg} logo={svenskaBadLogo} />
-				</StyledSection>
+				</StyledSection> */}
+				<SupplierCardList />
 			</Container>
 		</>
 	);
 };
 
 const Div = styled.div`
-	transform: translateX(
-		${({ animate, right }) => (animate ? '0' : right ? '100vw' : '-100vw')}
-	);
-	transition: transform 2s;
-	opacity: ${({ animatePercent }) =>
-		animatePercent ? `${animatePercent / 100}` : `1`};
-`;
-
-const StyledSection = styled.section`
 	transform: translateX(
 		${({ animate, right }) => (animate ? '0' : right ? '100vw' : '-100vw')}
 	);
