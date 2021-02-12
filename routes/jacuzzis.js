@@ -1,14 +1,15 @@
 const router = require('express').Router();
-let Products = require('../models/products.model');
+let Jacuzzi = require('../models/jacuzzi.model');
 
 router.route('/').get((req, res) => {
-	Products.find()
+	Jacuzzi.find()
 		.then((products) => res.json(products))
 		.catch((err) => res.status(400).json('Error: ', err));
 });
 
 router.route('/add').post((req, res) => {
 	const name = req.body.name;
+	const brand = req.body.name;
 	const images = req.body.images;
 	const aboutProduct = req.body.aboutProduct;
 	const price = req.body.price;
@@ -16,8 +17,9 @@ router.route('/add').post((req, res) => {
 	const relatedProducts = req.body.relatedProducts;
 	const userReviews = req.body.userReviews;
 
-	const newProduct = new Products({
+	const newProduct = new Jacuzzi({
 		name,
+		brand,
 		images,
 		aboutProduct,
 		price,
@@ -33,7 +35,7 @@ router.route('/add').post((req, res) => {
 });
 
 router.route('/:id').delete((req, res) => {
-	Products.findByIdAndDelete(req.params.id)
+	Jacuzzi.findByIdAndDelete(req.params.id)
 		.then(() => res.json('product deleted!'))
 		.catch((err) => res.status(400).json('Error: ' + err));
 });
