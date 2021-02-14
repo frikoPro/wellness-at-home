@@ -39,9 +39,7 @@ const Routes = () => {
 							<Route path="/spabad/:id">
 								<JacuzziPage />
 							</Route>
-							<Route path="/webpanel">
-								<Webpanel />
-							</Route>
+							<Route path="/webpanel" component={Webpanel} />
 						</Switch>
 					</JacuzziProvider>
 				</main>

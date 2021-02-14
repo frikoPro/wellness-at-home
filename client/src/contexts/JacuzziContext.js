@@ -7,21 +7,17 @@ export const JacuzziProvider = (props) => {
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
-		const url = 'http://localhost:8080/products';
+		const url = 'http://localhost:8080/jacuzzis';
 		axios.get(url).then((response) => {
-			console.log('axios: ', response.data);
+			console.log(response.data);
 			setProducts(response.data);
 		});
 	}, []);
 
-	const getProductByName = (name) => {
-		return products.find((product) => product.name === name);
-	};
-
 	const val = 2;
 
 	return (
-		<JacuzziContext.Provider value={getProductByName}>
+		<JacuzziContext.Provider value={products}>
 			{props.children}
 		</JacuzziContext.Provider>
 	);
