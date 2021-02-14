@@ -24,10 +24,12 @@ const Blogg = () => {
 //       style={{margin: '5px', padding: '5px', width: 800, height: 680}}>
     // <div className="fb-post" data-href="https://www.facebook.com/102417811874407/posts/106722811443907/" data-width="500" data-show-text="true"></div>
 
-    const bsNumElement = 5; // For development purposes
+    const bsNumElement = 4; // For development purposes
     return (<>
             {fbData.map((post) => (
-                    <Card style={{padding: 40}}>
+                <div style={{paddingTop: 40}}>
+                    <Card style={{padding: 40, boxShadow: "10px 10px 5px #888888"}}
+                          className={`col-lg-${bsNumElement} col-md-${bsNumElement} col-sm-${bsNumElement} container justify-content-center`}>
                         <Card.Body>
                             <div
                                 key={post.post_id} //PostID is unique and a good key
@@ -38,6 +40,7 @@ const Blogg = () => {
                             />
                         </Card.Body>
                     </Card>
+                </div>
                 )
             )}
         </>
