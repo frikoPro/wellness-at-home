@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Row} from "react-bootstrap";
+import {Card, CardColumns, CardDeck} from "react-bootstrap";
 
 const axios = require('axios');
 
@@ -24,26 +24,26 @@ const Blogg = () => {
 //       style={{margin: '5px', padding: '5px', width: 800, height: 680}}>
     // <div className="fb-post" data-href="https://www.facebook.com/102417811874407/posts/106722811443907/" data-width="500" data-show-text="true"></div>
 
-
-    return (<div> {fbData.map((post) => (
-                <div style={{paddingTop: 40}}
-                     className="col-lg-5 col-md-5 col-sm-5 container justify-content-center">
-                    <Row>
-                        <div
-                            key={post.post_id}
-                            className="fb-post"
-                            data-href={`https://www.facebook.com/102417811874407/posts/${post.post_id}/`}
-                            data-width="500"
-                            data-show-text="true"
-                        />
-                    </Row>
-
-
+    const bsNumElement = 4; // For development purposes
+    return (<>
+            {fbData.map((post) => (
+                <div style={{paddingTop: 40}}>
+                    <Card style={{padding: 40, boxShadow: "10px 10px 5px #888888"}}
+                          className={`col-lg-${bsNumElement} col-md-${bsNumElement} col-sm-${bsNumElement} container justify-content-center`}>
+                        <Card.Body>
+                            <div
+                                key={post.post_id} //PostID is unique and a good key
+                                className="fb-post"
+                                data-href={`https://www.facebook.com/102417811874407/posts/${post.post_id}/`}
+                                data-width="500"
+                                data-show-text="true"
+                            />
+                        </Card.Body>
+                    </Card>
                 </div>
-
-            )
-        )} </div>
-
+                )
+            )}
+        </>
     );
 };
 
