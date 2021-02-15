@@ -22,7 +22,7 @@ const Webpanel = ({ match }) => {
 						<div>Legg til spabad</div>
 					</a>
 					<a href={`${match.url}/produkter`}>
-						<div>Legg til produktur</div>
+						<div>Legg til produkter</div>
 					</a>
 				</Col>
 				<Col sm={10}>

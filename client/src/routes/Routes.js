@@ -10,6 +10,7 @@ import SupportPage from '../views/supportPage/SupportPage';
 import Webpanel from '../views/webpanel/Webpanel';
 import Events from '../views/eventsPage/Events';
 import { JacuzziProvider } from '../contexts/JacuzziContext';
+import { ProductsProvider } from '../contexts/ProductsContext';
 
 const Routes = () => {
 	return (
@@ -20,27 +21,29 @@ const Routes = () => {
 				</header>
 				<main>
 					<JacuzziProvider>
-						<Switch>
-							<Route exact path="/">
-								<HomePage />
-							</Route>
-							<Route path="/test">
-								<Test />
-							</Route>
-							<Route path="/blogg">
-								<Blogg />
-							</Route>
-							<Route path="/Arrangementer">
-								<Events />
-							</Route>
-							<Route path="/Kundeserivce">
-								<SupportPage />
-							</Route>
-							<Route path="/spabad/:id">
-								<JacuzziPage />
-							</Route>
-							<Route path="/webpanel" component={Webpanel} />
-						</Switch>
+						<ProductsProvider>
+							<Switch>
+								<Route exact path="/">
+									<HomePage />
+								</Route>
+								<Route path="/test">
+									<Test />
+								</Route>
+								<Route path="/blogg">
+									<Blogg />
+								</Route>
+								<Route path="/Arrangementer">
+									<Events />
+								</Route>
+								<Route path="/Kundeserivce">
+									<SupportPage />
+								</Route>
+								<Route path="/spabad/:id">
+									<JacuzziPage />
+								</Route>
+								<Route path="/webpanel" component={Webpanel} />
+							</Switch>
+						</ProductsProvider>
 					</JacuzziProvider>
 				</main>
 			</ScrollProvider>

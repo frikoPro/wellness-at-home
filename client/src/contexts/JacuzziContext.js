@@ -4,20 +4,18 @@ import { createContext, useEffect, useState } from 'react';
 export const JacuzziContext = createContext();
 
 export const JacuzziProvider = (props) => {
-	const [products, setProducts] = useState([]);
+	const [jacuzzis, setJacuzzis] = useState([]);
 
 	useEffect(() => {
 		const url = 'http://localhost:8080/jacuzzis';
 		axios.get(url).then((response) => {
-			console.log(response.data);
-			setProducts(response.data);
+			console.log(response.data[0]);
+			setJacuzzis(response.data);
 		});
 	}, []);
 
-	const val = 2;
-
 	return (
-		<JacuzziContext.Provider value={products}>
+		<JacuzziContext.Provider value={jacuzzis}>
 			{props.children}
 		</JacuzziContext.Provider>
 	);

@@ -1,17 +1,29 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
+import { useState } from 'react';
+import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 
 const AddProduct = () => {
-	const [newProduct, setNewProduct] = useState({
+	const [newJacuzzi, setNewJacuzzi] = useState({
 		name: '',
-		affiliation: [],
+		brand: '',
 		category: '',
 		description: '',
 		price: '',
 		techSpec: [],
+		relatedProducts: [],
 		images: [],
 	});
+
+	const [newTechSpec, setNewTechSpec] = useState({
+		properties: ['vannsystem', 'strømforbruk', 'kapasitet'],
+		newProperty: '',
+		selectedTechSpec: {},
+	});
+
+	const [products] = useState([
+		{ name: 'test', image: 'sarekimg1.png' },
+		{ name: 'freak', image: 'sarekimg1.png' },
+	]);
 
 	const [images, setImages] = useState([]);
 
@@ -32,69 +44,82 @@ const AddProduct = () => {
 
 	const postNewProduct = () => {
 		axios
-			.post('http://localhost:8080/products/add', newProduct)
+			.post('http://localhost:8080/products/add', newJacuzzi)
 			.then((response) => console.log(response));
 	};
 
 	const onUploadImage = (e) => {
-		let filenames = newProduct;
+		let filenames = newJacuzzi;
 
-		[...e.target.files].forEach((image) => filenames.images.push(image.name));
+		[...e.target.files].forEach((image) =>
+			filenames.images.push({ image: image.name })
+		);
 
-		setNewProduct({ ...filenames });
+		setNewJacuzzi({ ...filenames });
 		setImages([...e.target.files]);
+	};
+
+	const addNewProperty = () => {
+		if (
+			newTechSpec.selectedTechSpec.property &&
+			newTechSpec.selectedTechSpec.value
+		) {
+			return setNewJacuzzi({
+				...newJacuzzi,
+				techSpec: [...newJacuzzi.techSpec, newTechSpec.selectedTechSpec],
+			});
+		}
+
+		alert('fyll inn både egenskap og verdi');
 	};
 
 	return (
 		<Card>
 			<Card.Body>
-				<Card.Title>Legg til tilbehør</Card.Title>
+				<Card.Title>Legg til produkt</Card.Title>
 				<Form>
 					<Form.Group>
-						<Form.Label>Navn</Form.Label>
+						<Form.Label>Produktets navn</Form.Label>
 						<Form.Control
 							placeholder="navn"
 							onChange={(e) =>
-								setNewProduct({ ...newProduct, name: e.target.value })
+								setNewJacuzzi({ ...newJacuzzi, name: e.target.value })
 							}
 						/>
+					</Form.Group>
+
+					<Form.Group>
+						<Form.Label>Tilhørighet</Form.Label>
+						<select
+							className="form-control"
+							onChange={(e) =>
+								setNewJacuzzi({ ...newJacuzzi, brand: e.target.value })
+							}>
+							<option disabled selected>
+								Velg tilhørighet
+							</option>
+							<option>Svenska Bad</option>
+							<option>Svenska Bad Pro</option>
+							<option>Nordpool</option>
+						</select>
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>Kategori</Form.Label>
 						<select
 							className="form-control"
 							onChange={(e) =>
-								setNewProduct({ ...newProduct, category: e.target.value })
-							}>
-							<option selected disabled>
-								Velg kategori
-							</option>
-							<option>filter</option>
-							<option>kontroll panel</option>
-							<option>pumper</option>
-							<option>Saltvannssystem</option>
-							<option>varmeelement</option>
-							<option>WiFi styring</option>
-							<option>Lokkløftere</option>
-							<option>Spa tilbehør</option>
-							<option>Thermolokk</option>
-							<option>vannkjemi</option>
-						</select>
-					</Form.Group>
-					<Form.Group>
-						<Form.Label>Legg til tilhørighet</Form.Label>
-						<select
-							className="form-control"
-							onChange={(e) =>
-								setNewProduct({ ...newProduct, affiliation: e.target.value })
+								setNewJacuzzi({ ...newJacuzzi, category: e.target.value })
 							}>
 							<option disabled selected>
 								Velg merke
 							</option>
-							<option>Alle bad</option>
-							<option>Svenska Bad</option>
-							<option>Svenska Bad Pro</option>
-							<option>Nordpool</option>
+							<option>Filter</option>
+							<option>Pumper</option>
+							<option>Saltvann</option>
+							<option>Varmeelement</option>
+							<option>Wi-Fi</option>
+							<option>Lokkløftere</option>
+							<option>Spa tilbehør</option>
 						</select>
 					</Form.Group>
 					<Form.Group>
@@ -102,8 +127,8 @@ const AddProduct = () => {
 						<Form.Control
 							placeholder="Beskrivelse"
 							onChange={(e) =>
-								setNewProduct({
-									...newProduct,
+								setNewJacuzzi({
+									...newJacuzzi,
 									description: e.target.value,
 								})
 							}
@@ -112,20 +137,114 @@ const AddProduct = () => {
 					<Form.Group>
 						<Form.Label>Pris</Form.Label>
 						<Form.Control
+							type="number"
 							placeholder="pris"
 							onChange={(e) =>
-								setNewProduct({ ...newProduct, price: e.target.value })
+								setNewJacuzzi({ ...newJacuzzi, price: e.target.value })
 							}
 						/>
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>Tekniske spesifikasjoner</Form.Label>
-						<Form.Control
-							placeholder="tekniske spesifikasjoner"
+						<Row>
+							<Col sm={2}>
+								<select
+									className="form-control"
+									placeholder="Strømforbruk"
+									onChange={(e) =>
+										setNewTechSpec({
+											...newTechSpec,
+											selectedTechSpec: {
+												...newTechSpec.selectedTechSpec,
+												property: e.target.value,
+											},
+										})
+									}>
+									<option disabled selected>
+										Velg egenskap
+									</option>
+									{newTechSpec.properties.map((option) => (
+										<option>{option}</option>
+									))}
+								</select>
+							</Col>
+							<Col sm={1} className="text-center">
+								<div>:</div>
+							</Col>
+							<Col sm={2}>
+								<Form.Control
+									placeholder="200kw/h"
+									onChange={(e) =>
+										setNewTechSpec({
+											...newTechSpec,
+											selectedTechSpec: {
+												...newTechSpec.selectedTechSpec,
+												value: e.target.value,
+											},
+										})
+									}
+								/>
+							</Col>
+							<Col>
+								<Button onClick={() => addNewProperty()}>Legg til</Button>
+							</Col>
+							<Col>
+								<ul style={{ listStyleType: 'none' }}>
+									{newJacuzzi.techSpec.map((item) => (
+										<li>
+											{item.property ? item.property + ' : ' + item.value : ''}
+										</li>
+									))}
+								</ul>
+							</Col>
+						</Row>
+
+						<Row className="mt-5">
+							<Col sm={2}>
+								<Form.Control
+									placeholder="legg til ny egenskap"
+									onChange={(e) =>
+										setNewTechSpec({
+											...newTechSpec,
+											newProperty: e.target.value,
+										})
+									}
+								/>
+							</Col>
+							<Col>
+								<Button
+									className="btn-success"
+									onClick={() =>
+										setNewTechSpec({
+											...newTechSpec,
+											properties: [
+												...newTechSpec.properties,
+												newTechSpec.newProperty,
+											],
+										})
+									}>
+									Legg til
+								</Button>
+							</Col>
+						</Row>
+					</Form.Group>
+					<Form.Group>
+						<Form.Label>Relaterte produkter</Form.Label>
+						<select
+							className="form-control"
 							onChange={(e) =>
-								setNewProduct({ ...newProduct, techSpec: e.target.value })
-							}
-						/>
+								setNewJacuzzi({
+									...newJacuzzi,
+									relatedProducts: [
+										...newJacuzzi.relatedProducts,
+										products[e.target.value],
+									],
+								})
+							}>
+							{products.map((product, index) => (
+								<option value={index}>{product.name}</option>
+							))}
+						</select>
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>Bilder</Form.Label>
