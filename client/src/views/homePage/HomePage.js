@@ -16,15 +16,10 @@ const HomePage = () => {
 
 	const slideContent = [
 		{
-			filename: 'slideimg1.png',
+			image: 'slideimg1.png',
 			textHead: 'Velkommen til Wellness at home',
 			textP:
 				'Nulla vitae elit libero, a pharetra augue mollis interdum.Nullavitae elit libero, a pharetra augue mollis interdum.Nulla vitae elit libero, a pharetra augue mollis interdum.',
-		},
-		{
-			filename: 'slide2.jpg',
-			textHead: '',
-			textP: '',
 		},
 	];
 
@@ -67,20 +62,6 @@ const HomePage = () => {
 						</Div>
 					</Row>
 				</section>
-
-				{/* <StyledSection
-					ref={homePageEl[2].ref}
-					animate={homePageEl[2].show}
-					animatePercent={homePageEl[2].percent}>
-					<SupplierCard image={nordpoolCardImg} logo={nordpoolLogo} />
-				</StyledSection>
-				<StyledSection
-					right
-					ref={homePageEl[3].ref}
-					animate={homePageEl[3].show}
-					animatePercent={homePageEl[3].percent}>
-					<SupplierCard image={svenskaBadImg} logo={svenskaBadLogo} />
-				</StyledSection> */}
 				<SupplierCardList />
 			</Container>
 		</>
