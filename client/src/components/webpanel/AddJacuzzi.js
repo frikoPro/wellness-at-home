@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { useState } from 'react';
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { useContext, useState } from 'react';
+import { ProductsContext } from '../../contexts/ProductsContext';
 
-const AddProduct = () => {
+import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+const AddJacuzzi = () => {
 	const [newJacuzzi, setNewJacuzzi] = useState({
 		name: '',
 		brand: '',
-		category: '',
 		description: '',
 		price: '',
 		techSpec: [],
@@ -20,10 +20,7 @@ const AddProduct = () => {
 		selectedTechSpec: {},
 	});
 
-	const [products] = useState([
-		{ name: 'test', image: 'sarekimg1.png' },
-		{ name: 'freak', image: 'sarekimg1.png' },
-	]);
+	const products = useContext(ProductsContext);
 
 	const [images, setImages] = useState([]);
 
@@ -44,7 +41,7 @@ const AddProduct = () => {
 
 	const postNewProduct = () => {
 		axios
-			.post('http://localhost:8080/products/add', newJacuzzi)
+			.post('http://localhost:8080/jacuzzis/add', newJacuzzi)
 			.then((response) => console.log(response));
 	};
 
@@ -64,6 +61,19 @@ const AddProduct = () => {
 			newTechSpec.selectedTechSpec.property &&
 			newTechSpec.selectedTechSpec.value
 		) {
+			let mutatedTechSpec = [...newJacuzzi.techSpec];
+
+			const ifElementExist = mutatedTechSpec.findIndex(
+				(item) => item.property === newTechSpec.selectedTechSpec.property
+			);
+
+			if (ifElementExist !== -1) {
+				mutatedTechSpec[ifElementExist].value =
+					newTechSpec.selectedTechSpec.value;
+
+				return setNewJacuzzi({ ...newJacuzzi, techSpec: [...mutatedTechSpec] });
+			}
+
 			return setNewJacuzzi({
 				...newJacuzzi,
 				techSpec: [...newJacuzzi.techSpec, newTechSpec.selectedTechSpec],
@@ -73,13 +83,21 @@ const AddProduct = () => {
 		alert('fyll inn både egenskap og verdi');
 	};
 
+	const removeTechSpec = (i) => {
+		let mutatedTechSpec = [...newJacuzzi.techSpec];
+
+		mutatedTechSpec.splice(i, 1);
+
+		setNewJacuzzi({ ...newJacuzzi, techSpec: mutatedTechSpec });
+	};
+
 	return (
 		<Card>
 			<Card.Body>
-				<Card.Title>Legg til produkt</Card.Title>
+				<Card.Title>Legg til spabad</Card.Title>
 				<Form>
 					<Form.Group>
-						<Form.Label>Produktets navn</Form.Label>
+						<Form.Label>Modell navn</Form.Label>
 						<Form.Control
 							placeholder="navn"
 							onChange={(e) =>
@@ -89,37 +107,18 @@ const AddProduct = () => {
 					</Form.Group>
 
 					<Form.Group>
-						<Form.Label>Tilhørighet</Form.Label>
+						<Form.Label>Merke</Form.Label>
 						<select
 							className="form-control"
 							onChange={(e) =>
 								setNewJacuzzi({ ...newJacuzzi, brand: e.target.value })
 							}>
 							<option disabled selected>
-								Velg tilhørighet
+								Velg merke
 							</option>
 							<option>Svenska Bad</option>
 							<option>Svenska Bad Pro</option>
 							<option>Nordpool</option>
-						</select>
-					</Form.Group>
-					<Form.Group>
-						<Form.Label>Kategori</Form.Label>
-						<select
-							className="form-control"
-							onChange={(e) =>
-								setNewJacuzzi({ ...newJacuzzi, category: e.target.value })
-							}>
-							<option disabled selected>
-								Velg merke
-							</option>
-							<option>Filter</option>
-							<option>Pumper</option>
-							<option>Saltvann</option>
-							<option>Varmeelement</option>
-							<option>Wi-Fi</option>
-							<option>Lokkløftere</option>
-							<option>Spa tilbehør</option>
 						</select>
 					</Form.Group>
 					<Form.Group>
@@ -190,8 +189,12 @@ const AddProduct = () => {
 							</Col>
 							<Col>
 								<ul style={{ listStyleType: 'none' }}>
-									{newJacuzzi.techSpec.map((item) => (
-										<li>
+									{newJacuzzi.techSpec.map((item, index) => (
+										<li
+											style={{ cursor: 'pointer' }}
+											key={index}
+											onClick={() => removeTechSpec(index)}>
+											<span className="font-weight-bold">X </span>
 											{item.property ? item.property + ' : ' + item.value : ''}
 										</li>
 									))}
@@ -237,10 +240,13 @@ const AddProduct = () => {
 									...newJacuzzi,
 									relatedProducts: [
 										...newJacuzzi.relatedProducts,
-										products[e.target.value],
+										products[e.target.value]._id,
 									],
 								})
 							}>
+							<option disabled selected>
+								Legg til produkt
+							</option>
 							{products.map((product, index) => (
 								<option value={index}>{product.name}</option>
 							))}
@@ -268,4 +274,4 @@ const AddProduct = () => {
 	);
 };
 
-export default AddProduct;
+export default AddJacuzzi;
