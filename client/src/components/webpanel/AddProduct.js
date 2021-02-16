@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
-import { ProductsContext } from '../../contexts/ProductsContext';
-
+import { useState } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-const Jacuzzis = () => {
+
+const AddProduct = () => {
 	const [newJacuzzi, setNewJacuzzi] = useState({
 		name: '',
 		brand: '',
+		category: '',
 		description: '',
 		price: '',
 		techSpec: [],
@@ -20,7 +20,10 @@ const Jacuzzis = () => {
 		selectedTechSpec: {},
 	});
 
-	const products = useContext(ProductsContext);
+	const [products] = useState([
+		{ name: 'test', image: 'sarekimg1.png' },
+		{ name: 'freak', image: 'sarekimg1.png' },
+	]);
 
 	const [images, setImages] = useState([]);
 
@@ -41,7 +44,7 @@ const Jacuzzis = () => {
 
 	const postNewProduct = () => {
 		axios
-			.post('http://localhost:8080/jacuzzis/add', newJacuzzi)
+			.post('http://localhost:8080/products/add', newJacuzzi)
 			.then((response) => console.log(response));
 	};
 
@@ -94,10 +97,10 @@ const Jacuzzis = () => {
 	return (
 		<Card>
 			<Card.Body>
-				<Card.Title>Legg til spabad</Card.Title>
+				<Card.Title>Legg til produkt</Card.Title>
 				<Form>
 					<Form.Group>
-						<Form.Label>Modell navn</Form.Label>
+						<Form.Label>Produktets navn</Form.Label>
 						<Form.Control
 							placeholder="navn"
 							onChange={(e) =>
@@ -107,18 +110,37 @@ const Jacuzzis = () => {
 					</Form.Group>
 
 					<Form.Group>
-						<Form.Label>Merke</Form.Label>
+						<Form.Label>Tilhørighet</Form.Label>
 						<select
 							className="form-control"
 							onChange={(e) =>
 								setNewJacuzzi({ ...newJacuzzi, brand: e.target.value })
 							}>
 							<option disabled selected>
-								Velg merke
+								Velg tilhørighet
 							</option>
 							<option>Svenska Bad</option>
 							<option>Svenska Bad Pro</option>
 							<option>Nordpool</option>
+						</select>
+					</Form.Group>
+					<Form.Group>
+						<Form.Label>Kategori</Form.Label>
+						<select
+							className="form-control"
+							onChange={(e) =>
+								setNewJacuzzi({ ...newJacuzzi, category: e.target.value })
+							}>
+							<option disabled selected>
+								Velg merke
+							</option>
+							<option>Filter</option>
+							<option>Pumper</option>
+							<option>Saltvann</option>
+							<option>Varmeelement</option>
+							<option>Wi-Fi</option>
+							<option>Lokkløftere</option>
+							<option>Spa tilbehør</option>
 						</select>
 					</Form.Group>
 					<Form.Group>
@@ -191,9 +213,8 @@ const Jacuzzis = () => {
 								<ul style={{ listStyleType: 'none' }}>
 									{newJacuzzi.techSpec.map((item, index) => (
 										<li
-											style={{ cursor: 'pointer' }}
-											key={index}
-											onClick={() => removeTechSpec(index)}>
+											onClick={() => removeTechSpec(index)}
+											style={{ cursor: 'pointer' }}>
 											<span className="font-weight-bold">X </span>
 											{item.property ? item.property + ' : ' + item.value : ''}
 										</li>
@@ -240,13 +261,10 @@ const Jacuzzis = () => {
 									...newJacuzzi,
 									relatedProducts: [
 										...newJacuzzi.relatedProducts,
-										products[e.target.value]._id,
+										products[e.target.value],
 									],
 								})
 							}>
-							<option disabled selected>
-								Legg til produkt
-							</option>
 							{products.map((product, index) => (
 								<option value={index}>{product.name}</option>
 							))}
@@ -274,4 +292,4 @@ const Jacuzzis = () => {
 	);
 };
 
-export default Jacuzzis;
+export default AddProduct;
