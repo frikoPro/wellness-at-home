@@ -9,7 +9,6 @@ export const JacuzziProvider = (props) => {
 	useEffect(() => {
 		const url = 'http://localhost:8080/jacuzzis';
 		axios.get(url).then((response) => {
-			console.log(response.data[0]);
 			setJacuzzis(response.data);
 		});
 	}, []);

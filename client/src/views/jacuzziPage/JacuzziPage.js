@@ -25,21 +25,18 @@ const JacuzziPage = () => {
 	useEffect(() => {
 		let tempObj = jacuzzis.find((product) => product.name === id);
 
-		console.log(tempObj);
-
 		if (tempObj !== undefined) {
-			let newArray = tempObj.techSpec;
+			const newArray = [...tempObj.techSpec];
 			let newArr = [];
-
 			while (newArray.length) {
 				newArr.push(newArray.splice(0, 9));
 			}
 
-			tempObj.test2 = newArr.map((arr, index) => (
+			tempObj.techSpecRendered = newArr.map((arr, index) => (
 				<Col sm={6} key={index}>
 					<ul style={{ listStyleType: 'none' }}>
 						{arr.map((item, index) => (
-							<li key={index}>{item.property + ' : ' + item.value}</li>
+							<li key={index}>{item.property + ': ' + item.value}</li>
 						))}
 					</ul>
 				</Col>
@@ -57,16 +54,16 @@ const JacuzziPage = () => {
 				}
 			}
 
-			let productsFilted = products.filter((item) =>
+			let productsFiltered = products.filter((item) =>
 				tempObj.relatedProducts.includes(item._id)
 			);
 
-			productsFilted = productsFilted.map((item) => ({
+			productsFiltered = productsFiltered.map((item) => ({
 				image: item.images[0].image,
 				name: item.name,
 			}));
 
-			tempObj.test = productsFilted;
+			tempObj.relatedProductsRendered = productsFiltered;
 
 			setPageContent({ ...tempObj });
 		}
@@ -146,8 +143,8 @@ const JacuzziPage = () => {
 						<h1>Tekniske spesifikasjoner</h1>
 					</Col>
 				</Row>
-				<Row style={{ height: '100%', overflowY: 'auto' }}>
-					{jacuzziPageContent.test2}
+				<Row style={{ maxHeight: '200px', overflowY: 'auto' }}>
+					{jacuzziPageContent.techSpecRendered}
 				</Row>
 			</section>
 			<section>
@@ -156,8 +153,11 @@ const JacuzziPage = () => {
 						<h1>Relatert tilbehør</h1>
 					</Col>
 				</Row>
-
-				<ScrollDiv content={jacuzziPageContent.test} styles={styles} size={3} />
+				<ScrollDiv
+					content={jacuzziPageContent.relatedProductsRendered}
+					styles={styles}
+					size={3}
+				/>
 			</section>
 			<section ref={reviewsRef}>
 				<Row className="justify-content-center align-items-center mt-5 p-5">
