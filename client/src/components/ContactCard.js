@@ -1,6 +1,4 @@
-import { Col, Container, Row} from 'react-bootstrap';
-import defaultImage from '../images/Profile-PNG-Icon.png';
-import Logo from '../images/wellnessLogoNoText.png';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const ContactCard = ({ name, phone, email }) => {
 	return (
@@ -15,17 +13,21 @@ const ContactCard = ({ name, phone, email }) => {
 					</Col>
 
 					<Col md={7}>
-                        <Row className="justify-content-center mt-3">
-                            <img src={Logo}/>
-                        </Row>
+						<Row className="justify-content-center mt-3">
+							<img src={'http://localhost:8080/wellnessLogo.png'} />
+						</Row>
 						<Row className="justify-content-center text-center">
 							<h3>{name}</h3>
 						</Row>
 						<Row className="justify-content-center">
-							<span>Telefon: <strong>{phone}</strong></span>
+							<span>
+								Telefon: <strong>{phone}</strong>
+							</span>
 						</Row>
 						<Row className="justify-content-center">
-							<span>E-post: <strong>{email}</strong></span>
+							<span>
+								E-post: <strong>{email}</strong>
+							</span>
 						</Row>
 					</Col>
 				</Row>

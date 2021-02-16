@@ -6,49 +6,27 @@ import AddProduct from '../../components/webpanel/AddProduct';
 import { Route, Switch } from 'react-router-dom';
 
 const Webpanel = ({ match }) => {
-	/* 
-	useEffect(() => {
-		axios
-			.get('http://localhost:8080/products')
-			.then((response) => console.log(response.data));
-	}, []);
- */
-
-	const [styleSpabad, setStyleSpabad] = useState({
-		height: '0',
-		display: 'none',
-		clicked: false,
+	const [isOpen, setOpen] = useState({
+		spabad: false,
+		products: false,
 	});
-
-	const [styleProducts, setStyleProducts] = useState({
-		height: '0',
-		display: 'none',
-		clicked: false,
-	});
-
-	const openSpabad = () => {
-		setStyleSpabad({
-			height: styleSpabad.clicked ? '0' : '100%',
-			display: styleSpabad.clicked ? 'none' : 'block',
-			clicked: !styleSpabad.clicked,
-		});
-	};
-	const openProducts = () => {
-		setStyleProducts({
-			height: styleProducts.clicked ? '0' : '100%',
-			display: styleProducts.clicked ? 'none' : 'block',
-			clicked: !styleProducts.clicked,
-		});
-	};
 
 	return (
 		<Container fluid className="pl-0">
 			<Row>
 				<Col sm={2} className="bg-white shadow">
 					<ul>
-						<li onClick={openSpabad}>
-							<span style={{ cursor: 'pointer' }}>spabad</span>
-							<ul style={styleSpabad}>
+						<li>
+							<span
+								style={{ cursor: 'pointer' }}
+								onClick={() => setOpen({ ...isOpen, spabad: !isOpen.spabad })}>
+								spabad
+							</span>
+							<ul
+								style={{
+									height: isOpen.spabad ? '100%' : '1',
+									display: isOpen.spabad ? 'block' : 'none',
+								}}>
 								<a href={`${match.url}/jacuzzis`}>
 									<li>legg til spabad</li>
 								</a>
@@ -56,9 +34,19 @@ const Webpanel = ({ match }) => {
 							</ul>
 						</li>
 
-						<li onClick={openProducts}>
-							<span>produkter</span>
-							<ul style={styleProducts}>
+						<li>
+							<span
+								onClick={() =>
+									setOpen({ ...isOpen, products: !isOpen.products })
+								}
+								style={{ cursor: 'pointer' }}>
+								produkter
+							</span>
+							<ul
+								style={{
+									height: isOpen.products ? '100%' : '0',
+									display: isOpen.products ? 'block' : 'none',
+								}}>
 								<a href={`${match.url}/produkter`}>
 									<li>Legg til produkter</li>
 								</a>
