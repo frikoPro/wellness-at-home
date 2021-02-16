@@ -70,6 +70,14 @@ const Jacuzzis = () => {
 		alert('fyll inn både egenskap og verdi');
 	};
 
+	const removeTechSpec = (i) => {
+		let mutatedTechSpec = [...newJacuzzi.techSpec];
+
+		mutatedTechSpec.splice(i, 1);
+
+		setNewJacuzzi({ ...newJacuzzi, techSpec: mutatedTechSpec });
+	};
+
 	return (
 		<Card>
 			<Card.Body>
@@ -168,8 +176,12 @@ const Jacuzzis = () => {
 							</Col>
 							<Col>
 								<ul style={{ listStyleType: 'none' }}>
-									{newJacuzzi.techSpec.map((item) => (
-										<li>
+									{newJacuzzi.techSpec.map((item, index) => (
+										<li
+											style={{ cursor: 'pointer' }}
+											key={index}
+											onClick={() => removeTechSpec(index)}>
+											<span className="font-weight-bold">X </span>
 											{item.property ? item.property + ' : ' + item.value : ''}
 										</li>
 									))}
