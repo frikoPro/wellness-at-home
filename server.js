@@ -27,9 +27,11 @@ connection.once('open', () => {
 
 var imageRouter = require('./routes/uploadImages');
 var jacuzzisRouter = require('./routes/jacuzzis');
+var productsRouter = require('./routes/products');
 
 app.use('/images', imageRouter);
 app.use('/jacuzzis', jacuzzisRouter);
+app.use('/products', productsRouter);
 
 app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, '/client/build/index.html'));

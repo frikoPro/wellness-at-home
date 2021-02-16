@@ -1,6 +1,5 @@
 import { useContext, useRef, useState } from 'react';
 import { Col, Nav, Navbar, Row } from 'react-bootstrap';
-import wellnessLogo from '../../images/wellnessLogo.png';
 import styled from 'styled-components';
 import { ScrollContext } from '../../contexts/ScrollContext';
 import styling from './NavigationBar.module.css';
@@ -25,7 +24,10 @@ const NavigationBar = () => {
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
 			<Navbar.Brand href="/">
-				<img src={wellnessLogo} alt="" style={{ height: '61px' }}></img>
+				<img
+					src={'http://localhost:8080/wellnessLogo.png'}
+					alt=""
+					style={{ height: '61px' }}></img>
 			</Navbar.Brand>
 
 			<Navbar.Collapse id="responsive-navbar-nav">
