@@ -7,7 +7,7 @@ const ContactCard = ({ name, phone, email }) => {
 				<Row className="m-0" style={{ height: '100%' }}>
 					<Col md={5} className="p-0 d-none d-md-block">
 						<img
-							src={defaultImage}
+							src={'http://localhost:8080/wellnessLogoNoText.png'}
 							alt=""
 							style={{ width: '100%', height: '100%' }}></img>
 					</Col>
