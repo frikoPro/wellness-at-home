@@ -9,7 +9,7 @@ const UserReviews = new Schema(
 		header: String,
 		text: String,
 	},
-	{ timestamps: true }
+	{ timestamps: true, _id: false }
 );
 
 const JacuzzisSchema = new Schema({
@@ -18,7 +18,7 @@ const JacuzzisSchema = new Schema({
 	images: [{ image: String }],
 	aboutProduct: String,
 	price: String,
-	techSpec: [{ property: String, value: String }],
+	techSpec: [{ _id: false, property: String, value: String }],
 	relatedProducts: [String],
 	userReviews: [UserReviews],
 });
