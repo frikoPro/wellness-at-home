@@ -61,6 +61,19 @@ const Jacuzzis = () => {
 			newTechSpec.selectedTechSpec.property &&
 			newTechSpec.selectedTechSpec.value
 		) {
+			let mutatedTechSpec = [...newJacuzzi.techSpec];
+
+			const ifElementExist = mutatedTechSpec.findIndex(
+				(item) => item.property === newTechSpec.selectedTechSpec.property
+			);
+
+			if (ifElementExist !== -1) {
+				mutatedTechSpec[ifElementExist].value =
+					newTechSpec.selectedTechSpec.value;
+
+				return setNewJacuzzi({ ...newJacuzzi, techSpec: [...mutatedTechSpec] });
+			}
+
 			return setNewJacuzzi({
 				...newJacuzzi,
 				techSpec: [...newJacuzzi.techSpec, newTechSpec.selectedTechSpec],
