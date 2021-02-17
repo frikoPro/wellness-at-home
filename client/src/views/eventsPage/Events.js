@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardColumns, CardDeck, ListGroup, Row, Table} from "react-bootstrap";
+import {Button, Card, CardColumns, CardDeck, ListGroup, Nav, Row, Table} from "react-bootstrap";
 import {renderToStaticMarkup} from "react-dom/server";
 
 
@@ -10,6 +10,7 @@ let time;
 const eventsData = [
         {
             create_date: 1618054898,
+            update_date: 1618054898,
             date: 1618054898,
             City: "Drammen",
             Address: "DrammenVegen 22",
@@ -26,6 +27,7 @@ const eventsData = [
         },
         {
             create_date: 1618054898,
+            update_date: 1618054898,
             date: 1620646898,
             City: "Oslo/Fornebu",
             Address: "OsloVegen 21",
@@ -42,6 +44,7 @@ const eventsData = [
         },
         {
             create_date: 1618054898,
+            update_date: 1618054898,
             date: 	1652182898,
             City: "Kristiansand",
             Address: "OsloVegen 21",
@@ -58,6 +61,7 @@ const eventsData = [
         },
         {
             create_date: 1618054898,
+            update_date: 1618054898,
             date: 1778413298,
             City: "Trondheim",
             Address: "TrondheimVegen 108",
@@ -72,29 +76,24 @@ const eventsData = [
             }
         }
     ]
+
+
 // border="primary" style={{marginTop: 40}}
     return (
         <>
             <div style={{backgroundColor: "grey"}}
                  className="col-lg-5 col-md-5 col-sm-5 container justify-content-center">
-                <CardColumns style={{padding: 40}}>
             {eventsData.map((event, index) => (
-                <Card>
-                    <Card.Img variant="top" src={event.Img} />
-                    <Card.Body>
-                        <Card.Title>{event.Location}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{event.City}</Card.Subtitle>
-                        <Card.Subtitle className="mb-2">{event.Address}</Card.Subtitle>
-                        <Card.Link href="#">Kart</Card.Link>
-                        <Card.Link href="#">Legg til i kalender</Card.Link>
-                    </Card.Body>
-                    <Card.Footer>
-                        <small className="text-muted">Dato: {time = new Date(event.date).toLocaleDateString('en-GB')}</small>
-                    </Card.Footer>
+                <Card style={{margin: 40, marginTop: 40}}>
+                    <ListGroup>
+                        <ListGroup.Item>This ListGroup</ListGroup.Item>
+                        <ListGroup.Item>renders horizontally</ListGroup.Item>
+                        <ListGroup.Item>on </ListGroup.Item>
+                        <ListGroup.Item>and above!</ListGroup.Item>
+                    </ListGroup>
                 </Card>
                 )
             )}
-            </CardColumns>
             </div>
         </>
     );
