@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import styles from './ScrollDiv.module.css';
 
-const ScrollDiv = ({ content, returnFunction, size, styles }) => {
+const ScrollDiv = ({ content, returnFunction, size }) => {
 	const imgScroll = {
 		leftArrow: useRef(null),
 		scrollDiv: useRef(null),
@@ -78,7 +79,7 @@ const ScrollDiv = ({ content, returnFunction, size, styles }) => {
 						lg={size}
 						className="align-self-center"
 						key={index}
-						onClick={() => returnFunction(index)}>
+						onClick={() => returnFunction(index, item.id)}>
 						<img
 							src={`http://localhost:8080/${item.image}`}
 							alt={index}

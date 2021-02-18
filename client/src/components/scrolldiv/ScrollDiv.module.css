@@ -1,0 +1,11 @@
+.leftArrow,
+.rightArrow {
+	display: none;
+}
+
+@media (hover: hover) {
+	.scrollDiv:hover .leftArrow,
+	.scrollDiv:hover .rightArrow {
+		display: inline-block;
+	}
+}
