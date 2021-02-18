@@ -1,17 +1,18 @@
-import { useContext, useEffect } from 'react';
+import { Button, Col, Modal, Row, Form } from 'react-bootstrap';
 import { ProductsContext } from '../../contexts/ProductsContext';
+import { useContext } from 'react';
 
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import UseForm from './UseForm';
+
 import TechSpecInput from './TechSpecInput';
 import SelectInput from './SelectInput';
-const AddJacuzzi = () => {
+
+const UpdateJacuzziModal = (props) => {
 	const {
-		values,
 		handleChange,
 		submitData,
 		error,
-		onSuccess,
+		values,
 		handleEvent,
 		handleImages,
 	} = UseForm({
@@ -36,22 +37,25 @@ const AddJacuzzi = () => {
 		}
 	};
 
-	useEffect(() => {
-		if (onSuccess) {
-			window.location.reload();
-		}
-	}, [onSuccess]);
-
 	return (
-		<Card>
-			<Card.Body>
-				<Card.Title>Legg til spabad</Card.Title>
+		<Modal
+			{...props}
+			size="lg"
+			aria-labelledby="contained-modal-title-vcenter"
+			centered>
+			<Modal.Header closeButton>
+				<Modal.Title id="contained-modal-title-vcenter">
+					Oppdater jacuzzi
+				</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
 				<Form>
 					<Form.Group>
 						<Form.Label>Modell navn</Form.Label>
 						<Form.Control
 							placeholder="navn"
 							name="name"
+							value={values.name}
 							onChange={handleChange}
 						/>
 
@@ -59,18 +63,13 @@ const AddJacuzzi = () => {
 							{returnErrors('name')}
 						</Form.Text>
 					</Form.Group>
-					<Form.Group>
-						<Form.Label>Velg merke</Form.Label>
-						<SelectInput
-							handleChange={handleChange}
-							options={['Svenska bad', 'Svenska bad pro', 'Nordpool']}
-							name="brand"
-						/>
-						<Form.Text className="text-danger">
-							{returnErrors('brand')}
-						</Form.Text>
-					</Form.Group>
 
+					<SelectInput
+						handleChange={handleChange}
+						options={['Svenska bad', 'Svenska bad pro', 'Nordpool']}
+						name="brand"
+					/>
+					<Form.Text className="text-danger">{returnErrors('brand')}</Form.Text>
 					<Form.Group>
 						<Form.Label>Beskrivelse</Form.Label>
 						<textarea
@@ -95,16 +94,11 @@ const AddJacuzzi = () => {
 							{returnErrors('price')}
 						</Form.Text>
 					</Form.Group>
-					<Form.Group>
-						<Form.Label>Tekniske spesifikasjoner</Form.Label>
-						<TechSpecInput
-							submitChange={handleChange}
-							techSpec={values.techSpec}
-						/>
-						<Form.Text className="text-danger text-center">
-							{returnErrors('techSpec')}
-						</Form.Text>
-					</Form.Group>
+					<TechSpecInput
+						submitChange={handleChange}
+						techSpec={values.techSpec}
+					/>
+
 					<Form.Group>
 						<Form.Label>Relaterte produkter</Form.Label>
 						<SelectInput
@@ -113,7 +107,7 @@ const AddJacuzzi = () => {
 							handleChange={(e) =>
 								handleEvent(e.target.name, [
 									...values.relatedProducts,
-									products[e.target.name]._id,
+									products[e.target.value]._id,
 								])
 							}
 						/>
@@ -123,7 +117,6 @@ const AddJacuzzi = () => {
 						<Form.Control
 							type="file"
 							name="multi-files"
-							accept="image/x-png,image/gif,image/jpeg"
 							onChange={handleImages}
 							multiple
 						/>
@@ -140,22 +133,33 @@ const AddJacuzzi = () => {
 							  ))
 							: null}
 					</Row>
+					<Row>
+						<Col>
+							<Button onClick={submitData}>Lagre produkt</Button>
+						</Col>
+					</Row>
 				</Form>
-			</Card.Body>
-			<Card.Footer>
-				<Row>
-					<Col sm={2}>
-						<Button onClick={submitData}>Lagre produkt</Button>
-					</Col>
-					<Col className="align-self-center">
-						<Card.Text className="text-success text-center">
-							{onSuccess}
-						</Card.Text>
-					</Col>
-				</Row>
-			</Card.Footer>
-		</Card>
+			</Modal.Body>
+			<Modal.Footer>
+				<Col sm={1} className="mr-2">
+					<Button className="btn-danger" onClick={deleteJacuzzi}>
+						Delete
+					</Button>
+				</Col>
+				<Col>
+					<Button className="btn-warning" onClick={updateJacuzzi}>
+						Update
+					</Button>
+				</Col>
+				<Col style={{ color: result.failed ? 'red' : 'green' }}>
+					{result.resultText}
+				</Col>
+				<Col className="text-right">
+					<Button onClick={props.onHide}>Close</Button>
+				</Col>
+			</Modal.Footer>
+		</Modal>
 	);
 };
 
-export default AddJacuzzi;
+export default UpdateJacuzziModal;

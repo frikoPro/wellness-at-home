@@ -279,6 +279,8 @@ const AddProduct = () => {
 							multiple
 						/>
 					</Form.Group>
+				</Form>
+				<Card.Footer>
 					<Button
 						onClick={() => {
 							uploadImage();
@@ -286,7 +288,7 @@ const AddProduct = () => {
 						}}>
 						Lagre produkt
 					</Button>
-				</Form>
+				</Card.Footer>
 			</Card.Body>
 		</Card>
 	);

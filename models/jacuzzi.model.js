@@ -13,12 +13,38 @@ const UserReviews = new Schema(
 );
 
 const JacuzzisSchema = new Schema({
-	name: { type: String, required: true, unique: true },
-	brand: String,
-	images: [{ image: String }],
-	aboutProduct: String,
-	price: String,
-	techSpec: [{ _id: false, property: String, value: String }],
+	name: {
+		type: String,
+		required: [true, 'Produktet må ha et navn'],
+		unique: true,
+	},
+	brand: { type: String, required: [true, 'Du må velge et merke'] },
+	images: {
+		type: [
+			{
+				image: {
+					type: String,
+				},
+				_id: false,
+			},
+		],
+		validate: [(val) => val.length > 0, 'Du må velge minst et bilde'],
+	},
+	aboutProduct: { type: String, required: [true, 'Du må ha en beskrivelse'] },
+	price: { type: Number, required: [true, 'Du må taste inn en pris'] },
+	techSpec: {
+		type: [
+			{
+				_id: false,
+				property: String,
+				value: String,
+			},
+		],
+		validate: [
+			(val) => val.length > 0,
+			'Du må ha hvertfall en teknisk spesifikasjon',
+		],
+	},
 	relatedProducts: [String],
 	userReviews: [UserReviews],
 });
