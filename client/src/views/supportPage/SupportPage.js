@@ -1,6 +1,7 @@
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import FAQList from '../../components/FAQ/FAQList';
 import ContactCard from '../../components/ContactCard';
+import SupportForm from '../../components/SupportForm';
 
 const SupportPage = () => {
 	const supportPageContent = {
@@ -23,6 +24,8 @@ const SupportPage = () => {
 			},
 		],
 	};
+
+	
 
 	return (
 		<Container 
@@ -47,29 +50,7 @@ const SupportPage = () => {
 				</Col>
 			</Row>
 			<div className="mx-auto border border-dark p-3" style={{width: "60%"}}>
-				<Form className="mx-auto" style={{width: "70%"}}>
-					<Form.Group controlId="supportForm.ControlInputName">
-						<Form.Label>Navn:</Form.Label>
-						<Form.Control className="border-dark"/>
-					</Form.Group>
-					<Form.Group controlId="supportForm.ControlInputEmail">
-						<Form.Label>E-post:</Form.Label>
-						<Form.Control className="border-dark" type="email" placeholder="navn@eksempel.no" />
-					</Form.Group>
-					<Form.Group controlId="supportForm.ControlInputPhone">
-						<Form.Label>Telefon:</Form.Label>
-						<Form.Control className="border-dark"/>
-					</Form.Group>
-					<Form.Group controlId="supportForm.ControlInputProblem">
-						<Form.Label>Type problem:</Form.Label>
-						<Form.Control className="border-dark"/>
-					</Form.Group>
-					<Form.Group controlId="exampleForm.ControlTextareaMessage">
-						<Form.Label>Melding:</Form.Label>
-						<Form.Control className="border-dark" as="textarea" rows={5} />
-					</Form.Group>
-					<Button className="btn-warning">Send inn</Button>
-				</Form>
+				<SupportForm></SupportForm>
 			</div>
 			
 			<Row>
