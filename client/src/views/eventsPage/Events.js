@@ -1,101 +1,176 @@
-import React from 'react';
-import {Button, Card, CardColumns, CardDeck, ListGroup, Nav, Row, Table} from "react-bootstrap";
-import {renderToStaticMarkup} from "react-dom/server";
-
+import React, {useState} from 'react';
+import {Card} from "react-bootstrap";
+import styles from './Events.module.css'
+import locPointer from './pin.svg'
+import calendar from './calendar.svg'
+import {useHistory, useRouteMatch, withRouter} from "react-router-dom";
+import EventPage from "./EventPage";
 
 const Events = () => {
-let time;
-//todo: legg til bilder i arrayet
+    let time;
+/*todo:
+   1) fetch eventsData from db, via Axios.
+   2) assign eventsData to state
+   3) before rendering events page, pass id jhkgbv
+   to events page via mapping through the data and returning that objects info
+*
+* */
     // OBS calendar must be set as variable event
-const eventsData = [
+    const eventsData = [
         {
-            create_date: 1618054898,
-            update_date: 1618054898,
+            create_date: 1676639434,
+            update_date: 1676639434,
             date: 1618054898,
             City: "Drammen",
             Address: "DrammenVegen 22",
             Location: "Drammenshallen",
-            Pos: 0,
+            Pos: {
+                lat: -34.397,
+                lng: 150.644
+            },
             Img: "https://via.placeholder.com/200x100",
             Calendar: {
                 title: "My birthday party",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
+                end: "2019-11-29 18:00:00 +0100",
                 allDay: true
             }
 
         },
         {
-            create_date: 1618054898,
-            update_date: 1618054898,
+            create_date: 1992258634,
+            update_date: 1992258634,
             date: 1620646898,
             City: "Oslo/Fornebu",
             Address: "OsloVegen 21",
             Location: "Telenor Arena",
-            Pos: 0,
+            Pos: {
+                lat: -34.397,
+                lng: 150.644
+            },
             Img: "https://via.placeholder.com/200x100",
             Calendar: {
                 title: "My birthday party",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
+                end: "2019-11-29 18:00:00 +0100",
                 allDay: true
             }
 
         },
         {
-            create_date: 1618054898,
-            update_date: 1618054898,
-            date: 	1652182898,
+            create_date: 1992258634,
+            update_date: 1992258634,
+            date: 1652182898,
             City: "Kristiansand",
             Address: "OsloVegen 21",
             Location: "Telenor Arena",
-            Pos: 0,
+            Pos: {
+                lat: -34.397,
+                lng: 150.644
+            },
             Img: "https://via.placeholder.com/200x100",
             Calendar: {
                 title: "My birthday party",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
+                end: "2019-11-29 18:00:00 +0100",
                 allDay: true
             }
 
         },
         {
-            create_date: 1618054898,
-            update_date: 1618054898,
+            create_date: 856185034,
+            update_date: 856185034,
             date: 1778413298,
             City: "Trondheim",
             Address: "TrondheimVegen 108",
             Location: "Trondheim fotball Arena",
-            Pos: 0,
+            Pos: {
+                lat: -34.397,
+                lng: 150.644
+            },
             Img: "https://via.placeholder.com/200x100",
             Calendar: {
                 title: "My birthday party",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
+                end: "2019-11-29 18:00:00 +0100",
                 allDay: true
             }
         }
     ]
 
+    const [id, setId] = useState();
 
-// border="primary" style={{marginTop: 40}}
-    return (
-        <>
-            <div style={{backgroundColor: "grey"}}
-                 className="col-lg-5 col-md-5 col-sm-5 container justify-content-center">
-            {eventsData.map((event, index) => (
-                <Card style={{margin: 40, marginTop: 40}}>
-                    <ListGroup>
-                        <ListGroup.Item>This ListGroup</ListGroup.Item>
-                        <ListGroup.Item>renders horizontally</ListGroup.Item>
-                        <ListGroup.Item>on </ListGroup.Item>
-                        <ListGroup.Item>and above!</ListGroup.Item>
-                    </ListGroup>
-                </Card>
-                )
-            )}
-            </div>
-        </>
-    );
+    let history = useHistory();
+
+    const handleClick = (create_date) => {
+        history.push(`/Arrangementer/${create_date}`);
+    }
+
+    const idExists = (id) => {
+        // true or false if id exists in events data
+        return true;
+    }
+
+    const getEventObj = (id) => {
+        return eventsData.filter(event => event.create_date.toString() === id)[0]
+    }
+
+    const match = useRouteMatch('/Arrangementer/:id');
+    console.log(match)
+
+
+    if (match !== null) {
+        const { params } = match;
+        if(idExists(params.id)) {
+            return <EventPage {...getEventObj(params.id)}/>
+        } else {
+            return <p>404</p>
+        }
+
+    } else {
+        return (
+            <>
+                <div style={{backgroundColor: "grey"}}
+                     className="col-lg-5 col-md-5 col-sm-5 container justify-content-center">
+                    {eventsData.map((event) => (
+                            <>
+                                <Card className={`${styles.cardContainer}`}>
+                                    <dateContainer className={`${styles.dateContainer}`}>
+                                        <h4>Dato:</h4>
+                                        {time = new Date(event.date).toLocaleDateString("en-US")}
+                                    </dateContainer>
+                                    <bodyContainer className={`${styles.bodyContainer}`}>
+                                        <h1 style={{fontSize: 25}}>
+                                            {event.Location}
+                                        </h1>
+                                        <h2 style={{fontSize: 18}}>
+                                            {event.City} - {event.Address}
+                                        </h2>
+                                        <linkContainer className={`${styles.linkContainer}`}>
+                                            <button className={`${styles.btn}`}>
+                                                <img src={locPointer}/>
+                                            </button>
+                                            <button className={`${styles.btn}`}>
+                                                <img style={{height: 16}} src={calendar}/>
+                                            </button>
+                                            <button type="button" onClick={() => handleClick(event.create_date)}>
+                                                {event.create_date}
+                                            </button>
+                                        </linkContainer>
+                                    </bodyContainer>
+                                </Card>
+                            </>
+                        )
+                    )}
+                </div>
+            </>
+        );
+    }
 };
-export default Events;
+
+
+export default withRouter(Events);
