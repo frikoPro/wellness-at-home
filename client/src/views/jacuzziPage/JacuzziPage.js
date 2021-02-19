@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import ScrollDiv from '../../components/ScrollDiv';
+import ScrollDiv from '../../components/scrolldiv/ScrollDiv';
 import Slideshow from '../../components/Slideshow';
 
 import styles from './JacuzziPage.module.css';
@@ -100,7 +100,6 @@ const JacuzziPage = () => {
 				</Row>
 				<ScrollDiv
 					content={jacuzziPageContent.images}
-					styles={styles}
 					returnFunction={(index) => setActiveSlideImg(index)}
 					size={2}
 				/>
@@ -155,7 +154,6 @@ const JacuzziPage = () => {
 				</Row>
 				<ScrollDiv
 					content={jacuzziPageContent.relatedProductsRendered}
-					styles={styles}
 					size={3}
 				/>
 			</section>
