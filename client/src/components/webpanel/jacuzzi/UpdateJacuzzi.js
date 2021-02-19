@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
-import { JacuzziContext } from '../../contexts/JacuzziContext';
-import ScrollDiv from '../scrolldiv/ScrollDiv';
+import { JacuzziContext } from '../../../contexts/JacuzziContext';
+import ScrollDiv from '../../scrolldiv/ScrollDiv';
 import UpdateJacuzziModal from './UpdateJacuzziModal';
 
 const UpdateJacuzzi = () => {
@@ -11,6 +11,8 @@ const UpdateJacuzzi = () => {
 	const [mappedJacuzzis, setMappedJacuzzis] = useState([]);
 
 	const [modalShow, setModalShow] = useState(false);
+
+	const [jacuzziBrands, setJacuzzisBrands] = useState([]);
 
 	const [selectedJacuzzi, setSelectedJacuzzi] = useState({
 		name: '',
@@ -31,6 +33,14 @@ const UpdateJacuzzi = () => {
 			id: item._id,
 		}));
 
+		let arr = [];
+
+		jacuzzis.forEach((item) => {
+			if (!arr.includes(item.brand)) arr.push(item.brand);
+		});
+
+		setJacuzzisBrands(arr);
+
 		setMappedJacuzzis([...mappedArr]);
 	}, [jacuzzis]);
 
@@ -43,19 +53,24 @@ const UpdateJacuzzi = () => {
 			<Card>
 				<Card.Body>
 					<Card.Title>Velg spabad som skal oppdateres</Card.Title>
-					<Row>
-						<Col>
-							<h5>Nordpool</h5>
-						</Col>
-					</Row>
-					<ScrollDiv
-						content={mappedJacuzzis.filter((item) => item.brand === 'Nordpool')}
-						size={3}
-						returnFunction={(index, id) => {
-							setModalShow(true);
-							onSelect(id);
-						}}
-					/>
+
+					{jacuzziBrands.map((brand) => (
+						<>
+							<Row className="justify-content-center">
+								<Col sm={11} className="text-center margin-bottom-line">
+									<h5>{brand}</h5>
+								</Col>
+							</Row>
+							<ScrollDiv
+								content={mappedJacuzzis.filter((item) => item.brand === brand)}
+								size={3}
+								returnFunction={(index, id) => {
+									setModalShow(true);
+									onSelect(id);
+								}}
+							/>
+						</>
+					))}
 				</Card.Body>
 			</Card>
 			<UpdateJacuzziModal

@@ -106,7 +106,7 @@ const JacuzziPage = () => {
 			</section>
 			<section>
 				<Row className="justify-content-center align-items-center p-5">
-					<Col className={`text-center ${styles.marginBottomLine}`}>
+					<Col className={`text-center margin-bottom-line`}>
 						<h1>{id.toUpperCase()}</h1>
 					</Col>
 				</Row>
@@ -138,7 +138,7 @@ const JacuzziPage = () => {
 			</section>
 			<section>
 				<Row className="justify-content-center align-items-center p-5">
-					<Col className={`text-left ${styles.marginBottomLine}`}>
+					<Col className={`text-left margin-bottom-line`}>
 						<h1>Tekniske spesifikasjoner</h1>
 					</Col>
 				</Row>
@@ -148,7 +148,7 @@ const JacuzziPage = () => {
 			</section>
 			<section>
 				<Row className="justify-content-center align-items-center mt-5 p-5">
-					<Col className={`text-left ${styles.marginBottomLine}`}>
+					<Col className={`text-left margin-bottom-line`}>
 						<h1>Relatert tilbehør</h1>
 					</Col>
 				</Row>
@@ -159,7 +159,7 @@ const JacuzziPage = () => {
 			</section>
 			<section ref={reviewsRef}>
 				<Row className="justify-content-center align-items-center mt-5 p-5">
-					<Col className={`text-left ${styles.marginBottomLine}`}>
+					<Col className={`text-left margin-bottom-line`}>
 						<h1>Anmeldelser</h1>
 					</Col>
 				</Row>
