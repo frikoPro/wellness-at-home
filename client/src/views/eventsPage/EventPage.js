@@ -6,12 +6,11 @@ const EventPage = (props) => {
     return (
         <>
             <h1>Hello world!</h1>
+            <p>{props.city}</p>
         </>
     );
 };
+
 export default EventPage;
 
-
-// filter
-// map
-// reducer
+  
