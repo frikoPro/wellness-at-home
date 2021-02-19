@@ -1,13 +1,16 @@
 const router = require('express').Router();
 let Jacuzzi = require('../models/jacuzzi.model');
 
-router.route('/').get((req, res) => {
-	Jacuzzi.find()
-		.then((jacuzzis) => res.json(jacuzzis))
-		.catch((err) => res.status(400).json('Error: ', err));
+router.route('/').get(async (req, res) => {
+	try {
+		const result = await Jacuzzi.find();
+		res.status(200).json(result);
+	} catch (err) {
+		next(err);
+	}
 });
 
-router.route('/add').post((req, res) => {
+router.route('/add').post(async (req, res, next) => {
 	const name = req.body.name;
 	const brand = req.body.brand;
 	const images = req.body.images;
@@ -28,16 +31,30 @@ router.route('/add').post((req, res) => {
 		userReviews,
 	});
 
-	newJacuzzi
-		.save()
-		.then(() => res.json('product added!'))
-		.catch((err) => res.status(400).json('Error: ' + err));
+	try {
+		await newJacuzzi.save();
+		res.status(200).json('produkt lagt inn');
+	} catch (err) {
+		next(err);
+	}
 });
 
-router.route('/:id').delete((req, res) => {
-	Jacuzzi.findByIdAndDelete(req.params.id)
-		.then(() => res.json('product deleted!'))
-		.catch((err) => res.status(400).json('Error: ' + err));
+router.route('/:id').delete(async (req, res, next) => {
+	try {
+		await Jacuzzi.findByIdAndDelete(req.params.id);
+		res.status(200).json('Produktet er slettet');
+	} catch (err) {
+		res.status(400).json(err);
+	}
+});
+
+router.route('/:id').patch(async (req, res) => {
+	try {
+		await Jacuzzi.findByIdAndUpdate({ _id: req.params.id }, { ...req.body });
+		res.status(200).json('Produktet er oppdatert');
+	} catch (err) {
+		next(err);
+	}
 });
 
 module.exports = router;

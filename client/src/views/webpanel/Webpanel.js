@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import AddJacuzzi from '../../components/webpanel/AddJacuzzi';
 import AddProduct from '../../components/webpanel/AddProduct';
 import { Route, Switch } from 'react-router-dom';
+import UpdateJacuzzi from '../../components/webpanel/UpdateJacuzzi';
 
 const Webpanel = ({ match }) => {
 	const [isOpen, setOpen] = useState({
@@ -27,10 +28,12 @@ const Webpanel = ({ match }) => {
 									height: isOpen.spabad ? '100%' : '1',
 									display: isOpen.spabad ? 'block' : 'none',
 								}}>
-								<a href={`${match.url}/jacuzzis`}>
+								<a href={`${match.url}/addJacuzzis`}>
 									<li>legg til spabad</li>
 								</a>
-								<li>Fjern spabad</li>
+								<a href={`${match.url}/updateJacuzzi`}>
+									<li>Oppdater spabad</li>
+								</a>
 							</ul>
 						</li>
 
@@ -56,11 +59,14 @@ const Webpanel = ({ match }) => {
 				</Col>
 				<Col sm={10}>
 					<Switch>
-						<Route path={`${match.url}/jacuzzis`}>
+						<Route path={`${match.url}/addJacuzzis`}>
 							<AddJacuzzi />
 						</Route>
 						<Route path={`${match.url}/produkter`}>
 							<AddProduct />
+						</Route>
+						<Route path={`${match.url}/updateJacuzzi`}>
+							<UpdateJacuzzi />
 						</Route>
 					</Switch>
 				</Col>
