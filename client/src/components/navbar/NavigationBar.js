@@ -1,7 +1,10 @@
-import { useContext, useRef, useState } from 'react';
-import { Col, Nav, Navbar, Row } from 'react-bootstrap';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { Nav, Navbar, Row } from 'react-bootstrap';
 import styled from 'styled-components';
+import { JacuzziContext } from '../../contexts/JacuzziContext';
 import { ScrollContext } from '../../contexts/ScrollContext';
+import DropdownSection from './DropdownSection';
+import { Handlekurv, SearchIcon } from './NavbarIcons';
 import styling from './NavigationBar.module.css';
 
 const NavigationBar = () => {
@@ -12,6 +15,29 @@ const NavigationBar = () => {
 	const [open, setOpen] = useState(false);
 
 	const dropdown = useRef(null);
+
+	const jacuzzis = useContext(JacuzziContext);
+
+	const [mappedJacuzzis, setMappedJacuzzis] = useState([]);
+
+	useEffect(() => {
+		const arr = [];
+
+		if (jacuzzis !== undefined) {
+			jacuzzis.forEach((item) => {
+				if (!arr.includes(item.brand)) arr.push(item.brand);
+			});
+
+			const mapJacuzzis = arr.map((brand) => ({
+				brand: brand,
+				jacuzzis: jacuzzis.map((jacuzzi) =>
+					jacuzzi.brand === brand ? jacuzzi.name : null
+				),
+			}));
+
+			setMappedJacuzzis([...mapJacuzzis]);
+		}
+	}, [jacuzzis]);
 
 	return (
 		<NavBarStyled
@@ -56,84 +82,7 @@ const NavigationBar = () => {
 						iscollapsed={isCollapsed}
 						open={open}
 						className={`shadow ${styling.dropmenu}`}>
-						<Col className="text-center">
-							<a href="/svenskabadpro">
-								<h5
-									className={`m-3 nav-text-color hover-gold ${styling.dropmenuItemHeader}`}>
-									Svenska Bad Pro
-								</h5>
-							</a>
-							<a href="/spabad/viken">
-								<p
-									className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
-									VIKEN
-								</p>
-							</a>
-							<a href="/spabad/fjorden">
-								<p
-									className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
-									FJORDEN
-								</p>
-							</a>
-							<a href="/spabad/floden">
-								<p
-									className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
-									FLODEN
-								</p>
-							</a>
-						</Col>
-						<Col className={'text-center ' + styling.dropmenuCol}>
-							<a href="/svenskabad/">
-								<h5
-									className={`m-3 nav-text-color hover-gold ${styling.dropmenuItemHeader}`}>
-									Svenska Bad
-								</h5>
-							</a>
-							<a href="/spabad/earl">
-								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
-									EARL
-								</p>
-							</a>
-							<a href="/spabad/vancouver">
-								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
-									VANCOUVER
-								</p>
-							</a>
-							<a href="/spabad/vancouver-black-edition">
-								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
-									VANCOUVER BLACK EDITION
-								</p>
-							</a>
-							<a href="/spabad/dallas">
-								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
-									DALLAS
-								</p>
-							</a>
-						</Col>
-						<Col className={'text-center ' + styling.dropmenuCol}>
-							<a href="/nordpool">
-								<h5
-									className={`m-3 nav-text-color hover-gold ${styling.dropmenuItemHeader}`}>
-									Nordpool Spa
-								</h5>
-							</a>
-							<a href="/spabad/tor">
-								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
-									TOR
-								</p>
-							</a>
-							<a href="/spabad/sarek">
-								<p
-									className={`mt-2 ${styling.dropmenuItem} nav-text-color hover-gold`}>
-									SAREK
-								</p>
-							</a>
-						</Col>
+						<DropdownSection styling={styling} section={mappedJacuzzis} />
 					</Dropdown>
 					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
 						Nettbutikk
@@ -156,52 +105,10 @@ const NavigationBar = () => {
 				</Nav>
 				<Nav>
 					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
-						{isCollapsed ? (
-							'Search'
-						) : (
-							<svg
-								width="25"
-								height="24"
-								viewBox="0 0 25 24"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M13.6503 12.3963L12.4266 12.9638L20.8838 23.1775L23.8113 21.6295L13.6503 12.3963Z"
-									fill="white"
-									stroke="white"
-								/>
-								<path
-									d="M16.5649 7.0929C16.5649 10.269 13.2907 13.1858 8.78244 13.1858C4.27418 13.1858 1 10.269 1 7.0929C1 3.91685 4.27418 1 8.78244 1C13.2907 1 16.5649 3.91685 16.5649 7.0929Z"
-									stroke="white"
-									strokeWidth="2"
-								/>
-							</svg>
-						)}
+						{isCollapsed ? 'Search' : <SearchIcon />}
 					</Nav.Link>
 					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
-						{isCollapsed ? (
-							'Handlekurv'
-						) : (
-							<svg
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path
-									d="M9 21.75C9 22.992 7.992 24 6.75 24C5.508 24 4.5 22.992 4.5 21.75C4.5 20.508 5.508 19.5 6.75 19.5C7.992 19.5 9 20.508 9 21.75Z"
-									fill="white"
-								/>
-								<path
-									d="M24 21.75C24 22.992 22.992 24 21.75 24C20.508 24 19.5 22.992 19.5 21.75C19.5 20.508 20.508 19.5 21.75 19.5C22.992 19.5 24 20.508 24 21.75Z"
-									fill="white"
-								/>
-								<path
-									d="M24 12V3H6C6 2.172 5.328 1.5 4.5 1.5H0V3H3L4.1265 12.657C3.4395 13.2075 3 14.052 3 15C3 16.6575 4.3425 18 6 18H24V16.5H6C5.172 16.5 4.5 15.828 4.5 15C4.5 14.9955 4.5 14.9895 4.5 14.985L24 12Z"
-									fill="white"
-								/>
-							</svg>
-						)}
+						{isCollapsed ? 'Handlekurv' : <Handlekurv />}
 					</Nav.Link>
 				</Nav>
 			</Navbar.Collapse>
