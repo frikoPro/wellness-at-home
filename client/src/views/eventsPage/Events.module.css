@@ -1,0 +1,23 @@
+.cardContainer{
+    background: #097a00;
+    flex-direction: row;
+    margin: 40px;
+    marginTop: 40px;
+}
+
+.dateContainer{
+    background-color: #62ff30;
+    border: 2px solid #097a00;
+    border-radius: 5px;
+}
+.bodyContainer{
+    background-color: white;
+}
+.linkContainer{
+
+}
+
+.btn{
+    width: 30px;
+}
+
