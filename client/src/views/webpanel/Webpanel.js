@@ -1,10 +1,9 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import AddJacuzzi from '../../components/webpanel/AddJacuzzi';
+import AddJacuzzi from '../../components/webpanel/jacuzzi/AddJacuzzi';
 import AddProduct from '../../components/webpanel/AddProduct';
 import { Route, Switch } from 'react-router-dom';
-import UpdateJacuzzi from '../../components/webpanel/UpdateJacuzzi';
+import UpdateJacuzzi from '../../components/webpanel/jacuzzi/UpdateJacuzzi';
 
 const Webpanel = ({ match }) => {
 	const [isOpen, setOpen] = useState({
