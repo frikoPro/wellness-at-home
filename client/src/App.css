@@ -40,3 +40,7 @@ footer {
 .nav-text-color {
 	color: white !important;
 }
+
+.margin-bottom-line {
+	border-bottom: 2px solid rgb(221, 220, 220);
+}
