@@ -71,14 +71,31 @@ const UseForm = ({ initialValues }) => {
 			});
 	};
 
+	const deleteData = () => {
+		axios
+			.delete(`http://localhost:8080/jacuzzis/${values._id}`)
+			.then((res) => setSuccess(res.data))
+			.catch((err) => console.log(err.response.data));
+	};
+
+	const updateData = () => {
+		axios
+			.patch(`http://localhost:8080/jacuzzis/${values._id}`, values)
+			.then((res) => setSuccess(res.data))
+			.catch((err) => console.log(err));
+	};
+
 	return {
 		handleChange,
 		values,
 		submitData,
+		deleteData,
+		updateData,
 		error,
 		handleEvent,
 		handleImages,
 		onSuccess,
+		setValues,
 	};
 };
 
