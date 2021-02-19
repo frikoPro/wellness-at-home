@@ -142,18 +142,18 @@ const UpdateJacuzziModal = (props) => {
 			</Modal.Body>
 			<Modal.Footer>
 				<Col sm={1} className="mr-2">
-					<Button className="btn-danger" onClick={deleteJacuzzi}>
+					<Button className="btn-danger" /* onClick={deleteJacuzzi} */>
 						Delete
 					</Button>
 				</Col>
 				<Col>
-					<Button className="btn-warning" onClick={updateJacuzzi}>
+					<Button className="btn-warning" /* onClick={updateJacuzzi} */>
 						Update
 					</Button>
 				</Col>
-				<Col style={{ color: result.failed ? 'red' : 'green' }}>
+				{/* 			<Col style={{ color: result.failed ? 'red' : 'green' }}>
 					{result.resultText}
-				</Col>
+				</Col> */}
 				<Col className="text-right">
 					<Button onClick={props.onHide}>Close</Button>
 				</Col>
