@@ -13,4 +13,3 @@ const EventPage = (props) => {
 
 export default EventPage;
 
-  
