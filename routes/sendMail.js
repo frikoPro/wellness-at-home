@@ -22,7 +22,7 @@ transport.verify(function (error, success) {
 router.post('/send', (req, res, next) => {
 	var mail = {
 		from: req.body.name,
-		to: 'urs_ole@hotmail.com',
+		to: req.body.email,
 		subject: req.body.problem,
 		text: req.body.message,
 	};
