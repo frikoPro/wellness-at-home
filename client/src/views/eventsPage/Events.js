@@ -12,9 +12,8 @@ const Events = () => {
 /*todo:
    1) fetch eventsData from db, via Axios.
    2) assign eventsData to state
-   3) before rendering events page, pass id jhkgbv
+   3) CHECK  before rendering events page, pass id
    to events page via mapping through the data and returning that objects info
-*
 * */
     // OBS calendar must be set as variable event
     const eventsData = [
@@ -22,6 +21,7 @@ const Events = () => {
             create_date: 1676639434,
             update_date: 1676639434,
             date: 1618054898,
+            date_end: 1618054898,
             city: "Drammen",
             address: "DrammenVegen 22",
             location: "Drammenshallen",
@@ -43,6 +43,7 @@ const Events = () => {
             create_date: 1992258634,
             update_date: 1992258634,
             date: 1620646898,
+            date_end: 1618054898,
             city: "Oslo/Fornebu",
             address: "OsloVegen 21",
             location: "Telenor Arena",
@@ -64,6 +65,7 @@ const Events = () => {
             create_date: 1992258634,
             update_date: 1992258634,
             date: 1652182898,
+            date_end: 1618054898,
             city: "Kristiansand",
             address: "OsloVegen 21",
             location: "Telenor Arena",
@@ -85,6 +87,7 @@ const Events = () => {
             create_date: 856185034,
             update_date: 856185034,
             date: 1778413298,
+            date_end: 1618054898,
             city: "Trondheim",
             address: "TrondheimVegen 108",
             location: "Trondheim fotball Arena",
@@ -110,14 +113,13 @@ const Events = () => {
     const handleClick = (create_date) => {
         history.push(`/Arrangementer/${create_date}`);
     }
-
-    const idExists = (id) => {
-        // true or false if id exists in events data
-        return true;
-    }
-
+    //if no data in event show 404
     const getEventObj = (id) => {
-        return eventsData.filter(event => event.create_date.toString() === id)[0]
+        if(id){
+            return eventsData.filter(event => event.create_date.toString() === id)[0]
+        }else{
+            return false
+        }
     }
 
     const match = useRouteMatch('/Arrangementer/:id');
@@ -125,7 +127,7 @@ const Events = () => {
 
     if (match !== null) {
         const { params } = match;
-        if(idExists(params.id)) {
+        if(getEventObj(params.id)) {
             return <EventPage {...getEventObj(params.id)}/>
         } else {
             return <NotFoundPage/>
@@ -134,34 +136,33 @@ const Events = () => {
     } else {
         return (
             <>
-                <div style={{backgroundColor: "grey"}}
-                     className="col-lg-5 col-md-5 col-sm-5 container justify-content-center">
+                <div className={`${styles.header}`}>
+                    <h1>Kommende messer og arrangementer hvor vi har stand</h1>
+                </div>
+                <div style={{backgroundColor: "#000000"}}
+                     className={`col-lg-5 col-md-5 col-sm-5 container ${styles.cardContainer}`}>
+
                     {eventsData.map((event) => (
                             <>
-                                <Card className={`${styles.cardContainer}`}>
-                                    <datecontainer className={`${styles.dateContainer}`}>
-                                        <h4>Dato:</h4>
+                                <Card className={`${styles.card}`}>
+                                    <div className={`${styles.dateContainer}`}>
                                         {time = new Date(event.date).toLocaleDateString("en-US")}
-                                    </datecontainer>
-                                    <bodycontainer className={`${styles.bodyContainer}`}>
+                                        <br/> - <br/>
+                                        {time = new Date(event.date_end).toLocaleDateString("en-US")}
+                                    </div>
+                                    <div className={`${styles.bodyContainer}`}>
                                         <h1 style={{fontSize: 25}}>
-                                            {event.location}
+                                            {event.city} - {event.location}
                                         </h1>
                                         <h2 style={{fontSize: 18}}>
-                                            {event.city} - {event.address}
+                                            {event.address}
                                         </h2>
-                                        <linkcontainer className={`${styles.linkContainer}`}>
-                                            <button className={`${styles.btn}`}>
-                                                <img src={locPointer}/>
-                                            </button>
-                                            <button className={`${styles.btn}`}>
-                                                <img style={{height: 16}} src={calendar}/>
-                                            </button>
-                                            <button type="button" onClick={ () => handleClick(event.create_date)}>
-                                                {event.create_date}
-                                            </button>
-                                        </linkcontainer>
-                                    </bodycontainer>
+                                    </div>
+                                    <div className={`${styles.linkContainer}`}>
+                                        <button class=" btn-warning btn btn-primary hover-gold" type="button" onClick={ () => handleClick(event.create_date)}>
+                                            Mer info
+                                        </button>
+                                    </div>
                                 </Card>
                             </>
                         )
