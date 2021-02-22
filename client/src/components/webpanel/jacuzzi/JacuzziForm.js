@@ -1,5 +1,6 @@
-import { Form } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { ProductsContext } from '../../../contexts/ProductsContext';
+import { JacuzziContext } from '../../../contexts/JacuzziContext';
 import { useContext, useEffect, useState } from 'react';
 import TechSpecInput from '../TechSpecInput';
 import SelectInput from '../SelectInput';
@@ -12,12 +13,24 @@ const JacuzziForm = ({
 	handleImages,
 }) => {
 	const products = useContext(ProductsContext);
+	const jacuzzis = useContext(JacuzziContext);
 
 	const [formData, setFormData] = useState(values || {});
 
+	const [brands, setBrands] = useState([]);
+	const [newBrand, setNewBrand] = useState('');
+
 	useEffect(() => {
 		setFormData({ ...values });
-	}, [values]);
+
+		const tempBrands = [];
+
+		jacuzzis.map((item) => {
+			if (!tempBrands.includes(item.brand)) tempBrands.push(item.brand);
+		});
+
+		setBrands([...tempBrands]);
+	}, [values, jacuzzis]);
 
 	return (
 		<Form>
@@ -32,14 +45,38 @@ const JacuzziForm = ({
 
 				<Form.Text className="text-danger">{returnErrors('name')}</Form.Text>
 			</Form.Group>
+			<Form.Group>
+				<Row>
+					<Col sm={12}>
+						<Form.Label>Legg til merke</Form.Label>
+					</Col>
+					<Col sm={4}>
+						<SelectInput
+							handleChange={handleChange}
+							value={formData.brand}
+							options={brands}
+							name="brand"
+						/>
+						<Form.Text className="text-danger">
+							{returnErrors('brand')}
+						</Form.Text>
+					</Col>
+					<Col sm={4}>
+						<Form.Control
+							placeholder="Legg til nytt merke"
+							onChange={(e) => setNewBrand(e.target.value)}
+						/>
+					</Col>
+					<Col sm={2}>
+						<Button
+							className="btn-success"
+							onClick={() => setBrands([...brands, newBrand])}>
+							Legg til
+						</Button>
+					</Col>
+				</Row>
+			</Form.Group>
 
-			<SelectInput
-				handleChange={handleChange}
-				value={formData.brand}
-				options={['Svenska bad', 'Svenska bad pro', 'Nordpool']}
-				name="brand"
-			/>
-			<Form.Text className="text-danger">{returnErrors('brand')}</Form.Text>
 			<Form.Group>
 				<Form.Label>Beskrivelse</Form.Label>
 				<textarea
