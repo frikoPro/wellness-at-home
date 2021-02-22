@@ -25,8 +25,6 @@ const AddJacuzzi = () => {
 		},
 	});
 
-	const products = useContext(ProductsContext);
-
 	const returnErrors = (field) => {
 		if (error) {
 			const index = error.fields.findIndex((err) => err === field);
