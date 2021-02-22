@@ -55,7 +55,7 @@ const UpdateJacuzzi = () => {
 					<Card.Title>Velg spabad som skal oppdateres</Card.Title>
 
 					{jacuzziBrands.map((brand, i) => (
-						<Row key={i}>
+						<>
 							<Row className="justify-content-center w-100">
 								<Col sm={11} className="text-center margin-bottom-line">
 									<h5>{brand}</h5>
@@ -69,7 +69,7 @@ const UpdateJacuzzi = () => {
 									onSelect(id);
 								}}
 							/>
-						</Row>
+						</>
 					))}
 				</Card.Body>
 			</Card>

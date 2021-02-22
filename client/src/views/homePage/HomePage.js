@@ -21,6 +21,9 @@ const HomePage = () => {
 			textP:
 				'Nulla vitae elit libero, a pharetra augue mollis interdum.Nullavitae elit libero, a pharetra augue mollis interdum.Nulla vitae elit libero, a pharetra augue mollis interdum.',
 		},
+		{
+			image: 'slide2.jpg',
+		},
 	];
 
 	const [currentSlideImg, setCurrentSlideImg] = useState(0);
