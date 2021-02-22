@@ -64,7 +64,7 @@ const TechSpecInput = ({ submitChange, techSpec }) => {
 				<Col sm={2}>
 					<SelectInput
 						options={values.props}
-						techSpec={values.selectedTechSpec}
+						value={values.selectedTechSpec.property}
 						handleChange={(e) =>
 							handleEvent(e.target.name, {
 								...values.selectedTechSpec,

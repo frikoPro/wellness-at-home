@@ -7,16 +7,12 @@
 	.textResponsiveP {
 		font-size: 1.5vw;
 	}
-
-	.slideshow {
-		height: 100vh;
-	}
 }
 
 /*MOBILE*/
 @media screen and (max-width: 991px) {
 	.mtSlide {
-		margin-top: 56px;
+		margin-top: 87px;
 	}
 
 	.textResponsiveH1 {
@@ -25,16 +21,6 @@
 
 	.textResponsiveP {
 		font-size: 2vw;
-	}
-
-	.slideshow {
-		height: 40vh;
-	}
-}
-
-@media screen and (max-width: 500px) {
-	.slideshow {
-		height: 30vh;
 	}
 }
 
@@ -55,4 +41,9 @@
 	animation: fade 4s;
 	animation-delay: 2s;
 	animation-fill-mode: backwards;
+}
+
+.slideshow {
+	width: auto;
+	max-height: 100vh;
 }
