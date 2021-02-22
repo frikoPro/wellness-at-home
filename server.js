@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
-const errorController = require('./controllers/ErrorController');
+
 require('dotenv').config();
 
 const port = 8080;
@@ -29,10 +29,14 @@ connection.once('open', () => {
 const imageRouter = require('./routes/uploadImages');
 const jacuzzisRouter = require('./routes/jacuzzis');
 const productsRouter = require('./routes/products');
+const SendMailRouter = require('./routes/sendMail');
+
+const errorController = require('./controllers/ErrorController');
 
 app.use('/images', imageRouter);
 app.use('/jacuzzis', jacuzzisRouter);
 app.use('/products', productsRouter);
+app.use('/sendmail', SendMailRouter);
 
 app.use(errorController);
 
