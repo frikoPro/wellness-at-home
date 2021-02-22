@@ -30,6 +30,8 @@ const SupportForm = () => {
 			})
 			.then((res) => console.log(res.data))
 			.catch((err) => console.log(err.response.data));
+            alert("Melding sendt.");
+            resetForm();
 	};
 
 	return (
