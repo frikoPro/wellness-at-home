@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {Card} from "react-bootstrap";
 import styles from './Events.module.css'
-import locPointer from './pin.svg'
-import calendar from './calendar.svg'
 import {useHistory, useRouteMatch, withRouter} from "react-router-dom";
 import EventPage from "./EventPage";
 import NotFoundPage from "../errorPage/NotFoundPage";
@@ -26,12 +24,12 @@ const Events = () => {
             address: "DrammenVegen 22",
             location: "Drammenshallen",
             pos: {
-                lat: -34.397,
-                lng: 150.644
+                lat: 59.952769,
+                lng: 10.945199
             },
             img: "https://via.placeholder.com/200x100",
             calendar: {
-                title: "My birthday party",
+                title: "My birthday party111",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
                 end: "2019-11-29 18:00:00 +0100",
@@ -53,7 +51,7 @@ const Events = () => {
             },
             img: "https://via.placeholder.com/200x100",
             calendar: {
-                title: "My birthday party",
+                title: "My birthday party222",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
                 end: "2019-11-29 18:00:00 +0100",
@@ -75,7 +73,7 @@ const Events = () => {
             },
             img: "https://via.placeholder.com/200x100",
             calendar: {
-                title: "My birthday party",
+                title: "My birthday party333",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
                 end: "2019-11-29 18:00:00 +0100",
@@ -97,7 +95,7 @@ const Events = () => {
             },
             img: "https://via.placeholder.com/200x100",
             calendar: {
-                title: "My birthday party",
+                title: "My birthday party4444",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
                 end: "2019-11-29 18:00:00 +0100",
@@ -105,7 +103,6 @@ const Events = () => {
             }
         }
     ]
-
     const [id, setId] = useState();
 
     let history = useHistory();

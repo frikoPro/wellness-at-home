@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Card, CardColumns, CardDeck} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 
 const axios = require('axios');
 
