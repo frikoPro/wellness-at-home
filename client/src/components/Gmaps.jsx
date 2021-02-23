@@ -33,3 +33,4 @@ function Gmaps(props) {
 export default React.memo(Gmaps)
 
 //https://www.npmjs.com/package/@react-google-maps/api
+// old https://www.npmjs.com/package/google-maps-react
