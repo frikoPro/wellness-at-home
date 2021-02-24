@@ -1,6 +1,7 @@
 import { Button, Form } from 'react-bootstrap';
 import React, { useState } from 'react';
 import axios from 'axios';
+import Recaptcha from 'react-recaptcha';
 
 const SupportForm = () => {
 	const [name, setName] = useState('');
@@ -8,6 +9,7 @@ const SupportForm = () => {
 	const [phone, setPhone] = useState('');
 	const [problem, setProblem] = useState('');
 	const [message, setMessage] = useState('');
+	const [verified, setVerified] = useState();
 
 	const resetForm = () => {
 		setName('');
@@ -18,9 +20,10 @@ const SupportForm = () => {
 	};
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
+		if(verified) {
+			e.preventDefault();
 
-		axios
+			axios
 			.post('http://localhost:8080/sendmail/send', {
 				name: name,
 				email: email,
@@ -32,7 +35,21 @@ const SupportForm = () => {
 			.catch((err) => console.log(err.response.data));
             alert("Melding sendt.");
             resetForm();
+		} else {
+			e.preventDefault();
+			alert("Vennligst verifiser at du ikke er en robot.");
+		}
 	};
+
+	const recaptchaLoaded = () => {
+		console.log('Captcha loaded');
+	}
+
+	const verifyCaptchaCallback = (response) => {
+		if(response) {
+			setVerified(true);
+		}
+	}
 
 	return (
 		<Form className="mx-auto" style={{ width: '70%' }} onSubmit={handleSubmit}>
@@ -82,6 +99,12 @@ const SupportForm = () => {
 					value={message}
 				/>
 			</Form.Group>
+			<Recaptcha
+				sitekey="6LdIBmYaAAAAAAHs9rsOPbgsAA5UxHPozOqUlCzQ"
+				render="explicit"
+				onloadCallback={recaptchaLoaded}
+				verifyCallback={verifyCaptchaCallback}
+			/>,
 			<Button className="btn-warning" type="submit">
 				Send inn
 			</Button>

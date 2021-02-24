@@ -21,10 +21,16 @@ transport.verify(function (error, success) {
 
 router.post('/send', (req, res, next) => {
 	var mail = {
-		from: req.body.name,
-		to: req.body.email,
+		from: `${req.body.name} ${req.body.email}`,
+		to: "jackson16@ethereal.email",
 		subject: req.body.problem,
-		text: req.body.message,
+		html: 
+			`<p><b>Navn: </b>${req.body.name}</p>
+			<p><b>E-Post: </b>${req.body.email}</p>
+			<p><b>Telefonnummer: </b>${req.body.phone}</p>
+			<p><b>Oppgitt problem: </b>${req.body.problem}</p>
+			<p><b>Melding:</b></p>
+			<p>${req.body.message}</p>`,
 	};
 
 	transport.sendMail(mail, (err, data) => {
