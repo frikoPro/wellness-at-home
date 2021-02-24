@@ -1,5 +1,5 @@
 import React from 'react'
-import {Polygon, GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api';
+import {GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api';
 
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
