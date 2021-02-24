@@ -14,7 +14,7 @@ import { ProductsContext } from '../../contexts/ProductsContext';
 const JacuzziPage = () => {
 	let { id } = useParams();
 
-	const jacuzzis = useContext(JacuzziContext);
+	const { jacuzzis } = useContext(JacuzziContext);
 
 	const products = useContext(ProductsContext);
 
