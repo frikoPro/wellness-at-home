@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import AddJacuzzi from '../../components/webpanel/jacuzzi/AddJacuzzi';
-import AddProduct from '../../components/webpanel/AddProduct';
+import AddProduct from '../../components/webpanel/product/AddProduct';
 import { Route, Switch } from 'react-router-dom';
 import UpdateJacuzzi from '../../components/webpanel/jacuzzi/UpdateJacuzzi';
 

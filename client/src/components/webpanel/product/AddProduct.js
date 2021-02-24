@@ -1,10 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
+import { ProductsContext } from '../../../contexts/ProductsContext';
 import UseForm from '../UseForm';
-import JacuzziForm from './JacuzziForm';
-import { JacuzziContext } from '../../../contexts/JacuzziContext';
+import ProductForm from './ProductForm';
 
-const AddJacuzzi = () => {
+const AddProduct = () => {
 	const {
 		values,
 		handleChange,
@@ -18,23 +18,23 @@ const AddJacuzzi = () => {
 		initialValues: {
 			name: '',
 			aboutProduct: '',
-			brand: '',
+			category: '',
+			affiliation: '',
 			price: null,
 			techSpec: [],
 			relatedProducts: [],
 			images: [],
 		},
-		url: 'http://localhost:8080/jacuzzis/',
+		url: 'http://localhost:8080/products/',
 	});
 
-	const { techSpec } = useContext(JacuzziContext);
+	const { techSpec } = useContext(ProductsContext);
 
 	return (
 		<Card>
 			<Card.Body>
-				<Card.Title>Legg til spabad</Card.Title>
-
-				<JacuzziForm
+				<Card.Title>Legg til produkt</Card.Title>
+				<ProductForm
 					handleChange={handleChange}
 					handleEvent={handleEvent}
 					returnErrors={returnErrors}
@@ -60,4 +60,4 @@ const AddJacuzzi = () => {
 	);
 };
 
-export default AddJacuzzi;
+export default AddProduct;
