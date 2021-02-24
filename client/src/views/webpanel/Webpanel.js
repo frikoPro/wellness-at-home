@@ -4,6 +4,7 @@ import AddJacuzzi from '../../components/webpanel/jacuzzi/AddJacuzzi';
 import AddProduct from '../../components/webpanel/product/AddProduct';
 import { Route, Switch } from 'react-router-dom';
 import UpdateJacuzzi from '../../components/webpanel/jacuzzi/UpdateJacuzzi';
+import UpdateProducts from '../../components/webpanel/product/UpdateProducts';
 
 const Webpanel = ({ match }) => {
 	const [isOpen, setOpen] = useState({
@@ -49,8 +50,11 @@ const Webpanel = ({ match }) => {
 									height: isOpen.products ? '100%' : '0',
 									display: isOpen.products ? 'block' : 'none',
 								}}>
-								<a href={`${match.url}/produkter`}>
+								<a href={`${match.url}/addProducts`}>
 									<li>Legg til produkter</li>
+								</a>
+								<a href={`${match.url}/updateProducts`}>
+									<li>Oppdatere produkter</li>
 								</a>
 							</ul>
 						</li>
@@ -61,11 +65,14 @@ const Webpanel = ({ match }) => {
 						<Route path={`${match.url}/addJacuzzis`}>
 							<AddJacuzzi />
 						</Route>
-						<Route path={`${match.url}/produkter`}>
-							<AddProduct />
-						</Route>
 						<Route path={`${match.url}/updateJacuzzi`}>
 							<UpdateJacuzzi />
+						</Route>
+						<Route path={`${match.url}/addProducts`}>
+							<AddProduct />
+						</Route>
+						<Route path={`${match.url}/updateProducts`}>
+							<UpdateProducts />
 						</Route>
 					</Switch>
 				</Col>
