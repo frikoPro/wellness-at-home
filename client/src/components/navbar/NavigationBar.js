@@ -16,28 +16,22 @@ const NavigationBar = () => {
 
 	const dropdown = useRef(null);
 
-	const jacuzzis = useContext(JacuzziContext);
+	const { jacuzzis, brands } = useContext(JacuzziContext);
 
 	const [mappedJacuzzis, setMappedJacuzzis] = useState([]);
 
 	useEffect(() => {
-		const arr = [];
-
-		if (jacuzzis !== undefined) {
-			jacuzzis.forEach((item) => {
-				if (!arr.includes(item.brand)) arr.push(item.brand);
-			});
-
-			const mapJacuzzis = arr.map((brand) => ({
+		if (brands.length > 0) {
+			const arr = brands.map((brand) => ({
 				brand: brand,
-				jacuzzis: jacuzzis.map((jacuzzi) =>
-					jacuzzi.brand === brand ? jacuzzi.name : null
+				jacuzzis: jacuzzis.map((item) =>
+					item.brand === brand ? item.name : null
 				),
 			}));
 
-			setMappedJacuzzis([...mapJacuzzis]);
+			setMappedJacuzzis(arr);
 		}
-	}, [jacuzzis]);
+	}, [jacuzzis, brands]);
 
 	return (
 		<NavBarStyled

@@ -5,35 +5,25 @@ import JacuzziForm from './JacuzziForm';
 
 const UpdateJacuzziModal = (props) => {
 	const {
-		handleChange,
-		updateData,
-		deleteData,
-		error,
-		onSuccess,
 		values,
-		setValues,
+		handleChange,
+		submitData,
+		returnErrors,
+		onSuccess,
 		handleEvent,
 		handleImages,
+		removeValues,
+		setValues,
+		deleteData,
+		updateData,
 	} = UseForm({
 		initialValues: { ...props.jacuzzi },
+		url: 'http://localhost:8080/jacuzzis/',
 	});
-
-	const returnErrors = (field) => {
-		if (error) {
-			const index = error.fields.findIndex((err) => err === field);
-
-			return error.messages[index];
-		}
-	};
 
 	useEffect(() => {
 		setValues({ ...props.jacuzzi });
-
-		if (onSuccess)
-			setTimeout(() => {
-				window.location.reload();
-			}, 500);
-	}, [props.jacuzzi, onSuccess]);
+	}, [props.jacuzzi]);
 
 	return (
 		<Modal
@@ -48,11 +38,14 @@ const UpdateJacuzziModal = (props) => {
 			</Modal.Header>
 			<Modal.Body>
 				<JacuzziForm
-					values={values}
 					handleChange={handleChange}
-					returnErrors={returnErrors}
 					handleEvent={handleEvent}
+					returnErrors={returnErrors}
 					handleImages={handleImages}
+					removeValues={removeValues}
+					values={values}
+					onSuccess={onSuccess}
+					submitData={submitData}
 				/>
 			</Modal.Body>
 			<Modal.Footer>

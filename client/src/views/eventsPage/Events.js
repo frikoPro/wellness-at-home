@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Card} from "react-bootstrap";
 import styles from './Events.module.css'
-import {useHistory, useRouteMatch, withRouter} from "react-router-dom";
+import {Link, useHistory, useRouteMatch, withRouter} from "react-router-dom";
 import EventPage from "./EventPage";
 import NotFoundPage from "../errorPage/NotFoundPage";
 
@@ -103,23 +103,22 @@ const Events = () => {
             }
         }
     ]
-    const [id, setId] = useState();
-
     let history = useHistory();
 
     const handleClick = (create_date) => {
-        history.push(`/Arrangementer/${create_date}`);
+        history.push(`/Arrangementer/eventkode=${create_date}`);
     }
     //if no data in event show 404
     const getEventObj = (id) => {
         if(id){
+            // return false
             return eventsData.filter(event => event.create_date.toString() === id)[0]
         }else{
             return false
         }
     }
 
-    const match = useRouteMatch('/Arrangementer/:id');
+    const match = useRouteMatch('/Arrangementer/eventkode=:id');
     // console.log(match)
 
     if (match !== null) {

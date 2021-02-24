@@ -4,7 +4,6 @@ import { google, outlook, office365, yahoo, ics } from "calendar-link";
 const CalendarLink = (props) => {
     return (
         <>
-
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Legg til i kalender
