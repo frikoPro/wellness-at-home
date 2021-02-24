@@ -16,7 +16,7 @@ const JacuzziPage = () => {
 
 	const { jacuzzis } = useContext(JacuzziContext);
 
-	const products = useContext(ProductsContext);
+	const { products } = useContext(ProductsContext);
 
 	const [jacuzziPageContent, setPageContent] = useState({});
 
