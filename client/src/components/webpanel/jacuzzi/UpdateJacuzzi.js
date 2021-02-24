@@ -6,7 +6,7 @@ import ScrollDiv from '../../scrolldiv/ScrollDiv';
 import UpdateJacuzziModal from './UpdateJacuzziModal';
 
 const UpdateJacuzzi = () => {
-	const jacuzzis = useContext(JacuzziContext);
+	const { jacuzzis } = useContext(JacuzziContext);
 
 	const [mappedJacuzzis, setMappedJacuzzis] = useState([]);
 
