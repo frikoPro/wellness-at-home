@@ -1,10 +1,18 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const UseForm = ({ initialValues }) => {
+const UseForm = ({ initialValues, url }) => {
 	const [values, setValues] = useState(initialValues || {});
 	const [error, setError] = useState(null);
 	const [onSuccess, setSuccess] = useState(null);
+
+	useEffect(() => {
+		if (onSuccess) {
+			setTimeout(() => {
+				window.location.reload();
+			}, 500);
+		}
+	}, [onSuccess]);
 
 	const handleChange = (event) => {
 		const value = event.target.value;
@@ -16,8 +24,29 @@ const UseForm = ({ initialValues }) => {
 		});
 	};
 
+	const returnErrors = (field) => {
+		if (error) {
+			const index = error.fields.findIndex((err) => err === field);
+
+			return error.messages[index];
+		}
+	};
+
 	const handleEvent = (name, val) => {
 		handleChange({ target: { name: name, value: val } });
+	};
+
+	const removeValues = (target, id) => {
+		const newArray = [...values[target]];
+
+		console.log(typeof id);
+
+		const index =
+			typeof id === 'number' ? id : newArray.findIndex((item) => item === id);
+
+		newArray.splice(index, 1);
+
+		handleEvent(target, newArray);
 	};
 
 	const handleImages = (event) => {
@@ -53,10 +82,8 @@ const UseForm = ({ initialValues }) => {
 	};
 
 	const submitData = () => {
-		const url = 'http://localhost:8080/jacuzzis/add';
-
 		axios
-			.post(url, {
+			.post(`${url}add`, {
 				...values,
 				images: values.images.filenames,
 			})
@@ -73,14 +100,14 @@ const UseForm = ({ initialValues }) => {
 
 	const deleteData = () => {
 		axios
-			.delete(`http://localhost:8080/jacuzzis/${values._id}`)
+			.delete(`${url}${values._id}`)
 			.then((res) => setSuccess(res.data))
 			.catch((err) => console.log(err.response.data));
 	};
 
 	const updateData = () => {
 		axios
-			.patch(`http://localhost:8080/jacuzzis/${values._id}`, values)
+			.patch(`${url}${values._id}`, values)
 			.then((res) => setSuccess(res.data))
 			.catch((err) => console.log(err));
 	};
@@ -91,11 +118,12 @@ const UseForm = ({ initialValues }) => {
 		submitData,
 		deleteData,
 		updateData,
-		error,
+		returnErrors,
 		handleEvent,
 		handleImages,
 		onSuccess,
 		setValues,
+		removeValues,
 	};
 };
 

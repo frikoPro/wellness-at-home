@@ -13,8 +13,30 @@ export const JacuzziProvider = (props) => {
 		});
 	}, []);
 
+	const returnBrands = () => {
+		const unique = [...new Set(jacuzzis.map((item) => item.brand))];
+		return unique;
+	};
+
+	const returnTechSpec = () => {
+		const unique = [];
+
+		jacuzzis.map((item) => {
+			item.techSpec.map((tech) => {
+				if (!unique.includes(tech.property)) unique.push(tech.property);
+			});
+		});
+
+		return unique;
+	};
+
 	return (
-		<JacuzziContext.Provider value={jacuzzis}>
+		<JacuzziContext.Provider
+			value={{
+				jacuzzis: jacuzzis,
+				brands: returnBrands(),
+				techSpec: returnTechSpec(),
+			}}>
 			{props.children}
 		</JacuzziContext.Provider>
 	);

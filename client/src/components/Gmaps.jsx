@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api';
+import {GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api';
 
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -24,13 +24,17 @@ function Gmaps(props) {
             zoom={10}
         >
             <>
-                <Marker position={initialPos}/>
+                <Marker position={initialPos}
+                        name={'Your position'}
+
+                />
+
             </>
         </GoogleMap>
     ) : <></>
 }
 
-export default React.memo(Gmaps)
+export default React.memo(Gmaps);
 
 //https://www.npmjs.com/package/@react-google-maps/api
 // old https://www.npmjs.com/package/google-maps-react

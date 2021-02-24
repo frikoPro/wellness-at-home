@@ -1,7 +1,7 @@
 const TechList = ({ values, handleEvent }) => {
 	return (
 		<ul style={{ listStyleType: 'none' }}>
-			{values
+			{values.length > 0
 				? values.map((item, index) => (
 						<li
 							style={{ cursor: 'pointer' }}
