@@ -1,34 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import SelectInput from './SelectInput';
 import TechList from './TechList';
-import UseForm from './UseForm';
 
-const TechSpecInput = ({ submitChange, techSpec }) => {
-	const { handleChange, values, handleEvent } = UseForm({
-		initialValues: {
-			props: ['vannsystem', 'strømforbruk', 'kapasitet'],
-			newProp: '',
-			selectedTechSpec: {},
-		},
+const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
+	const [newProp, setNewProp] = useState('');
+
+	const [newTechSpec, setNewTechSpec] = useState({
+		property: '',
+		value: '',
 	});
+
+	const [optionsState, setOptionsState] = useState([]);
 
 	const [errors, setErrors] = useState({
 		property: false,
 		value: false,
 	});
 
-	const removeTechSpec = (i) => {
-		let mutatedTechSpec = [...techSpec];
-
-		mutatedTechSpec.splice(i, 1);
-
-		submitChange({ target: { name: 'techSpec', value: mutatedTechSpec } });
-	};
+	useEffect(() => {
+		setOptionsState(options);
+	}, [options]);
 
 	const onSubmit = () => {
-		const newTechSpec = values.selectedTechSpec;
-		let techSpecTemp = techSpec;
+		let techSpecTemp = values;
 
 		if (!newTechSpec.value && !newTechSpec.property) {
 			return setErrors({ property: true, value: true });
@@ -40,7 +35,7 @@ const TechSpecInput = ({ submitChange, techSpec }) => {
 
 		setErrors({ property: false, value: false });
 
-		const index = techSpec.findIndex(
+		const index = techSpecTemp.findIndex(
 			(spec) => spec.property === newTechSpec.property
 		);
 
@@ -63,13 +58,13 @@ const TechSpecInput = ({ submitChange, techSpec }) => {
 			<Row>
 				<Col sm={2}>
 					<SelectInput
-						options={values.props}
-						value={values.selectedTechSpec.property}
+						options={optionsState.map((item) => ({
+							value: item,
+							userText: item,
+						}))}
+						value={newTechSpec.property}
 						handleChange={(e) =>
-							handleEvent(e.target.name, {
-								...values.selectedTechSpec,
-								property: e.target.value,
-							})
+							setNewTechSpec({ ...newTechSpec, property: e.target.value })
 						}
 						name="selectedTechSpec"
 					/>
@@ -85,10 +80,7 @@ const TechSpecInput = ({ submitChange, techSpec }) => {
 						placeholder="200kw/h"
 						name="selectedTechSpec"
 						onChange={(e) =>
-							handleEvent('selectedTechSpec', {
-								...values.selectedTechSpec,
-								value: e.target.value,
-							})
+							setNewTechSpec({ ...newTechSpec, value: e.target.value })
 						}
 					/>
 					<Form.Text className="text-danger">
@@ -101,7 +93,10 @@ const TechSpecInput = ({ submitChange, techSpec }) => {
 					</Button>
 				</Col>
 				<Col>
-					<TechList values={techSpec} handleEvent={removeTechSpec} />
+					<TechList
+						values={values}
+						handleEvent={(i) => removeValues('techSpec', i)}
+					/>
 				</Col>
 			</Row>
 
@@ -110,15 +105,13 @@ const TechSpecInput = ({ submitChange, techSpec }) => {
 					<Form.Control
 						placeholder="legg til ny egenskap"
 						name="newProp"
-						onChange={handleChange}
+						onChange={(e) => setNewProp(e.target.value)}
 					/>
 				</Col>
 				<Col>
 					<Button
 						className="btn-success"
-						onClick={() =>
-							handleEvent('props', [...values.props, values.newProp])
-						}>
+						onClick={() => setOptionsState([...optionsState, newProp])}>
 						Legg til
 					</Button>
 				</Col>

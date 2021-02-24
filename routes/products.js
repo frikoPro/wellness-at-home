@@ -7,9 +7,9 @@ router.route('/').get((req, res) => {
 		.catch((err) => res.status(400).json('Error: ', err));
 });
 
-router.route('/add').post((req, res) => {
+router.route('/add').post(async (req, res, next) => {
 	const name = req.body.name;
-	const brand = req.body.brand;
+	const affiliation = req.body.affiliation;
 	const images = req.body.images;
 	const category = req.body.category;
 	const aboutProduct = req.body.aboutProduct;
@@ -19,7 +19,7 @@ router.route('/add').post((req, res) => {
 
 	const newProduct = new Product({
 		name,
-		brand,
+		affiliation,
 		category,
 		images,
 		aboutProduct,
@@ -28,16 +28,30 @@ router.route('/add').post((req, res) => {
 		relatedProducts,
 	});
 
-	newProduct
-		.save()
-		.then(() => res.json('product added!'))
-		.catch((err) => res.status(400).json('Error: ' + err));
+	try {
+		await newProduct.save();
+		res.status(200).json('produkt lagt inn');
+	} catch (err) {
+		next(err);
+	}
 });
 
-router.route('/:id').delete((req, res) => {
-	Product.findByIdAndDelete(req.params.id)
-		.then(() => res.json('product deleted!'))
-		.catch((err) => res.status(400).json('Error: ' + err));
+router.route('/:id').delete(async (req, res) => {
+	try {
+		await Product.findByIdAndDelete(req.params.id);
+		res.status(200).json('Produktet er slettet');
+	} catch (err) {
+		res.status(400).json(err);
+	}
+});
+
+router.route('/:id').patch(async (req, res) => {
+	try {
+		await Product.findByIdAndUpdate({ _id: req.params.id }, { ...req.body });
+		res.status(200).json('Produktet er oppdatert');
+	} catch (err) {
+		next(err);
+	}
 });
 
 module.exports = router;

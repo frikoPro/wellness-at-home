@@ -13,10 +13,36 @@ export const ProductsProvider = (props) => {
 		});
 	}, []);
 
-	const val = 2;
+	const returnCategories = () => {
+		const unique = [];
+
+		products.map((item) => {
+			if (!unique.includes(item.category) && item.category !== undefined)
+				unique.push(item.category);
+		});
+
+		return unique;
+	};
+
+	const returnTechSpec = () => {
+		const unique = [];
+
+		products.map((item) => {
+			item.techSpec.map((tech) => {
+				if (!unique.includes(tech.property)) unique.push(tech.property);
+			});
+		});
+
+		return unique;
+	};
 
 	return (
-		<ProductsContext.Provider value={products}>
+		<ProductsContext.Provider
+			value={{
+				products: products,
+				categories: returnCategories(),
+				techSpec: returnTechSpec(),
+			}}>
 			{props.children}
 		</ProductsContext.Provider>
 	);
