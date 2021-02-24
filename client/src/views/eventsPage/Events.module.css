@@ -1,20 +1,40 @@
+.header {
+    background: #d4d4d4;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
 .cardContainer{
-    background: #097a00;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.card{
     flex-direction: row;
     margin: 40px;
     marginTop: 40px;
+    position:relative;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .dateContainer{
-    background-color: #62ff30;
-    border: 2px solid #097a00;
+    background: #d4d4d4;
+    border: 5px solid #d4d4d4;
     border-radius: 5px;
 }
 .bodyContainer{
     background-color: white;
+    position: absolute;
+    left: 100px;
+    top: 5px;
 }
 .linkContainer{
-
+    right:0;
+    bottom: 0;
+    position:absolute;
 }
 
 .btn{
