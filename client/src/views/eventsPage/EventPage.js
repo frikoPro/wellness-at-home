@@ -31,11 +31,11 @@ const EventPage = (props) => {
                             <Gmaps {...props.pos}/>
                         </Tab>
                         <Tab eventKey="calendar" title="Kalender" className={`${styles.tabs}`} >
-                                        <Calendar
-                                            onChange={onChange}
-                                            showWeekNumbers
-                                            value={value}
-                                        />
+                            <Calendar
+                                onChange={onChange}
+                                showWeekNumbers
+                                value={value}
+                            />
                             <CalendarLink {...props.calendar}/>
                         </Tab>
                     </Tabs>
