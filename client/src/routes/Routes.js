@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Footer from '../components/Footer';
 import NavigationBar from '../components/navbar/NavigationBar';
 import Test from '../components/Test';
@@ -11,10 +11,20 @@ import Webpanel from '../views/webpanel/Webpanel';
 import Events from '../views/eventsPage/Events';
 import { JacuzziProvider } from '../contexts/JacuzziContext';
 import { ProductsProvider } from '../contexts/ProductsContext';
-import EventPage from '../views/eventsPage/EventPage';
 import history from '../history.js';
+import LoginPage from '../views/login/LoginPage';
+import { useEffect, useState } from 'react';
 
 const Routes = () => {
+	const [loggedIn, setLoggedIn] = useState(false);
+
+	useEffect(() => {
+		const user = localStorage.getItem('user');
+		if (user) {
+			setLoggedIn(true);
+		}
+	}, []);
+
 	return (
 		<BrowserRouter history={history}>
 			<JacuzziProvider>
@@ -43,7 +53,13 @@ const Routes = () => {
 								<Route path="/spabad/:id">
 									<JacuzziPage />
 								</Route>
-								<Route path="/webpanel" component={Webpanel} />
+								<Route path="/webpanel">
+									{loggedIn ? (
+										<Route component={Webpanel} />
+									) : (
+										<LoginPage setState={setLoggedIn} />
+									)}
+								</Route>
 							</Switch>
 						</ProductsProvider>
 					</main>
