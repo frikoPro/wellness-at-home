@@ -1,15 +1,11 @@
 .leftArrow,
 .rightArrow {
-  display: none;
+	display: none;
 }
 
 @media (hover: hover) {
-  .scrollDiv:hover .leftArrow,
-  .scrollDiv:hover .rightArrow {
-    display: inline-block;
-  }
-}
-
-.hoverBorder:hover {
-  border: 2px solid grey;
+	.scrollDiv:hover .leftArrow,
+	.scrollDiv:hover .rightArrow {
+		display: inline-block;
+	}
 }
