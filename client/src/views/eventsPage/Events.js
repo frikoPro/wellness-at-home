@@ -135,16 +135,16 @@ const Events = () => {
                 <div className={`${styles.header}`}>
                     <h1>Kommende messer og arrangementer hvor vi har stand</h1>
                 </div>
-                <div style={{backgroundColor: "#000000"}}
+                <div style={{backgroundColor: "#d4d4d4"}}
                      className={`col-lg-5 col-md-5 col-sm-5 container ${styles.cardContainer}`}>
 
                     {eventsData.map((event) => (
                             <>
                                 <Card className={`${styles.card}`}>
                                     <div className={`${styles.dateContainer}`}>
-                                        {time = new Date(event.date).toLocaleDateString("en-US")}
-                                        <br/> - <br/>
-                                        {time = new Date(event.date_end).toLocaleDateString("en-US")}
+                                        {time = new Date(event.date).toLocaleDateString("en-GB").slice(0,5)}
+                                        <br/>
+                                        {time = new Date(event.date_end).toLocaleDateString("en-GB").slice(0,5)}
                                     </div>
                                     <div className={`${styles.bodyContainer}`}>
                                         <h1 style={{fontSize: 25}}>
@@ -155,7 +155,9 @@ const Events = () => {
                                         </h2>
                                     </div>
                                     <div className={`${styles.linkContainer}`}>
-                                        <button class=" btn-warning btn btn-primary hover-gold" type="button" onClick={ () => handleClick(event.create_date)}>
+                                        <button class=" btn-warning btn btn-primary hover-gold"
+                                                type="button"
+                                                onClick={ () => handleClick(event.create_date)}>
                                             Mer info
                                         </button>
                                     </div>
