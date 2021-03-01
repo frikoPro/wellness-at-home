@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Footer from '../components/Footer';
 import NavigationBar from '../components/navbar/NavigationBar';
 import Test from '../components/Test';
@@ -13,46 +13,56 @@ import { JacuzziProvider } from '../contexts/JacuzziContext';
 import { ProductsProvider } from '../contexts/ProductsContext';
 import EventPage from '../views/eventsPage/EventPage';
 import history from '../history.js';
+import LoginPage from '../views/login/LoginPage';
+import { useState } from 'react';
 
 const Routes = () => {
-	return (
-		<BrowserRouter history={history}>
-			<JacuzziProvider>
-				<ScrollProvider>
-					<header>
-						<NavigationBar />
-					</header>
-					<main>
-						<ProductsProvider>
-							<Switch>
-								<Route exact path="/">
-									<HomePage />
-								</Route>
-								<Route path="/test">
-									<Test />
-								</Route>
-								<Route path="/blogg">
-									<Blogg />
-								</Route>
-								<Route path="/Arrangementer">
-									<Events />
-								</Route>
-								<Route path="/Kundeserivce">
-									<SupportPage />
-								</Route>
-								<Route path="/spabad/:id">
-									<JacuzziPage />
-								</Route>
-								<Route path="/webpanel" component={Webpanel} />
-							</Switch>
-						</ProductsProvider>
-					</main>
-				</ScrollProvider>
-			</JacuzziProvider>
+  const [loggedIn, setLoggedIn] = useState(false);
 
-			<Footer />
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter history={history}>
+      <JacuzziProvider>
+        <ScrollProvider>
+          <header>
+            <NavigationBar />
+          </header>
+          <main>
+            <ProductsProvider>
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route path="/test">
+                  <Test />
+                </Route>
+                <Route path="/blogg">
+                  <Blogg />
+                </Route>
+                <Route path="/Arrangementer">
+                  <Events />
+                </Route>
+                <Route path="/Kundeserivce">
+                  <SupportPage />
+                </Route>
+                <Route path="/spabad/:id">
+                  <JacuzziPage />
+                </Route>
+                <Route path="/webpanel">
+                  {loggedIn ? (
+                    <Redirect to="/webpanel" />
+                  ) : (
+                    <LoginPage setState={setLoggedIn} />
+                  )}
+                </Route>
+              </Switch>
+            </ProductsProvider>
+          </main>
+        </ScrollProvider>
+      </JacuzziProvider>
+
+      <Footer />
+    </BrowserRouter>
+  );
 };
 
 export default Routes;
