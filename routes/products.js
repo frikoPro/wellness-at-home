@@ -36,18 +36,23 @@ router.route('/add').post(async (req, res, next) => {
 	}
 });
 
-router.route('/:id').delete(async (req, res) => {
+router.route('/:id').delete(async (req, res, next) => {
 	try {
 		await Product.findByIdAndDelete(req.params.id);
 		res.status(200).json('Produktet er slettet');
 	} catch (err) {
-		res.status(400).json(err);
+		next(err);
 	}
 });
 
-router.route('/:id').patch(async (req, res) => {
+router.route('/:id').patch(async (req, res, next) => {
 	try {
-		await Product.findByIdAndUpdate({ _id: req.params.id }, { ...req.body });
+		const updatedProduct = await Product.findById(req.body._id).exec();
+
+		updatedProduct.overwrite({ ...req.body });
+
+		await updatedProduct.save();
+
 		res.status(200).json('Produktet er oppdatert');
 	} catch (err) {
 		next(err);
