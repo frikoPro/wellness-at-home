@@ -28,7 +28,7 @@ const Blogg = () => {
     return (<>
             {fbData.map((post) => (
                 <div style={{paddingTop: 40}}>
-                    <Card style={{padding: 40, boxShadow: "10px 10px 5px #888888"}}
+                    <Card style={{padding: 40, boxShadow: "5px 5px 5px #b3b3b3"}}
                           className={`col-lg-${bsNumElement} col-md-${bsNumElement} col-sm-${bsNumElement} container justify-content-center`}>
                         <Card.Body>
                             <div
