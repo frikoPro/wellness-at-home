@@ -7,9 +7,7 @@ import UserForm from '../UserForm';
 const JacuzziForm = ({
 	values,
 	handleChange,
-	submitData,
 	returnErrors,
-	onSuccess,
 	handleEvent,
 	handleImages,
 	removeValues,

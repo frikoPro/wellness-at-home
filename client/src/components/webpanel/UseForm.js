@@ -109,12 +109,16 @@ const UseForm = ({ initialValues, url }) => {
 		axios
 			.patch(`${url}${values._id}`, values)
 			.then((res) => setSuccess(res.data))
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				console.log(err.response.data);
+				setError(err.response.data);
+			});
 	};
 
 	return {
 		handleChange,
 		values,
+		setError,
 		submitData,
 		deleteData,
 		updateData,

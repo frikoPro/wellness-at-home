@@ -48,9 +48,14 @@ router.route('/:id').delete(async (req, res, next) => {
 	}
 });
 
-router.route('/:id').patch(async (req, res) => {
+router.route('/:id').patch(async (req, res, next) => {
 	try {
-		await Jacuzzi.findByIdAndUpdate({ _id: req.params.id }, { ...req.body });
+		const updatedJacuzzi = await Jacuzzi.findById(req.body._id).exec();
+
+		updatedJacuzzi.overwrite({ ...req.body });
+
+		await updatedJacuzzi.save();
+
 		res.status(200).json('Produktet er oppdatert');
 	} catch (err) {
 		next(err);
