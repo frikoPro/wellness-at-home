@@ -10,8 +10,10 @@
     justify-content: center;
     padding-top: 20px;
     padding-bottom: 20px;
+    top: 30px;
 }
 .card{
+    box-shadow: 5px 5px 5px #b3b3b3;
     flex-direction: row;
     margin: 40px;
     marginTop: 40px;
@@ -21,15 +23,15 @@
 }
 
 .dateContainer{
-    background: #d4d4d4;
-    border: 5px solid #d4d4d4;
-    border-radius: 5px;
+    background: #ffc107;
+    border: 5px solid #ffc107;
+    font-size: 25px;
 }
 .bodyContainer{
     background-color: white;
     position: absolute;
-    left: 100px;
-    top: 5px;
+    left: 80px;
+    top: 8px;
 }
 .linkContainer{
     right:0;
