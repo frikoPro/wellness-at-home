@@ -27,7 +27,7 @@ const UpdateJacuzzi = () => {
 
 	useEffect(() => {
 		const mappedArr = jacuzzis.map((item) => ({
-			image: item.images[0].image,
+			images: item.images[0].images,
 			brand: item.brand,
 			name: item.name,
 			id: item._id,
