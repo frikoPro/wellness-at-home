@@ -21,8 +21,8 @@ export const JacuzziProvider = (props) => {
 	const returnTechSpec = () => {
 		const unique = [];
 
-		jacuzzis.map((item) => {
-			item.techSpec.map((tech) => {
+		jacuzzis.forEach((item) => {
+			item.techSpec.forEach((tech) => {
 				if (!unique.includes(tech.property)) unique.push(tech.property);
 			});
 		});

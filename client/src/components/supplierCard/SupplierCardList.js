@@ -6,7 +6,7 @@ import { ScrollContext } from '../../contexts/ScrollContext';
 const SupplierCardList = () => {
 	const { homepageEl } = useContext(ScrollContext);
 
-	const [homePageEl, slideshowRef] = homepageEl;
+	const [homePageEl] = homepageEl;
 
 	const supplierList = [
 		{
