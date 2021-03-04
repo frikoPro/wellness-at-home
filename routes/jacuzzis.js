@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let Jacuzzi = require('../models/jacuzzi.model');
 
-router.route('/').get(async (req, res) => {
+router.route('/').get(async (req, res, next) => {
 	try {
 		const result = await Jacuzzi.find();
 		res.status(200).json(result);

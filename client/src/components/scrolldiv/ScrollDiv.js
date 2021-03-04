@@ -81,7 +81,7 @@ const ScrollDiv = ({ content, returnFunction, size }) => {
 						key={index}
 						onClick={() => returnFunction(index, item.id)}>
 						<img
-							src={`http://localhost:8080/${item.image}`}
+							src={`http://localhost:8080/${item.images}`}
 							alt={index}
 							className="w-100"></img>
 						{'name' in item ? (

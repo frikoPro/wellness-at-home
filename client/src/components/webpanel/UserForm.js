@@ -103,7 +103,7 @@ const UserForm = ({
 				<Form.Text className="text-danger">{returnErrors('images')}</Form.Text>
 			</Form.Group>
 			<Form.Group>
-				<Row>
+				<Row className="w-100">
 					{values.images.preview
 						? values.images.preview.map((img, i) => (
 								<Col sm={2} key={i}>

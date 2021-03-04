@@ -1,16 +1,15 @@
-import { Button, Col, Modal, Row, Form } from 'react-bootstrap';
-import ProductForm from './ProductForm';
+import { Button, Modal, Col, Row, Form } from 'react-bootstrap';
+import SlideshowForm from './SlideshowForm';
 
-const UpdateProductModal = (props) => {
+const UpdateSlideModal = (props) => {
 	const {
-		values,
-		handleChange,
-		returnErrors,
 		onSuccess,
-		handleEvent,
-		handleImages,
-		removeValues,
+		values,
 		updateData,
+		handleImage,
+		handleChange,
+		error,
+		deleteData,
 	} = props;
 
 	return (
@@ -25,19 +24,24 @@ const UpdateProductModal = (props) => {
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<ProductForm
+				<SlideshowForm
 					handleChange={handleChange}
-					handleEvent={handleEvent}
-					returnErrors={returnErrors}
-					handleImages={handleImages}
-					removeValues={removeValues}
+					handleImage={handleImage}
 					values={values}
+					error={error}
 				/>
 			</Modal.Body>
 			<Modal.Footer>
 				<Row className="w-100">
 					<Col>
-						<Button onClick={updateData}>Lagre produkt</Button>
+						<Button className="btn-warning" onClick={updateData}>
+							Update
+						</Button>
+					</Col>
+					<Col>
+						<Button className="btn-danger" onClick={deleteData}>
+							Slett produkt
+						</Button>
 					</Col>
 					<Col>
 						<Form.Text className="text-success">{onSuccess}</Form.Text>
@@ -47,20 +51,16 @@ const UpdateProductModal = (props) => {
 					</Col>
 				</Row>
 				<Row className="w-100">
-					{values.images[0]
-						? values.images.map((img, i) => (
-								<Col sm={2} key={i}>
-									<img
-										src={`http://localhost:8080/${img.image}`}
-										alt=""
-										className="w-100"></img>
-								</Col>
-						  ))
-						: null}
+					<Col sm={2}>
+						<img
+							src={`http://localhost:8080/${values.images}`}
+							alt=""
+							className="w-100"></img>
+					</Col>
 				</Row>
 			</Modal.Footer>
 		</Modal>
 	);
 };
 
-export default UpdateProductModal;
+export default UpdateSlideModal;

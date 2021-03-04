@@ -57,11 +57,33 @@ const UseForm = ({ initialValues, url }) => {
 		};
 
 		tempImages.files.forEach((image) => {
-			tempImages.filenames.push({ image: image.name });
+			tempImages.filenames.push({ images: image.name });
 			tempImages.preview.push(URL.createObjectURL(image));
 		});
 
 		handleEvent('images', tempImages);
+	};
+
+	const handleImage = (event) => {
+		const file = event.target.files[0];
+		let tempImages = {
+			file: file,
+			preview: URL.createObjectURL(file),
+			filenames: file.name,
+		};
+
+		handleEvent('images', tempImages);
+	};
+
+	const uploadImage = () => {
+		let formData = new FormData();
+
+		formData.append('file', values.images.file);
+
+		axios
+			.post('http://localhost:8080/images/single', formData)
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err));
 	};
 
 	const uploadImages = () => {
@@ -71,12 +93,8 @@ const UseForm = ({ initialValues, url }) => {
 			formData.append('multi-files', image);
 		});
 
-		axios({
-			method: 'POST',
-			url: 'http://localhost:8080/images/upload',
-			data: formData,
-			config: { headers: { 'Content-Type': 'multipart/form-data' } },
-		})
+		axios
+			.post('http://localhost:8080/images/upload', formData)
 			.then((response) => console.log(response.data))
 			.catch((err) => console.log(err));
 	};
@@ -89,6 +107,7 @@ const UseForm = ({ initialValues, url }) => {
 			})
 			.then((res) => {
 				if (values.images.files !== undefined) uploadImages();
+				else if (values.images.file !== undefined) uploadImage();
 
 				setSuccess(res.data);
 			})
@@ -107,7 +126,12 @@ const UseForm = ({ initialValues, url }) => {
 
 	const updateData = () => {
 		axios
-			.patch(`${url}${values._id}`, values)
+			.patch(`${url}${values._id}`, {
+				...values,
+				images: values.images.filenames
+					? values.images.filenames
+					: values.images,
+			})
 			.then((res) => setSuccess(res.data))
 			.catch((err) => {
 				console.log(err.response.data);
@@ -125,6 +149,7 @@ const UseForm = ({ initialValues, url }) => {
 		returnErrors,
 		handleEvent,
 		handleImages,
+		handleImage,
 		onSuccess,
 		setValues,
 		removeValues,
