@@ -65,8 +65,8 @@ const UpdateJacuzziModal = (props) => {
 				<Col className="text-right">
 					<Button onClick={props.onHide}>Close</Button>
 				</Col>
-				<Row>
-					{values.images
+				<Row className="w-100">
+					{values.images[0]
 						? values.images.map((img, i) => (
 								<Col sm={2} key={i}>
 									<img

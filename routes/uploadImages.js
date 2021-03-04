@@ -11,7 +11,6 @@ const storage = multer.diskStorage({
 });
 
 router.route('/upload').post((req, res) => {
-	// 'profile_pic' is the name of our file input field in the HTML form
 	let upload = multer({
 		storage: storage,
 	}).array('multi-files');
@@ -24,9 +23,21 @@ router.route('/upload').post((req, res) => {
 			return res.send('Error: ', err);
 		}
 
-		// req.files.forEach((file) => res.send(file.path));
-
 		res.send(req.files);
+	});
+});
+
+router.route('/single').post((req, res) => {
+	let upload = multer({
+		storage: storage,
+	}).single('file');
+
+	upload(req, res, (err) => {
+		if (err) {
+			return res.send('error: ', err);
+		}
+
+		res.send(req.file);
 	});
 });
 

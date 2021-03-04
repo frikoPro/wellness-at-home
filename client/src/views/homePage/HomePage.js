@@ -8,23 +8,14 @@ import Slideshow from '../../components/Slideshow';
 import { ScrollContext } from '../../contexts/ScrollContext';
 
 import SupplierCardList from '../../components/supplierCard/SupplierCardList';
+import { SlideshowContext } from '../../contexts/SlideshowContext';
 
 const HomePage = () => {
 	const { homepageEl } = useContext(ScrollContext);
 
 	const [homePageEl, slideshowRef] = homepageEl;
 
-	const slideContent = [
-		{
-			image: 'slideimg1.png',
-			textHead: 'Velkommen til Wellness at home',
-			textP:
-				'Nulla vitae elit libero, a pharetra augue mollis interdum.Nullavitae elit libero, a pharetra augue mollis interdum.Nulla vitae elit libero, a pharetra augue mollis interdum.',
-		},
-		{
-			image: 'slide2.jpg',
-		},
-	];
+	const slideshows = useContext(SlideshowContext);
 
 	const [currentSlideImg, setCurrentSlideImg] = useState(0);
 
@@ -33,7 +24,7 @@ const HomePage = () => {
 			<section>
 				<div ref={slideshowRef} style={{ position: 'relative', top: '-87px' }}>
 					<Slideshow
-						slideContent={slideContent}
+						slideContent={slideshows}
 						setIndex={(index) => setCurrentSlideImg(index)}
 						activeIndex={currentSlideImg}
 						styling={styles}

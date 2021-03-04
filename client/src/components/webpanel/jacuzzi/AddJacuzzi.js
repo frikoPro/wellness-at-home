@@ -1,8 +1,6 @@
-import { useContext } from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import UseForm from '../UseForm';
 import JacuzziForm from './JacuzziForm';
-import { JacuzziContext } from '../../../contexts/JacuzziContext';
 
 const AddJacuzzi = () => {
 	const {
@@ -27,8 +25,6 @@ const AddJacuzzi = () => {
 		url: 'http://localhost:8080/jacuzzis/',
 	});
 
-	const { techSpec } = useContext(JacuzziContext);
-
 	return (
 		<Card>
 			<Card.Body>
@@ -41,7 +37,6 @@ const AddJacuzzi = () => {
 					handleImages={handleImages}
 					removeValues={removeValues}
 					values={values}
-					techSpec={techSpec}
 				/>
 			</Card.Body>
 			<Card.Footer>
