@@ -16,7 +16,7 @@ export const ProductsProvider = (props) => {
 	const returnCategories = () => {
 		const unique = [];
 
-		products.map((item) => {
+		products.forEach((item) => {
 			if (!unique.includes(item.category) && item.category !== undefined)
 				unique.push(item.category);
 		});
@@ -27,8 +27,8 @@ export const ProductsProvider = (props) => {
 	const returnTechSpec = () => {
 		const unique = [];
 
-		products.map((item) => {
-			item.techSpec.map((tech) => {
+		products.forEach((item) => {
+			item.techSpec.forEach((tech) => {
 				if (!unique.includes(tech.property)) unique.push(tech.property);
 			});
 		});

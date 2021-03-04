@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import UseForm from '../UseForm';
 import JacuzziForm from './JacuzziForm';

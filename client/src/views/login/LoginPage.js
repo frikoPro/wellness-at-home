@@ -1,14 +1,11 @@
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const LoginPage = ({ setState }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [response, setResponse] = useState(null);
-
-	let history = useHistory();
 
 	const login = () => {
 		axios
@@ -17,7 +14,7 @@ const LoginPage = ({ setState }) => {
 				password: password,
 			})
 			.then((res) => {
-				localStorage.setItem('user', res.data);
+				localStorage.setItem('user', JSON.stringify(res.data));
 				setState(true);
 			})
 			.catch((err) => setResponse(err.response.data));

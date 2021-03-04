@@ -1,4 +1,4 @@
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Footer from '../components/Footer';
 import NavigationBar from '../components/navbar/NavigationBar';
 import Test from '../components/Test';
@@ -20,6 +20,7 @@ const Routes = () => {
 
 	useEffect(() => {
 		const user = localStorage.getItem('user');
+
 		if (user) {
 			setLoggedIn(true);
 		}

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import { ProductsContext } from '../../contexts/ProductsContext';
 import ScrollDiv from '../scrolldiv/ScrollDiv';
 import SelectInput from './SelectInput';
