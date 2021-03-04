@@ -17,11 +17,13 @@
 .title{
     text-align: left;
 }
+.mainView{
+    margin: 10px;
+}
 
 .tabsContainer {
-    border: 1px solid black;
+    border: 1px solid #dee2e6;
     width: auto;
-    padding: 10px;
 }
 
 .tab{
