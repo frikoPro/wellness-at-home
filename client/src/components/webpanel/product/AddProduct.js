@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
-import { ProductsContext } from '../../../contexts/ProductsContext';
 import UseForm from '../UseForm';
 import ProductForm from './ProductForm';
 
@@ -28,8 +26,6 @@ const AddProduct = () => {
 		url: 'http://localhost:8080/products/',
 	});
 
-	const { techSpec } = useContext(ProductsContext);
-
 	return (
 		<Card>
 			<Card.Body>
@@ -41,7 +37,6 @@ const AddProduct = () => {
 					handleImages={handleImages}
 					removeValues={removeValues}
 					values={values}
-					techSpec={techSpec}
 				/>
 			</Card.Body>
 			<Card.Footer>

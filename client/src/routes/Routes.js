@@ -14,6 +14,7 @@ import { ProductsProvider } from '../contexts/ProductsContext';
 import history from '../history.js';
 import LoginPage from '../views/login/LoginPage';
 import { useEffect, useState } from 'react';
+import { SlideshowProvider } from '../contexts/SlideshowContext';
 
 const Routes = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -34,35 +35,37 @@ const Routes = () => {
 						<NavigationBar />
 					</header>
 					<main>
-						<ProductsProvider>
-							<Switch>
-								<Route exact path="/">
-									<HomePage />
-								</Route>
-								<Route path="/test">
-									<Test />
-								</Route>
-								<Route path="/blogg">
-									<Blogg />
-								</Route>
-								<Route path="/Arrangementer">
-									<Events />
-								</Route>
-								<Route path="/Kundeserivce">
-									<SupportPage />
-								</Route>
-								<Route path="/spabad/:id">
-									<JacuzziPage />
-								</Route>
-								<Route path="/webpanel">
-									{loggedIn ? (
-										<Route component={Webpanel} />
-									) : (
-										<LoginPage setState={setLoggedIn} />
-									)}
-								</Route>
-							</Switch>
-						</ProductsProvider>
+						<SlideshowProvider>
+							<ProductsProvider>
+								<Switch>
+									<Route exact path="/">
+										<HomePage />
+									</Route>
+									<Route path="/test">
+										<Test />
+									</Route>
+									<Route path="/blogg">
+										<Blogg />
+									</Route>
+									<Route path="/Arrangementer">
+										<Events />
+									</Route>
+									<Route path="/Kundeserivce">
+										<SupportPage />
+									</Route>
+									<Route path="/spabad/:id">
+										<JacuzziPage />
+									</Route>
+									<Route path="/webpanel">
+										{loggedIn ? (
+											<Route component={Webpanel} />
+										) : (
+											<LoginPage setState={setLoggedIn} />
+										)}
+									</Route>
+								</Switch>
+							</ProductsProvider>
+						</SlideshowProvider>
 					</main>
 				</ScrollProvider>
 			</JacuzziProvider>

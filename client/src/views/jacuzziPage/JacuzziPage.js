@@ -59,7 +59,7 @@ const JacuzziPage = () => {
 			);
 
 			productsFiltered = productsFiltered.map((item) => ({
-				image: item.images[0].image,
+				images: item.images[0].image,
 				name: item.name,
 			}));
 
