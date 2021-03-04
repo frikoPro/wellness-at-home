@@ -5,6 +5,7 @@ import {Breadcrumb, Tab, Tabs} from "react-bootstrap";
 import styles from "./EventPage.module.css";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
+import './calendar.css'
 
 const EventPage = (props) => {
     const [value, onChange] = useState(new Date());
@@ -25,9 +26,8 @@ const EventPage = (props) => {
                          <h1>Wellness at home - {props.location}</h1>
                      </div>
                 <div className={`${styles.tabsContainer}`}>
-                    <Tabs defaultActiveKey="main" id="tab" className={`${styles.tab}`}>
+                    <Tabs defaultActiveKey="map" id="tab" className={`${styles.tab}`}>
                         <Tab eventKey="main" title="Main info" className={`${styles.tabs}`} >
-                            
                             <div className={`${styles.mainView}`}>
                                 <div>
                                     <h4>Test</h4>
@@ -36,7 +36,7 @@ const EventPage = (props) => {
                                     <h4>Test</h4>
                                 </div>
                             </div>
-
+                            
                             <div className={`${styles.mainSideView}`}>
                                 <Calendar
                                     onChange={onChange}
