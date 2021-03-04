@@ -27,15 +27,24 @@ const EventPage = (props) => {
                 <div className={`${styles.tabsContainer}`}>
                     <Tabs defaultActiveKey="main" id="tab" className={`${styles.tab}`}>
                         <Tab eventKey="main" title="Main info" className={`${styles.tabs}`} >
-                            <h1>Tider</h1>
-                            <h4>kl 10-11</h4>
+                            
+                            <div className={`${styles.mainView}`}>
+                                <div>
+                                    <h4>Test</h4>
+                                </div>
+                                <div>
+                                    <h4>Test</h4>
+                                </div>
+                            </div>
+
                             <div className={`${styles.mainSideView}`}>
-                                <CalendarLink {...props.calendar}/>
                                 <Calendar
                                     onChange={onChange}
                                     showWeekNumbers
                                     value={value}
                                 />
+                                <br/>
+                                <CalendarLink {...props.calendar}/>
                             </div>
                         </Tab>
                         <Tab eventKey="map" title="Kart og transport" className={`${styles.tabs}`} >
