@@ -5,8 +5,6 @@ const UpdateProductModal = (props) => {
 	const {
 		values,
 		handleChange,
-		resetValues,
-
 		returnErrors,
 		onSuccess,
 		handleEvent,
@@ -45,13 +43,7 @@ const UpdateProductModal = (props) => {
 						<Form.Text className="text-success">{onSuccess}</Form.Text>
 					</Col>
 					<Col className="text-right">
-						<Button
-							onClick={() => {
-								props.onHide();
-								resetValues();
-							}}>
-							Close
-						</Button>
+						<Button onClick={props.onHide}>Close</Button>
 					</Col>
 				</Row>
 				<Row className="w-100">

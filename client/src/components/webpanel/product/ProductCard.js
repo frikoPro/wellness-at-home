@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import UseForm from '../UseForm';
 import UpdateProductModal from './UpdateProductModal';
@@ -23,10 +23,10 @@ const ProductCard = ({ product }) => {
 		url: 'http://localhost:8080/products/',
 	});
 
-	const resetValues = () => {
+	useEffect(() => {
 		setValues(product);
 		setError(null);
-	};
+	}, [modalShow]);
 
 	return (
 		<Card>
@@ -63,7 +63,6 @@ const ProductCard = ({ product }) => {
 				</Row>
 			</Card.Footer>
 			<UpdateProductModal
-				resetValues={resetValues}
 				show={modalShow}
 				onHide={() => setModalShow(false)}
 				handleChange={handleChange}

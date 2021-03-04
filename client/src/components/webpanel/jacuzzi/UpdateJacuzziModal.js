@@ -23,7 +23,7 @@ const UpdateJacuzziModal = (props) => {
 
 	useEffect(() => {
 		setValues({ ...props.jacuzzi });
-	}, [props.jacuzzi]);
+	}, [props.jacuzzi, props.show]);
 
 	return (
 		<Modal
