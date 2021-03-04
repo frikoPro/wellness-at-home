@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Card} from "react-bootstrap";
 import styles from './Events.module.css'
-import {Link, useHistory, useRouteMatch, withRouter} from "react-router-dom";
+import {useHistory, useRouteMatch, withRouter} from "react-router-dom";
 import EventPage from "./EventPage";
 import NotFoundPage from "../errorPage/NotFoundPage";
 

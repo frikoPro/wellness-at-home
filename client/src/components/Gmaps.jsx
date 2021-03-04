@@ -8,12 +8,13 @@ function Gmaps(props) {
         id: 'google-map-script',
         googleMapsApiKey: api
     })
+
     const initialPos = {
         lat: props.lat,
         lng: props.lng
     };
     const containerStyle = {
-        width: '1200px',
+        width: 'auto',
         height: '500px'
     };
 
