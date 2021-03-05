@@ -27,6 +27,7 @@ const SupplierCardList = () => {
 		<section>
 			{supplierList.map((card, index) => (
 				<StyledArticle
+					key={index}
 					right={index % 2 === 0 ? true : false}
 					ref={homePageEl[index + 2].ref}
 					animate={homePageEl[index + 2].show}

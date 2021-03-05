@@ -42,7 +42,7 @@ const UpdateSlideshow = () => {
 					name: slide.textHead,
 					id: slide._id,
 				}))}
-				size={4}
+				size={6}
 				returnFunction={(i, id) => {
 					onSelect(id);
 					setModalShow(true);
