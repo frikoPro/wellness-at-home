@@ -7,6 +7,8 @@ import UpdateJacuzzi from '../../components/webpanel/jacuzzi/UpdateJacuzzi';
 import UpdateProducts from '../../components/webpanel/product/UpdateProducts';
 import AddSlideshow from '../../components/webpanel/slideshow/AddSlideshow';
 import UpdateSlideshow from '../../components/webpanel/slideshow/UpdateSlideshow';
+import FAQ from '../../components/webpanel/FAQ/FAQ';
+import Events from '../../components/webpanel/events/Events';
 
 const Webpanel = ({ match }) => {
 	const [isOpen, setOpen] = useState({
@@ -82,6 +84,12 @@ const Webpanel = ({ match }) => {
 								</a>
 							</ul>
 						</li>
+						<a href={`${match.url}/FAQ`}>
+							<li>FAQ</li>
+						</a>
+						<a href={`${match.url}/arrangementer`}>
+							<li>arrangementer</li>
+						</a>
 					</ul>
 				</Col>
 				<Col sm={10}>
@@ -103,6 +111,12 @@ const Webpanel = ({ match }) => {
 						</Route>
 						<Route path={`${match.url}/updateSlideshow`}>
 							<UpdateSlideshow />
+						</Route>
+						<Route path={`${match.url}/FAQ`}>
+							<FAQ />
+						</Route>
+						<Route path={`${match.url}/arrangementer`}>
+							<Events />
 						</Route>
 					</Switch>
 				</Col>

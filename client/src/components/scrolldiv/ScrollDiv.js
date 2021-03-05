@@ -7,12 +7,13 @@ const ScrollDiv = ({ content, returnFunction, size }) => {
 		leftArrow: useRef(null),
 		scrollDiv: useRef(null),
 		rightArrow: useRef(null),
+		scrollElement: useRef(null),
 	};
 
 	const returnEmptyDivs = () => {
 		let array = [];
 
-		for (var i = 0; i < Math.floor(content.length / (12 / size)); i++) {
+		for (var i = 0; i < Math.floor(content.length % (12 / size)); i++) {
 			array.push(<Col key={i} sm={size}></Col>);
 		}
 
@@ -44,17 +45,15 @@ const ScrollDiv = ({ content, returnFunction, size }) => {
 	};
 
 	useEffect(() => {
-		let scrollDiv = imgScroll.scrollDiv;
-
-		if (scrollDiv.current.offsetWidth >= scrollDiv.current.scrollWidth) {
-			imgScroll.leftArrow.current.style.display = 'none';
-			imgScroll.rightArrow.current.style.display = 'none';
+		if (content.length > 12 / size) {
+			imgScroll.scrollElement.current.className += ' ' + styles.scrollDiv;
 		}
-	});
+	}, [content, size]);
 
 	return (
 		<Row
-			className={`${styles.scrollDiv} mt-5 m-3 align-items-center justify-content-center`}>
+			className={`mt-5 m-3 align-items-center justify-content-center`}
+			ref={imgScroll.scrollElement}>
 			<Col sm={1} className="productPage">
 				<span
 					ref={imgScroll.leftArrow}
