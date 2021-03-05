@@ -2,6 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import FAQList from '../../components/FAQ/FAQList';
 import ContactCard from '../../components/ContactCard';
 import SupportForm from '../../components/SupportForm';
+import styles from './SupportPage.module.css';
 
 const SupportPage = () => {
 	const supportPageContent = {
@@ -36,7 +37,7 @@ const SupportPage = () => {
 					<h1>Ofte stilte spørsmål</h1>
 				</Col>
 			</Row>
-			<Row sm={2} className="justify-content-center align-items-center ml-5">
+			<Row className="justify-content-center mx-auto ml-5" style={{width: "70%"}}>
 				<FAQList FAQs={supportPageContent.FAQs}/>
 			</Row>
 			<Row className="mt-5">
@@ -49,10 +50,11 @@ const SupportPage = () => {
 					<p>Fyll ut skjemaet under så hjelper vi deg</p>
 				</Col>
 			</Row>
-			<div className="mx-auto border border-dark p-3" style={{width: "60%"}}>
-				<SupportForm></SupportForm>
-			</div>
-			
+			<Row className="justify-content-center">
+				<div className={`border border-dark p-3 ${styles.divResponsive}`}>
+					<SupportForm/>
+				</div>
+			</Row>
 			<Row>
 				<Col className="text-center pt-5">
 					<p>Eller kontakt oss direkte</p>

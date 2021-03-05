@@ -15,6 +15,7 @@ import history from '../history.js';
 import LoginPage from '../views/login/LoginPage';
 import { useEffect, useState } from 'react';
 import { SlideshowProvider } from '../contexts/SlideshowContext';
+import SupplierPage from '../views/SupplierPage/SupplierPage'
 
 const Routes = () => {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -55,6 +56,9 @@ const Routes = () => {
 									</Route>
 									<Route path="/spabad/:id">
 										<JacuzziPage />
+									</Route>
+									<Route path="/Leverandør">
+										<SupplierPage />
 									</Route>
 									<Route path="/webpanel">
 										{loggedIn ? (
