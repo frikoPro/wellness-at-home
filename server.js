@@ -31,6 +31,7 @@ const jacuzzisRouter = require('./routes/jacuzzis');
 const productsRouter = require('./routes/products');
 const userRouter = require('./routes/Users');
 const slideshowRouter = require('./routes/slideshow');
+const FAQRouter = require('./routes/FAQs');
 const SendMailRouter = require('./routes/sendMail');
 
 const errorController = require('./controllers/ErrorController');
@@ -40,6 +41,7 @@ app.use('/jacuzzis', jacuzzisRouter);
 app.use('/products', productsRouter);
 app.use('/users', userRouter);
 app.use('/slideshow', slideshowRouter);
+app.use('/FAQ', FAQRouter);
 app.use('/sendmail', SendMailRouter);
 
 app.use(errorController);
