@@ -17,6 +17,7 @@ import { useContext } from 'react';
 import { SlideshowProvider } from '../contexts/SlideshowContext';
 import { FAQProvider } from '../contexts/FAQContext';
 import { LoggedInContext } from '../contexts/LoggedInContext';
+import SupplierPage from '../views/SupplierPage/SupplierPage';
 
 const Routes = () => {
 	const loggedIn = useContext(LoggedInContext);

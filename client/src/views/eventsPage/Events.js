@@ -18,8 +18,8 @@ const Events = () => {
         {
             create_date: 1676639434,
             update_date: 1676639434,
-            date: 1618054898,
-            date_end: 1618054898,
+            date_start: 1615200485,
+            date_end: 1615546085,
             city: "Drammen",
             address: "DrammenVegen 22",
             location: "Drammenshallen",
@@ -28,7 +28,7 @@ const Events = () => {
                 lng: 10.945199
             },
             img: "https://via.placeholder.com/200x100",
-            calendar: {
+            calendarLink: {
                 title: "My birthday party111",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
@@ -40,7 +40,7 @@ const Events = () => {
         {
             create_date: 1992258634,
             update_date: 1992258634,
-            date: 1620646898,
+            date_start: 1620646898,
             date_end: 1618054898,
             city: "Oslo/Fornebu",
             address: "OsloVegen 21",
@@ -50,7 +50,7 @@ const Events = () => {
                 lng: 150.644
             },
             img: "https://via.placeholder.com/200x100",
-            calendar: {
+            calendarLink: {
                 title: "My birthday party222",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
@@ -62,7 +62,7 @@ const Events = () => {
         {
             create_date: 1992258634,
             update_date: 1992258634,
-            date: 1652182898,
+            date_start: 1652182898,
             date_end: 1618054898,
             city: "Kristiansand",
             address: "OsloVegen 21",
@@ -72,7 +72,7 @@ const Events = () => {
                 lng: 150.644
             },
             img: "https://via.placeholder.com/200x100",
-            calendar: {
+            calendarLink: {
                 title: "My birthday party333",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
@@ -84,7 +84,7 @@ const Events = () => {
         {
             create_date: 856185034,
             update_date: 856185034,
-            date: 1778413298,
+            date_start: 1778413298,
             date_end: 1618054898,
             city: "Trondheim",
             address: "TrondheimVegen 108",
@@ -94,7 +94,7 @@ const Events = () => {
                 lng: 150.644
             },
             img: "https://via.placeholder.com/200x100",
-            calendar: {
+            calendarLink: {
                 title: "My birthday party4444",
                 description: "Be there!",
                 start: "2019-12-29 18:00:00 +0100",
@@ -103,6 +103,7 @@ const Events = () => {
             }
         }
     ]
+
     let history = useHistory();
 
     const handleClick = (create_date) => {
@@ -142,9 +143,9 @@ const Events = () => {
                             <>
                                 <Card className={`${styles.card}`}>
                                     <div className={`${styles.dateContainer}`}>
-                                        {time = new Date(event.date).toLocaleDateString("en-GB").slice(0,5)}
+                                        {new Date(event.date_start*1000).toLocaleDateString("en-GB").slice(0,5)}
                                         <br/>
-                                        {time = new Date(event.date_end).toLocaleDateString("en-GB").slice(0,5)}
+                                        {new Date(event.date_end*1000).toLocaleDateString("en-GB").slice(0,5)}
                                     </div>
                                     <div className={`${styles.bodyContainer}`}>
                                         <h1 style={{fontSize: 25}}>
