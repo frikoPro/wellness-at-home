@@ -1,16 +1,16 @@
 import { Col } from 'react-bootstrap';
 
 const DropdownSection = ({ section, styling }) => {
-	return section.map((item) => (
-		<Col className="text-center">
+	return section.map((item, i) => (
+		<Col className="text-center" key={i}>
 			<a href="/svenskabadpro">
 				<h5
 					className={`m-3 nav-text-color hover-gold ${styling.dropmenuItemHeader}`}>
 					{item.brand}
 				</h5>
 			</a>
-			{item.jacuzzis.map((jacuzzi) => (
-				<a href={`/spabad/${jacuzzi}`}>
+			{item.jacuzzis.map((jacuzzi, j) => (
+				<a href={`/spabad/${jacuzzi}`} key={j}>
 					<p className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
 						{jacuzzi}
 					</p>

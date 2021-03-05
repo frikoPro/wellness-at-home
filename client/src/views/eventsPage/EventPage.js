@@ -35,13 +35,13 @@ const EventPage = (props) => {
                             </div>
                             
                             <div className={`${styles.mainSideView}`}>
-                                <CalendarView/>
+                                <CalendarView {...props}/>
                                 <br/>
-                                <CalendarLink {...props.calendar}/>
+                                <CalendarLink {...props.calendarLink}/>
                             </div>
                         </Tab>
                         <Tab eventKey="map" title="Kart og transport" className={`${styles.tabs}`} >
-                            <Gmaps {...props.pos}/>
+                            <Gmaps {...props}/>
                         </Tab>
                     </Tabs>
                 </div>
