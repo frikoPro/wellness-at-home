@@ -104,7 +104,7 @@ const SupportForm = () => {
 				render="explicit"
 				onloadCallback={recaptchaLoaded}
 				verifyCallback={verifyCaptchaCallback}
-			/>,
+			/>
 			<Button className="btn-warning" type="submit">
 				Send inn
 			</Button>

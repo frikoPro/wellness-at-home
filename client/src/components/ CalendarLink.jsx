@@ -5,7 +5,7 @@ const CalendarLink = (props) => {
     return (
         <>
             <Dropdown>
-                <Dropdown.Toggle variant="success"   id="bg-nested-dropdown">
+                <Dropdown.Toggle variant="success" id="dropdown-item-button">
                     Legg til i kalender
                 </Dropdown.Toggle>
                 <Dropdown.Menu>

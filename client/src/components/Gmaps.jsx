@@ -13,18 +13,13 @@ function Gmaps(props) {
     const [chosenMarker, setChosenMarker] = useState({})
 
     const initialPos = {
-        lat: props.lat,
-        lng: props.lng
+        lat: props.pos.lat,
+        lng: props.pos.lng
     };
     const containerStyle = {
         width: 'auto',
         height: '500px'
     };
-    const divStyle = {
-        background: `white`,
-        border: `1px solid #ccc`,
-        padding: 15
-    }
 
     return isLoaded ? (
         <GoogleMap
@@ -37,10 +32,10 @@ function Gmaps(props) {
                         icon={"https://icons.iconarchive.com/icons/paomedia/small-n-flat/32/map-marker-icon.png"}
                         onClick={() => setChosenMarker(
                             {
-                                title: "Title",
-                                subTitle: "HelloWorld!!",
-                                link: `https://www.google.com/maps/search/?api=1&query=${props.lat},${props.lng}`,
-                                coordinates: [props.lat, props.lng]
+                                title: props.address,
+                                subTitle: props.city,
+                                link: `https://www.google.com/maps/search/?api=1&query=${props.pos.lat},${props.pos.lng}`,
+                                coordinates: [props.pos.lat, props.pos.lng]
                             }
                         )}
                 />
@@ -49,10 +44,10 @@ function Gmaps(props) {
                         position={{lat: chosenMarker.coordinates[0], lng: chosenMarker.coordinates[1]}}
                         onCloseClick={() => setChosenMarker({})}
                     >
-                        <div style={divStyle}>
-                            <h1>{chosenMarker.title}</h1>
+                        <div>
+                            <h3>{chosenMarker.title}</h3>
                             <h5>{chosenMarker.subTitle}</h5>
-                            <h5>{chosenMarker.coordinates}</h5>
+                            <h6>{`${chosenMarker.coordinates[0]} ${chosenMarker.coordinates[1]}`}</h6>
                             <Button href={chosenMarker.link} target="_blank"
                                     rel="noreferrer noopener">Directions</Button>
                         </div>
