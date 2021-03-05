@@ -3,12 +3,9 @@ import Gmaps from "../../components/Gmaps";
 import CalendarLink from "../../components/ CalendarLink";
 import {Breadcrumb, Tab, Tabs} from "react-bootstrap";
 import styles from "./EventPage.module.css";
-import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
-import './calendar.css'
+import CalendarView from "../../components/CalendarView";
 
 const EventPage = (props) => {
-    const [value, onChange] = useState(new Date());
 
     return (
         <>
@@ -26,7 +23,7 @@ const EventPage = (props) => {
                          <h1>Wellness at home - {props.location}</h1>
                      </div>
                 <div className={`${styles.tabsContainer}`}>
-                    <Tabs defaultActiveKey="map" id="tab" className={`${styles.tab}`}>
+                    <Tabs defaultActiveKey="main" id="tab" className={`${styles.tab}`}>
                         <Tab eventKey="main" title="Main info" className={`${styles.tabs}`} >
                             <div className={`${styles.mainView}`}>
                                 <div>
@@ -38,11 +35,7 @@ const EventPage = (props) => {
                             </div>
                             
                             <div className={`${styles.mainSideView}`}>
-                                <Calendar
-                                    onChange={onChange}
-                                    showWeekNumbers
-                                    value={value}
-                                />
+                                <CalendarView/>
                                 <br/>
                                 <CalendarLink {...props.calendar}/>
                             </div>
