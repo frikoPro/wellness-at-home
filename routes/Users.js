@@ -5,7 +5,7 @@ const verify = require('../controllers/AuthController');
 
 router.get('/', verify, async (req, res, next) => {
 	try {
-		const result = await User.find();
+		await User.find();
 		res.status(200).json('logged in');
 	} catch (err) {
 		next(err);

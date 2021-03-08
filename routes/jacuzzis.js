@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const verify = require('../controllers/AuthController');
 let Jacuzzi = require('../models/jacuzzi.model');
 
 router.route('/').get(async (req, res, next) => {
@@ -10,7 +11,7 @@ router.route('/').get(async (req, res, next) => {
 	}
 });
 
-router.route('/add').post(async (req, res, next) => {
+router.route('/add').post(verify, async (req, res, next) => {
 	const name = req.body.name;
 	const brand = req.body.brand;
 	const images = req.body.images;
@@ -39,7 +40,7 @@ router.route('/add').post(async (req, res, next) => {
 	}
 });
 
-router.route('/:id').delete(async (req, res, next) => {
+router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
 		await Jacuzzi.findByIdAndDelete(req.params.id);
 		res.status(200).json('Produktet er slettet');
@@ -48,7 +49,7 @@ router.route('/:id').delete(async (req, res, next) => {
 	}
 });
 
-router.route('/:id').patch(async (req, res, next) => {
+router.route('/:id').patch(verify, async (req, res, next) => {
 	try {
 		const updatedJacuzzi = await Jacuzzi.findById(req.body._id).exec();
 
