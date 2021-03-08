@@ -1,4 +1,5 @@
 const multer = require('multer');
+const verify = require('../controllers/AuthController');
 const router = require('express').Router();
 
 const storage = multer.diskStorage({
@@ -10,7 +11,7 @@ const storage = multer.diskStorage({
 	},
 });
 
-router.route('/upload').post((req, res) => {
+router.route('/upload').post(verify, (req, res) => {
 	let upload = multer({
 		storage: storage,
 	}).array('multi-files');
@@ -27,7 +28,7 @@ router.route('/upload').post((req, res) => {
 	});
 });
 
-router.route('/single').post((req, res) => {
+router.route('/single').post(verify, (req, res) => {
 	let upload = multer({
 		storage: storage,
 	}).single('file');

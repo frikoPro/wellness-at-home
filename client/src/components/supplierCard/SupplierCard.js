@@ -24,7 +24,9 @@ const SupplierCard = ({ image, logo, text }) => {
 							<span className="pr-5 pl-5 text-center">{text}</span>
 						</Row>
 						<Row className="justify-content-center m-5">
-							<Button className="btn-warning">Les mer</Button>
+							<Button 
+								href="/Leverandør"
+								className="btn-warning">Les mer</Button>
 						</Row>
 					</Col>
 				</Row>

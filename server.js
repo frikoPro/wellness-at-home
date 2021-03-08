@@ -1,16 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
 const path = require('path');
 
 require('dotenv').config();
 
 const port = 8080;
 
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/client/build')));
 app.use(express.static('public'));
 
@@ -31,6 +33,7 @@ const jacuzzisRouter = require('./routes/jacuzzis');
 const productsRouter = require('./routes/products');
 const userRouter = require('./routes/Users');
 const slideshowRouter = require('./routes/slideshow');
+const FAQRouter = require('./routes/FAQs');
 const SendMailRouter = require('./routes/sendMail');
 
 const errorController = require('./controllers/ErrorController');
@@ -40,6 +43,7 @@ app.use('/jacuzzis', jacuzzisRouter);
 app.use('/products', productsRouter);
 app.use('/users', userRouter);
 app.use('/slideshow', slideshowRouter);
+app.use('/FAQ', FAQRouter);
 app.use('/sendmail', SendMailRouter);
 
 app.use(errorController);

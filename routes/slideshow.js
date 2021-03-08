@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const verify = require('../controllers/AuthController');
 const Slideshow = require('../models/slideshow.model');
 
 router.route('/').get(async (req, res, next) => {
@@ -10,7 +11,7 @@ router.route('/').get(async (req, res, next) => {
 	}
 });
 
-router.route('/add').post(async (req, res, next) => {
+router.route('/add').post(verify, async (req, res, next) => {
 	const newSlideshow = new Slideshow({ ...req.body });
 
 	try {
@@ -21,7 +22,7 @@ router.route('/add').post(async (req, res, next) => {
 	}
 });
 
-router.route('/:id').patch(async (req, res, next) => {
+router.route('/:id').patch(verify, async (req, res, next) => {
 	try {
 		const updatedSlide = await Slideshow.findById(req.params.id).exec();
 
@@ -35,7 +36,7 @@ router.route('/:id').patch(async (req, res, next) => {
 	}
 });
 
-router.route('/:id').delete(async (req, res, next) => {
+router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
 		await Slideshow.findByIdAndDelete(req.params.id);
 		res.status(200).json('Slide slettet');
