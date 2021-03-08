@@ -103,7 +103,6 @@ const Events = () => {
             }
         }
     ]
-
     let history = useHistory();
 
     const handleClick = (create_date) => {
@@ -136,8 +135,7 @@ const Events = () => {
                 <div className={`${styles.header}`}>
                     <h1>Kommende messer og arrangementer hvor vi har stand</h1>
                 </div>
-                <div style={{backgroundColor: "#d4d4d4"}}
-                     className={`col-lg-5 col-md-5 col-sm-5 container ${styles.cardContainer}`}>
+                <div className={`col-lg-5 col-md-5 col-sm-5 container ${styles.cardContainer}`}>
 
                     {eventsData.map((event) => (
                             <>
@@ -156,9 +154,9 @@ const Events = () => {
                                         </h2>
                                     </div>
                                     <div className={`${styles.linkContainer}`}>
-                                        <button class=" btn-warning btn btn-primary hover-gold"
+                                        <button class="btn-warning btn btn-primary hover-gold"
                                                 type="button"
-                                                onClick={ () => handleClick(event.create_date)}>
+                                                onClick={() => handleClick(event.create_date)}>
                                             Mer info
                                         </button>
                                     </div>
