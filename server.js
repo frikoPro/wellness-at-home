@@ -1,16 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
 const path = require('path');
 
 require('dotenv').config();
 
 const port = 8080;
 
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/client/build')));
 app.use(express.static('public'));
 
