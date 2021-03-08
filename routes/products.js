@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const verify = require('../controllers/AuthController');
 let Product = require('../models/product.model');
 
 router.route('/').get((req, res) => {
@@ -7,7 +8,7 @@ router.route('/').get((req, res) => {
 		.catch((err) => res.status(400).json('Error: ', err));
 });
 
-router.route('/add').post(async (req, res, next) => {
+router.route('/add').post(verify, async (req, res, next) => {
 	const name = req.body.name;
 	const affiliation = req.body.affiliation;
 	const images = req.body.images;
@@ -36,7 +37,7 @@ router.route('/add').post(async (req, res, next) => {
 	}
 });
 
-router.route('/:id').delete(async (req, res, next) => {
+router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
 		await Product.findByIdAndDelete(req.params.id);
 		res.status(200).json('Produktet er slettet');
@@ -45,7 +46,7 @@ router.route('/:id').delete(async (req, res, next) => {
 	}
 });
 
-router.route('/:id').patch(async (req, res, next) => {
+router.route('/:id').patch(verify, async (req, res, next) => {
 	try {
 		const updatedProduct = await Product.findById(req.body._id).exec();
 

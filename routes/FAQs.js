@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const verify = require('../controllers/AuthController');
 const FAQ = require('../models/faq.model');
 
 router.route('/').get(async (req, res, next) => {
@@ -10,7 +11,7 @@ router.route('/').get(async (req, res, next) => {
 	}
 });
 
-router.route('/add').post(async (req, res, next) => {
+router.route('/add').post(verify, async (req, res, next) => {
 	const newFAQ = new FAQ({ ...req.body });
 
 	try {
