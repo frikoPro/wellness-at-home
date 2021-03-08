@@ -1,11 +1,11 @@
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const LoginPage = ({ setState }) => {
+const LoginPage = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
-	const [response, setResponse] = useState(null);
+	const [response, setResponse] = useState({ valid: false });
 
 	const login = () => {
 		axios
@@ -14,11 +14,22 @@ const LoginPage = ({ setState }) => {
 				password: password,
 			})
 			.then((res) => {
-				localStorage.setItem('user', JSON.stringify(res.data));
-				setState(true);
+				console.log(res.data);
+				setResponse(res.data);
 			})
-			.catch((err) => setResponse(err.response.data));
+			.catch((err) => {
+				setResponse(err.response.data);
+				console.log(err.response.data);
+			});
 	};
+
+	useEffect(() => {
+		if (response.valid) {
+			setTimeout(() => {
+				window.location.reload();
+			}, 500);
+		}
+	}, [response]);
 
 	return (
 		<div

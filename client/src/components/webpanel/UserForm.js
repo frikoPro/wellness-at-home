@@ -85,7 +85,7 @@ const UserForm = ({
 						.filter((item) => values.relatedProducts.includes(item._id))
 						.map((item) => ({
 							name: item.name,
-							image: item.images[0].image,
+							images: item.images[0].image,
 							id: item._id,
 						}))}
 					returnFunction={(i, id) => removeValues('relatedProducts', id)}

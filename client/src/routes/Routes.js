@@ -13,19 +13,14 @@ import { JacuzziProvider } from '../contexts/JacuzziContext';
 import { ProductsProvider } from '../contexts/ProductsContext';
 import history from '../history.js';
 import LoginPage from '../views/login/LoginPage';
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { SlideshowProvider } from '../contexts/SlideshowContext';
+import { FAQProvider } from '../contexts/FAQContext';
+import { LoggedInContext } from '../contexts/LoggedInContext';
+import SupplierPage from '../views/SupplierPage/SupplierPage';
 
 const Routes = () => {
-	const [loggedIn, setLoggedIn] = useState(false);
-
-	useEffect(() => {
-		const user = localStorage.getItem('user');
-
-		if (user) {
-			setLoggedIn(true);
-		}
-	}, []);
+	const loggedIn = useContext(LoggedInContext);
 
 	return (
 		<BrowserRouter history={history}>
@@ -37,33 +32,35 @@ const Routes = () => {
 					<main>
 						<SlideshowProvider>
 							<ProductsProvider>
-								<Switch>
-									<Route exact path="/">
-										<HomePage />
-									</Route>
-									<Route path="/test">
-										<Test />
-									</Route>
-									<Route path="/blogg">
-										<Blogg />
-									</Route>
-									<Route path="/Arrangementer">
-										<Events />
-									</Route>
-									<Route path="/Kundeserivce">
-										<SupportPage />
-									</Route>
-									<Route path="/spabad/:id">
-										<JacuzziPage />
-									</Route>
-									<Route path="/webpanel">
-										{loggedIn ? (
-											<Route component={Webpanel} />
-										) : (
-											<LoginPage setState={setLoggedIn} />
-										)}
-									</Route>
-								</Switch>
+								<FAQProvider>
+									<Switch>
+										<Route exact path="/">
+											<HomePage />
+										</Route>
+										<Route path="/test">
+											<Test />
+										</Route>
+										<Route path="/blogg">
+											<Blogg />
+										</Route>
+										<Route path="/Arrangementer">
+											<Events />
+										</Route>
+										<Route path="/Kundeserivce">
+											<SupportPage />
+										</Route>
+										<Route path="/spabad/:id">
+											<JacuzziPage />
+										</Route>
+										<Route path="/webpanel">
+											{loggedIn ? (
+												<Route component={Webpanel} />
+											) : (
+												<LoginPage />
+											)}
+										</Route>
+									</Switch>
+								</FAQProvider>
 							</ProductsProvider>
 						</SlideshowProvider>
 					</main>
