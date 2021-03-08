@@ -14,11 +14,12 @@ const LoginPage = () => {
 				password: password,
 			})
 			.then((res) => {
-				localStorage.setItem('user', JSON.stringify(res.data));
+				console.log(res.data);
 				setResponse(res.data);
 			})
 			.catch((err) => {
 				setResponse(err.response.data);
+				console.log(err.response.data);
 			});
 	};
 

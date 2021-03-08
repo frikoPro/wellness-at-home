@@ -6,7 +6,7 @@ const verify = require('../controllers/AuthController');
 router.get('/', verify, async (req, res, next) => {
 	try {
 		const result = await User.find();
-		res.status(200).json(result);
+		res.status(200).json('logged in');
 	} catch (err) {
 		next(err);
 	}
@@ -31,7 +31,7 @@ router.post('/add', verify, async (req, res, next) => {
 	}
 });
 
-router.route('/login').post(async (req, res, next) => {
+router.route('/login').post(async (req, res) => {
 	const user = await User.findOne({ username: req.body.username });
 
 	const errorResponse = 'Feil brukernavn eller passord';
@@ -42,9 +42,11 @@ router.route('/login').post(async (req, res, next) => {
 		return res.status(400).send({ message: errorResponse, valid: false });
 
 	const token = jwt.sign({ _id: user._id }, `${process.env.TOKEN_SECRET}`);
+
 	res
-		.header('auth-token', token)
-		.send({ valid: true, message: 'innlogging velykket', token: token });
+		.status(200)
+		.cookie('token', `${token}`, { httpOnly: true, sameSite: 'strict' })
+		.send({ valid: true, message: 'logged in' });
 });
 
 module.exports = router;
