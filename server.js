@@ -10,7 +10,7 @@ require('dotenv').config();
 
 const port = 8080;
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/client/build')));
@@ -33,6 +33,7 @@ const jacuzzisRouter = require('./routes/jacuzzis');
 const productsRouter = require('./routes/products');
 const userRouter = require('./routes/Users');
 const slideshowRouter = require('./routes/slideshow');
+const facebookRouter = require('./routes/facebook');
 const FAQRouter = require('./routes/FAQs');
 const SendMailRouter = require('./routes/sendMail');
 
@@ -43,6 +44,7 @@ app.use('/jacuzzis', jacuzzisRouter);
 app.use('/products', productsRouter);
 app.use('/users', userRouter);
 app.use('/slideshow', slideshowRouter);
+app.use('/facebook', facebookRouter);
 app.use('/FAQ', FAQRouter);
 app.use('/sendmail', SendMailRouter);
 
