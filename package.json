@@ -22,6 +22,9 @@
 		"@fortawesome/free-solid-svg-icons": "^5.15.2",
 		"@fortawesome/react-fontawesome": "^0.1.14",
 		"@react-google-maps/api": "^2.1.1",
+		"@wojtekmaj/react-daterange-picker": "^3.0.1",
+		"@wojtekmaj/react-datetimerange-picker": "^3.1.0",
+		"@wojtekmaj/react-timerange-picker": "^3.1.0",
 		"axios": "^0.21.1",
 		"body-parser": "^1.19.0",
 		"calendar-link": "^2.0.13",
@@ -37,6 +40,7 @@
 		"nodemailer": "^6.4.18",
 		"nodemon": "^2.0.7",
 		"react-calendar": "^3.3.1",
+		"react-date-picker": "^8.0.7",
 		"styled-components": "^5.2.1"
 	},
 	"devDependencies": {}

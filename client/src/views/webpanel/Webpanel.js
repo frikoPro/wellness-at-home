@@ -8,7 +8,7 @@ import UpdateProducts from '../../components/webpanel/product/UpdateProducts';
 import AddSlideshow from '../../components/webpanel/slideshow/AddSlideshow';
 import UpdateSlideshow from '../../components/webpanel/slideshow/UpdateSlideshow';
 import FAQ from '../../components/webpanel/FAQ/FAQ';
-import Events from '../../components/webpanel/events/Events';
+import EventsPanel from '../../components/webpanel/events/EventsPanel';
 
 const Webpanel = ({ match }) => {
 	const [isOpen, setOpen] = useState({
@@ -116,7 +116,7 @@ const Webpanel = ({ match }) => {
 							<FAQ />
 						</Route>
 						<Route path={`${match.url}/arrangementer`}>
-							<Events />
+							<EventsPanel />
 						</Route>
 					</Switch>
 				</Col>
