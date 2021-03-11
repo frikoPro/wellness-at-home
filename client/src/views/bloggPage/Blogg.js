@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
-
+import styles from './Blogg.module.css';
 const axios = require('axios');
 
 const Blogg = () => {
