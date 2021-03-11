@@ -44,3 +44,7 @@ footer {
 .margin-bottom-line {
   border-bottom: 2px solid rgb(221, 220, 220);
 }
+
+.product-card:hover {
+  border: 3px solid rgb(221, 221, 221);
+}
