@@ -5,6 +5,7 @@ import React, {useState} from "react";
 
 const EventsPanelCalendar = () => {
     const [calendarValue, onCalendarChange] = useState([new Date(), new Date()]);
+
     return(
         <>
             <Form.Group>

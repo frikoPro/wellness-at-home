@@ -1,7 +1,8 @@
 const EventsPanelMap = () => {
     return (
         <>
-            <h1>¨Placeholder: til jeg har fått fikset en bugg</h1>
+            <h6>Map</h6>
+            <h1>Placeholder</h1>
         </>
     )
 }
@@ -39,6 +40,11 @@ export default EventsPanelMap;
 //
 //     return isLoaded ? (
 //         <>
+//             <Form.Group>
+//                 <Form.Label>Lokasjon</Form.Label>
+//                 <Form.Text className="text-muted">Adresse</Form.Text>
+//                 <Form.Control type="text" placeholder="Kort beskrivelse" />
+//                 <br/>
 //             <ScriptLoaded>
 //                 <GoogleMap
 //                     id="searchbox-example"
@@ -72,6 +78,7 @@ export default EventsPanelMap;
 //                     </Autocomplete>
 //                 </GoogleMap>
 //             </ScriptLoaded>
+//             </Form.Group>
 //         </>
 //     ) : <></> ;
 // };
