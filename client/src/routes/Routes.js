@@ -18,6 +18,7 @@ import { SlideshowProvider } from '../contexts/SlideshowContext';
 import { FAQProvider } from '../contexts/FAQContext';
 import { LoggedInContext } from '../contexts/LoggedInContext';
 import NetShop from '../views/netshop/NetShop';
+import SupplierPage from '../views/SupplierPage/SupplierPage';
 
 const Routes = () => {
   const loggedIn = useContext(LoggedInContext);
@@ -52,6 +53,9 @@ const Routes = () => {
                     <Route path="/spabad/:id">
                       <JacuzziPage />
                     </Route>
+                    <Route path="/Leverandør/:id">
+											<SupplierPage/>
+										</Route>
                     <Route path="/webpanel">
                       {loggedIn ? (
                         <Route component={Webpanel} />
