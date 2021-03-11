@@ -25,7 +25,7 @@ const SupplierCard = ({ image, logo, text }) => {
 						</Row>
 						<Row className="justify-content-center m-5">
 							<Button 
-								href="/Leverandør"
+								href="/Leverandør/Nordpool"
 								className="btn-warning">Les mer</Button>
 						</Row>
 					</Col>
