@@ -1,10 +1,32 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Col, Container, Row } from 'react-bootstrap';
 import Slideshow from '../../components/Slideshow';
 import styles from './SupplierPage.module.css';
+import { JacuzziContext } from '../../contexts/JacuzziContext';
 
 const SupplierPage = () => {
+    let { id } = useParams();
     const [currentSlideImg, setCurrentSlideImg] = useState(0);
+    const {jacuzzis} = useContext(JacuzziContext);
+    const [mappedJacuzzis, setMappedJacuzzis] = useState([]);
+
+    useEffect(() => {
+        var tempArr = jacuzzis.filter(jacuzzi => jacuzzi.brand === id);
+        const mapped = tempArr.map((obj) => (
+            {
+                textHead: obj.name,
+                textP: obj.aboutProduct,
+                images: obj.images[0].image
+            }
+        ));
+        console.log(mapped);
+        setMappedJacuzzis(mapped);
+	}, [jacuzzis]);
+
+    
+    
+    //console.log(mappedJacuzzis);
 	return (
 		<Container>
             <Row className="justify-content-center m-3" style={{backgroundColor: '#F2F3F7'}}>
@@ -23,14 +45,21 @@ const SupplierPage = () => {
                     vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
                 </h5>
             </Row>
-            <Row className="justify-content-center m-2">
-                {/* <Slideshow
-                    slideContent={}
-                    setIndex={(index) => setCurrentSlideImg(index)}
-					activeIndex={currentSlideImg}
-					styling={styles}
-                /> */}
-
+            <Row>
+                <Col sm={12} className="mx-auto">
+                    <div className="border border-dark p-3">
+                        <Slideshow
+                            interval={null}
+                            slideContent={mappedJacuzzis}
+                            setIndex={(index) => setCurrentSlideImg(index)}
+                            activeIndex={currentSlideImg}
+                            styling={styles}
+                        />
+                    </div>
+                    
+                </Col>
+                 
+                
                 
                 {/* <Col className="" md={1}>
                     <Button></Button>
