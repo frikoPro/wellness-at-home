@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import styles from './Blogg.module.css';
-
-const axios = require('axios');
+import axios from 'axios';
 
 const Blogg = () => {
   let [fbData, setFbData] = useState([]);
@@ -10,14 +9,12 @@ const Blogg = () => {
   useEffect(() => {
     axios.get('http://localhost:8080/facebook').then((response) => {
       const data = response.data.data;
-      const newData = data.map((item) => {
-        return {
-          ...item,
-          page_id: item.id.split('_')[0],
-          post_id: item.id.split('_')[1],
-        };
-      });
-      console.log(newData);
+      const newData = data.map((item) => ({
+        ...item,
+        page_id: item.id.split('_')[0],
+        post_id: item.id.split('_')[1],
+      }));
+
       setFbData(newData);
       window?.FB?.XFBML?.parse(); //Loads the JS SDK again so that the "slower" elements gets detected when they render
     });
