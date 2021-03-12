@@ -72,13 +72,13 @@ const UseForm = ({ initialValues, url }) => {
       filenames: file.name,
     };
 
-    handleEvent('images', tempImages);
+    handleEvent('image', tempImages);
   };
 
   const uploadImage = () => {
     let formData = new FormData();
 
-    formData.append('file', values.images.file);
+    formData.append('file', values.image.file);
 
     axios
       .post('http://localhost:8080/images/single', formData)
@@ -100,14 +100,18 @@ const UseForm = ({ initialValues, url }) => {
   };
 
   const submitData = () => {
+    let data = { ...values };
+
+    if (values.images) data = { ...data, images: values.images.filenames };
+    else if (values.image) data = { ...data, image: values.image.filenames };
+
     axios
       .post(`${url}add`, {
-        ...values,
-        images: values.images.filenames,
+        ...data,
       })
       .then((res) => {
-        if (values.images.files !== undefined) uploadImages();
-        else if (values.images.file !== undefined) uploadImage();
+        if (values.images !== undefined) uploadImages();
+        else if (values.image !== undefined) uploadImage();
 
         setSuccess(res.data);
       })
@@ -125,12 +129,15 @@ const UseForm = ({ initialValues, url }) => {
   };
 
   const updateData = () => {
+    let data = { ...values };
+
+    if (data.images.filenames)
+      data = { ...data, images: data.images.filenames };
+    else if (data.image) data = { ...data, image: data.image.filenames };
+
     axios
       .patch(`${url}${values._id}`, {
-        ...values,
-        images: values.images.filenames
-          ? values.images.filenames
-          : values.images,
+        ...data,
       })
       .then((res) => setSuccess(res.data))
       .catch((err) => {

@@ -78,16 +78,14 @@ const ScrollDiv = ({ content, returnFunction, size }) => {
             lg={size}
             className="align-self-center"
             key={index}
-            onClick={() => returnFunction(index, item.id)}>
+            onClick={() => returnFunction(index, item._id)}>
             <img
               src={`http://localhost:8080/${item.image}`}
               alt={index}
               className="w-100"></img>
-            {'name' in item ? (
-              <p className="text-center mt-2">{item.name}</p>
-            ) : (
-              <p></p>
-            )}
+            {'textHead' in item ? (
+              <p className="text-center mt-2">{item.textHead}</p>
+            ) : null}
           </Col>
         ))}
         {returnEmptyDivs().map((item) => item)}

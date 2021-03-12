@@ -29,8 +29,8 @@ const UpdateJacuzzi = () => {
     const mappedArr = jacuzzis.map((item) => ({
       image: item.images[0].image,
       brand: item.brand,
-      name: item.name,
-      id: item._id,
+      textHead: item.name,
+      _id: item._id,
     }));
 
     let arr = [];
