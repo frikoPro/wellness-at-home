@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import AddJacuzzi from '../../components/webpanel/jacuzzi/AddJacuzzi';
 import AddProduct from '../../components/webpanel/product/AddProduct';
@@ -7,10 +7,13 @@ import UpdateJacuzzi from '../../components/webpanel/jacuzzi/UpdateJacuzzi';
 import UpdateProducts from '../../components/webpanel/product/UpdateProducts';
 import AddSlideshow from '../../components/webpanel/slideshow/AddSlideshow';
 import UpdateSlideshow from '../../components/webpanel/slideshow/UpdateSlideshow';
-import FAQ from '../../components/webpanel/FAQ/FAQ';
 import Events from '../../components/webpanel/events/Events';
+import FAQList from '../../components/FAQ/FAQList';
+import { FAQContext } from '../../contexts/FAQContext';
 
 const Webpanel = ({ match }) => {
+	const FAQs = useContext(FAQContext);
+
 	const [isOpen, setOpen] = useState({
 		spabad: false,
 		products: false,
@@ -113,7 +116,7 @@ const Webpanel = ({ match }) => {
 							<UpdateSlideshow />
 						</Route>
 						<Route path={`${match.url}/FAQ`}>
-							<FAQ />
+							<FAQList FAQs={FAQs} />
 						</Route>
 						<Route path={`${match.url}/arrangementer`}>
 							<Events />
