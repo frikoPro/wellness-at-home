@@ -37,7 +37,6 @@ router.route('/single').post(verify, (req, res) => {
 		if (err) {
 			return res.send('error: ', err);
 		}
-
 		res.send(req.file);
 	});
 });

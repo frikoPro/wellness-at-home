@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const SlideshowSchema = new Schema({
-	images: { type: String, required: true },
+	image: { type: String, required: [true, 'Må ha et bilde'] },
 	textHead: String,
 	textP: String,
 });

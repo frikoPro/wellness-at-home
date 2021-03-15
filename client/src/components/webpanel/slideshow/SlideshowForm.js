@@ -32,9 +32,9 @@ const SlideshowForm = ({ handleChange, handleImage, values, error }) => {
 				<Form.Text className="text-danger">{error('images')}</Form.Text>
 			</Form.Group>
 			<Row className="w-100">
-				{values.images ? (
+				{values.image ? (
 					<Col sm={2}>
-						<img src={values.images.preview} alt="" className="w-100"></img>
+						<img src={values.image.preview} alt="" className="w-100"></img>
 					</Col>
 				) : null}
 			</Row>

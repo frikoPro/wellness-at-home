@@ -21,6 +21,7 @@ function Gmaps(props) {
         height: '500px'
     };
 
+
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}

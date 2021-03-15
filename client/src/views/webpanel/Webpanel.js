@@ -7,9 +7,9 @@ import UpdateJacuzzi from '../../components/webpanel/jacuzzi/UpdateJacuzzi';
 import UpdateProducts from '../../components/webpanel/product/UpdateProducts';
 import AddSlideshow from '../../components/webpanel/slideshow/AddSlideshow';
 import UpdateSlideshow from '../../components/webpanel/slideshow/UpdateSlideshow';
-import Events from '../../components/webpanel/events/Events';
 import FAQList from '../../components/FAQ/FAQList';
 import { FAQContext } from '../../contexts/FAQContext';
+import EventsPanel from '../../components/webpanel/events/EventsPanel';
 
 const Webpanel = ({ match }) => {
 	const FAQs = useContext(FAQContext);
@@ -119,7 +119,7 @@ const Webpanel = ({ match }) => {
 							<FAQList FAQs={FAQs} />
 						</Route>
 						<Route path={`${match.url}/arrangementer`}>
-							<Events />
+							<EventsPanel />
 						</Route>
 					</Switch>
 				</Col>

@@ -14,6 +14,8 @@ router.route('/').get(async (req, res, next) => {
 router.route('/add').post(verify, async (req, res, next) => {
 	const newFAQ = new FAQ({ ...req.body });
 
+	console.log(req.body);
+
 	try {
 		await newFAQ.save();
 		res.status(200).json('FAQ lagret');

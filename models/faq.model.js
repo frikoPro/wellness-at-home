@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 const FAQSchema = new Schema({
 	question: {
 		type: String,
-		required: [true, 'Uten et spørsmål er det ikke noe svar'],
+		required: [true, 'Et spørsmål kreves'],
 	},
 	answer: {
 		type: String,
-		required: [true, 'Uten et svar så...?'],
+		required: [true, 'Trenger et svar'],
 	},
 });
 

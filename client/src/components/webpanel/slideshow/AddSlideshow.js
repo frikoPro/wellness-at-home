@@ -12,7 +12,7 @@ const AddSlideshow = () => {
 		returnErrors,
 	} = UseForm({
 		initialValues: {
-			images: '',
+			image: '',
 			textHead: '',
 			textP: '',
 		},

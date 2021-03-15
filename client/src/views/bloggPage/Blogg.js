@@ -1,50 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
-
-const axios = require('axios');
+import styles from './Blogg.module.css';
+import axios from 'axios';
 
 const Blogg = () => {
-	let [fbData, setFbData] = useState([]);
+  let [fbData, setFbData] = useState([]);
 
-	useEffect(() => {
-		axios.get('http://localhost:8080/facebook').then((response) => {
-			const data = response.data.data;
-			const newData = data.map((item) => {
-				return {
-					...item,
-					page_id: item.id.split('_')[0],
-					post_id: item.id.split('_')[1],
-				};
-			});
-			console.log(newData);
-			setFbData(newData);
-			window?.FB?.XFBML?.parse(); //Loads the JS SDK again so that the "slower" elements gets detected when they render
-		});
-	}, []);
+  useEffect(() => {
+    axios.get('http://localhost:8080/facebook').then((response) => {
+      const data = response.data.data;
+      const newData = data.map((item) => ({
+        ...item,
+        page_id: item.id.split('_')[0],
+        post_id: item.id.split('_')[1],
+      }));
 
-	//       style={{margin: '5px', padding: '5px', width: 800, height: 680}}>
-	// <div className="fb-post" data-href="https://www.facebook.com/102417811874407/posts/106722811443907/" data-width="500" data-show-text="true"></div>
+      setFbData(newData);
+      window?.FB?.XFBML?.parse(); //Loads the JS SDK again so that the "slower" elements gets detected when they render
+    });
+  }, []);
 
-	const bsNumElement = 3; // For development purposes
-	return (
-		<>
-			{fbData.map((post) => (
-				<div style={{ paddingTop: 20 }}>
-					<div
-						className={`col-lg-${bsNumElement} col-md-${bsNumElement} col-sm-${bsNumElement} container justify-content-center`}>
-						<div
-							style={{ boxShadow: '5px 5px 5px #b3b3b3' }}
-							key={post.post_id} //PostID is unique and a good key
-							className="fb-post"
-							data-href={`https://www.facebook.com/102417811874407/posts/${post.post_id}/`}
-							data-width="500"
-							data-show-text="true"
-						/>
-					</div>
-				</div>
-			))}
-		</>
-	);
+  //       style={{margin: '5px', padding: '5px', width: 800, height: 680}}>
+  // <div className="fb-post" data-href="https://www.facebook.com/102417811874407/posts/106722811443907/" data-width="500" data-show-text="true"></div>
+  //col-lg-${bsNumElement} col-md-${bsNumElement} col-sm-${bsNumElement} container justify-content-center
+  const bsNumElement = 3; // For development purposes
+  return (
+    <>
+      {fbData.map((post) => (
+        <div style={{ paddingTop: 20 }}>
+          <div // todo: Tried to add the styling to a module css
+            className={`col-lg-${bsNumElement} col-md-${bsNumElement} col-sm-${bsNumElement} container justify-content-center ${styles.post}`}>
+            <div
+              style={{ boxShadow: '5px 5px 5px #b3b3b3' }}
+              key={post.post_id} //PostID is unique and a good key
+              className="fb-post"
+              data-href={`https://www.facebook.com/102417811874407/posts/${post.post_id}/`}
+              data-width="500"
+              data-show-text="true"
+            />
+          </div>
+        </div>
+      ))}
+    </>
+  );
 };
 
 export default Blogg;

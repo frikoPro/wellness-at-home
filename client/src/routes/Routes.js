@@ -17,59 +17,66 @@ import { useContext } from 'react';
 import { SlideshowProvider } from '../contexts/SlideshowContext';
 import { FAQProvider } from '../contexts/FAQContext';
 import { LoggedInContext } from '../contexts/LoggedInContext';
+import NetShop from '../views/netshop/NetShop';
 import SupplierPage from '../views/SupplierPage/SupplierPage';
 
 const Routes = () => {
-	const loggedIn = useContext(LoggedInContext);
+  const loggedIn = useContext(LoggedInContext);
 
-	return (
-		<BrowserRouter history={history}>
-			<JacuzziProvider>
-				<ScrollProvider>
-					<header>
-						<NavigationBar />
-					</header>
-					<main>
-						<SlideshowProvider>
-							<ProductsProvider>
-								<FAQProvider>
-									<Switch>
-										<Route exact path="/">
-											<HomePage />
+  return (
+    <BrowserRouter history={history}>
+      <JacuzziProvider>
+        <ScrollProvider>
+          <header>
+            <NavigationBar />
+          </header>
+          <main>
+            <SlideshowProvider>
+              <ProductsProvider>
+                <FAQProvider>
+                  <Switch>
+                    <Route exact path="/">
+                      <HomePage />
+                    </Route>
+                    <Route path="/test">
+                      <Test />
+                    </Route>
+                    <Route path="/blogg">
+                      <Blogg />
+                    </Route>
+                    <Route path="/Arrangementer">
+                      <Events />
+                    </Route>
+                    <Route path="/Kundeserivce">
+                      <SupportPage />
+                    </Route>
+                    <Route path="/spabad/:id">
+                      <JacuzziPage />
+                    </Route>
+                    <Route path="/Leverandør/:id">
+											<SupplierPage/>
 										</Route>
-										<Route path="/test">
-											<Test />
-										</Route>
-										<Route path="/blogg">
-											<Blogg />
-										</Route>
-										<Route path="/Arrangementer">
-											<Events />
-										</Route>
-										<Route path="/Kundeserivce">
-											<SupportPage />
-										</Route>
-										<Route path="/spabad/:id">
-											<JacuzziPage />
-										</Route>
-										<Route path="/webpanel">
-											{loggedIn ? (
-												<Route component={Webpanel} />
-											) : (
-												<LoginPage />
-											)}
-										</Route>
-									</Switch>
-								</FAQProvider>
-							</ProductsProvider>
-						</SlideshowProvider>
-					</main>
-				</ScrollProvider>
-			</JacuzziProvider>
+                    <Route path="/webpanel">
+                      {loggedIn ? (
+                        <Route component={Webpanel} />
+                      ) : (
+                        <LoginPage />
+                      )}
+                    </Route>
+                    <Route path="/nettbutikk">
+                      <NetShop />
+                    </Route>
+                  </Switch>
+                </FAQProvider>
+              </ProductsProvider>
+            </SlideshowProvider>
+          </main>
+        </ScrollProvider>
+      </JacuzziProvider>
 
-			<Footer />
-		</BrowserRouter>
-	);
+      <Footer />
+    </BrowserRouter>
+  );
 };
 
 export default Routes;

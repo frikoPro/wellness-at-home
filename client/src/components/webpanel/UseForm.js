@@ -57,7 +57,7 @@ const UseForm = ({ initialValues, url }) => {
 		};
 
 		tempImages.files.forEach((image) => {
-			tempImages.filenames.push({ images: image.name });
+			tempImages.filenames.push({ image: image.name });
 			tempImages.preview.push(URL.createObjectURL(image));
 		});
 
@@ -69,16 +69,16 @@ const UseForm = ({ initialValues, url }) => {
 		let tempImages = {
 			file: file,
 			preview: URL.createObjectURL(file),
-			filenames: file.name,
+			filename: file.name,
 		};
 
-		handleEvent('images', tempImages);
+		handleEvent('image', tempImages);
 	};
 
 	const uploadImage = () => {
 		let formData = new FormData();
 
-		formData.append('file', values.images.file);
+		formData.append('file', values.image.file);
 
 		axios
 			.post('http://localhost:8080/images/single', formData)
@@ -100,20 +100,26 @@ const UseForm = ({ initialValues, url }) => {
 	};
 
 	const submitData = () => {
+		let data = { ...values };
+
+		if (data.images) {
+			data.images = data.images.filenames;
+		} else if (data.image) {
+			data.image = data.image.filename;
+		}
+
 		axios
 			.post(`${url}add`, {
-				...values,
-				images: values.images.filenames,
+				...data,
 			})
 			.then((res) => {
-				if (values.images.files !== undefined) uploadImages();
-				else if (values.images.file !== undefined) uploadImage();
-
+				if ('images' in values) uploadImages();
+				else if ('image' in values) uploadImage();
+				console.log(res.data);
 				setSuccess(res.data);
 			})
 			.catch((err) => {
-				console.log(err.response.data);
-				setError(err.response.data);
+				console.log(err);
 			});
 	};
 
@@ -125,14 +131,22 @@ const UseForm = ({ initialValues, url }) => {
 	};
 
 	const updateData = () => {
+		let data = { ...values };
+
+		if (data.images) {
+			if (data.images.filenames) data.images = data.images.filenames;
+			else if (data.image.filename) data.image = data.image.filename;
+		}
+
 		axios
 			.patch(`${url}${values._id}`, {
-				...values,
-				images: values.images.filenames
-					? values.images.filenames
-					: values.images,
+				...data,
 			})
-			.then((res) => setSuccess(res.data))
+			.then((res) => {
+				setSuccess(res.data);
+				if ('images' in values) uploadImages();
+				else if ('image' in values) uploadImage();
+			})
 			.catch((err) => {
 				console.log(err.response.data);
 				setError(err.response.data);
