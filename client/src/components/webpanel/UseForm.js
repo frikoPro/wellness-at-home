@@ -69,7 +69,7 @@ const UseForm = ({ initialValues, url }) => {
 		let tempImages = {
 			file: file,
 			preview: URL.createObjectURL(file),
-			filename: file.name,
+			filenames: file.name,
 		};
 
 		handleEvent('image', tempImages);
@@ -102,24 +102,22 @@ const UseForm = ({ initialValues, url }) => {
 	const submitData = () => {
 		let data = { ...values };
 
-		if (data.images) {
-			data.images = data.images.filenames;
-		} else if (data.image) {
-			data.image = data.image.filename;
-		}
+		if (values.images) data = { ...data, images: values.images.filenames };
+		else if (values.image) data = { ...data, image: values.image.filenames };
 
 		axios
 			.post(`${url}add`, {
 				...data,
 			})
 			.then((res) => {
-				if ('images' in values) uploadImages();
-				else if ('image' in values) uploadImage();
-				console.log(res.data);
+				if (values.images !== undefined) uploadImages();
+				else if (values.image !== undefined) uploadImage();
+
 				setSuccess(res.data);
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log(err.response.data);
+				setError(err.response.data);
 			});
 	};
 
@@ -133,20 +131,15 @@ const UseForm = ({ initialValues, url }) => {
 	const updateData = () => {
 		let data = { ...values };
 
-		if (data.images) {
-			if (data.images.filenames) data.images = data.images.filenames;
-			else if (data.image.filename) data.image = data.image.filename;
-		}
+		if (data.images.filenames)
+			data = { ...data, images: data.images.filenames };
+		else if (data.image) data = { ...data, image: data.image.filenames };
 
 		axios
 			.patch(`${url}${values._id}`, {
 				...data,
 			})
-			.then((res) => {
-				setSuccess(res.data);
-				if ('images' in values) uploadImages();
-				else if ('image' in values) uploadImage();
-			})
+			.then((res) => setSuccess(res.data))
 			.catch((err) => {
 				console.log(err.response.data);
 				setError(err.response.data);
