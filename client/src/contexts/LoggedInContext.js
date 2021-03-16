@@ -14,7 +14,7 @@ export const LoggedInProvider = (props) => {
 				console.log(res.data);
 			})
 			.catch((err) => {
-				console.log(err.response.data);
+				if ('response' in err) console.log(err.response.data);
 				setLoggedIn(false);
 			});
 	}, []);
