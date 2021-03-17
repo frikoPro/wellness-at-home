@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Card} from "react-bootstrap";
 import styles from './Events.module.css'
 import {useHistory, useRouteMatch, withRouter} from "react-router-dom";
@@ -10,7 +10,6 @@ import {renderToStaticMarkup} from "react-dom/server";
 const pin = encodeURIComponent(renderToStaticMarkup(<LocationPin/>))
 
 const Events = () => {
-    let time;
 /*todo:
    1) fetch eventsData from db, via Axios.
    2) assign eventsData to state
@@ -32,14 +31,14 @@ const Events = () => {
                 lng: 10.945199
             },
             meta: {
-                dates: {
-                    monday: 0,
-                    tuesday: 0,
-                    wednesday: 0,
-                    thursday: 0,
-                    friday: 1619164800,
-                    saturday: 	1619254800,
-                    sunday: 1619341200
+                weekdays: {
+                    monday: {start: 0, end: 0},
+                    tuesday: {start: 0, end: 0},
+                    wednesday: {start: 0, end: 0},
+                    thursday: {start: 0, end: 0},
+                    friday: {start: 1619164800, end: 1619175600},
+                    saturday: {start: 1619254800, end: 1619262000},
+                    sunday: {start: 1619341200, end: 1619352000}
                 },
                 desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
             },
@@ -66,14 +65,14 @@ const Events = () => {
                 lng: 150.644
             },
             meta: {
-                dates: {
-                    monday: 0,
-                    tuesday: 0,
-                    wednesday: 0,
-                    thursday: 0,
-                    friday: 1619164800,
-                    saturday: 	1619254800,
-                    sunday: 1619341200
+                weekdays: {
+                    monday: {start: 0, end: 0},
+                    tuesday: {start: 0, end: 0},
+                    wednesday: {start: 0, end: 0},
+                    thursday: {start: 0, end: 0},
+                    friday: {start: 1619164800, end: 1619175600},
+                    saturday: {start: 1619254800, end: 1619262000},
+                    sunday: {start: 1619341200, end: 1619352000}
                 },
                 desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
             },
@@ -100,14 +99,14 @@ const Events = () => {
                 lng: 150.644
             },
             meta: {
-                dates: {
-                    monday: 0,
-                    tuesday: 0,
-                    wednesday: 0,
-                    thursday: 0,
-                    friday: 1619164800,
-                    saturday: 	1619254800,
-                    sunday: 1619341200
+                weekdays: {
+                    monday: {start: 0, end: 0},
+                    tuesday: {start: 0, end: 0},
+                    wednesday: {start: 0, end: 0},
+                    thursday: {start: 0, end: 0},
+                    friday: {start: 1619164800, end: 1619175600},
+                    saturday: {start: 1619254800, end: 1619262000},
+                    sunday: {start: 1619341200, end: 1619352000}
                 },
                 desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
             },
@@ -134,14 +133,14 @@ const Events = () => {
                 lng: 150.644
             },
             meta: {
-                dates: {
-                    monday: 0,
-                    tuesday: 0,
-                    wednesday: 0,
-                    thursday: 0,
-                    friday: 1619164800,
-                    saturday: 	1619254800,
-                    sunday: 1619341200
+                weekdays: {
+                    monday: {start: 0, end: 0},
+                    tuesday: {start: 0, end: 0},
+                    wednesday: {start: 0, end: 0},
+                    thursday: {start: 0, end: 0},
+                    friday: {start: 1619164800, end: 1619175600},
+                    saturday: {start: 1619254800, end: 1619262000},
+                    sunday: {start: 1619341200, end: 1619352000}
                 },
                 desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
             },
@@ -169,7 +168,9 @@ const Events = () => {
             return false
         }
     }
-
+    useEffect(() => {
+        window?.FB?.XFBML?.parse();
+    },[])
     const match = useRouteMatch('/Arrangementer/eventkode=:id');
     // console.log(match)
 
