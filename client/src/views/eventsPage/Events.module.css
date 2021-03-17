@@ -10,13 +10,12 @@
 }
 .cardContainer{
     justify-content: center;
-    top: 30px;
+    top: 1em;
     font-family: 'Mulish', sans-serif;
 }
 .card{
     flex-direction: row;
-    margin: 40px;
-    marginTop: 40px;
+    margin: 1em 2em 2em;
     position: relative;
     height: 120px;
     width: 650px;
@@ -29,7 +28,7 @@
 
 .dateContainer{
     /*background: #ffc107;*/
-    border-right: 0.005em solid #b3b3b3;
+    border-right: 0.01em solid #d6d6d6;
     font-size: 25px;
     width: 20%;
     text-align: center;
@@ -64,7 +63,7 @@
 
 .meta{
     position: relative;
-    top: 0.2em;
-    left: 0.75em;
+    top: 0.3em;
+    left: 0.7em;
     font-size: 2rem;
 }

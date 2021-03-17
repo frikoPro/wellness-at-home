@@ -5,7 +5,7 @@
 .mainContainer{
     overflow: hidden;
     margin: auto;
-    width: 50%;
+    width: 70%;
     padding: 10px;
 }
 
@@ -29,7 +29,7 @@
 }
 .mainView{
     margin: 10px;
-    width: 34em;
+    width: 60%;
 }
 
 .mainSideView {
