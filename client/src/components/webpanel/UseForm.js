@@ -131,9 +131,11 @@ const UseForm = ({ initialValues, url }) => {
 	const updateData = () => {
 		let data = { ...values };
 
-		if (data.images.filenames)
-			data = { ...data, images: data.images.filenames };
-		else if (data.image) data = { ...data, image: data.image.filenames };
+		if ('images' in data || 'image' in data) {
+			if (data.images.filenames)
+				data = { ...data, images: data.images.filenames };
+			else if (data.image) data = { ...data, image: data.image.filenames };
+		}
 
 		axios
 			.patch(`${url}${values._id}`, {
