@@ -1,9 +1,13 @@
 import React from 'react';
-import {Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 import styles from './Events.module.css'
 import {useHistory, useRouteMatch, withRouter} from "react-router-dom";
 import EventPage from "./EventPage";
 import NotFoundPage from "../errorPage/NotFoundPage";
+import LocationPin from "./LocationPin";
+import {renderToStaticMarkup} from "react-dom/server";
+
+const pin = encodeURIComponent(renderToStaticMarkup(<LocationPin/>))
 
 const Events = () => {
     let time;
@@ -22,12 +26,24 @@ const Events = () => {
             date_end: 1615546085,
             city: "Drammen",
             address: "DrammenVegen 22",
-            location: "Drammenshallen",
+            venue: "Drammenshallen",
             pos: {
                 lat: 59.952769,
                 lng: 10.945199
             },
-            img: "https://via.placeholder.com/200x100",
+            meta: {
+                dates: {
+                    monday: 0,
+                    tuesday: 0,
+                    wednesday: 0,
+                    thursday: 0,
+                    friday: 1619164800,
+                    saturday: 	1619254800,
+                    sunday: 1619341200
+                },
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+            },
+            img: "https://via.placeholder.com/1200x500",
             calendarLink: {
                 title: "My birthday party111",
                 description: "Be there!",
@@ -44,12 +60,24 @@ const Events = () => {
             date_end: 1618054898,
             city: "Oslo/Fornebu",
             address: "OsloVegen 21",
-            location: "Telenor Arena",
+            venue: "Telenor Arena",
             pos: {
                 lat: -34.397,
                 lng: 150.644
             },
-            img: "https://via.placeholder.com/200x100",
+            meta: {
+                dates: {
+                    monday: 0,
+                    tuesday: 0,
+                    wednesday: 0,
+                    thursday: 0,
+                    friday: 1619164800,
+                    saturday: 	1619254800,
+                    sunday: 1619341200
+                },
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+            },
+            img: "https://via.placeholder.com/1200x500",
             calendarLink: {
                 title: "My birthday party222",
                 description: "Be there!",
@@ -62,16 +90,28 @@ const Events = () => {
         {
             create_date: 1992258634,
             update_date: 1992258634,
-            date_start: 1652182898,
-            date_end: 1618054898,
+            date_start: 1634466666,
+            date_end: 1634725866,
             city: "Kristiansand",
             address: "OsloVegen 21",
-            location: "Telenor Arena",
+            venue: "Telenor Arena",
             pos: {
                 lat: -34.397,
                 lng: 150.644
             },
-            img: "https://via.placeholder.com/200x100",
+            meta: {
+                dates: {
+                    monday: 0,
+                    tuesday: 0,
+                    wednesday: 0,
+                    thursday: 0,
+                    friday: 1619164800,
+                    saturday: 	1619254800,
+                    sunday: 1619341200
+                },
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+            },
+            img: "https://via.placeholder.com/1200x500",
             calendarLink: {
                 title: "My birthday party333",
                 description: "Be there!",
@@ -88,12 +128,24 @@ const Events = () => {
             date_end: 1618054898,
             city: "Trondheim",
             address: "TrondheimVegen 108",
-            location: "Trondheim fotball Arena",
+            venue: "Trondheim fotball Arena",
             pos: {
                 lat: -34.397,
                 lng: 150.644
             },
-            img: "https://via.placeholder.com/200x100",
+            meta: {
+                dates: {
+                    monday: 0,
+                    tuesday: 0,
+                    wednesday: 0,
+                    thursday: 0,
+                    friday: 1619164800,
+                    saturday: 	1619254800,
+                    sunday: 1619341200
+                },
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+            },
+            img: "https://via.placeholder.com/1200x500",
             calendarLink: {
                 title: "My birthday party4444",
                 description: "Be there!",
@@ -141,24 +193,33 @@ const Events = () => {
                             <>
                                 <Card className={`${styles.card}`}>
                                     <div className={`${styles.dateContainer}`}>
-                                        {new Date(event.date_start*1000).toLocaleDateString("en-GB").slice(0,5)}
-                                        <br/>
-                                        {new Date(event.date_end*1000).toLocaleDateString("en-GB").slice(0,5)}
+                                        <div className={`${styles.month}`}>
+                                            {new Date(event.date_start*1000)
+                                                .toLocaleDateString('default', { month: 'short' })
+                                                .toLocaleUpperCase()
+                                            }
+                                        </div>
+                                        <div className={`${styles.date}`}>
+                                            {new Date(event.date_start*1000)
+                                                .toLocaleDateString("en-GB").slice(0,2)
+                                            }
+                                        </div>
                                     </div>
                                     <div className={`${styles.bodyContainer}`}>
-                                        <h1 style={{fontSize: 25}}>
-                                            {event.city} - {event.location}
-                                        </h1>
-                                        <h2 style={{fontSize: 18}}>
-                                            {event.address}
-                                        </h2>
+                                        <div className={`${styles.title}`}>
+                                            <img src={`data:image/svg+xml,${pin}`} height={25}/>
+                                            {event.city}
+                                        </div>
+                                        <div className={`${styles.meta}`}>
+                                            {event.venue}
+                                        </div>
                                     </div>
                                     <div className={`${styles.linkContainer}`}>
-                                        <button class="btn-warning btn btn-primary hover-gold"
+                                        <Button variant="outline-dark"
                                                 type="button"
                                                 onClick={() => handleClick(event.create_date)}>
                                             Mer info
-                                        </button>
+                                        </Button>
                                     </div>
                                 </Card>
                             </>
@@ -169,6 +230,7 @@ const Events = () => {
         );
     }
 };
+
 
 
 export default withRouter(Events);

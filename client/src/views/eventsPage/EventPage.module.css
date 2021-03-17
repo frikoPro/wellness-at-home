@@ -17,18 +17,19 @@
 .title{
     text-align: left;
 }
-.mainView{
-    margin: 10px;
-}
-
 .tabsContainer {
     border: 1px solid #dee2e6;
+    background-color: white;
     width: auto;
 }
 
 .tab{
     max-width:100%;
     margin: auto;
+}
+.mainView{
+    margin: 10px;
+    width: 34em;
 }
 
 .mainSideView {
@@ -38,9 +39,21 @@
     right: 10px;
 
 }
+.tabsContainer{
+    position: relative;
+    overflow: hidden;
+}
 
 .tabs {
     height: 500px;
     position: relative
+
+}
+
+.mainViewTitle{
+
+}
+
+.mainSideViewMeta {
 
 }
