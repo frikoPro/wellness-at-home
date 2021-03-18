@@ -33,11 +33,10 @@
 }
 
 .mainSideView {
-    padding: 5px;
+    padding: 1em;
     position: absolute;
     top: 10px;
     right: 10px;
-
 }
 .tabsContainer{
     position: relative;
