@@ -1,109 +1,128 @@
-import React from 'react';
-import {Card} from "react-bootstrap";
+import React, {useEffect} from 'react';
+import {Button, Card} from "react-bootstrap";
 import styles from './Events.module.css'
 import {useHistory, useRouteMatch, withRouter} from "react-router-dom";
 import EventPage from "./EventPage";
 import NotFoundPage from "../errorPage/NotFoundPage";
+import LocationPin from "./LocationPin";
+import {renderToStaticMarkup} from "react-dom/server";
+
+const pin = encodeURIComponent(renderToStaticMarkup(<LocationPin/>))
 
 const Events = () => {
-    let time;
 /*todo:
    1) fetch eventsData from db, via Axios.
    2) assign eventsData to state
    3) CHECK  before rendering events page, pass id
-   to events page via mapping through the data and returning that objects info
-* */
+   to events page via mapping through the data and returning that objects info */
     // OBS calendar must be set as variable event
     const eventsData = [
         {
             create_date: 1676639434,
             update_date: 1676639434,
-            date_start: 1615200485,
-            date_end: 1615546085,
-            city: "Drammen",
-            address: "DrammenVegen 22",
-            location: "Drammenshallen",
-            pos: {
-                lat: 59.952769,
-                lng: 10.945199
+            date_start: 1619164800,
+            date_end: 1619352000,
+            address: {
+                streetname: "Knoffs gate 18",
+                city: "Drammen",
+                postalcode: "3044"
             },
-            img: "https://via.placeholder.com/200x100",
-            calendarLink: {
-                title: "My birthday party111",
-                description: "Be there!",
-                start: "2019-12-29 18:00:00 +0100",
-                end: "2019-11-29 18:00:00 +0100",
-                allDay: true
-            }
-
+            venue: "Drammenshallen",
+            pos: {
+                lat: 59.73521,
+                lng: 10.20528
+            },
+            meta: {
+                weekdays: [
+                    {day: "Fredag",start: 1619164800, end: 1619175600},
+                    {day: "Lørdag",start: 1619254800, end: 1619262000},
+                    {day: "Søndag",start: 1619341200, end: 1619352000},
+                ],
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+            },
+            img: "https://via.placeholder.com/1200x500",
         },
         {
             create_date: 1992258634,
             update_date: 1992258634,
             date_start: 1620646898,
             date_end: 1618054898,
-            city: "Oslo/Fornebu",
-            address: "OsloVegen 21",
-            location: "Telenor Arena",
-            pos: {
-                lat: -34.397,
-                lng: 150.644
+            address: {
+                streetname: "Widerøeveien 1",
+                city: "Fornebu",
+                postalcode: "1360"
             },
-            img: "https://via.placeholder.com/200x100",
-            calendarLink: {
-                title: "My birthday party222",
-                description: "Be there!",
-                start: "2019-12-29 18:00:00 +0100",
-                end: "2019-11-29 18:00:00 +0100",
-                allDay: true
-            }
-
+            venue: "Telenor Arena",
+            pos: {
+                lat: 59.9031487,
+                lng: 10.623884
+            },
+            meta: {
+                weekdays: [
+                    {day: "Fredag",start: 1619164800, end: 1619175600},
+                    {day: "Lørdag",start: 1619254800, end: 1619262000},
+                ],
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+            },
+            img: "https://via.placeholder.com/1200x500",
         },
         {
-            create_date: 1992258634,
+            create_date: 1992358634,
             update_date: 1992258634,
-            date_start: 1652182898,
-            date_end: 1618054898,
-            city: "Kristiansand",
-            address: "OsloVegen 21",
-            location: "Telenor Arena",
-            pos: {
-                lat: -34.397,
-                lng: 150.644
+            date_start: 1621576800,
+            date_end: 1621774800,
+            address: {
+                streetname: "Sjømannsvegen 16",
+                city: "Ålesund",
+                postalcode: "6008"
             },
-            img: "https://via.placeholder.com/200x100",
-            calendarLink: {
-                title: "My birthday party333",
-                description: "Be there!",
-                start: "2019-12-29 18:00:00 +0100",
-                end: "2019-11-29 18:00:00 +0100",
-                allDay: true
-            }
-
+            venue: "Sparebanken Møre Arena",
+            pos: {
+                lat: 62.4700596,
+                lng: 6.1815532
+            },
+            meta: {
+                weekdays: [
+                    {day: "Fredag",start: 1621576800, end: 1621602000},
+                    {day: "Lørdag",start: 1621663200, end: 1621688400},
+                    {day: "Søndag",start: 1621760400, end: 1621774800}
+                ],
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+            },
+            img: "https://via.placeholder.com/1200x500",
         },
         {
             create_date: 856185034,
             update_date: 856185034,
-            date_start: 1778413298,
-            date_end: 1618054898,
-            city: "Trondheim",
-            address: "TrondheimVegen 108",
-            location: "Trondheim fotball Arena",
-            pos: {
-                lat: -34.397,
-                lng: 150.644
+            date_start: 1621231200,
+            date_end: 1621764000,
+            address: {
+                streetname: "Idrettsvegen 50",
+                city: "Straume",
+                postalcode: "5353"
             },
-            img: "https://via.placeholder.com/200x100",
-            calendarLink: {
-                title: "My birthday party4444",
-                description: "Be there!",
-                start: "2019-12-29 18:00:00 +0100",
-                end: "2019-11-29 18:00:00 +0100",
-                allDay: true
-            }
+            venue: "Sotra Arena",
+            pos: {
+                lat: 60.350731,
+                lng: 5.1325811
+            },
+            meta: {
+                weekdays: [
+                    {day: "Mandag",start: 1621231200, end: 1621256400},
+                    {day: "Tirsdag",start: 1621317600, end: 1621342800},
+                    {day: "Onsdag",start: 1621404000, end: 1621429200},
+                    {day: "Torsdag",start: 1621490400, end: 1621515600},
+                    {day: "Fredag",start: 1621576800, end: 1621594800},
+                    {day: "Lørdag",start: 1621663200, end: 1621681200},
+                    {day: "Søndag",start: 1621756800, end: 1621764000},
+                ],
+                desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+            },
+            img: "https://via.placeholder.com/1200x500",
         }
     ]
     let history = useHistory();
+
 
     const handleClick = (create_date) => {
         history.push(`/Arrangementer/eventkode=${create_date}`);
@@ -117,10 +136,8 @@ const Events = () => {
             return false
         }
     }
-
     const match = useRouteMatch('/Arrangementer/eventkode=:id');
     // console.log(match)
-
     if (match !== null) {
         const { params } = match;
         if(getEventObj(params.id)) {
@@ -128,37 +145,50 @@ const Events = () => {
         } else {
             return <NotFoundPage/>
         }
-
     } else {
         return (
             <>
                 <div className={`${styles.header}`}>
-                    <h1>Kommende messer og arrangementer hvor vi har stand</h1>
+                    <h1>Kommende messer og arrangementer</h1>
                 </div>
                 <div className={`col-lg-5 col-md-5 col-sm-5 container ${styles.cardContainer}`}>
-
                     {eventsData.map((event) => (
                             <>
                                 <Card className={`${styles.card}`}>
                                     <div className={`${styles.dateContainer}`}>
-                                        {new Date(event.date_start*1000).toLocaleDateString("en-GB").slice(0,5)}
-                                        <br/>
-                                        {new Date(event.date_end*1000).toLocaleDateString("en-GB").slice(0,5)}
+                                        <div className={`${styles.month}`}>
+                                            {new Date(event.date_start*1000)
+                                                .toLocaleDateString('default', { month: 'short' })
+                                                .toLocaleUpperCase()}
+                                        </div>
+                                        <div className={`${styles.date}`}>
+                                            {new Date(event.date_start*1000)
+                                                .toLocaleDateString("en-GB").slice(0,2)}
+                                        </div>
                                     </div>
                                     <div className={`${styles.bodyContainer}`}>
-                                        <h1 style={{fontSize: 25}}>
-                                            {event.city} - {event.location}
-                                        </h1>
-                                        <h2 style={{fontSize: 18}}>
-                                            {event.address}
-                                        </h2>
+                                        <div className={`${styles.title}`}>
+                                            <img src={`data:image/svg+xml,${pin}`} height={25}/>
+                                            {event.address.city}
+                                            <br/>
+                                            <div style={{fontSize: 12, position: "relative", left: 27}}>
+                                                {new Date(event.date_start*1000)
+                                                    .toLocaleDateString("en-GB").slice(0,5)}
+                                                -
+                                                {new Date(event.date_end*1000)
+                                                    .toLocaleDateString("en-GB").slice(0,5)}
+                                            </div>
+                                        </div>
+                                        <div className={`${styles.meta}`}>
+                                            {event.venue}
+                                        </div>
                                     </div>
                                     <div className={`${styles.linkContainer}`}>
-                                        <button class="btn-warning btn btn-primary hover-gold"
+                                        <Button variant="outline-dark"
                                                 type="button"
                                                 onClick={() => handleClick(event.create_date)}>
                                             Mer info
-                                        </button>
+                                        </Button>
                                     </div>
                                 </Card>
                             </>
@@ -169,6 +199,7 @@ const Events = () => {
         );
     }
 };
+
 
 
 export default withRouter(Events);

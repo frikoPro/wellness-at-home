@@ -1,4 +1,4 @@
 .slideshow {
-	width: fit-content;
-	background-color: cadetblue;
+	object-fit: contain;
+	height: 50vh;
 }
