@@ -22,7 +22,13 @@ const HomePage = () => {
 	return (
 		<>
 			<section>
-				<div ref={slideshowRef} style={{ position: 'relative', top: '-87px' }}>
+				<div
+					ref={slideshowRef}
+					style={{
+						position: 'relative',
+						top: '-87px',
+						backgroundColor: 'black',
+					}}>
 					<Slideshow
 						slideContent={slideshows}
 						setIndex={(index) => setCurrentSlideImg(index)}
@@ -31,6 +37,7 @@ const HomePage = () => {
 					/>
 				</div>
 			</section>
+
 			<Container fluid className="overflow-hidden">
 				<section>
 					<Row className="justify-content-center w-100 mx-auto m-5">

@@ -46,7 +46,7 @@ const NavigationBar = () => {
 
 			<Navbar.Brand href="/">
 				<img
-					src={'http://localhost:8080/wellnessLogo.png'}
+					src={'http://localhost:8080/wellnessLogo2.png'}
 					alt=""
 					style={{ height: '61px' }}></img>
 			</Navbar.Brand>
