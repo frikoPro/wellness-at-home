@@ -37,6 +37,13 @@ export const ScrollProvider = (props) => {
 			height: null,
 			ref: useRef(null),
 		},
+		{
+			show: false,
+			percent: 0,
+			position: null,
+			height: null,
+			ref: useRef(null),
+		},
 	]);
 
 	//Opacity value for homepage
