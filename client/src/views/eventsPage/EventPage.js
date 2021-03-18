@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Gmaps from "../../components/Gmaps";
 import CalendarLink from "../../components/ CalendarLink";
 import {Breadcrumb, Tab, Tabs} from "react-bootstrap";
@@ -7,6 +7,10 @@ import CalendarView from "../../components/CalendarView";
 
 const EventPage = (props) => {
     console.log(window.location.href)
+
+    useEffect(() => {
+        window?.FB?.XFBML?.parse();
+    },[])
 
     return (
         <>

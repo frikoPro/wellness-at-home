@@ -168,9 +168,7 @@ const Events = () => {
             return false
         }
     }
-    useEffect(() => {
-        window?.FB?.XFBML?.parse();
-    },[])
+
     const match = useRouteMatch('/Arrangementer/eventkode=:id');
     // console.log(match)
 
