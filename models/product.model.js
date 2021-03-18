@@ -20,7 +20,7 @@ const ProductsSchema = new Schema({
 		],
 		validate: [(val) => val.length > 0, 'Du må velge minst et bilde'],
 	},
-	affiliation: [String],
+	affiliation: { type: [{ _id: false, serie: String, bad: String }] },
 	aboutProduct: { type: String, required: [true, 'Du må ha en beskrivelse'] },
 	price: { type: Number, required: [true, 'Du må taste inn en pris'] },
 	techSpec: {

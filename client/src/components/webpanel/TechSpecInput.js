@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import SelectInput from './SelectInput';
-import TechList from './TechList';
+import TableList from '../TableList';
 
 const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 	const [newProp, setNewProp] = useState('');
@@ -18,12 +18,15 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 		value: false,
 	});
 
+	const [techSpec, setSpec] = useState([]);
+
 	useEffect(() => {
 		setOptionsState(options);
-	}, [options]);
+		setSpec([...values.techSpec]);
+	}, [options, values]);
 
 	const onSubmit = () => {
-		let techSpecTemp = values;
+		let techSpecTemp = techSpec;
 
 		if (!newTechSpec.value && !newTechSpec.property) {
 			return setErrors({ property: true, value: true });
@@ -55,6 +58,7 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 
 	return (
 		<>
+			<TableList values={techSpec} name="techSpec" removeValue={removeValues} />
 			<Row>
 				<Col sm={2}>
 					<SelectInput
@@ -91,12 +95,6 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 					<Button name="techSpec" onClick={onSubmit}>
 						Legg til
 					</Button>
-				</Col>
-				<Col>
-					<TechList
-						values={values}
-						handleEvent={(i) => removeValues('techSpec', i)}
-					/>
 				</Col>
 			</Row>
 

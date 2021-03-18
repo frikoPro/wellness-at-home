@@ -3,30 +3,39 @@ import { Col, Container, Row } from 'react-bootstrap';
 import ProductList from '../../components/netshop/ProductList';
 import { ProductsContext } from '../../contexts/ProductsContext';
 import CardFilter from '../../components/netshop/CardFilter';
+import { Route, Switch } from 'react-router-dom';
+import ProductPage from '../productPage/ProductPage';
 
-const NetShop = () => {
-  const { products } = useContext(ProductsContext);
+const NetShop = ({ match }) => {
+	const { products } = useContext(ProductsContext);
 
-  const [productsState, setProducts] = useState([]);
+	const [productsState, setProducts] = useState([]);
 
-  useEffect(() => {
-    setProducts(products);
-  }, [products]);
+	useEffect(() => {
+		setProducts(products);
+	}, [products]);
 
-  return (
-    <Container fluid className="h-100">
-      <Row className="h-100">
-        <Col sm={2} className="h-100 mt-5">
-          <CardFilter setFilter={(filtered) => setProducts(filtered)} />
-        </Col>
-        <Col>
-          <Row>
-            <ProductList products={productsState} />
-          </Row>
-        </Col>
-      </Row>
-    </Container>
-  );
+	return (
+		<Switch>
+			<Route exact path={match.url}>
+				<Container fluid className="h-100">
+					<Row className="h-100">
+						<Col sm={2} className="h-100 mt-5">
+							<CardFilter setFilter={(filtered) => setProducts(filtered)} />
+						</Col>
+						<Col>
+							<Row>
+								<ProductList products={productsState} />
+							</Row>
+						</Col>
+					</Row>
+				</Container>
+			</Route>
+			<Route path={`${match.url}/:id`}>
+				<ProductPage />
+			</Route>
+		</Switch>
+	);
 };
 
 export default NetShop;

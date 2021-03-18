@@ -39,8 +39,6 @@ const UseForm = ({ initialValues, url }) => {
 	const removeValues = (target, id) => {
 		const newArray = [...values[target]];
 
-		console.log(typeof id);
-
 		const index =
 			typeof id === 'number' ? id : newArray.findIndex((item) => item === id);
 

@@ -51,7 +51,7 @@ router.route('/:id').delete(verify, async (req, res, next) => {
 
 router.route('/:id').patch(verify, async (req, res, next) => {
 	try {
-		const updatedJacuzzi = await Jacuzzi.findById(req.body._id).exec();
+		const updatedJacuzzi = await Jacuzzi.findById(req.params.id).exec();
 
 		updatedJacuzzi.overwrite({ ...req.body });
 

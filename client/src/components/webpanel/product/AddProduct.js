@@ -17,7 +17,7 @@ const AddProduct = () => {
 			name: '',
 			aboutProduct: '',
 			category: '',
-			affiliation: '',
+			affiliation: [],
 			price: null,
 			techSpec: [],
 			relatedProducts: [],
