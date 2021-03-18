@@ -7,8 +7,8 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 	const [newProp, setNewProp] = useState('');
 
 	const [newTechSpec, setNewTechSpec] = useState({
-		property: '',
-		value: '',
+		egenskap: '',
+		verdi: '',
 	});
 
 	const [optionsState, setOptionsState] = useState([]);
@@ -28,24 +28,24 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 	const onSubmit = () => {
 		let techSpecTemp = techSpec;
 
-		if (!newTechSpec.value && !newTechSpec.property) {
+		if (!newTechSpec.verdi && !newTechSpec.egenskap) {
 			return setErrors({ property: true, value: true });
-		} else if (!newTechSpec.value) {
+		} else if (!newTechSpec.verdi) {
 			return setErrors({ ...errors, value: true });
-		} else if (!newTechSpec.property) {
+		} else if (!newTechSpec.egenskap) {
 			return setErrors({ ...errors, property: true });
 		}
 
 		setErrors({ property: false, value: false });
 
 		const index = techSpecTemp.findIndex(
-			(spec) => spec.property === newTechSpec.property
+			(spec) => spec.egenskap === newTechSpec.egenskap
 		);
 
 		if (index < 0) {
 			techSpecTemp.push(newTechSpec);
 		} else {
-			techSpecTemp[index].value = newTechSpec.value;
+			techSpecTemp[index].verdi = newTechSpec.verdi;
 		}
 
 		submitChange({
@@ -66,9 +66,9 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 							value: item,
 							userText: item,
 						}))}
-						value={newTechSpec.property}
+						value={newTechSpec.egenskap}
 						handleChange={(e) =>
-							setNewTechSpec({ ...newTechSpec, property: e.target.value })
+							setNewTechSpec({ ...newTechSpec, egenskap: e.target.value })
 						}
 						name="selectedTechSpec"
 					/>
@@ -84,7 +84,7 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 						placeholder="200kw/h"
 						name="selectedTechSpec"
 						onChange={(e) =>
-							setNewTechSpec({ ...newTechSpec, value: e.target.value })
+							setNewTechSpec({ ...newTechSpec, verdi: e.target.value })
 						}
 					/>
 					<Form.Text className="text-danger">

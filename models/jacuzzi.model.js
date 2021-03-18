@@ -36,8 +36,8 @@ const JacuzzisSchema = new Schema({
 		type: [
 			{
 				_id: false,
-				property: String,
-				value: String,
+				egenskap: String,
+				verdi: String,
 			},
 		],
 		validate: [
