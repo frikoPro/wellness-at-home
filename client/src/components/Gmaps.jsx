@@ -33,8 +33,8 @@ function Gmaps(props) {
                         icon={"https://icons.iconarchive.com/icons/paomedia/small-n-flat/32/map-marker-icon.png"}
                         onClick={() => setChosenMarker(
                             {
-                                title: props.address,
-                                subTitle: props.city,
+                                title: props.venue,
+                                subTitle: `${props.address.streetname}, ${props.address.postalcode} ${props.address.city}`,
                                 link: `https://www.google.com/maps/search/?api=1&query=${props.pos.lat},${props.pos.lng}`,
                                 coordinates: [props.pos.lat, props.pos.lng]
                             }

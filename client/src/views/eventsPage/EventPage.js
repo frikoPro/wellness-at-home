@@ -32,8 +32,22 @@ const EventPage = (props) => {
                         <Tab eventKey="main" title="Main info" className={`${styles.tabs}`}>
                             <div className={`${styles.mainView}`}>
                                 <div>
-                                    <h5 style={{textDecoration: "underline"}}>Tider</h5>
+                                    <h5 style={{textDecoration: "underline"}}>Generell informasjon</h5>
                                     <p>
+                                        {props.meta.desc}
+                                    </p>
+                                </div>
+                                <hr/>
+                                <div>
+                                    <h5 style={{textDecoration: "underline"}}>Åpningstider</h5>
+                                    <p>
+                                        {new Date(props.date_start * 1000)
+                                            .toLocaleDateString("en-GB").slice(0, 5)}
+                                            -
+                                        {new Date(props.date_end * 1000)
+                                            .toLocaleDateString("en-GB").slice(0, 5)}
+                                            <br/>
+                                            <br/>
                                         {props.meta.weekdays.map((day) => (
                                             <>
                                                 {day.day}: {new Date(day.start * 1000)
@@ -45,25 +59,25 @@ const EventPage = (props) => {
                                             </>
                                         ))}
                                     </p>
-
                                 </div>
+                                <hr/>
                                 <div>
-                                    <hr/>
-                                    <h5 style={{textDecoration: "underline"}}>Generell informasjon</h5>
+                                    <h5 style={{textDecoration: "underline"}}>Adresse</h5>
                                     <p>
-                                        {props.meta.desc}
+                                        {`${props.address.streetname}, ${props.address.postalcode} ${props.address.city}`}
                                     </p>
                                 </div>
                             </div>
                             <div className={`${styles.mainSideView}`}>
                                 <CalendarView {...props}/>
                                 <br/>
-                                <CalendarLink {...props.calendarLink}/>
+                                <CalendarLink {...props}/>
                                 <div className="fb-share-button"
                                      data-href={window.location.href}
-                                     data-layout="button_count"
-                                     data-size="small">
-                                    <a target="_blank"
+                                     data-layout="button"
+                                     data-size="large"
+                                     style={{top: 5}}
+                                ><a target="_blank"
                                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                                        className="fb-xfbml-parse-ignore">Del</a>
                                 </div>
