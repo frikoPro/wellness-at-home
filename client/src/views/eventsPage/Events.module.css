@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
-
+.material-icons{}
 .header {
     background: #d4d4d4;
     height: 120px;
@@ -22,9 +22,12 @@
     transition: all .2s ease-in-out;
 }
 .card:hover {
+    border: 0.1em solid #b3b3b3;
     box-shadow: 6px 6px 6px #b3b3b3;
     transform: scale(1.005);
+    background: #f3f3f3;
 }
+
 
 .dateContainer{
     /*background: #ffc107;*/
@@ -33,6 +36,10 @@
     width: 20%;
     text-align: center;
     padding: 15px;
+}
+
+.dateContainer:hover {
+    background: #eaeaea;
 }
 
 .bodyContainer{
@@ -63,7 +70,6 @@
 
 .meta{
     position: relative;
-    top: 0.3em;
     left: 0.7em;
     font-size: 2rem;
 }

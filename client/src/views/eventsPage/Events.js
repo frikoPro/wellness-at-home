@@ -43,7 +43,7 @@ const Events = () => {
                     ],
                     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
                 },
-                img: "https://via.placeholder.com/1200x500",
+                img: "https://dhk.no/wp-content/uploads/sites/7/2019/07/Drammenshallen.jpg",
             },
             {
                 create_date: 1992258634,
@@ -67,7 +67,7 @@ const Events = () => {
                     ],
                     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
                 },
-                img: "https://via.placeholder.com/1200x500",
+                img: "https://upload.wikimedia.org/wikipedia/commons/5/55/Telenor_Arena_Fornebu_%286.juni_2018_cropped%29.jpg",
             },
             {
                 create_date: 1992358634,
@@ -92,7 +92,7 @@ const Events = () => {
                     ],
                     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
                 },
-                img: "https://via.placeholder.com/1200x500",
+                img: "https://www.kystmagasinet.no/wp-content/uploads/sites/8/2019/10/Untitled-1-3.jpg",
             },
             {
                 create_date: 856185034,
@@ -173,13 +173,13 @@ const Events = () => {
                                     </div>
                                     <div className={`${styles.bodyContainer}`}>
                                         <div className={`${styles.title}`}>
-                                            <img src={`data:image/svg+xml,${pin}`} height={25}/>
+                                            <span className="material-icons" style={{position: "relative",top: 5}}>room</span>
                                             {event.address.city}
                                             <br/>
-                                            <div style={{fontSize: 12, position: "relative", left: 27}}>
+                                            <div style={{fontSize: 12, position: "relative", left: 25}}>
                                                 {new Date(event.date_start*1000)
                                                     .toLocaleDateString("en-GB").slice(0,5)}
-                                                -
+                                                 -
                                                 {new Date(event.date_end*1000)
                                                     .toLocaleDateString("en-GB").slice(0,5)}
                                             </div>
