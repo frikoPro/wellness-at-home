@@ -18,7 +18,7 @@ const EventPage = (props) => {
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Hjem</Breadcrumb.Item>
                     <Breadcrumb.Item href="/Arrangementer">Arrangementer</Breadcrumb.Item>
-                    <Breadcrumb.Item href="">{props.location}</Breadcrumb.Item>
+                    <Breadcrumb.Item href="">{props.venue}</Breadcrumb.Item>
                 </Breadcrumb>
             </div>
             <img src={props.img}
@@ -34,31 +34,18 @@ const EventPage = (props) => {
                                 <div>
                                     <h5 style={{textDecoration: "underline"}}>Tider</h5>
                                     <p>
-                                        {/*temp code!, this is horrible but ill fix it when I have time!*/}
-                                        Fredag: {new Date(props.meta.weekdays.friday.start * 1000)
-                                        .toLocaleTimeString("en-GB").slice(0, 5)
-                                    }
-                                        -
-                                        {new Date(props.meta.weekdays.friday.end * 1000)
-                                            .toLocaleTimeString("en-GB").slice(0, 5)
-                                        }
-                                        <br/>
-                                        Lørdag: {new Date(props.meta.weekdays.saturday.start * 1000)
-                                        .toLocaleTimeString("en-GB").slice(0, 5)
-                                    }
-                                        -
-                                        {new Date(props.meta.weekdays.saturday.end * 1000)
-                                            .toLocaleTimeString("en-GB").slice(0, 5)
-                                        }
-                                        <br/>
-                                        Søndag: {new Date(props.meta.weekdays.sunday.start * 1000)
-                                        .toLocaleTimeString("en-GB").slice(0, 5)
-                                    }
-                                        -
-                                        {new Date(props.meta.weekdays.sunday.end * 1000)
-                                            .toLocaleTimeString("en-GB").slice(0, 5)
-                                        }
+                                        {props.meta.weekdays.map((day) => (
+                                            <>
+                                                {day.day}: {new Date(day.start * 1000)
+                                                .toLocaleTimeString("en-GB").slice(0, 5)}
+                                                -
+                                                {new Date(day.end * 1000)
+                                                    .toLocaleTimeString("en-GB").slice(0, 5)}
+                                                    <br/>
+                                            </>
+                                        ))}
                                     </p>
+
                                 </div>
                                 <div>
                                     <hr/>
@@ -68,17 +55,17 @@ const EventPage = (props) => {
                                     </p>
                                 </div>
                             </div>
-
                             <div className={`${styles.mainSideView}`}>
                                 <CalendarView {...props}/>
                                 <br/>
                                 <CalendarLink {...props.calendarLink}/>
                                 <div className="fb-share-button"
                                      data-href={window.location.href}
-                                     data-layout="button_count" data-size="small">
+                                     data-layout="button_count"
+                                     data-size="small">
                                     <a target="_blank"
                                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                                       className="fb-xfbml-parse-ignore">Share</a>
+                                       className="fb-xfbml-parse-ignore">Del</a>
                                 </div>
                             </div>
                         </Tab>

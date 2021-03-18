@@ -1,10 +1,15 @@
 import {Form} from "react-bootstrap";
 import DateTimeRangePicker from "@wojtekmaj/react-datetimerange-picker";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 
-const EventsPanelCalendar = () => {
+const EventsPanelCalendar = (props) => {
     const [calendarValue, onCalendarChange] = useState([new Date(), new Date()]);
+    console.log(props)
+
+    useEffect(() => {
+        props.onChange({start: calendarValue[0], end: calendarValue[1]})
+    },[calendarValue])
 
     return(
         <>

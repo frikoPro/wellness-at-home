@@ -29,7 +29,6 @@ const EventsPanel = () => {
 
 	})
 
-
 	return (
 		<>
 			<Card>
@@ -47,13 +46,16 @@ const EventsPanel = () => {
 							<hr/>
 								<EventsPanelImg/>
 							<hr/>
-								<EventsPanelCalendar/>
+								<EventsPanelCalendar
+									{...event.calendarLink}
+									// start={event.calendarLink.start}
+								/>
 						</Form>
 				</Card.Body>
 				<Card.Footer>
 					<Row>
 						<Col sm={2}>
-							<Button onClick={()=>console.log(event)}>Lagre arrangement</Button>
+							<Button onClick={()=>console.log(`submit btn: ${event}`)}>Lagre arrangement</Button>
 							<Button>Forhåndvisning</Button>
 
 						</Col>

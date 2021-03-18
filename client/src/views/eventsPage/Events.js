@@ -31,10 +31,6 @@ const Events = () => {
             },
             meta: {
                 weekdays: [
-                    {day: "Mandag",start: 0, end: 0},
-                    {day: "Tirsdag",start: 0, end: 0},
-                    {day: "Onsdag",start: 0, end: 0},
-                    {day: "Torsdag",start: 0, end: 0},
                     {day: "Fredag",start: 1619164800, end: 1619175600},
                     {day: "Lørdag",start: 1619254800, end: 1619262000},
                     {day: "Søndag",start: 1619341200, end: 1619352000},
@@ -65,10 +61,6 @@ const Events = () => {
             },
             meta: {
                 weekdays: [
-                    {day: "Mandag",start: 0, end: 0},
-                    {day: "Tirsdag",start: 0, end: 0},
-                    {day: "Onsdag",start: 0, end: 0},
-                    {day: "Torsdag",start: 0, end: 0},
                     {day: "Fredag",start: 1619164800, end: 1619175600},
                     {day: "Lørdag",start: 1619254800, end: 1619262000},
                     {day: "Søndag",start: 1619341200, end: 1619352000},
@@ -179,7 +171,7 @@ const Events = () => {
         return (
             <>
                 <div className={`${styles.header}`}>
-                    <h1>Kommende messer og arrangementer hvor vi har stand</h1>
+                    <h1>Kommende messer og arrangementer</h1>
                 </div>
                 <div className={`col-lg-5 col-md-5 col-sm-5 container ${styles.cardContainer}`}>
                     {eventsData.map((event) => (
@@ -201,7 +193,7 @@ const Events = () => {
                                             <img src={`data:image/svg+xml,${pin}`} height={25}/>
                                             {event.city}
                                             <br/>
-                                            <div style={{fontSize: 14, position: "relative", left: 27}}>
+                                            <div style={{fontSize: 12, position: "relative", left: 27}}>
                                                 {new Date(event.date_start*1000)
                                                     .toLocaleDateString("en-GB").slice(0,5)}
                                                 -
