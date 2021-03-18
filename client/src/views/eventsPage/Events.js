@@ -14,8 +14,7 @@ const Events = () => {
    1) fetch eventsData from db, via Axios.
    2) assign eventsData to state
    3) CHECK  before rendering events page, pass id
-   to events page via mapping through the data and returning that objects info
-* */
+   to events page via mapping through the data and returning that objects info */
     // OBS calendar must be set as variable event
     const eventsData = [
         {
@@ -31,15 +30,15 @@ const Events = () => {
                 lng: 10.945199
             },
             meta: {
-                weekdays: {
-                    monday: {start: 0, end: 0},
-                    tuesday: {start: 0, end: 0},
-                    wednesday: {start: 0, end: 0},
-                    thursday: {start: 0, end: 0},
-                    friday: {start: 1619164800, end: 1619175600},
-                    saturday: {start: 1619254800, end: 1619262000},
-                    sunday: {start: 1619341200, end: 1619352000}
-                },
+                weekdays: [
+                    {day: "Mandag",start: 0, end: 0},
+                    {day: "Tirsdag",start: 0, end: 0},
+                    {day: "Onsdag",start: 0, end: 0},
+                    {day: "Torsdag",start: 0, end: 0},
+                    {day: "Fredag",start: 1619164800, end: 1619175600},
+                    {day: "Lørdag",start: 1619254800, end: 1619262000},
+                    {day: "Søndag",start: 1619341200, end: 1619352000},
+                ],
                 desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
             },
             img: "https://via.placeholder.com/1200x500",
@@ -65,15 +64,15 @@ const Events = () => {
                 lng: 150.644
             },
             meta: {
-                weekdays: {
-                    monday: {start: 0, end: 0},
-                    tuesday: {start: 0, end: 0},
-                    wednesday: {start: 0, end: 0},
-                    thursday: {start: 0, end: 0},
-                    friday: {start: 1619164800, end: 1619175600},
-                    saturday: {start: 1619254800, end: 1619262000},
-                    sunday: {start: 1619341200, end: 1619352000}
-                },
+                weekdays: [
+                    {day: "Mandag",start: 0, end: 0},
+                    {day: "Tirsdag",start: 0, end: 0},
+                    {day: "Onsdag",start: 0, end: 0},
+                    {day: "Torsdag",start: 0, end: 0},
+                    {day: "Fredag",start: 1619164800, end: 1619175600},
+                    {day: "Lørdag",start: 1619254800, end: 1619262000},
+                    {day: "Søndag",start: 1619341200, end: 1619352000},
+                ],
                 desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
             },
             img: "https://via.placeholder.com/1200x500",
@@ -99,15 +98,15 @@ const Events = () => {
                 lng: 150.644
             },
             meta: {
-                weekdays: {
-                    monday: {start: 0, end: 0},
-                    tuesday: {start: 0, end: 0},
-                    wednesday: {start: 0, end: 0},
-                    thursday: {start: 0, end: 0},
-                    friday: {start: 1619164800, end: 1619175600},
-                    saturday: {start: 1619254800, end: 1619262000},
-                    sunday: {start: 1619341200, end: 1619352000}
-                },
+                weekdays: [
+                    {day: "Mandag",start: 0, end: 0},
+                    {day: "Tirsdag",start: 0, end: 0},
+                    {day: "Onsdag",start: 0, end: 0},
+                    {day: "Torsdag",start: 0, end: 0},
+                    {day: "Fredag",start: 1619164800, end: 1619175600},
+                    {day: "Lørdag",start: 1619254800, end: 1619262000},
+                    {day: "Søndag",start: 1619341200, end: 1619352000},
+                ],
                 desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
             },
             img: "https://via.placeholder.com/1200x500",
@@ -133,15 +132,15 @@ const Events = () => {
                 lng: 150.644
             },
             meta: {
-                weekdays: {
-                    monday: {start: 0, end: 0},
-                    tuesday: {start: 0, end: 0},
-                    wednesday: {start: 0, end: 0},
-                    thursday: {start: 0, end: 0},
-                    friday: {start: 1619164800, end: 1619175600},
-                    saturday: {start: 1619254800, end: 1619262000},
-                    sunday: {start: 1619341200, end: 1619352000}
-                },
+                weekdays: [
+                    {day: "Mandag",start: 0, end: 0},
+                    {day: "Tirsdag",start: 0, end: 0},
+                    {day: "Onsdag",start: 0, end: 0},
+                    {day: "Torsdag",start: 0, end: 0},
+                    {day: "Fredag",start: 1619164800, end: 1619175600},
+                    {day: "Lørdag",start: 1619254800, end: 1619262000},
+                    {day: "Søndag",start: 1619341200, end: 1619352000},
+                ],
                 desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
             },
             img: "https://via.placeholder.com/1200x500",
@@ -155,7 +154,6 @@ const Events = () => {
         }
     ]
     let history = useHistory();
-
     const handleClick = (create_date) => {
         history.push(`/Arrangementer/eventkode=${create_date}`);
     }
@@ -168,10 +166,8 @@ const Events = () => {
             return false
         }
     }
-
     const match = useRouteMatch('/Arrangementer/eventkode=:id');
     // console.log(match)
-
     if (match !== null) {
         const { params } = match;
         if(getEventObj(params.id)) {
@@ -179,7 +175,6 @@ const Events = () => {
         } else {
             return <NotFoundPage/>
         }
-
     } else {
         return (
             <>
@@ -187,7 +182,6 @@ const Events = () => {
                     <h1>Kommende messer og arrangementer hvor vi har stand</h1>
                 </div>
                 <div className={`col-lg-5 col-md-5 col-sm-5 container ${styles.cardContainer}`}>
-
                     {eventsData.map((event) => (
                             <>
                                 <Card className={`${styles.card}`}>
@@ -195,19 +189,25 @@ const Events = () => {
                                         <div className={`${styles.month}`}>
                                             {new Date(event.date_start*1000)
                                                 .toLocaleDateString('default', { month: 'short' })
-                                                .toLocaleUpperCase()
-                                            }
+                                                .toLocaleUpperCase()}
                                         </div>
                                         <div className={`${styles.date}`}>
                                             {new Date(event.date_start*1000)
-                                                .toLocaleDateString("en-GB").slice(0,2)
-                                            }
+                                                .toLocaleDateString("en-GB").slice(0,2)}
                                         </div>
                                     </div>
                                     <div className={`${styles.bodyContainer}`}>
                                         <div className={`${styles.title}`}>
                                             <img src={`data:image/svg+xml,${pin}`} height={25}/>
                                             {event.city}
+                                            <br/>
+                                            <div style={{fontSize: 14, position: "relative", left: 27}}>
+                                                {new Date(event.date_start*1000)
+                                                    .toLocaleDateString("en-GB").slice(0,5)}
+                                                -
+                                                {new Date(event.date_end*1000)
+                                                    .toLocaleDateString("en-GB").slice(0,5)}
+                                            </div>
                                         </div>
                                         <div className={`${styles.meta}`}>
                                             {event.venue}
