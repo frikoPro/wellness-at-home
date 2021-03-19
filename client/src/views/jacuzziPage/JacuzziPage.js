@@ -50,8 +50,8 @@ const JacuzziPage = () => {
 			);
 
 			productsFiltered = productsFiltered.map((item) => ({
-				images: item.images[0].image,
-				name: item.name,
+				image: item.images[0].image,
+				textHead: item.name,
 			}));
 
 			tempObj.relatedProducts = productsFiltered;
@@ -130,7 +130,7 @@ const JacuzziPage = () => {
 							<h1>Relatert tilbehør</h1>
 						</Col>
 					</Row>
-					<ScrollDiv content={jacuzzi.relatedProductsRendered} size={3} />
+					<ScrollDiv content={jacuzzi.relatedProducts} size={3} />
 				</section>
 			) : null}
 
