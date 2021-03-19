@@ -77,7 +77,7 @@ const SupplierPage = () => {
                     <ScrollDiv
                         content={mappedJacuzzis}
                         returnFunction={(index) => setCurrentSlideImg(index)}
-                        size={2}
+                        size={3}
                     />
                 </Row>
             </section>
