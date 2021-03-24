@@ -21,10 +21,9 @@ const Slideshow = ({
 					<img
 						src={`http://localhost:8080/${item.image}`}
 						alt={`${i + 1}. slideshow`}
-						className={`d-block w-100 ${styling.slideshow}`}
-						style={{ opacity: '0.7' }}></img>
+						className={`d-block w-100 ${styling.slideshow}`}></img>
 
-					<Carousel.Caption>
+					<Carousel.Caption className="mb-5">
 						<h1
 							className={`${styling.textResponsiveH1} ${styling.animateFade1}`}>
 							{item.textHead}
