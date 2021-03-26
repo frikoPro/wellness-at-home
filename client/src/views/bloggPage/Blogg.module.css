@@ -1,6 +1,22 @@
 body{
     background-color: #ff9600;
 }
-.post{
 
+.mainContainer{
+    position: absolute;
+    margin: auto;
+    width: 50%;
+}
+
+.post{
+    padding-top: 1em;
+    position: relative;
+    top: 2em;
+    left: 75%;
+}
+
+.SkeletonLoader{
+    position: relative;
+    left: 75%;
+    top: 2.3em;
 }

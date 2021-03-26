@@ -1,48 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import React, {useEffect, useState} from 'react';
 import styles from './Blogg.module.css';
 import axios from 'axios';
+import ContentLoader from "react-content-loader";
 
 const Blogg = () => {
-  let [fbData, setFbData] = useState([]);
+    let [fbData, setFbData] = useState([]);
+    let [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/facebook').then((response) => {
-      const data = response.data.data;
-      const newData = data.map((item) => ({
-        ...item,
-        page_id: item.id.split('_')[0],
-        post_id: item.id.split('_')[1],
-      }));
+    useEffect(() => {
+        axios.get('http://localhost:8080/facebook').then((response) => {
+            const data = response.data.data;
+            const newData = data.map((item) => ({
+                ...item,
+                page_id: item.id.split('_')[0],
+                post_id: item.id.split('_')[1],
+            }));
+            setFbData(newData);
+            setLoading(true)
+            window?.FB?.XFBML?.parse(); //Loads the JS SDK again so that the "slower" elements gets detected when they render
+        });
+    }, []);
 
-      setFbData(newData);
-      window?.FB?.XFBML?.parse(); //Loads the JS SDK again so that the "slower" elements gets detected when they render
-    });
-  }, []);
+    const SkeletonLoader = () => (
+        <ContentLoader
+            className={`${styles.SkeletonLoader}`}
+            speed={2}
+            width={500}
+            height={600}
+            viewBox="0 0 400 460"
+            backgroundColor="#f2f2f2"
+            foregroundColor="#dbdbdb"
+        >
+            <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
+            <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
+            <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
+            <rect x="0" y="72" rx="3" ry="3" width="410" height="6" />
+            <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
+            <circle cx="20" cy="20" r="20" />
+            <rect x="0" y="110" rx="2" ry="2" width="500" height="600" />
 
-  //       style={{margin: '5px', padding: '5px', width: 800, height: 680}}>
-  // <div className="fb-post" data-href="https://www.facebook.com/102417811874407/posts/106722811443907/" data-width="500" data-show-text="true"></div>
-  //col-lg-${bsNumElement} col-md-${bsNumElement} col-sm-${bsNumElement} container justify-content-center
-  const bsNumElement = 3; // For development purposes
-  return (
-    <>
-      {fbData.map((post) => (
-        <div style={{ paddingTop: 20 }}>
-          <div // todo: Tried to add the styling to a module css
-            className={`col-lg-${bsNumElement} col-md-${bsNumElement} col-sm-${bsNumElement} container justify-content-center ${styles.post}`}>
-            <div
-              style={{ boxShadow: '5px 5px 5px #b3b3b3' }}
-              key={post.post_id} //PostID is unique and a good key
-              className="fb-post"
-              data-href={`https://www.facebook.com/102417811874407/posts/${post.post_id}/`}
-              data-width="500"
-              data-show-text="true"
-            />
-          </div>
-        </div>
-      ))}
-    </>
-  );
+        </ContentLoader>
+    )
+
+    return (
+        <>
+            <div className={`${styles.mainContainer}`}>
+                {loading ?
+                    fbData.map((post) => (
+                        <div className={`${styles.post}`}>
+                            <div
+                                data-href={`https://www.facebook.com/102417811874407/posts/${post.post_id}/`}
+                                key={post.post_id} //PostID is unique and a good key
+                                className="fb-post"
+                                data-width="500"
+                                data-show-text="true"
+                                style={{boxShadow: '5px 5px 5px #b3b3b3'}}
+                            />
+                        </div>
+                    )) : <SkeletonLoader/>}
+            </div>
+        </>
+    );
 };
 
 export default Blogg;
