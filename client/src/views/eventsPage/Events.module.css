@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
-.material-icons{}
+
+.material-icons {
+}
+
 .header {
     background: #d4d4d4;
     height: 120px;
@@ -8,12 +11,14 @@
     align-items: center;
 
 }
-.cardContainer{
+
+.cardContainer {
     justify-content: center;
     top: 1em;
     font-family: 'Mulish', sans-serif;
 }
-.card{
+
+.card {
     flex-direction: row;
     margin: 1em 2em 2em;
     position: relative;
@@ -21,15 +26,16 @@
     width: 650px;
     transition: all .2s ease-in-out;
 }
+
 .card:hover {
     border: 0.1em solid #b3b3b3;
     box-shadow: 6px 6px 6px #b3b3b3;
     transform: scale(1.005);
-    background: #f3f3f3;
+    background: #f8f8f8;
 }
 
 
-.dateContainer{
+.dateContainer {
     /*background: #ffc107;*/
     border-right: 0.01em solid #d6d6d6;
     font-size: 25px;
@@ -38,37 +44,34 @@
     padding: 15px;
 }
 
-.dateContainer:hover {
-    background: #eaeaea;
-}
-
-.bodyContainer{
+.bodyContainer {
     position: relative;
     left: 2%;
     top: 8px;
 }
-.linkContainer{
-    right:1%;
+
+.linkContainer {
+    right: 1%;
     bottom: 5%;
-    position:absolute;
+    position: absolute;
 }
 
-.btn{
+.btn {
     width: 30px;
 }
 
-.month{
+.month {
     color: #ff4a00;
 }
 
-.title{
+.title {
     position: relative;
     top: 0.2em;
     font-size: 1.3rem;
     color: #4a4a4a;
 }
 
-.meta{
+.meta {
     position: relative;
     left: 0.7em;
     font-size: 2rem;

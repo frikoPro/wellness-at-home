@@ -21,7 +21,6 @@ function Gmaps(props) {
         height: '500px'
     };
 
-
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
@@ -48,7 +47,7 @@ function Gmaps(props) {
                         <div>
                             <h3>{chosenMarker.title}</h3>
                             <h5>{chosenMarker.subTitle}</h5>
-                            <h6>{`${chosenMarker.coordinates[0]} ${chosenMarker.coordinates[1]}`}</h6>
+                            <h6>{`${chosenMarker.coordinates[0]}, ${chosenMarker.coordinates[1]}`}</h6>
                             <Button href={chosenMarker.link} target="_blank"
                                     rel="noreferrer noopener">Directions</Button>
                         </div>

@@ -1,13 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Button, Card} from "react-bootstrap";
 import styles from './Events.module.css'
 import {useHistory, useRouteMatch, withRouter} from "react-router-dom";
 import EventPage from "./EventPage";
 import NotFoundPage from "../errorPage/NotFoundPage";
-import LocationPin from "./LocationPin";
-import {renderToStaticMarkup} from "react-dom/server";
-
-const pin = encodeURIComponent(renderToStaticMarkup(<LocationPin/>))
 
 const Events = () => {
 /*todo:
@@ -127,7 +123,6 @@ const Events = () => {
     }
 
     let history = useHistory();
-
 
     const handleClick = (create_date) => {
         history.push(`/Arrangementer/eventkode=${create_date}`);

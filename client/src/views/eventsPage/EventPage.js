@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Gmaps from "../../components/Gmaps";
 import CalendarLink from "../../components/ CalendarLink";
 import {Breadcrumb, Tab, Tabs} from "react-bootstrap";
@@ -10,7 +10,7 @@ const EventPage = (props) => {
 
     useEffect(() => {
         window?.FB?.XFBML?.parse();
-    },[])
+    }, [])
 
     return (
         <>
@@ -43,11 +43,11 @@ const EventPage = (props) => {
                                     <p>
                                         {new Date(props.date_start * 1000)
                                             .toLocaleDateString("en-GB").slice(0, 5)}
-                                            -
+                                        -
                                         {new Date(props.date_end * 1000)
                                             .toLocaleDateString("en-GB").slice(0, 5)}
-                                            <br/>
-                                            <br/>
+                                        <br/>
+                                        <br/>
                                         {props.meta.weekdays.map((day) => (
                                             <>
                                                 {day.day}: {new Date(day.start * 1000)
@@ -55,7 +55,7 @@ const EventPage = (props) => {
                                                 -
                                                 {new Date(day.end * 1000)
                                                     .toLocaleTimeString("en-GB").slice(0, 5)}
-                                                    <br/>
+                                                <br/>
                                             </>
                                         ))}
                                     </p>
@@ -78,8 +78,8 @@ const EventPage = (props) => {
                                      data-size="large"
                                      style={{top: 5}}
                                 ><a target="_blank"
-                                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                                       className="fb-xfbml-parse-ignore">Del</a>
+                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                                    className="fb-xfbml-parse-ignore">Del</a>
                                 </div>
                             </div>
                         </Tab>

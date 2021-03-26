@@ -1,35 +1,39 @@
-.mapStyles{
+.mapStyles {
     width: 100%;
     height: 100%;
 }
-.mainContainer{
+
+.mainContainer {
     overflow: hidden;
     margin: auto;
     width: 70%;
     padding: 10px;
 }
 
-.bannerImg{
+.bannerImg {
     max-width: 1200px;
     max-height: 500px;
     display: block;
     margin: auto;
     box-shadow: 5px 5px 5px #b3b3b3;
 }
-.title{
+
+.title {
     text-align: left;
 }
+
 .tabsContainer {
     border: 1px solid #dee2e6;
     background-color: white;
     width: auto;
 }
 
-.tab{
-    max-width:100%;
+.tab {
+    max-width: 100%;
     margin: auto;
 }
-.mainView{
+
+.mainView {
     margin: 10px;
     width: 60%;
 }
@@ -40,7 +44,8 @@
     top: 10px;
     right: 10px;
 }
-.tabsContainer{
+
+.tabsContainer {
     position: relative;
     overflow: hidden;
 }
@@ -51,7 +56,7 @@
 
 }
 
-.mainViewTitle{
+.mainViewTitle {
 
 }
 
