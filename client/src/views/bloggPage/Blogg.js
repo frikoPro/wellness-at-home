@@ -28,8 +28,8 @@ const Blogg = () => {
             width={500}
             height={600}
             viewBox="0 0 400 460"
-            backgroundColor="#f2f2f2"
-            foregroundColor="#dbdbdb"
+            backgroundColor="#d9d9d9"
+            foregroundColor="#969696"
         >
             <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
             <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
@@ -64,3 +64,6 @@ const Blogg = () => {
 };
 
 export default Blogg;
+
+
+// https://www.npmjs.com/package/react-content-loader
