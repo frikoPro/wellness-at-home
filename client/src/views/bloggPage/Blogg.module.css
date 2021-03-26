@@ -3,7 +3,6 @@ body{
 }
 
 .mainContainer{
-    position: absolute;
     margin: auto;
     width: 50%;
 }
@@ -12,11 +11,11 @@ body{
     padding-top: 1em;
     position: relative;
     top: 2em;
-    left: 75%;
+    left: 25%;
 }
 
 .SkeletonLoader{
     position: relative;
-    left: 75%;
+    left: 25%;
     top: 2.3em;
 }
