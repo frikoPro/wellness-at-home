@@ -4,6 +4,7 @@ import CalendarLink from "../../components/ CalendarLink";
 import {Breadcrumb, Tab, Tabs} from "react-bootstrap";
 import styles from "./EventPage.module.css";
 import CalendarView from "../../components/CalendarView";
+import {PageHeader} from "antd";
 
 const EventPage = (props) => {
     console.log(window.location.href)
@@ -15,11 +16,12 @@ const EventPage = (props) => {
     return (
         <>
             <div>
-                <Breadcrumb>
-                    <Breadcrumb.Item href="/">Hjem</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/Arrangementer">Arrangementer</Breadcrumb.Item>
-                    <Breadcrumb.Item href="">{props.venue}</Breadcrumb.Item>
-                </Breadcrumb>
+                <PageHeader
+                    className="site-page-header"
+                    onBack={() => window.location.href = "/Arrangementer"}
+                    title="Arrangementer"
+                    subTitle={props.venue}
+                />
             </div>
             <img src={props.img}
                  class="d-flex justify-content-center" className={`${styles.bannerImg}`}/>

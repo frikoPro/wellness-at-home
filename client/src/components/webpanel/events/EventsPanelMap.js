@@ -1,7 +1,7 @@
 const EventsPanelMap = () => {
     return (
         <>
-            <h6>Map</h6>
+            <h6>Address</h6>
             <h1>Placeholder</h1>
         </>
     )

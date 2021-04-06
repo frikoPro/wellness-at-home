@@ -4,6 +4,7 @@ import EventsPanelDate from "./EventsPanelDate";
 import EventsPanelMap from "./EventsPanelMap";
 import EventsPanelImg from "./EventsPanelImg";
 import EventsPanelCalendar from "./EventsPanelCalendar";
+import EventsPanelInfo from "./EventsPanelInfo";
 
 const EventsPanel = () => {
 	const [event, setEvent] = useState({
@@ -26,7 +27,6 @@ const EventsPanel = () => {
 			end: "2019-11-29 18:00:00 +0100",
 			allDay: true
 		}
-
 	})
 
 	return (
@@ -36,6 +36,7 @@ const EventsPanel = () => {
 					<Card.Title>Opprett arrangement</Card.Title>
 						<Form>
 							<hr/>
+								<EventsPanelInfo/>
 								<EventsPanelDate
 									start={event.date.start}
 									end={event.date.end}
@@ -46,10 +47,7 @@ const EventsPanel = () => {
 							<hr/>
 								<EventsPanelImg/>
 							<hr/>
-								<EventsPanelCalendar
-									{...event.calendarLink}
-									// start={event.calendarLink.start}
-								/>
+
 						</Form>
 				</Card.Body>
 				<Card.Footer>
