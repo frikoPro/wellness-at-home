@@ -3,7 +3,6 @@ import React, {useState} from "react";
 import EventsPanelDate from "./EventsPanelDate";
 import EventsPanelMap from "./EventsPanelMap";
 import EventsPanelImg from "./EventsPanelImg";
-import EventsPanelCalendar from "./EventsPanelCalendar";
 import EventsPanelInfo from "./EventsPanelInfo";
 
 const EventsPanel = () => {
