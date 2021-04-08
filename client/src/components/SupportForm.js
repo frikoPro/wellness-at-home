@@ -82,7 +82,7 @@ const SupportForm = () => {
 				/>
 			</Form.Group>
 			<Form.Group controlId="supportForm.ControlInputProblem">
-				<Form.Label>Type problem:</Form.Label>
+				<Form.Label>Hva trenger du hjelp med?:</Form.Label>
 				<Form.Control
 					className="border-dark"
 					onChange={(e) => setProblem(e.target.value)}

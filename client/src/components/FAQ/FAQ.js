@@ -25,7 +25,7 @@ const FAQ = ({ question, answer, _id }) => {
 
 	return (
 		<Accordion>
-			<Card>
+			<Card style={{cursor: "pointer"}}>
 				<Accordion.Toggle as={Card.Header} eventKey="0">
 					{question}
 				</Accordion.Toggle>

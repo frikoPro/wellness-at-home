@@ -76,6 +76,7 @@ const ScrollDiv = ({ content, returnFunction, size }) => {
             sm={size * 2}
             md={size * 1.5}
             lg={size}
+            style={{cursor: "pointer"}}
             className="align-self-center"
             key={index}
             onClick={() => returnFunction(index, item._id)}>

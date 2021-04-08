@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 const DropdownSection = ({ section, styling }) => {
 	return section.map((item, i) => (
 		<Col className="text-center" key={i}>
-			<a href={`/${item.brand}`}>
+			<a href={`/leverandør/${item.brand}`}>
 				<h5
 					className={`m-3 nav-text-color hover-gold ${styling.dropmenuItemHeader}`}>
 					{item.brand}
