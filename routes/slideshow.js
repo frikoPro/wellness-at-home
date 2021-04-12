@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const verify = require('../controllers/AuthController');
 const Slideshow = require('../models/slideshow.model');
+const upload = require('./uploadImages');
 
 router.route('/').get(async (req, res, next) => {
 	try {
@@ -11,30 +12,48 @@ router.route('/').get(async (req, res, next) => {
 	}
 });
 
-router.route('/add').post(verify, async (req, res, next) => {
-	const newSlideshow = new Slideshow({ ...req.body });
+router
+	.route('/add')
+	.post(verify, upload.array('files'), async (req, res, next) => {
+		if (req.files.length === 0)
+			return res
+				.status(400)
+				.send({ messages: ['Mangler bilde'], fields: ['images'] });
 
-	try {
-		await newSlideshow.save();
-		res.status(200).json('Nytt element lagret');
-	} catch (err) {
-		next(err);
-	}
-});
+		const newSlideshow = new Slideshow({
+			...JSON.parse(req.body.data),
+			image: req.files[0].filename,
+		});
 
-router.route('/:id').patch(verify, async (req, res, next) => {
-	try {
-		const updatedSlide = await Slideshow.findById(req.params.id).exec();
+		try {
+			await newSlideshow.save();
+			res.status(200).json('Nytt element lagret');
+		} catch (err) {
+			next(err);
+		}
+	});
 
-		updatedSlide.overwrite({ ...req.body });
+router
+	.route('/:id')
+	.patch(verify, upload.array('files'), async (req, res, next) => {
+		const body = JSON.parse(req.body.data);
 
-		await updatedSlide.save();
+		try {
+			const updatedSlide = await Slideshow.findById(req.params.id).exec();
 
-		res.status(200).json('Slideshow er oppdatert');
-	} catch (err) {
-		next(err);
-	}
-});
+			if (req.files.length > 0) {
+				updatedSlide.overwrite({ ...body, image: req.files[0].filename });
+			} else {
+				updatedSlide.overwrite({ ...body });
+			}
+
+			await updatedSlide.save();
+
+			res.status(200).json('Slideshow er oppdatert');
+		} catch (err) {
+			next(err);
+		}
+	});
 
 router.route('/:id').delete(verify, async (req, res, next) => {
 	try {

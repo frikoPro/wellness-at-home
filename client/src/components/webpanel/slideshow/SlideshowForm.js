@@ -25,16 +25,19 @@ const SlideshowForm = ({ handleChange, handleImage, values, error }) => {
 				<Form.Label>Bilder</Form.Label>
 				<Form.Control
 					type="file"
-					name="file"
+					name="files"
 					onChange={handleImage}
 					accept="image/x-png,image/gif,image/jpeg"
 				/>
 				<Form.Text className="text-danger">{error('images')}</Form.Text>
 			</Form.Group>
 			<Row className="w-100">
-				{values.image ? (
+				{values.newImages ? (
 					<Col sm={2}>
-						<img src={values.image.preview} alt="" className="w-100"></img>
+						<img
+							src={values.newImages.preview[0]}
+							alt=""
+							className="w-100"></img>
 					</Col>
 				) : null}
 			</Row>

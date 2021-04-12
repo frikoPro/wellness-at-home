@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const verify = require('../controllers/AuthController');
 const FAQ = require('../models/faq.model');
+const upload = require('./uploadImages');
 
 router.route('/').get(async (req, res, next) => {
 	try {
@@ -11,8 +12,8 @@ router.route('/').get(async (req, res, next) => {
 	}
 });
 
-router.route('/add').post(verify, async (req, res, next) => {
-	const newFAQ = new FAQ({ ...req.body });
+router.route('/add').post(verify, upload.none(), async (req, res, next) => {
+	const newFAQ = new FAQ({ ...JSON.parse(req.body.data) });
 
 	console.log(req.body);
 
@@ -33,11 +34,11 @@ router.route('/:id').delete(verify, async (req, res, next) => {
 	}
 });
 
-router.route('/:id').patch(verify, async (req, res, next) => {
+router.route('/:id').patch(verify, upload.none(), async (req, res, next) => {
 	try {
 		const updatedFAQ = await FAQ.findById(req.params.id).exec();
 
-		updatedFAQ.overwrite({ ...req.body });
+		updatedFAQ.overwrite({ ...JSON.parse(req.body.data) });
 
 		await updatedFAQ.save();
 

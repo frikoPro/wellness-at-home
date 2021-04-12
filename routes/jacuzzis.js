@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const verify = require('../controllers/AuthController');
 let Jacuzzi = require('../models/jacuzzi.model');
+const upload = require('./uploadImages');
 
 router.route('/').get(async (req, res, next) => {
 	try {
@@ -11,34 +12,21 @@ router.route('/').get(async (req, res, next) => {
 	}
 });
 
-router.route('/add').post(verify, async (req, res, next) => {
-	const name = req.body.name;
-	const brand = req.body.brand;
-	const images = req.body.images;
-	const aboutProduct = req.body.aboutProduct;
-	const price = req.body.price;
-	const techSpec = req.body.techSpec;
-	const relatedProducts = req.body.relatedProducts;
-	const userReviews = req.body.userReviews;
+router
+	.route('/add')
+	.post(verify, upload.array('files'), async (req, res, next) => {
+		const newJacuzzi = new Jacuzzi({
+			...JSON.parse(req.body.data),
+			images: req.files.map((file) => ({ image: file.filename })),
+		});
 
-	const newJacuzzi = new Jacuzzi({
-		name,
-		brand,
-		images,
-		aboutProduct,
-		price,
-		techSpec,
-		relatedProducts,
-		userReviews,
+		try {
+			await newJacuzzi.save();
+			res.status(200).json('produkt lagt inn');
+		} catch (err) {
+			next(err);
+		}
 	});
-
-	try {
-		await newJacuzzi.save();
-		res.status(200).json('produkt lagt inn');
-	} catch (err) {
-		next(err);
-	}
-});
 
 router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
@@ -49,18 +37,27 @@ router.route('/:id').delete(verify, async (req, res, next) => {
 	}
 });
 
-router.route('/:id').patch(verify, async (req, res, next) => {
-	try {
-		const updatedJacuzzi = await Jacuzzi.findById(req.params.id).exec();
+router
+	.route('/:id')
+	.patch(verify, upload.array('files'), async (req, res, next) => {
+		try {
+			const body = {
+				...JSON.parse(req.body.data),
+			};
 
-		updatedJacuzzi.overwrite({ ...req.body });
+			if (req.files.length > 0)
+				body.images = req.files.map((file) => ({ image: file.filename }));
 
-		await updatedJacuzzi.save();
+			const updatedJacuzzi = await Jacuzzi.findById(req.params.id).exec();
 
-		res.status(200).json('Produktet er oppdatert');
-	} catch (err) {
-		next(err);
-	}
-});
+			updatedJacuzzi.overwrite({ ...body });
+
+			await updatedJacuzzi.save();
+
+			res.status(200).json('Produktet er oppdatert');
+		} catch (err) {
+			next(err);
+		}
+	});
 
 module.exports = router;

@@ -5,14 +5,13 @@ import SlideshowForm from './SlideshowForm';
 const AddSlideshow = () => {
 	const {
 		submitData,
-		handleImage,
+		handleImages,
 		handleChange,
 		values,
 		onSuccess,
 		returnErrors,
 	} = UseForm({
 		initialValues: {
-			image: '',
 			textHead: '',
 			textP: '',
 		},
@@ -25,7 +24,7 @@ const AddSlideshow = () => {
 				<Card.Title>Legg til slideshow</Card.Title>
 				<SlideshowForm
 					handleChange={handleChange}
-					handleImage={handleImage}
+					handleImage={handleImages}
 					values={values}
 					error={returnErrors}
 				/>

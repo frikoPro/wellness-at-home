@@ -12,6 +12,7 @@ const port = 8080;
 
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(bodyParser.json());
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/client/build')));
 app.use(express.static('public'));
@@ -28,7 +29,6 @@ connection.once('open', () => {
 	console.log('MongoDB database connection established sucessfully');
 });
 
-const imageRouter = require('./routes/uploadImages');
 const jacuzzisRouter = require('./routes/jacuzzis');
 const productsRouter = require('./routes/products');
 const userRouter = require('./routes/Users');
@@ -39,7 +39,6 @@ const SendMailRouter = require('./routes/sendMail');
 
 const errorController = require('./controllers/ErrorController');
 
-app.use('/images', imageRouter);
 app.use('/jacuzzis', jacuzzisRouter);
 app.use('/products', productsRouter);
 app.use('/users', userRouter);

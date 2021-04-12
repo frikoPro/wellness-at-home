@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const verify = require('../controllers/AuthController');
 let Product = require('../models/product.model');
+const upload = require('./uploadImages');
 
 router.route('/').get((req, res) => {
 	Product.find()
@@ -8,34 +9,21 @@ router.route('/').get((req, res) => {
 		.catch((err) => res.status(400).json('Error: ', err));
 });
 
-router.route('/add').post(verify, async (req, res, next) => {
-	const name = req.body.name;
-	const affiliation = req.body.affiliation;
-	const images = req.body.images;
-	const category = req.body.category;
-	const aboutProduct = req.body.aboutProduct;
-	const price = req.body.price;
-	const techSpec = req.body.techSpec;
-	const relatedProducts = req.body.relatedProducts;
+router
+	.route('/add')
+	.post(verify, upload.array('files'), async (req, res, next) => {
+		const newProduct = new Product({
+			...JSON.parse(req.body.data),
+			images: req.files.map((file) => ({ image: file.filename })),
+		});
 
-	const newProduct = new Product({
-		name,
-		affiliation,
-		category,
-		images,
-		aboutProduct,
-		price,
-		techSpec,
-		relatedProducts,
+		try {
+			await newProduct.save();
+			res.status(200).json('produkt lagt inn');
+		} catch (err) {
+			next(err);
+		}
 	});
-
-	try {
-		await newProduct.save();
-		res.status(200).json('produkt lagt inn');
-	} catch (err) {
-		next(err);
-	}
-});
 
 router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
@@ -46,18 +34,27 @@ router.route('/:id').delete(verify, async (req, res, next) => {
 	}
 });
 
-router.route('/:id').patch(verify, async (req, res, next) => {
-	try {
-		const updatedProduct = await Product.findById(req.body._id).exec();
+router
+	.route('/:id')
+	.patch(verify, upload.array('files'), async (req, res, next) => {
+		try {
+			const body = {
+				...JSON.parse(req.body.data),
+			};
 
-		updatedProduct.overwrite({ ...req.body });
+			if (req.files.length > 0)
+				body.images = req.files.map((file) => ({ image: file.filename }));
 
-		await updatedProduct.save();
+			const updatedProduct = await Product.findById(req.params.id).exec();
 
-		res.status(200).json('Produktet er oppdatert');
-	} catch (err) {
-		next(err);
-	}
-});
+			updatedProduct.overwrite({ ...body });
+
+			await updatedProduct.save();
+
+			res.status(200).json('Produktet er oppdatert');
+		} catch (err) {
+			next(err);
+		}
+	});
 
 module.exports = router;
