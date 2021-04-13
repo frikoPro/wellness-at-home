@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const verify = require('../controllers/AuthController');
 const Slideshow = require('../models/slideshow.model');
-const upload = require('./uploadImages');
+const upload = require('./uploadImages').upload;
+const deleteImages = require('./uploadImages').onDelete;
+const updateImageFiles = require('./uploadImages').onUpdate;
 
 router.route('/').get(async (req, res, next) => {
 	try {
@@ -36,9 +38,10 @@ router
 router
 	.route('/:id')
 	.patch(verify, upload.array('files'), async (req, res, next) => {
-		const body = JSON.parse(req.body.data);
-
+		updateImageFiles(req);
 		try {
+			const body = JSON.parse(req.body.data);
+
 			const updatedSlide = await Slideshow.findById(req.params.id).exec();
 
 			if (req.files.length > 0) {
@@ -57,6 +60,11 @@ router
 
 router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
+		const slideshow = findById(req.params.id).exec();
+
+		//Accepts only array as datatype
+		deleteImages([slideshow.image]);
+
 		await Slideshow.findByIdAndDelete(req.params.id);
 		res.status(200).json('Slide slettet');
 	} catch (err) {

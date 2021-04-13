@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const verify = require('../controllers/AuthController');
 let Jacuzzi = require('../models/jacuzzi.model');
-const upload = require('./uploadImages');
+const upload = require('./uploadImages').upload;
+const updateImageFiles = require('./uploadImages').onUpdate;
+const deleteImages = require('./uploadImages').onDelete;
 
 router.route('/').get(async (req, res, next) => {
 	try {
@@ -30,6 +32,10 @@ router
 
 router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
+		const jacuzzi = Jacuzzi.findById(req.params.id).exec();
+
+		deleteImages(jaccuzzi.images);
+
 		await Jacuzzi.findByIdAndDelete(req.params.id);
 		res.status(200).json('Produktet er slettet');
 	} catch (err) {
@@ -40,6 +46,8 @@ router.route('/:id').delete(verify, async (req, res, next) => {
 router
 	.route('/:id')
 	.patch(verify, upload.array('files'), async (req, res, next) => {
+		updateImageFiles(req);
+
 		try {
 			const body = {
 				...JSON.parse(req.body.data),

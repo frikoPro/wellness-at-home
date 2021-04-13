@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const verify = require('../controllers/AuthController');
 const FAQ = require('../models/faq.model');
-const upload = require('./uploadImages');
+const upload = require('./uploadImages').upload;
 
 router.route('/').get(async (req, res, next) => {
 	try {

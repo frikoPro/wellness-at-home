@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const verify = require('../controllers/AuthController');
 let Product = require('../models/product.model');
-const upload = require('./uploadImages');
+const upload = require('./uploadImages').upload;
+const updateImageFiles = require('./uploadImages').onUpdate;
+const deleteImages = require('./uploadImages').onDelete;
 
 router.route('/').get((req, res) => {
 	Product.find()
@@ -27,6 +29,11 @@ router
 
 router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
+		const product = await Product.findById(req.params.id).exec();
+
+		//delete corresponding images
+		deleteImages(product.images);
+
 		await Product.findByIdAndDelete(req.params.id);
 		res.status(200).json('Produktet er slettet');
 	} catch (err) {
@@ -37,6 +44,8 @@ router.route('/:id').delete(verify, async (req, res, next) => {
 router
 	.route('/:id')
 	.patch(verify, upload.array('files'), async (req, res, next) => {
+		updateImageFiles(req);
+
 		try {
 			const body = {
 				...JSON.parse(req.body.data),
