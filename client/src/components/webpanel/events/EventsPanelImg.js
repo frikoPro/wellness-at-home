@@ -6,13 +6,19 @@ const EventsPanelImg = () => {
 
     return(
         <>
-            <Form.Group>
-                <Form.Label>Bilde</Form.Label>
-                <Form.File id="exampleFormControlFile1" label="Last opp banner bilde" />
-                <img src={"https://via.placeholder.com/1200x500"}
-                />
-            </Form.Group>
-        </>
+            <h1>Img placeholder</h1>
+            {/*<Form.Group>*/}
+            {/*    <Form.Label>Bilder</Form.Label>*/}
+            {/*    <Form.Control*/}
+            {/*        type="file"*/}
+            {/*        name="multi-files"*/}
+            {/*        onChange={handleImages}*/}
+            {/*        multiple*/}
+            {/*    />*/}
+            {/*    <Form.Text className="text-danger">{returnErrors('images')}</Form.Text>*/}
+            {/*</Form.Group>*/}
+            </>
     );
 };
+
 export default EventsPanelImg;

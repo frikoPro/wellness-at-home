@@ -4,29 +4,44 @@ import EventsPanelDate from "./EventsPanelDate";
 import EventsPanelMap from "./EventsPanelMap";
 import EventsPanelImg from "./EventsPanelImg";
 import EventsPanelInfo from "./EventsPanelInfo";
+import UseForm from "../UseForm";
 
 const EventsPanel = () => {
-	const [event, setEvent] = useState({
-		date: {
-			start: 1615200485,
-			end: 1615546085,
+
+	const [preview, setPreview] = useState(false)
+	const triggerPreview = () => {
+		setPreview( !preview )
+	}
+
+	const [event2, setEvent] = useState({
+			create_date: 1676639434,
+			update_date: 1676639434,
+			date: {
+				date_start: 1619164800,
+				date_end: 1619352000
+			},
+			address: {
+				streetname: "Knoffs gate 18",
+				city: "Drammen",
+				postalcode: "3044"
+			},
+			venue: "Drammenshallen",
+			pos: {
+				lat: 59.73521,
+				lng: 10.20528
+			},
+			meta: {
+				weekdays: [ // Think ill remove weekdays, and if needed just add them as text
+					{day: "Fredag",start: 1619164800, end: 1619175600},
+					{day: "Lørdag",start: 1619254800, end: 1619262000},
+					{day: "Søndag",start: 1619341200, end: 1619352000},
+				],
+				desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+			},
+			img: "https://dhk.no/wp-content/uploads/sites/7/2019/07/Drammenshallen.jpg",
 		},
-		city: "Drammen",
-		address: "Drammenvegen 22",
-		location: "Drammenshallen",
-		pos: {
-			lat: 59.952769,
-			lng: 10.945199
-		},
-		img: "https://via.placeholder.com/200x100",
-		calendarLink: {
-			title: "My birthday party111",
-			description: "Be there!",
-			start: "2019-12-29 18:00:00 +0100",
-			end: "2019-11-29 18:00:00 +0100",
-			allDay: true
-		}
-	})
+	)
+	const { values, handleChange, handleEvent, handleImages, submitData } = UseForm({initialValues: {event2}, url: "http://localhost:8080/events"})
 
 	return (
 		<>
@@ -35,14 +50,45 @@ const EventsPanel = () => {
 					<Card.Title>Opprett arrangement</Card.Title>
 						<Form>
 							<hr/>
-								<EventsPanelInfo/>
+								<EventsPanelInfo
+								//venue={event.venue}
+								// description={event.meta.desc}
+									handleChange={handleChange}
+									onVenueChange={(venue) => {setEvent({...event2, venue})}}
+									onTextChange={(description) => {setEvent({
+									// dump the contents of event2
+									...event2, 				
+									meta: { 
+										// dump the contents of event2.meta into meta
+										...event2.meta, 
+										desc: description
+									}
+								})
+							}}
+								/>
 								<EventsPanelDate
-									start={event.date.start}
-									end={event.date.end}
-									onChange={(date) => {setEvent({date:date})}}
+									// start={event.date.date_start}
+									// end={event.date.date_end}
+									onChange={(date) => {setEvent({...event2, date:date})}}
 								/>
 							<hr/>
-								<EventsPanelMap/>
+								<EventsPanelMap
+									onStreetChange={(streetname) => {setEvent({
+										...event2, address: {
+											...event2.address, streetname: streetname}
+										})
+									}}
+									onCityChange={(city) => {setEvent({
+										...event2, address: {
+											...event2.address, city: city}
+										})
+									}}
+									onPostalCodeChange={(postalcode) => {setEvent({
+										...event2, address: {
+											...event2.address, postalcode: postalcode}
+										})
+									}}
+								/>
 							<hr/>
 								<EventsPanelImg/>
 							<hr/>
@@ -52,18 +98,19 @@ const EventsPanel = () => {
 				<Card.Footer>
 					<Row>
 						<Col sm={2}>
-							<Button onClick={()=>console.log(`submit btn: ${event}`)}>Lagre arrangement</Button>
-							<Button>Forhåndvisning</Button>
-
+							<Button onClick={()=>console.log(event2)}>Lagre arrangement</Button>
+							<br/>
+							<br/>
+							<Button onClick={()=> triggerPreview()}>Forhåndvisning</Button>
 						</Col>
 						<Col className="align-self-center">
 						</Col>
 					</Row>
 				</Card.Footer>
 			</Card>
-			<Card>
+			{preview ? <Card>
 				<iframe style={{height: 900}} src={"www.google.com"}/>
-			</Card>
+			</Card> : <Card/>}
 		</>
 	)
 };

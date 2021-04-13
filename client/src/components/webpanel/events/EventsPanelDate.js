@@ -1,26 +1,27 @@
 import {Form} from "react-bootstrap";
-import DateRangePicker from "@wojtekmaj/react-daterange-picker";
-import TimeRangePicker from "@wojtekmaj/react-timerange-picker";
 import React, {useEffect, useState} from "react";
-import * as dayjs from 'dayjs'
 import { DatePicker, Space } from 'antd';
 import 'antd/dist/antd.css';
+import dayjs from "dayjs";
 
 
 const EventsPanelDate = (props) => {
-    //
-    // // string format of hour:minutes
+
+    // string format of hour:minutes
     // const startTime = (dayjs(props.start*1000).format("hh:mm"))
     // const endTime = (dayjs(props.end*1000).format("hh:mm"))
-    //
+
     // const [dateValue, onDateChange] = useState([new Date(props.start*1000), new Date(props.end*1000)]);
     // const [timeValue, onTimeChange] = useState([startTime, endTime]);
-    //
-    // // whenever the date changes
-    // useEffect(() => {
-    //     props.onChange({start: dateValue[0], end: dateValue[1]})
-    //     },[dateValue])
-    //
+
+    const [dateString, setDateString] = useState([])
+
+    // whenever the date changes
+    useEffect(() => {
+        props.onChange(dateString)
+    },[dateString])
+
+
     // // whenever the time changes
     // useEffect(() => {
     //     // get the hour and the minutes exactly by splitting via the colon symbol, ':'
@@ -34,14 +35,22 @@ const EventsPanelDate = (props) => {
     //     // update our dates state
     //     onDateChange([startDate, endDate])
     // },[timeValue])
-    //
-    // console.log(props)
+
+    // console.log(dayjs(dateString[0]).unix())
+    // console.log(dayjs(dateString[1]).unix())
 
     const { RangePicker } = DatePicker;
 
-    function onChange(value, dateString) {
-        console.log('Selected Time: ', value);
-        console.log('Formatted Selected Time: ', dateString);
+    // momentjs object
+    function onChange(momentValues, dateStrings) {
+        console.log('Selected Time: ', momentValues);
+        console.log('Formatted Selected Time: ', dateStrings);
+        if(momentValues === null || momentValues.length === 0 || momentValues.length === 1) {
+            setDateString([])
+            return;
+        }
+        const dateArray = [momentValues[0]?.unix(), momentValues[1]?.unix()]
+        setDateString(dateArray)
     }
 
     function onOk(value) {
