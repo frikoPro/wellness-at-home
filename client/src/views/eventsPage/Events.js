@@ -19,8 +19,10 @@ const Events = () => {
             {
                 create_date: 1676639434,
                 update_date: 1676639434,
-                date_start: 1619164800,
-                date_end: 1619352000,
+                date: {
+                    date_start: 1619164800,
+                    date_end: 1619352000
+                },
                 address: {
                     streetname: "Knoffs gate 18",
                     city: "Drammen",
@@ -41,11 +43,14 @@ const Events = () => {
                 },
                 img: "https://dhk.no/wp-content/uploads/sites/7/2019/07/Drammenshallen.jpg",
             },
+
             {
                 create_date: 1992258634,
                 update_date: 1992258634,
-                date_start: 1620646898,
-                date_end: 1618054898,
+                date: {
+                    date_start: 1620646898,
+                    date_end: 1618054898
+                },
                 address: {
                     streetname: "Widerøeveien 1",
                     city: "Fornebu",
@@ -65,11 +70,14 @@ const Events = () => {
                 },
                 img: "https://upload.wikimedia.org/wikipedia/commons/5/55/Telenor_Arena_Fornebu_%286.juni_2018_cropped%29.jpg",
             },
+
             {
                 create_date: 1992358634,
                 update_date: 1992258634,
-                date_start: 1621576800,
-                date_end: 1621774800,
+                date: {
+                    date_start: 1621576800,
+                    date_end: 1621774800
+                },
                 address: {
                     streetname: "Sjømannsvegen 16",
                     city: "Ålesund",
@@ -90,11 +98,14 @@ const Events = () => {
                 },
                 img: "https://www.kystmagasinet.no/wp-content/uploads/sites/8/2019/10/Untitled-1-3.jpg",
             },
+
             {
                 create_date: 856185034,
                 update_date: 856185034,
-                date_start: 1621231200,
-                date_end: 1621764000,
+                date: {
+                    date_start: 1621231200,
+                    date_end: 1621764000
+                },
                 address: {
                     streetname: "Idrettsvegen 50",
                     city: "Straume",
@@ -157,12 +168,12 @@ const Events = () => {
                                 <Card className={`${styles.card}`}>
                                     <div className={`${styles.dateContainer}`}>
                                         <div className={`${styles.month}`}>
-                                            {new Date(event.date_start*1000)
+                                            {new Date(event.date.date_start*1000)
                                                 .toLocaleDateString('default', { month: 'short' })
                                                 .toLocaleUpperCase()}
                                         </div>
                                         <div className={`${styles.date}`}>
-                                            {new Date(event.date_start*1000)
+                                            {new Date(event.date.date_start*1000)
                                                 .toLocaleDateString("en-GB").slice(0,2)}
                                         </div>
                                     </div>
@@ -172,10 +183,10 @@ const Events = () => {
                                             {event.address.city}
                                             <br/>
                                             <div style={{fontSize: 12, position: "relative", left: 25}}>
-                                                {new Date(event.date_start*1000)
+                                                {new Date(event.date.date_start*1000)
                                                     .toLocaleDateString("en-GB").slice(0,5)}
                                                  -
-                                                {new Date(event.date_end*1000)
+                                                {new Date(event.date.date_end*1000)
                                                     .toLocaleDateString("en-GB").slice(0,5)}
                                             </div>
                                         </div>

@@ -9,7 +9,6 @@ function Gmaps(props) {
         id: 'google-map-script',
         googleMapsApiKey: api
     })
-
     const [chosenMarker, setChosenMarker] = useState({})
 
     const initialPos = {
@@ -20,6 +19,7 @@ function Gmaps(props) {
         width: 'auto',
         height: '500px'
     };
+    
 
     return isLoaded ? (
         <GoogleMap
@@ -61,3 +61,5 @@ export default React.memo(Gmaps);
 
 //https://www.npmjs.com/package/@react-google-maps/api
 // old https://www.npmjs.com/package/google-maps-react
+
+
