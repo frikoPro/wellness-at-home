@@ -96,7 +96,7 @@ const UserForm = ({
 				<Form.Label>Bilder</Form.Label>
 				<Form.Control
 					type="file"
-					name="multi-files"
+					name="files"
 					onChange={handleImages}
 					multiple
 				/>
@@ -104,8 +104,8 @@ const UserForm = ({
 			</Form.Group>
 			<Form.Group>
 				<Row className="w-100">
-					{values.images.preview
-						? values.images.preview.map((img, i) => (
+					{values.newImages
+						? values.newImages.preview.map((img, i) => (
 								<Col sm={2} key={i}>
 									<img src={img} alt="" className="w-100"></img>
 								</Col>

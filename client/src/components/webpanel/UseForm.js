@@ -6,6 +6,7 @@ const UseForm = ({ initialValues, url }) => {
 	const [error, setError] = useState(null);
 	const [onSuccess, setSuccess] = useState(null);
 
+	// useEffect is called everytime when the api is successful. If successful, then timeout 500ms, then update page for reloading new items.
 	useEffect(() => {
 		if (onSuccess) {
 			setTimeout(() => {
@@ -14,6 +15,7 @@ const UseForm = ({ initialValues, url }) => {
 		}
 	}, [onSuccess]);
 
+	//Setting value for corresponding name/property.
 	const handleChange = (event) => {
 		const value = event.target.value;
 		const name = event.target.name;
@@ -32,10 +34,12 @@ const UseForm = ({ initialValues, url }) => {
 		}
 	};
 
+	// Is used when data structures is more complex and needs to be handled differently.
 	const handleEvent = (name, val) => {
 		handleChange({ target: { name: name, value: val } });
 	};
 
+	//Is used when removing spesific tech specifications
 	const removeValues = (target, id) => {
 		const newArray = [...values[target]];
 
@@ -47,75 +51,42 @@ const UseForm = ({ initialValues, url }) => {
 		handleEvent(target, newArray);
 	};
 
+	// Is called when you are uploading images through the "Velg filer" button.
 	const handleImages = (event) => {
 		let tempImages = {
 			files: [...event.target.files],
 			preview: [],
-			filenames: [],
 		};
 
 		tempImages.files.forEach((image) => {
-			tempImages.filenames.push({ image: image.name });
 			tempImages.preview.push(URL.createObjectURL(image));
 		});
 
-		handleEvent('images', tempImages);
+		handleEvent('newImages', tempImages);
 	};
 
-	const handleImage = (event) => {
-		const file = event.target.files[0];
-		let tempImages = {
-			file: file,
-			preview: URL.createObjectURL(file),
-			filenames: file.name,
-		};
-
-		handleEvent('image', tempImages);
-	};
-
-	const uploadImage = () => {
-		let formData = new FormData();
-
-		formData.append('file', values.image.file);
-
-		axios
-			.post('http://localhost:8080/images/single', formData)
-			.then((res) => console.log(res.data))
-			.catch((err) => console.log(err));
-	};
-
-	const uploadImages = () => {
-		let formData = new FormData();
-
-		values.images.files.forEach((image) => {
-			formData.append('multi-files', image);
-		});
-
-		axios
-			.post('http://localhost:8080/images/upload', formData)
-			.then((response) => console.log(response.data))
-			.catch((err) => console.log(err));
-	};
-
+	//POST Request in form-data for handling images and text fields in same request.
 	const submitData = () => {
-		let data = { ...values };
+		let formData = new FormData();
 
-		if (values.images) data = { ...data, images: values.images.filenames };
-		else if (values.image) data = { ...data, image: values.image.filenames };
+		//text fields
+		formData.append('data', JSON.stringify(values));
+
+		//if images has been uploaded, append to formData.
+		if (values.newImages)
+			values.newImages.files.forEach((image) => {
+				formData.append('files', image);
+			});
 
 		axios
-			.post(`${url}add`, {
-				...data,
-			})
+			.post(`${url}add`, formData)
 			.then((res) => {
-				if (values.images !== undefined) uploadImages();
-				else if (values.image !== undefined) uploadImage();
-
+				//request was successful
 				setSuccess(res.data);
 			})
 			.catch((err) => {
-				console.log(err.response.data);
-				setError(err.response.data);
+				//request failed
+				handleError(err);
 			});
 	};
 
@@ -123,27 +94,31 @@ const UseForm = ({ initialValues, url }) => {
 		axios
 			.delete(`${url}${values._id}`)
 			.then((res) => setSuccess(res.data))
-			.catch((err) => console.log(err.response.data));
+			.catch((err) => handleError(err));
 	};
 
 	const updateData = () => {
-		let data = { ...values };
+		let formData = new FormData();
 
-		if ('images' in data || 'image' in data) {
-			if (data.images.filenames)
-				data = { ...data, images: data.images.filenames };
-			else if (data.image) data = { ...data, image: data.image.filenames };
-		}
+		if (values.newImages)
+			values.newImages.files.forEach((image) =>
+				formData.append('files', image)
+			);
+
+		formData.append('data', JSON.stringify(values));
 
 		axios
-			.patch(`${url}${values._id}`, {
-				...data,
-			})
+			.patch(`${url}${values._id}`, formData)
 			.then((res) => setSuccess(res.data))
 			.catch((err) => {
-				console.log(err.response.data);
-				setError(err.response.data);
+				handleError(err);
 			});
+	};
+
+	//Sometimes error is not structured as err.response.data, then just console.log(err)
+	const handleError = (err) => {
+		if (err.response) setError(err.response.data);
+		else console.log(err);
 	};
 
 	return {
@@ -156,7 +131,6 @@ const UseForm = ({ initialValues, url }) => {
 		returnErrors,
 		handleEvent,
 		handleImages,
-		handleImage,
 		onSuccess,
 		setValues,
 		removeValues,
