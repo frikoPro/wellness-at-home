@@ -34,4 +34,8 @@ const TableList = ({ values, removeValue, name }) => {
 	) : null;
 };
 
+TableList.defaultProps = {
+	values: [],
+  };
+
 export default TableList;
