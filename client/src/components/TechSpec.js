@@ -1,7 +1,7 @@
 import { Col, Row } from 'react-bootstrap';
 import TableList from './TableList';
 
-const TechSpec = ({ techSpec }) => {
+const TechSpec = ({ techSpec, removeValues }) => {
 	return techSpec ? (
 		<section>
 			<Row className="justify-content-center align-items-center p-5">
@@ -15,7 +15,7 @@ const TechSpec = ({ techSpec }) => {
 				<Col sm={11}>
 					<TableList
 						values={techSpec}
-						removeValue={() => console.log('test')}
+						removeValue={removeValues}
 						name="techSpec"
 					/>
 				</Col>
