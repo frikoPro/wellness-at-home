@@ -24,18 +24,36 @@ exports.onUpdate = (req) => {
 		const newImages = req.files.map((file) => file.filename);
 
 		images.forEach((image) => {
-			if (!newImages.includes(image)) fs.unlinkSync(`./public/${image}`);
+			if (!newImages.includes(image))
+				fs.unlink(`./public/${image}`, (err) => {
+					if (err) console.log(err);
+					else {
+						console.log(`\n deleted ${image}`);
+					}
+				});
 		});
 
 		//if object only contains one image
 	} else {
 		// if old image name different from new file, delete old image.
 		if (body.image !== req.files[0].filename)
-			fs.unlinkSync(`./public/${body.image}`);
+			fs.unlink(`./public/${body.image}`, (err) => {
+				if (err) console.log(err);
+				else {
+					console.log(`\n deleted ${image}`);
+				}
+			});
 	}
 };
 
 exports.onDelete = (images) =>
-	images.forEach((item) => fs.unlinkSync(`./public/${item.image}`));
+	images.forEach((image) =>
+		fs.unlink(`./public/${body.image}`, (err) => {
+			if (err) console.log(err);
+			else {
+				console.log(`\n deleted ${image}`);
+			}
+		})
+	);
 
 exports.upload = upload;
