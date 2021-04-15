@@ -49,4 +49,8 @@ router.route('/login').post(async (req, res) => {
 		.send({ valid: true, message: 'logged in' });
 });
 
+router.route('/login').get(async (req, res) => {
+	res.status(202).clearCookie('token').send('Logget ut');
+});
+
 module.exports = router;
