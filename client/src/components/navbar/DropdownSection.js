@@ -10,7 +10,7 @@ const DropdownSection = ({ section, styling }) => {
 				</h5>
 			</a>
 			{item.jacuzzis.map((jacuzzi, j) => (
-				<a href={`/spabad/${jacuzzi.id}`} key={j}>
+				<a href={`/spabad/${jacuzzi._id}`} key={j}>
 					<p className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
 						{jacuzzi.name}
 					</p>

@@ -12,6 +12,8 @@ import { JacuzziContext } from '../../contexts/JacuzziContext';
 import { ProductsContext } from '../../contexts/ProductsContext';
 import TechSpec from '../../components/TechSpec';
 import PriceFormatter from '../../components/PriceFormatter';
+import UseForm from '../../components/webpanel/UseForm';
+import { LoggedInContext } from '../../contexts/LoggedInContext';
 
 const JacuzziPage = () => {
 	let { id } = useParams();
@@ -20,31 +22,17 @@ const JacuzziPage = () => {
 
 	const { products } = useContext(ProductsContext);
 
-	const [jacuzzi, setJacuzzi] = useState({
-		relatedProducts: [],
-		userReviews: [],
-	});
+	const loggedIn = useContext(LoggedInContext);
 
-	const [averageRating, setAverageRating] = useState(0);
+	const { updateData, removeValues, setValues, values } = UseForm({
+		url: 'http://localhost:8080/jacuzzis/',
+		initialValues: { relatedProducts: [], userReviews: [] },
+	});
 
 	useEffect(() => {
 		let tempObj = jacuzzis.find((product) => product._id === id);
 
 		if (tempObj !== undefined) {
-			const sum = (acc, val) => acc.rating + val.rating;
-
-			if (tempObj.userReviews.length > 0) {
-				if (tempObj.userReviews.length > 1) {
-					setAverageRating(
-						Math.round(
-							tempObj.userReviews.reduce(sum) / tempObj.userReviews.length
-						)
-					);
-				} else {
-					setAverageRating(tempObj.userReviews[0].rating);
-				}
-			}
-
 			let productsFiltered = products.filter((item) =>
 				tempObj.relatedProducts.includes(item._id)
 			);
@@ -57,15 +45,15 @@ const JacuzziPage = () => {
 			tempObj.relatedProducts = productsFiltered;
 		}
 
-		setJacuzzi(tempObj);
+		setValues(tempObj);
 	}, [jacuzzis, id, products]);
 
 	const [activeSlideImg, setActiveSlideImg] = useState(0);
 
 	const reviewsRef = useRef(null);
 
-	return jacuzzi ? (
-		<Container className="shadow pb-5 bg-white">
+	return values ? (
+		<Container className="shadow p-5 bg-white">
 			<section>
 				<Row>
 					<Col sm={12} className="mx-auto">
@@ -73,7 +61,7 @@ const JacuzziPage = () => {
 							classId="productPage"
 							interval={null}
 							indicators={false}
-							slideContent={jacuzzi.images}
+							slideContent={values.images}
 							styling={styles}
 							activeIndex={activeSlideImg}
 							setIndex={(index) => setActiveSlideImg(index)}
@@ -81,7 +69,7 @@ const JacuzziPage = () => {
 					</Col>
 				</Row>
 				<ScrollDiv
-					content={jacuzzi.images}
+					content={values.images}
 					returnFunction={(index) => setActiveSlideImg(index)}
 					size={2}
 				/>
@@ -89,26 +77,26 @@ const JacuzziPage = () => {
 			<section>
 				<Row className="justify-content-center align-items-center p-5">
 					<Col className={`text-center margin-bottom-line`}>
-						<h1>{jacuzzi.name ? jacuzzi.name.toUpperCase() : null}</h1>
+						<h1>{values.name ? values.name.toUpperCase() : null}</h1>
 					</Col>
 				</Row>
 				<Row className="justify-content-between">
 					<Col sm={12} lg={6} className="mx-auto p-5 text-center">
-						<p>{jacuzzi.aboutProduct}</p>
+						<p>{values.aboutProduct}</p>
 					</Col>
 					<Col sm={12} lg={6} className="text-center align-self-center">
-						<h1 className="mb-3">{PriceFormatter(jacuzzi.price)}</h1>
-						{jacuzzi.userReviews.length > 0 ? (
+						<h1 className="mb-3">{PriceFormatter(values.price)}</h1>
+						{values.userReviews.length > 0 ? (
 							<>
-								<StarRating rating={averageRating} size={2} />
+								<StarRating rating={values.averageRating} size={2} />
 								<p
 									className="mb-3 text-secondary"
 									style={{ cursor: 'pointer' }}
 									onClick={() => reviewsRef.current.scrollIntoView(false)}>
 									<u>
 										Se anmeldelser (
-										{jacuzzi.userReviews !== undefined
-											? jacuzzi.userReviews.length
+										{values.userReviews !== undefined
+											? values.userReviews.length
 											: 0}
 										)
 									</u>
@@ -118,32 +106,39 @@ const JacuzziPage = () => {
 						<Button className="btn-warning mb-sm-3">
 							Interessert? Ta kontakt
 						</Button>
-						<Button className="ml-3 mb-sm-3">Sammenlign</Button>
+						<Button href={`/Sammenlign/${id}`} className="ml-3 mb-sm-3">
+							Sammenlign
+						</Button>
 					</Col>
 				</Row>
 			</section>
-			<TechSpec techSpec={jacuzzi.techSpec} />
-			{jacuzzi.relatedProducts.length > 0 ? (
+			<TechSpec techSpec={values.techSpec} removeValues={removeValues} />
+			{values.relatedProducts.length > 0 ? (
 				<section>
 					<Row className="justify-content-center align-items-center mt-5 p-5">
 						<Col className={`text-left margin-bottom-line`}>
 							<h1>Relatert tilbehør</h1>
 						</Col>
 					</Row>
-					<ScrollDiv content={jacuzzi.relatedProducts} size={3} />
+					<ScrollDiv content={values.relatedProducts} size={3} />
 				</section>
 			) : null}
 
-			{jacuzzi.userReviews.length > 0 ? (
+			{values.userReviews.length > 0 ? (
 				<section ref={reviewsRef}>
 					<Row className="justify-content-center align-items-center mt-5 p-5">
 						<Col className={`text-left margin-bottom-line`}>
 							<h1>Anmeldelser</h1>
 						</Col>
 					</Row>
-					<UserReviewList userReviews={jacuzzi.userReviews} />
+					<UserReviewList
+						userReviews={values.userReviews}
+						onDelete={removeValues}
+					/>
 				</section>
 			) : null}
+
+			{loggedIn ? <Button onClick={updateData}>Lagre</Button> : null}
 		</Container>
 	) : (
 		<div

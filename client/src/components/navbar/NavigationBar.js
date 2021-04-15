@@ -21,14 +21,13 @@ const NavigationBar = () => {
 	const [mappedJacuzzis, setMappedJacuzzis] = useState([]);
 
 	useEffect(() => {
+		const arr = [];
+
 		if (brands.length > 0) {
-			const arr = brands.map((brand) => ({
-				brand: brand,
-				jacuzzis: jacuzzis.map((item) => ({
-					name: item.brand === brand ? item.name : null,
-					id: item._id,
-				})),
-			}));
+			brands.forEach((brand) => {
+				const filtered = jacuzzis.filter((item) => item.brand === brand);
+				arr.push({ brand: brand, jacuzzis: [...filtered] });
+			});
 
 			setMappedJacuzzis(arr);
 		}
