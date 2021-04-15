@@ -31,7 +31,6 @@ router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
 		const product = await Product.findById(req.params.id).exec();
 
-		//delete corresponding images
 		deleteImages(product.images);
 
 		await Product.findByIdAndDelete(req.params.id);
@@ -51,8 +50,11 @@ router
 				...JSON.parse(req.body.data),
 			};
 
-			if (req.files.length > 0)
+			// if new images, delete images not used and update new ones.
+			if (req.files.length > 0) {
+				updateImageFiles(req);
 				body.images = req.files.map((file) => ({ image: file.filename }));
+			}
 
 			const updatedProduct = await Product.findById(req.params.id).exec();
 

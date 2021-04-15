@@ -38,13 +38,13 @@ router
 router
 	.route('/:id')
 	.patch(verify, upload.array('files'), async (req, res, next) => {
-		updateImageFiles(req);
 		try {
 			const body = JSON.parse(req.body.data);
 
 			const updatedSlide = await Slideshow.findById(req.params.id).exec();
 
 			if (req.files.length > 0) {
+				updateImageFiles(req);
 				updatedSlide.overwrite({ ...body, image: req.files[0].filename });
 			} else {
 				updatedSlide.overwrite({ ...body });
