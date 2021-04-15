@@ -13,23 +13,32 @@ const TableList = ({ values, removeValue, name }) => {
 
 	return keys ? (
 		<table>
-			<tr>
-				{keys.map((key, i) => (
-					<th key={i}>{key}</th>
-				))}
-			</tr>
-			{values.map((item, i) => (
-				<tr key={i}>
-					{keys.map((key, j) => (
-						<td key={j}>{item[key]}</td>
+			<thead>
+				<tr>
+					{keys.map((key, i) => (
+						<th key={i}>{key}</th>
 					))}
-					{loggedIn ? (
-						<Button className="btn-danger" onClick={() => removeValue(name, i)}>
-							X
-						</Button>
-					) : null}
 				</tr>
-			))}
+			</thead>
+			<tbody>
+				{values.map((item, i) => (
+					<tr key={i}>
+						{keys.map((key, j) => (
+							<td key={j}>{item[key]}</td>
+						))}
+
+						{loggedIn ? (
+							<td>
+								<Button
+									className="btn-danger"
+									onClick={() => removeValue(name, i)}>
+									X
+								</Button>
+							</td>
+						) : null}
+					</tr>
+				))}
+			</tbody>
 		</table>
 	) : null;
 };
