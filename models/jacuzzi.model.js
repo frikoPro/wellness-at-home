@@ -9,7 +9,7 @@ const UserReviews = new Schema(
 		header: String,
 		text: String,
 	},
-	{ timestamps: true, _id: false }
+	{ timestamps: true }
 );
 
 const JacuzzisSchema = new Schema({

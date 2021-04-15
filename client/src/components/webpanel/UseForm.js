@@ -97,6 +97,13 @@ const UseForm = ({ initialValues, url }) => {
 			.catch((err) => handleError(err));
 	};
 
+	const deleteById = (id) => {
+		axios
+			.delete(`${url}${id}`)
+			.then((res) => setSuccess(res.data))
+			.catch((err) => handleError(err));
+	};
+
 	const updateData = () => {
 		let formData = new FormData();
 
@@ -117,8 +124,10 @@ const UseForm = ({ initialValues, url }) => {
 
 	//Sometimes error is not structured as err.response.data, then just console.log(err)
 	const handleError = (err) => {
-		if (err.response) setError(err.response.data);
-		else console.log(err);
+		if (err.response) {
+			console.log(err.response);
+			setError(err.response.data);
+		} else console.log(err);
 	};
 
 	return {
@@ -134,6 +143,7 @@ const UseForm = ({ initialValues, url }) => {
 		onSuccess,
 		setValues,
 		removeValues,
+		deleteById,
 	};
 };
 

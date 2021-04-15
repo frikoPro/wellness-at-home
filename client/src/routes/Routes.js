@@ -19,6 +19,8 @@ import { FAQProvider } from '../contexts/FAQContext';
 import { LoggedInContext } from '../contexts/LoggedInContext';
 import NetShop from '../views/netshop/NetShop';
 import SupplierPage from '../views/SupplierPage/SupplierPage';
+import AddReview from '../components/UserReview/AddReview';
+import { ReviewInvProvider } from '../contexts/ReviewInvContext';
 
 const Routes = () => {
 	const loggedIn = useContext(LoggedInContext);
@@ -34,37 +36,42 @@ const Routes = () => {
 						<SlideshowProvider>
 							<ProductsProvider>
 								<FAQProvider>
-									<Switch>
-										<Route exact path="/">
-											<HomePage />
-										</Route>
-										<Route path="/test">
-											<Test />
-										</Route>
-										<Route path="/blogg">
-											<Blogg />
-										</Route>
-										<Route path="/Arrangementer">
-											<Events />
-										</Route>
-										<Route path="/Kundeserivce">
-											<SupportPage />
-										</Route>
-										<Route path="/spabad/:id">
-											<JacuzziPage />
-										</Route>
-										<Route path="/Leverandør/:id">
-											<SupplierPage />
-										</Route>
-										<Route path="/webpanel">
-											{loggedIn ? (
-												<Route component={Webpanel} />
-											) : (
-												<LoginPage />
-											)}
-										</Route>
-										<Route path="/nettbutikk" component={NetShop} />
-									</Switch>
+									<ReviewInvProvider>
+										<Switch>
+											<Route exact path="/">
+												<HomePage />
+											</Route>
+											<Route path="/test">
+												<Test />
+											</Route>
+											<Route path="/blogg">
+												<Blogg />
+											</Route>
+											<Route path="/Arrangementer">
+												<Events />
+											</Route>
+											<Route path="/Kundeserivce">
+												<SupportPage />
+											</Route>
+											<Route path="/spabad/:id">
+												<JacuzziPage />
+											</Route>
+											<Route path="/Leverandør/:id">
+												<SupplierPage />
+											</Route>
+											<Route path="/webpanel">
+												{loggedIn ? (
+													<Route component={Webpanel} />
+												) : (
+													<LoginPage />
+												)}
+											</Route>
+											<Route path="/anmeldelser/:id">
+												<AddReview />
+											</Route>
+											<Route path="/nettbutikk" component={NetShop} />
+										</Switch>
+									</ReviewInvProvider>
 								</FAQProvider>
 							</ProductsProvider>
 						</SlideshowProvider>

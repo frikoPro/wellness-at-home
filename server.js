@@ -29,6 +29,7 @@ connection.once('open', () => {
 	console.log('MongoDB database connection established sucessfully');
 });
 
+const reviewInvRouter = require('./routes/reviewInvites');
 const jacuzzisRouter = require('./routes/jacuzzis');
 const productsRouter = require('./routes/products');
 const userRouter = require('./routes/Users');
@@ -39,6 +40,7 @@ const SendMailRouter = require('./routes/sendMail');
 
 const errorController = require('./controllers/ErrorController');
 
+app.use('/reviewinvites', reviewInvRouter);
 app.use('/jacuzzis', jacuzzisRouter);
 app.use('/products', productsRouter);
 app.use('/users', userRouter);

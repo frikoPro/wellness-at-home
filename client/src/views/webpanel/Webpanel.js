@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import AddJacuzzi from '../../components/webpanel/jacuzzi/AddJacuzzi';
 import AddProduct from '../../components/webpanel/product/AddProduct';
 import { Route, Switch } from 'react-router-dom';
@@ -10,6 +10,8 @@ import UpdateSlideshow from '../../components/webpanel/slideshow/UpdateSlideshow
 import FAQList from '../../components/FAQ/FAQList';
 import { FAQContext } from '../../contexts/FAQContext';
 import EventsPanel from '../../components/webpanel/events/EventsPanel';
+import Invites from '../../components/webpanel/reviewInvites/Invites';
+import axios from 'axios';
 
 const Webpanel = ({ match }) => {
 	const FAQs = useContext(FAQContext);
@@ -19,6 +21,15 @@ const Webpanel = ({ match }) => {
 		products: false,
 		slideshow: false,
 	});
+
+	const logOut = () => {
+		axios
+			.get('http://localhost:8080/users/login')
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err));
+
+		window.location.reload();
+	};
 
 	return (
 		<Container fluid className="pl-0">
@@ -93,7 +104,13 @@ const Webpanel = ({ match }) => {
 						<a href={`${match.url}/arrangementer`}>
 							<li>arrangementer</li>
 						</a>
+						<a href={`${match.url}/anmeldelser`}>
+							<li>anmeldelser</li>
+						</a>
 					</ul>
+					<Button variant="warning" onClick={() => logOut()}>
+						Logg ut
+					</Button>
 				</Col>
 				<Col sm={10}>
 					<Switch>
@@ -120,6 +137,9 @@ const Webpanel = ({ match }) => {
 						</Route>
 						<Route path={`${match.url}/arrangementer`}>
 							<EventsPanel />
+						</Route>
+						<Route path={`${match.url}/anmeldelser`}>
+							<Invites />
 						</Route>
 					</Switch>
 				</Col>
