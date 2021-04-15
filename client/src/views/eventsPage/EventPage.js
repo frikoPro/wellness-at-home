@@ -46,7 +46,7 @@ const EventPage = (props) => {
                                         {new Date(props.date_start * 1000)
                                             .toLocaleDateString("en-GB").slice(0, 5)}
                                         -
-                                        {new Date(props.date_end * 1000)
+                                        {new Date(props.date.date_end * 1000)
                                             .toLocaleDateString("en-GB").slice(0, 5)}
                                         <br/>
                                         <br/>

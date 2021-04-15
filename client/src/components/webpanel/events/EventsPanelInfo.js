@@ -1,43 +1,42 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Form} from "react-bootstrap";
 import TextArea from "antd/es/input/TextArea";
-import {AutoComplete, Input} from "antd";
+import {Input} from "antd";
 
-const EventsPanelInfo = () => {
+const EventsPanelInfo = (props) => {
+    const [venue, setVenue] = useState()
+    const [textArea, setTextArea] = useState()
 
     const { TextArea } = Input;
-    const onChange = e => {
-        console.log('Change:', e.target.value);
-    };
-    const options = [
-        { value: 'Drammenshallen' },
-        { value: 'Telenor Arena' },
-        { value: 'Sparebanken Møre Arena' },
-        { value: 'Sotra Arena' },
-    ];
 
-    const Complete = () => (
-        <AutoComplete
-            style={{
-                width: 200,
-            }}
-            options={options}
-            placeholder="try to type `b`"
-            filterOption={(inputValue, option) =>
-                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-            }
-        />
-    );
+    const onVenueChange = e => {
+        console.log('Venue:', e.target.value);
+        setVenue(e.target.value)
+    };
+
+    const onTextChange = e => {
+        console.log('Description:', e.target.value);
+        setTextArea(e.target.value)
+    };
+
+    useEffect(() => {
+        props.onTextChange(textArea)
+    },[textArea])
+    
+    useEffect(() => {
+        props.onVenueChange(venue)
+    },[venue])
+
 
     return(
         <>
             <Form.Group controlId="description">
                 <Form.Label>Venue</Form.Label>
                 <br/>
-                <Complete />
+                <Input allowClear={true} placeholder="Venue" onChange={props.handleChange} name="venue"/>
                 <br/>
                 <Form.Label>Description</Form.Label>
-                <TextArea showCount maxLength={500} onChange={onChange} />
+                <TextArea allowClear={true} placeholder="Description" showCount maxLength={500} onChange={onTextChange}/>
             </Form.Group>
         </>
     );

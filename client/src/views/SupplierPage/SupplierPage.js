@@ -32,7 +32,7 @@ const SupplierPage = () => {
             }
         ));
         setMappedJacuzzis(mapped);
-	}, [jacuzzis, id, mappedJacuzzis]);
+	}, [jacuzzis, id]);
 
 	return (
 		<Container

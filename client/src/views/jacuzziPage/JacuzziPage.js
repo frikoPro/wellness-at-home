@@ -122,7 +122,9 @@ const JacuzziPage = () => {
 						<Button className="btn-warning mb-sm-3">
 							Interessert? Ta kontakt
 						</Button>
-						<Button className="ml-3 mb-sm-3">Sammenlign</Button>
+						<Button 
+							href={`/Sammenlign/${id}`}
+							className="ml-3 mb-sm-3">Sammenlign</Button>
 					</Col>
 				</Row>
 			</section>

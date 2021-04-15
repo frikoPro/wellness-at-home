@@ -21,6 +21,7 @@ import NetShop from '../views/netshop/NetShop';
 import SupplierPage from '../views/SupplierPage/SupplierPage';
 import AddReview from '../components/UserReview/AddReview';
 import { ReviewInvProvider } from '../contexts/ReviewInvContext';
+import ComparePage from '../views/ComparePage/ComparePage';
 
 const Routes = () => {
 	const loggedIn = useContext(LoggedInContext);
@@ -65,6 +66,9 @@ const Routes = () => {
 												) : (
 													<LoginPage />
 												)}
+											</Route>
+											<Route path="/Sammenlign/:id">
+												<ComparePage />
 											</Route>
 											<Route path="/anmeldelser/:id">
 												<AddReview />

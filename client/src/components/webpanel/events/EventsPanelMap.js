@@ -1,85 +1,68 @@
-const EventsPanelMap = () => {
+import React, {useEffect, useState} from 'react';
+import {Col, Row, Input} from "antd";
+import {Form} from "react-bootstrap";
+
+const EventsPanelMap = (props) => {
+    // Going to add Google maps here to get lon and lat, also a autocomplete
+    //Fredrik: Skal gjøre om denne siden litt, skal implimentere lat og lon fra google maps så kanskje vent litt med denne.
+    const [streetName, setStreetName] = useState()
+    const [city, setCity] = useState()
+    const [postalCode, setPostalCode] = useState()
+
+    const onStreetChange = e => {
+        console.log('Description:', e.target.value);
+        setStreetName(e.target.value)
+    };
+    const onCityChange = e => {
+        console.log('Description:', e.target.value);
+        setCity(e.target.value)
+    };
+    const onPostalCodeChange = e => {
+        console.log('Description:', e.target.value);
+        setPostalCode(e.target.value)
+    };
+    //has to be its on useEffects
+    useEffect(() => {
+        props.onStreetChange(streetName)
+    },[streetName])
+
+    useEffect(() => {
+        props.onCityChange(city)
+    },[city])
+
+    useEffect(() => {
+        props.onPostalCodeChange(postalCode)
+    },[postalCode])
+
     return (
         <>
-            <h6>Address</h6>
-            <h1>Placeholder</h1>
+            <Form.Group controlId="description">
+                <Form.Label>Adresse</Form.Label>
+                <Input.Group size="medium">
+                    <Row gutter={8}>
+                        <Col span={8}>
+                            <Input placeholder="Gatenavn" allowClear={true} onChange={onStreetChange}/>
+                        </Col>
+                        <Col span={5}>
+                            <Input placeholder="By" allowClear={true} onChange={onCityChange}/>
+                        </Col>
+                        <Col span={3}>
+                            <Input placeholder="Postkode" allowClear={true} onChange={onPostalCodeChange}/>
+                        </Col>
+                    </Row>
+                </Input.Group>
+            </Form.Group>
         </>
     )
-}
+};
 
 export default EventsPanelMap;
 
 
-
-
-
-// import {Form} from "react-bootstrap";
-// import React from "react";
-// import Autocomplete, {GoogleMap, StandaloneSearchBox, useJsApiLoader} from "@react-google-maps/api";
-// import ScriptLoaded from "@react-google-maps/api/dist/docs/ScriptLoaded";
-//
-// const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-//
-// const containerStyle = {
-//     width: '800px',
-//     height: '400px'
-// };
-//
-// const center = {
-//     lat: -3.745,
-//     lng: -38.523
-// };
-//
-// const EventsPanelMap = () => {
-//
-//     const { isLoaded } = useJsApiLoader({
-//         id: 'google-map-script',
-//         googleMapsApiKey: api
-//     })
-//
-//
-//     return isLoaded ? (
-//         <>
-//             <Form.Group>
-//                 <Form.Label>Lokasjon</Form.Label>
-//                 <Form.Text className="text-muted">Adresse</Form.Text>
-//                 <Form.Control type="text" placeholder="Kort beskrivelse" />
-//                 <br/>
-//             <ScriptLoaded>
-//                 <GoogleMap
-//                     id="searchbox-example"
-//                     mapContainerStyle={mapContainerStyle}
-//                     zoom={2.5}
-//                     center={center}
-//                 >
-//                     <Autocomplete
-//                         onLoad={this.onLoad}
-//                         onPlaceChanged={this.onPlaceChanged}
-//                     >
-//                         <input
-//                             type="text"
-//                             placeholder="Customized your placeholder"
-//                             style={{
-//                                 boxSizing: `border-box`,
-//                                 border: `1px solid transparent`,
-//                                 width: `240px`,
-//                                 height: `32px`,
-//                                 padding: `0 12px`,
-//                                 borderRadius: `3px`,
-//                                 boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-//                                 fontSize: `14px`,
-//                                 outline: `none`,
-//                                 textOverflow: `ellipses`,
-//                                 position: "absolute",
-//                                 left: "50%",
-//                                 marginLeft: "-120px"
-//                             }}
-//                         />
-//                     </Autocomplete>
-//                 </GoogleMap>
-//             </ScriptLoaded>
-//             </Form.Group>
-//         </>
-//     ) : <></> ;
-// };
-// export default React.memo(EventsPanelMap)
+// address: {
+//         streetname: "Knoffs gate 18",
+//         city: "Drammen",
+//         postalcode: "3044"
+// },
+// pos: {
+//     lat: 59.73521, lng: 10.20528
