@@ -46,6 +46,7 @@ const JacuzzisSchema = new Schema({
 		],
 	},
 	relatedProducts: [String],
+	averageRating: Number,
 	userReviews: [UserReviews],
 });
 

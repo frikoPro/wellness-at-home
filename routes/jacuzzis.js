@@ -56,6 +56,17 @@ router
 				body.images = req.files.map((file) => ({ image: file.filename }));
 			}
 
+			if (body.userReviews.length > 0) {
+				if (body.userReviews.length > 1) {
+					body.averageRating =
+						body.userReviews
+							.map((rev) => rev.rating)
+							.reduce((acc, val) => acc + val) / body.userReviews.length;
+				} else {
+					body.averageRating = body.userReviews[0].rating;
+				}
+			}
+
 			const updatedJacuzzi = await Jacuzzi.findById(req.params.id).exec();
 
 			updatedJacuzzi.overwrite({ ...body });

@@ -29,26 +29,10 @@ const JacuzziPage = () => {
 		initialValues: { relatedProducts: [], userReviews: [] },
 	});
 
-	const [averageRating, setAverageRating] = useState(0);
-
 	useEffect(() => {
 		let tempObj = jacuzzis.find((product) => product._id === id);
 
 		if (tempObj !== undefined) {
-			const sum = (acc, val) => acc.rating + val.rating;
-
-			if (tempObj.userReviews.length > 0) {
-				if (tempObj.userReviews.length > 1) {
-					setAverageRating(
-						Math.round(
-							tempObj.userReviews.reduce(sum) / tempObj.userReviews.length
-						)
-					);
-				} else {
-					setAverageRating(tempObj.userReviews[0].rating);
-				}
-			}
-
 			let productsFiltered = products.filter((item) =>
 				tempObj.relatedProducts.includes(item._id)
 			);
@@ -104,7 +88,7 @@ const JacuzziPage = () => {
 						<h1 className="mb-3">{PriceFormatter(values.price)}</h1>
 						{values.userReviews.length > 0 ? (
 							<>
-								<StarRating rating={averageRating} size={2} />
+								<StarRating rating={values.averageRating} size={2} />
 								<p
 									className="mb-3 text-secondary"
 									style={{ cursor: 'pointer' }}
@@ -122,9 +106,9 @@ const JacuzziPage = () => {
 						<Button className="btn-warning mb-sm-3">
 							Interessert? Ta kontakt
 						</Button>
-						<Button 
-							href={`/Sammenlign/${id}`}
-							className="ml-3 mb-sm-3">Sammenlign</Button>
+						<Button href={`/Sammenlign/${id}`} className="ml-3 mb-sm-3">
+							Sammenlign
+						</Button>
 					</Col>
 				</Row>
 			</section>
