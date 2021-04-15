@@ -25,6 +25,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 		<title>Wellness At Home</title>
 	</head>
 	<body style="margin: 0; background-color: #fafbff">
@@ -41,14 +42,18 @@
       To create a production bundle, use `npm run build` or `yarn build`.
 	-->
 
-
+		<!--		<script async defer crossorigin="anonymous"-->
+		<!--				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5vbxTz12C10nAdH3mri47_6LBW8ibyYM&libraries=places&callback=initMap">-->
+		<!--		</script>-->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5vbxTz12C10nAdH3mri47_6LBW8ibyYM&libraries=places"
+				type="text/javascript"></script>
 		<!-- Load Facebook SDK for JavaScript -->
 		<div id="fb-root"></div>
 		<script>
-			window.fbAsyncInit = function() {
+			window.fbAsyncInit = function () {
 				FB.init({
-					xfbml            : true,
-					version          : 'v10.0'
+					xfbml: true,
+					version: 'v10.0'
 				});
 			};
 

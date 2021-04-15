@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Row, Input} from "antd";
+import {Col, Input, Row} from "antd";
 import {Form} from "react-bootstrap";
+import Gmap from "./Gmap";
 
 const EventsPanelMap = (props) => {
     // Going to add Google maps here to get lon and lat, also a autocomplete
@@ -51,18 +52,12 @@ const EventsPanelMap = (props) => {
                         </Col>
                     </Row>
                 </Input.Group>
+                <br/>
+                <br/>
+                <Gmap/>
             </Form.Group>
         </>
     )
 };
 
 export default EventsPanelMap;
-
-
-// address: {
-//         streetname: "Knoffs gate 18",
-//         city: "Drammen",
-//         postalcode: "3044"
-// },
-// pos: {
-//     lat: 59.73521, lng: 10.20528
