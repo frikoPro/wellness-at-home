@@ -7,9 +7,8 @@ const CompareList = ({selectedJacuzzi, jacuzzis}) => {
     const [averageRating, setAverageRating] = useState(0);
 
     useEffect(() => {
-        let tempObj = jacuzzis.find((product) => product.index === selectedJacuzzi);
-        console.log(tempObj);
-
+        let tempObj = jacuzzis[selectedJacuzzi];
+        setAverageRating(0);
 		if (tempObj !== undefined) {
 			const sum = (acc, val) => acc.rating + val.rating;
 
@@ -25,7 +24,7 @@ const CompareList = ({selectedJacuzzi, jacuzzis}) => {
 				}
 			}
 		}
-    }, [selectedJacuzzi, jacuzzis]);
+    }, [jacuzzis, selectedJacuzzi]);
     
 
     return (
