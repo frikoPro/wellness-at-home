@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
 import {Form} from "react-bootstrap";
 import TextArea from "antd/es/input/TextArea";
-import {Input} from "antd";
+import {Button, Input, Space} from "antd";
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import EventsPanelWeekday from "./EventsPanelWeekday";
 
 const EventsPanelInfo = (props) => {
     const [venue, setVenue] = useState()
@@ -27,16 +29,15 @@ const EventsPanelInfo = (props) => {
         props.onVenueChange(venue)
     },[venue])
 
-
     return(
         <>
             <Form.Group controlId="description">
-                <Form.Label>Venue</Form.Label>
+                <Form.Label>Generell informasjon</Form.Label>
                 <br/>
-                <Input allowClear={true} placeholder="Venue" onChange={props.handleChange} name="venue"/>
+                <Input allowClear={true} placeholder="Sted" onChange={onVenueChange} name="venue"/>
                 <br/>
-                <Form.Label>Description</Form.Label>
-                <TextArea allowClear={true} placeholder="Description" showCount maxLength={500} onChange={onTextChange}/>
+                <br/>
+                <TextArea allowClear={true} placeholder="Beskrivelse" showCount maxLength={500} onChange={onTextChange}/>
             </Form.Group>
         </>
     );

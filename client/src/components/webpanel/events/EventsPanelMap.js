@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Input, Row} from "antd";
+import {Col, Input, Row, Tooltip} from "antd";
 import {Form} from "react-bootstrap";
 import Gmap from "./Gmap";
+import { InfoCircleOutlined } from '@ant-design/icons';
 
 const EventsPanelMap = (props) => {
     // Going to add Google maps here to get lon and lat, also a autocomplete
@@ -39,22 +40,27 @@ const EventsPanelMap = (props) => {
         <>
             <Form.Group controlId="description">
                 <Form.Label>Adresse</Form.Label>
+                <Gmap/>
+                <br/>
+                <br/>
+                <Form.Label>Foreslått adresse</Form.Label>
                 <Input.Group size="medium">
                     <Row gutter={8}>
                         <Col span={8}>
                             <Input placeholder="Gatenavn" allowClear={true} onChange={onStreetChange}/>
                         </Col>
-                        <Col span={5}>
-                            <Input placeholder="By" allowClear={true} onChange={onCityChange}/>
-                        </Col>
                         <Col span={3}>
-                            <Input placeholder="Postkode" allowClear={true} onChange={onPostalCodeChange}/>
+                            <Input placeholder="Postkode" allowClear={true} onChange={onPostalCodeChange} maxLength={4} suffix={
+                                <Tooltip title="4-siffer">
+                                    <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+                                </Tooltip>
+                            }/>
+                        </Col>
+                        <Col span={4}>
+                            <Input placeholder="By" allowClear={true} onChange={onCityChange}/>
                         </Col>
                     </Row>
                 </Input.Group>
-                <br/>
-                <br/>
-                <Gmap/>
             </Form.Group>
         </>
     )

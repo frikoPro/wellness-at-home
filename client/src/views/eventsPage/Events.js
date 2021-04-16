@@ -13,6 +13,7 @@ const Events = () => {
    to events page via mapping through the data and returning that objects info */
     // OBS calendar must be set as variable event
 
+    //mock data for developing
     const eventsData = {
         header: "Kommende messer og arrangementer",
         data: [
