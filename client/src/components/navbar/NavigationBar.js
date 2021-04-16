@@ -94,9 +94,9 @@ const NavigationBar = () => {
 						Arrangementer
 					</Nav.Link>
 					<Nav.Link
-						href="/Kundeserivce"
+						href="/Kundeservice"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
-						Kundeserivce
+						Kundeservice
 					</Nav.Link>
 				</Nav>
 				<Nav>
