@@ -55,7 +55,6 @@ const EventsPanel = () => {
 								<EventsPanelInfo
 								//venue={event.venue}
 								// description={event.meta.desc}
-									handleChange={handleChange}
 									onVenueChange={(venue) => {setEvent({...event2, venue})}}
 									onTextChange={(description) => {setEvent({
 									// dump the contents of event2
@@ -67,7 +66,8 @@ const EventsPanel = () => {
 									}
 								})
 							}}
-								/>
+									// onPlacesChanged={(address) => console.log(address)} //todo: lykke til, setEvent address and pos
+ 								/>
 								<EventsPanelDate
 									// start={event.date.date_start}
 									// end={event.date.date_end}

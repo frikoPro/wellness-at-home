@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {GoogleMap, LoadScript, StandaloneSearchBox} from '@react-google-maps/api';
 
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
@@ -15,32 +15,39 @@ const center = {
 
 const Gmap = (props) => {
     const [addressFormatted, setAddressFormatted] = useState()
-    const [address, setAddress] = useState(["gatenavn",])
     const [pos, setPos] = useState([0,0])
+    const [address, setAddress] = useState(["Gatenavn","GateNr", "Postkode", "By", 0 , 0])
     const searchBox = useRef(null)
 
     const onLoad = ref => searchBox.current = ref;
 
     const onPlacesChanged = () => {
-        console.log(searchBox.current.getPlaces()[0].address_components)
+        console.log(searchBox.current.getPlaces()[0])
+        // setAddressFormatted(searchBox.current.getPlaces()[0].formatted_address)
+        // setPos([searchBox.current.getPlaces()[0].geometry.viewport.Ua.g, //lat
+        //     searchBox.current.getPlaces()[0].geometry.viewport.La.g]) //lng
 
-        setAddressFormatted(searchBox.current.getPlaces()[0].formatted_address)
-        setPos([searchBox.current.getPlaces()[0].geometry.viewport.Ua.g, //lat
-                searchBox.current.getPlaces()[0].geometry.viewport.La.g]) //lng
-
-        let streetname = searchBox.current.getPlaces()[0].address_components[1].long_name + " " + searchBox.current.getPlaces()[0].address_components[0].long_name
-        let postalcode = searchBox.current.getPlaces()[0].address_components[6].long_name
+        let streetName = searchBox.current.getPlaces()[0].address_components[1].long_name
+        let streetNr = searchBox.current.getPlaces()[0].address_components[0].long_name
+        let postalCode = searchBox.current.getPlaces()[0].address_components[6].long_name
         let city = searchBox.current.getPlaces()[0].address_components[2].long_name
-        console.log(streetname + " " + postalcode + " " + city) //streetname
-        setAddress([streetname,postalcode,city]) //todo: pass this up to EventsPanelMap to map into the input fields as suggested adressed
+        let lat = searchBox.current.getPlaces()[0].geometry.viewport.Ua.g
+        let lng = searchBox.current.getPlaces()[0].geometry.viewport.La.g
+        setAddress([streetName,streetNr,postalCode,city,lat,lng])
+        console.log(address)
     };
+
+    useEffect(() => {
+        props.onPlacesChanged(address)
+    },[address])
+
+    // useEffect(() => {
+    //     props.onPosChanged(pos)
+    // },[pos])
 
     return (
         <>
-            <p>{addressFormatted}</p>
             <p>{address}</p>
-            <p>lat: {pos[0]}</p>
-            <p>lng: {pos[1]}</p>
             <LoadScript
                 googleMapsApiKey={api}
                 libraries={["places"]}

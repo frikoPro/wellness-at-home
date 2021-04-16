@@ -5,11 +5,11 @@ import Gmap from "./Gmap";
 import { InfoCircleOutlined } from '@ant-design/icons';
 
 const EventsPanelMap = (props) => {
-    // Going to add Google maps here to get lon and lat, also a autocomplete
-    //Fredrik: Skal gjøre om denne siden litt, skal implimentere lat og lon fra google maps så kanskje vent litt med denne.
     const [streetName, setStreetName] = useState()
     const [city, setCity] = useState()
     const [postalCode, setPostalCode] = useState()
+    const [address, setAddress] = useState([])
+    const [pos, setPos] = useState([])
 
     const onStreetChange = e => {
         console.log('Description:', e.target.value);
@@ -36,28 +36,35 @@ const EventsPanelMap = (props) => {
         props.onPostalCodeChange(postalCode)
     },[postalCode])
 
+    // useEffect(() => {
+    //     props.onPlacesChanged(address)
+    // },[address]) todo: pass this up to EventsPanel 
+
+    console.log(address)
+
     return (
         <>
             <Form.Group controlId="description">
                 <Form.Label>Adresse</Form.Label>
-                <Gmap/>
+                <Gmap
+                    onPlacesChanged={(address) => setAddress(address)}
+                />
                 <br/>
                 <br/>
                 <Form.Label>Foreslått adresse</Form.Label>
                 <Input.Group size="medium">
                     <Row gutter={8}>
                         <Col span={8}>
-                            <Input placeholder="Gatenavn" allowClear={true} onChange={onStreetChange}/>
+                            <Input placeholder="Gatenavn" allowClear={true} onChange={onStreetChange} value={address[0] + " " + address[1]}/>
                         </Col>
                         <Col span={3}>
-                            <Input placeholder="Postkode" allowClear={true} onChange={onPostalCodeChange} maxLength={4} suffix={
+                            <Input placeholder="Postkode" allowClear={true} onChange={onPostalCodeChange} maxLength={4} value={address[2]} suffix={
                                 <Tooltip title="4-siffer">
                                     <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
-                                </Tooltip>
-                            }/>
+                                </Tooltip>}/>
                         </Col>
                         <Col span={4}>
-                            <Input placeholder="By" allowClear={true} onChange={onCityChange}/>
+                            <Input placeholder="By" allowClear={true} onChange={onCityChange} value={address[3]}/>
                         </Col>
                     </Row>
                 </Input.Group>
