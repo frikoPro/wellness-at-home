@@ -66,7 +66,7 @@ const NavigationBar = () => {
 						onMouseOver={() => setOpen(true)}
 						onMouseOut={() => setOpen(false)}
 						className={`${styling.navItem} nav-text-color hover-gold`}>
-						Spabad
+						Våre Spabad
 					</Nav.Link>
 					<Dropdown
 						onMouseOver={() => setOpen(true)}
@@ -81,7 +81,7 @@ const NavigationBar = () => {
 					<Nav.Link
 						href="/nettbutikk"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
-						Nettbutikk
+						Tilbehør
 					</Nav.Link>
 					<Nav.Link
 						href="/Blogg"
