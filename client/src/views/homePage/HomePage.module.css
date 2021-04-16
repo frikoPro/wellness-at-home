@@ -2,6 +2,7 @@
 @media screen and (min-width: 992px) {
 	.textResponsiveH1 {
 		font-size: 2.5vw;
+		color: white;
 	}
 
 	.textResponsiveP {
