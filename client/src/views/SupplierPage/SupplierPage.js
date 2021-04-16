@@ -51,7 +51,7 @@ const SupplierPage = () => {
                 </h5>
             </Row>
             <Row className="justify-content-center mb-1">
-                <h2>Våre spabad</h2>
+                <h2>{id}s spabad</h2>
             </Row>
             <section>
                 <Row className="shadow border border-dark m-2">
