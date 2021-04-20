@@ -43,7 +43,7 @@ const EventsPanelImg = () => {
                     <p className="ant-upload-hint">Kun ett bilde.</p>
                 </Dragger>
             </Form.Group>
-            </>
+        </>
     );
 };
 
