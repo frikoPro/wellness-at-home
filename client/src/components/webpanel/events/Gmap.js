@@ -1,17 +1,20 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {GoogleMap, LoadScript, StandaloneSearchBox} from '@react-google-maps/api';
+import {Alert} from "antd";
 
 const Gmap = (props) => {
+    const [address, setAddress] = useState(["Gatenavn", "GateNr", "Postkode", "By", 0, 0])
+    const [errorMsg, setErrorMsg] = useState(false)
+    const [errorMsgValue, setErrorMsgValue] = useState()
+    const searchBox = useRef(null)
     const containerStyle = {maxWidth: '1200px', height: '500px'};
     const center = {lat: 59.9091938697085, lng: 10.7273032197085};
     const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-    const [address, setAddress] = useState(["Gatenavn","GateNr", "Postkode", "By", 0 , 0])
-    const searchBox = useRef(null)
     const lib = ["places"]
 
     const onLoad = ref => searchBox.current = ref;
 
-    function searchObj (obj, query) {
+    function searchObj(obj, query) {
         for (const key in obj) {
             const value = obj[key];
             if (typeof value === 'object') {
@@ -25,13 +28,20 @@ const Gmap = (props) => {
 
     const onPlacesChanged = () => {
         const places = searchBox.current.getPlaces()
-        console.log(places[0])
-        if (places.length === 0){
+
+        if (places.length === 0) {
+            setErrorMsg(true)
+            setErrorMsgValue(<Alert message="Stedet finnes ikke, prøv igjen." type="error" closeText="Lukk"/>)
             return;
-        }
-        if(!places[0].types.includes("point_of_interest")){
+        } else if (!places[0].types.includes("point_of_interest")) {
+            setErrorMsg(true)
+            setErrorMsgValue(<Alert message="Finner ikke addresse tilhørende til søket, prøv igjen." type="error"
+                                    closeText="Lukk"/>)
             return;
+        } else {
+            setErrorMsg(false)
         }
+
         const streetName = places[0].address_components.filter(function (obj) {
             return searchObj(obj, 'route');
         })[0].long_name;
@@ -57,6 +67,10 @@ const Gmap = (props) => {
     //console.log(address)
     return (
         <>
+            {errorMsg ? <>
+                {errorMsgValue}
+                <br/>
+            </> : <></>}
             <LoadScript
                 googleMapsApiKey={api}
                 libraries={lib}

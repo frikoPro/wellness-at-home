@@ -52,18 +52,20 @@ const EventsPanel = () => {
 									onVenueChange={(venue) => {setEvent({...event2, venue})}}
 									onTextChange={(description) => {setEvent({
 									// dump the contents of event2
-									...event2,
-									meta: {
-										// dump the contents of event2.meta into meta
-										...event2.meta,
-										desc: description
-									}
-								})
-							}}
- 								/>
-								<EventsPanelDate
-									onChange={(date) => {setEvent({...event2, date:date})}}
+										...event2,
+										meta: {
+											// dump the contents of event2.meta into meta
+											...event2.meta,
+											desc: description
+										}
+									})
+									}}
 								/>
+							<EventsPanelDate
+								onChange={(date) => {
+									setEvent({...event2, date: {date_start: date[0], date_end: date[1]}})
+								}}
+							/>
 							<hr/>
 								<Gmap
 									onPlacesChanged={(address) => setEvent({
