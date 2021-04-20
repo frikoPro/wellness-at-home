@@ -103,7 +103,9 @@ const NavigationBar = () => {
 					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
 						{isCollapsed ? 'Search' : <SearchIcon />}
 					</Nav.Link>
-					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
+					<Nav.Link
+						href="/handlekurv"
+						className={`${styling.navItem} nav-text-color hover-gold`}>
 						{isCollapsed ? 'Handlekurv' : <Handlekurv />}
 					</Nav.Link>
 				</Nav>

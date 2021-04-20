@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Footer from '../components/Footer';
 import NavigationBar from '../components/navbar/NavigationBar';
-import Test from '../components/Test';
 import { ScrollProvider } from '../contexts/ScrollContext';
 import HomePage from '../views/homePage/HomePage';
 import JacuzziPage from '../views/jacuzziPage/JacuzziPage';
@@ -22,6 +21,7 @@ import SupplierPage from '../views/SupplierPage/SupplierPage';
 import AddReview from '../components/UserReview/AddReview';
 import { ReviewInvProvider } from '../contexts/ReviewInvContext';
 import ComparePage from '../views/ComparePage/ComparePage';
+import ShoppingCart from '../components/shoppingCart/ShoppingCart';
 
 const Routes = () => {
 	const loggedIn = useContext(LoggedInContext);
@@ -29,21 +29,18 @@ const Routes = () => {
 	return (
 		<BrowserRouter history={history}>
 			<JacuzziProvider>
-				<ScrollProvider>
-					<header>
-						<NavigationBar />
-					</header>
-					<main>
-						<SlideshowProvider>
-							<ProductsProvider>
+				<ProductsProvider>
+					<ScrollProvider>
+						<header>
+							<NavigationBar />
+						</header>
+						<main>
+							<SlideshowProvider>
 								<FAQProvider>
 									<ReviewInvProvider>
 										<Switch>
 											<Route exact path="/">
 												<HomePage />
-											</Route>
-											<Route path="/test">
-												<Test />
 											</Route>
 											<Route path="/blogg">
 												<Blogg />
@@ -74,13 +71,16 @@ const Routes = () => {
 												<AddReview />
 											</Route>
 											<Route path="/nettbutikk" component={NetShop} />
+											<Route path="/handlekurv">
+												<ShoppingCart />
+											</Route>
 										</Switch>
 									</ReviewInvProvider>
 								</FAQProvider>
-							</ProductsProvider>
-						</SlideshowProvider>
-					</main>
-				</ScrollProvider>
+							</SlideshowProvider>
+						</main>
+					</ScrollProvider>
+				</ProductsProvider>
 			</JacuzziProvider>
 
 			<Footer />
