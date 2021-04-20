@@ -67,6 +67,15 @@ export const ProductsProvider = (props) => {
 		localStorage.setItem('shoppedItems', JSON.stringify([...items]));
 	};
 
+	const getTotalPrice = () => {
+		const price = cart.map((item) => item.qty * item.price);
+
+		if (price.length > 0) {
+			const totalPrice = price.reduce((acc, val) => acc + val);
+			return totalPrice;
+		}
+	};
+
 	return (
 		<ProductsContext.Provider
 			value={{
@@ -76,6 +85,7 @@ export const ProductsProvider = (props) => {
 				cart: cart,
 				addToCart: (item) => addToCart(item),
 				updateCart: (items) => updateCart(items),
+				totalPrice: getTotalPrice(),
 			}}>
 			{props.children}
 		</ProductsContext.Provider>

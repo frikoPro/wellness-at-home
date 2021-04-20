@@ -11,11 +11,11 @@ header {
 }
 
 main {
-	min-height: 88vh;
+	min-height: 85.5vh;
+
 }
 
 footer {
-	margin-top: 200px;
 	background-color: black;
 }
 

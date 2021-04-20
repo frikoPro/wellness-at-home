@@ -21,7 +21,7 @@ import SupplierPage from '../views/SupplierPage/SupplierPage';
 import AddReview from '../components/UserReview/AddReview';
 import { ReviewInvProvider } from '../contexts/ReviewInvContext';
 import ComparePage from '../views/ComparePage/ComparePage';
-import ShoppingCart from '../components/shoppingCart/ShoppingCart';
+import CartRoute from '../components/shoppingCart/CartRoute';
 import AboutUsPage from '../views/AboutUsPage/AboutUsPage';
 
 const Routes = () => {
@@ -75,13 +75,12 @@ const Routes = () => {
 												<AddReview />
 											</Route>
 											<Route path="/nettbutikk" component={NetShop} />
-											<Route path="/handlekurv">
-												<ShoppingCart />
-											</Route>
+											<Route path="/handlekurv" component={CartRoute} />
 										</Switch>
 									</ReviewInvProvider>
 								</FAQProvider>
 							</SlideshowProvider>
+							<div style={{ height: '200px', width: '100%' }}></div>
 						</main>
 					</ScrollProvider>
 				</ProductsProvider>

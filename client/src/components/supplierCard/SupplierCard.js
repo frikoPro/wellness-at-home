@@ -1,4 +1,5 @@
 import { Col, Container, Row, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const SupplierCard = ({ image, logo, text }) => {
 	return (
@@ -24,9 +25,12 @@ const SupplierCard = ({ image, logo, text }) => {
 							<span className="pr-5 pl-5 text-center">{text}</span>
 						</Row>
 						<Row className="justify-content-center m-5">
-							<Button 
-								href="/Leverandør/Nordpool"
-								className="btn-warning">Les mer</Button>
+							<Button
+								as={Link}
+								to="/Leverandør/Nordpool"
+								className="btn-warning">
+								Les mer
+							</Button>
 						</Row>
 					</Col>
 				</Row>

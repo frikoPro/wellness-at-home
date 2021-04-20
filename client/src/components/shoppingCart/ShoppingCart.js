@@ -3,11 +3,12 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { ProductsContext } from '../../contexts/ProductsContext';
 import QtySelector from './QtySelector';
 import PriceFormatter from '../PriceFormatter';
+import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
 	const [shoppedItems, setItems] = useState([]);
 
-	const { cart, updateCart } = useContext(ProductsContext);
+	const { cart, updateCart, totalPrice } = useContext(ProductsContext);
 
 	useEffect(() => {
 		setItems([...cart]);
@@ -26,13 +27,6 @@ const ShoppingCart = () => {
 		}
 
 		updateCart(items);
-	};
-
-	const getTotalPrice = () => {
-		const test = shoppedItems.map((item) => item.qty * item.price);
-
-		const totalPrice = test.reduce((acc, val) => acc + val);
-		return totalPrice;
 	};
 
 	const removeItem = (index) => {
@@ -124,12 +118,12 @@ const ShoppingCart = () => {
 
 			<Row>
 				<Col md={{ span: 3, offset: 8 }} className="text-right">
-					Total sum varer: {PriceFormatter(getTotalPrice())}
+					Total sum varer: {PriceFormatter(totalPrice)}
 				</Col>
 			</Row>
 			<Row>
 				<Col md={{ span: 3, offset: 8 }} className="text-right mt-4">
-					<Button variant="warning" onClick={() => console.log(shoppedItems)}>
+					<Button as={Link} variant="warning" to="/handlekurv/kassen">
 						Gå til kassen
 					</Button>
 				</Col>

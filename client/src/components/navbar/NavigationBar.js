@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Nav, Navbar, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { JacuzziContext } from '../../contexts/JacuzziContext';
 import { ScrollContext } from '../../contexts/ScrollContext';
@@ -43,7 +44,7 @@ const NavigationBar = () => {
 			className={styling.notOpacity}>
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-			<Navbar.Brand href="/">
+			<Navbar.Brand as={Link} to="/">
 				<img
 					src={'http://localhost:8080/wellnessLogo2.png'}
 					alt=""
@@ -79,22 +80,26 @@ const NavigationBar = () => {
 						<DropdownSection styling={styling} section={mappedJacuzzis} />
 					</Dropdown>
 					<Nav.Link
-						href="/nettbutikk"
+						as={Link}
+						to="/nettbutikk"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
 						Tilbehør
 					</Nav.Link>
 					<Nav.Link
-						href="/Blogg"
+						as={Link}
+						to="/Blogg"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
 						Blogg
 					</Nav.Link>
 					<Nav.Link
-						href="/Arrangementer"
+						as={Link}
+						to="/Arrangementer"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
 						Arrangementer
 					</Nav.Link>
 					<Nav.Link
-						href="/Kundeservice"
+						as={Link}
+						to="/Kundeservice"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
 						Kundeservice
 					</Nav.Link>
@@ -104,7 +109,8 @@ const NavigationBar = () => {
 						{isCollapsed ? 'Search' : <SearchIcon />}
 					</Nav.Link>
 					<Nav.Link
-						href="/handlekurv"
+						as={Link}
+						to="/handlekurv"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
 						{isCollapsed ? 'Handlekurv' : <Handlekurv />}
 					</Nav.Link>

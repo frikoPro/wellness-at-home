@@ -1,20 +1,21 @@
 import { Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const DropdownSection = ({ section, styling }) => {
 	return section.map((item, i) => (
 		<Col className="text-center" key={i}>
-			<a href={`/leverandør/${item.brand}`}>
+			<Link to={`/leverandør/${item.brand}`}>
 				<h5
 					className={`m-3 nav-text-color hover-gold ${styling.dropmenuItemHeader}`}>
 					{item.brand}
 				</h5>
-			</a>
+			</Link>
 			{item.jacuzzis.map((jacuzzi, j) => (
-				<a href={`/spabad/${jacuzzi._id}`} key={j}>
+				<Link to={`/spabad/${jacuzzi._id}`} key={j}>
 					<p className={`${styling.dropmenuItem} nav-text-color hover-gold`}>
 						{jacuzzi.name}
 					</p>
-				</a>
+				</Link>
 			))}
 		</Col>
 	));
