@@ -27,8 +27,8 @@ const Footer = () => {
 				</Nav.Link>
 			</Nav>
 			<Nav>
-				<Nav.Link className="nav-text-color hover-gold" href="/Kundeservice">Kontakt oss</Nav.Link>
-				<Nav.Link className="nav-text-color hover-gold">Om oss</Nav.Link>
+				<Nav.Link className="nav-text-color hover-gold" href="/kundeservice">Kontakt oss</Nav.Link>
+				<Nav.Link className="nav-text-color hover-gold" href="/omoss">Om oss</Nav.Link>
 				<Nav.Link className="nav-text-color hover-gold">
 					Terms and conditions
 				</Nav.Link>

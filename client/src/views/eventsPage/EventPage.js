@@ -44,7 +44,7 @@ const EventPage = (props) => {
                                 <div>
                                     <h5 style={{textDecoration: "underline"}}>Åpningstider</h5>
                                     <p>
-                                        {new Date(props.date_start * 1000)
+                                        {new Date(props.date.date_start * 1000)
                                             .toLocaleDateString("en-GB").slice(0, 5)}
                                         -
                                         {new Date(props.date.date_end * 1000)
@@ -68,7 +68,7 @@ const EventPage = (props) => {
                                 <div>
                                     <h5 style={{textDecoration: "underline"}}>Adresse</h5>
                                     <p>
-                                        {`${props.address.streetname}, ${props.address.postalcode} ${props.address.city}`}
+                                        {`${props.address.streetname}, ${props.address.postalnr} ${props.address.city}`}
                                     </p>
                                 </div>
                             </div>

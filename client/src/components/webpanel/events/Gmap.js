@@ -1,56 +1,79 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {GoogleMap, LoadScript, StandaloneSearchBox} from '@react-google-maps/api';
-
-const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
-const containerStyle = {
-    maxWidth: '1200px',
-    height: '500px'
-};
-
-const center = {
-    lat: 59.9091938697085,
-    lng: 10.7273032197085
-};
+import {Alert} from "antd";
 
 const Gmap = (props) => {
-    const [addressFormatted, setAddressFormatted] = useState()
-    const [pos, setPos] = useState([0,0])
-    const [address, setAddress] = useState(["Gatenavn","GateNr", "Postkode", "By", 0 , 0])
+    const [address, setAddress] = useState(["Gatenavn", "GateNr", "Postkode", "By", 0, 0])
+    const [errorMsg, setErrorMsg] = useState(false)
+    const [errorMsgValue, setErrorMsgValue] = useState()
     const searchBox = useRef(null)
+    const containerStyle = {maxWidth: '1200px', height: '500px'};
+    const center = {lat: 59.9091938697085, lng: 10.7273032197085};
+    const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const lib = ["places"]
 
     const onLoad = ref => searchBox.current = ref;
 
-    const onPlacesChanged = () => {
-        console.log(searchBox.current.getPlaces()[0])
-        // setAddressFormatted(searchBox.current.getPlaces()[0].formatted_address)
-        // setPos([searchBox.current.getPlaces()[0].geometry.viewport.Ua.g, //lat
-        //     searchBox.current.getPlaces()[0].geometry.viewport.La.g]) //lng
+    function searchObj(obj, query) {
+        for (const key in obj) {
+            const value = obj[key];
+            if (typeof value === 'object') {
+                return searchObj(value, query);
+            }
+            if (typeof value === 'string' && value.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+                return obj;
+            }
+        }
+    }
 
-        let streetName = searchBox.current.getPlaces()[0].address_components[1].long_name
-        let streetNr = searchBox.current.getPlaces()[0].address_components[0].long_name
-        let postalCode = searchBox.current.getPlaces()[0].address_components[6].long_name
-        let city = searchBox.current.getPlaces()[0].address_components[2].long_name
+    const onPlacesChanged = () => {
+        const places = searchBox.current.getPlaces()
+
+        if (places.length === 0) {
+            setErrorMsg(true)
+            setErrorMsgValue(<Alert message="Stedet finnes ikke, prøv igjen." type="error" closeText="Lukk"/>)
+            return;
+        } else if (!places[0].types.includes("point_of_interest")) {
+            setErrorMsg(true)
+            setErrorMsgValue(<Alert message="Finner ikke addresse tilhørende til søket, prøv igjen." type="error"
+                                    closeText="Lukk"/>)
+            return;
+        } else {
+            setErrorMsg(false)
+        }
+
+        const streetName = places[0].address_components.filter(function (obj) {
+            return searchObj(obj, 'route');
+        })[0].long_name;
+        const streetNr = places[0].address_components.filter(function (obj) {
+            return searchObj(obj, 'street_number');
+        })[0].long_name;
+        const postalCode = places[0].address_components.filter(function (obj) {
+            return searchObj(obj, 'postal_code');
+        })[0].long_name;
+        const city = places[0].address_components.filter(function (obj) {
+            return searchObj(obj, 'postal_town');
+        })[0].long_name;
+
         let lat = searchBox.current.getPlaces()[0].geometry.viewport.Ua.g
         let lng = searchBox.current.getPlaces()[0].geometry.viewport.La.g
-        setAddress([streetName,streetNr,postalCode,city,lat,lng])
-        console.log(address)
+        setAddress([streetName, streetNr, postalCode, city, lat,lng])
     };
 
     useEffect(() => {
         props.onPlacesChanged(address)
     },[address])
 
-    // useEffect(() => {
-    //     props.onPosChanged(pos)
-    // },[pos])
-
+    //console.log(address)
     return (
         <>
-            <p>{address}</p>
+            {errorMsg ? <>
+                {errorMsgValue}
+                <br/>
+            </> : <></>}
             <LoadScript
                 googleMapsApiKey={api}
-                libraries={["places"]}
+                libraries={lib}
             >
                 <GoogleMap
                     id="searchBox"

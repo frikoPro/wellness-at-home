@@ -1,20 +1,16 @@
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import React, {useState} from "react";
 import EventsPanelDate from "./EventsPanelDate";
-import EventsPanelMap from "./EventsPanelMap";
+import EventsPanelAddress from "./EventsPanelAddress";
 import EventsPanelImg from "./EventsPanelImg";
 import EventsPanelInfo from "./EventsPanelInfo";
 import UseForm from "../UseForm";
-import EventsPanelWeekday from "./EventsPanelWeekday";
 import EventPage from "../../../views/eventsPage/EventPage";
+import Gmap from "./Gmap";
 
 const EventsPanel = () => {
-
 	const [preview, setPreview] = useState(false)
-	const triggerPreview = () => {
-		setPreview( !preview )
-	}
-
+	const triggerPreview = () => {setPreview( !preview )}
 	const [event2, setEvent] = useState({
 			create_date: 1676639434,
 			update_date: 1676639434,
@@ -25,7 +21,7 @@ const EventsPanel = () => {
 			address: {
 				streetname: "Knoffs gate 18",
 				city: "Drammen",
-				postalcode: "3044"
+				postalnr: "3044"
 			},
 			venue: "Drammenshallen123123123",
 			pos: {
@@ -43,8 +39,8 @@ const EventsPanel = () => {
 			img: "https://dhk.no/wp-content/uploads/sites/7/2019/07/Drammenshallen.jpg",
 		},
 	)
-	const { values, handleChange, handleEvent, handleImages, submitData } = UseForm({initialValues: {event2}, url: "http://localhost:8080/events"})
-
+	const { values, handleChange, handleEvent, handleImages, submitData } = UseForm(
+		{initialValues: {event2}, url: "http://localhost:8080/events"})
 	return (
 		<>
 			<Card>
@@ -53,28 +49,31 @@ const EventsPanel = () => {
 						<Form>
 							<hr/>
 								<EventsPanelInfo
-								//venue={event.venue}
-								// description={event.meta.desc}
 									onVenueChange={(venue) => {setEvent({...event2, venue})}}
 									onTextChange={(description) => {setEvent({
 									// dump the contents of event2
-									...event2, 				
-									meta: { 
-										// dump the contents of event2.meta into meta
-										...event2.meta, 
-										desc: description
-									}
-								})
-							}}
-									// onPlacesChanged={(address) => console.log(address)} //todo: lykke til, setEvent address and pos
- 								/>
-								<EventsPanelDate
-									// start={event.date.date_start}
-									// end={event.date.date_end}
-									onChange={(date) => {setEvent({...event2, date:date})}}
+										...event2,
+										meta: {
+											// dump the contents of event2.meta into meta
+											...event2.meta,
+											desc: description
+										}
+									})
+									}}
 								/>
+							<EventsPanelDate
+								onChange={(date) => {
+									setEvent({...event2, date: {date_start: date[0], date_end: date[1]}})
+								}}
+							/>
 							<hr/>
-								<EventsPanelMap
+								<Gmap
+									onPlacesChanged={(address) => setEvent({
+									...event2, address:{streetname:address[0]+" "+address[1],city:address[2],postalnr:address[3]},
+									           pos:{lat:address[4],lng:address[5]} })}
+								/>
+								<EventsPanelAddress
+									address={event2.address}
 									onStreetChange={(streetname) => {setEvent({
 										...event2, address: {
 											...event2.address, streetname: streetname}
@@ -114,7 +113,7 @@ const EventsPanel = () => {
 				<EventPage
 					{... event2}
 				/>
-			</Card> : <Card/>}
+			</Card> : <></>}
 		</>
 	)
 };

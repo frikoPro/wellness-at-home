@@ -22,6 +22,7 @@ import AddReview from '../components/UserReview/AddReview';
 import { ReviewInvProvider } from '../contexts/ReviewInvContext';
 import ComparePage from '../views/ComparePage/ComparePage';
 import CartRoute from '../components/shoppingCart/CartRoute';
+import AboutUsPage from '../views/AboutUsPage/AboutUsPage';
 
 const Routes = () => {
 	const loggedIn = useContext(LoggedInContext);
@@ -48,13 +49,13 @@ const Routes = () => {
 											<Route path="/Arrangementer">
 												<Events />
 											</Route>
-											<Route path="/Kundeservice">
+											<Route path="/kundeservice">
 												<SupportPage />
 											</Route>
 											<Route path="/spabad/:id">
 												<JacuzziPage />
 											</Route>
-											<Route path="/Leverandør/:id">
+											<Route path="/leverandør/:id">
 												<SupplierPage />
 											</Route>
 											<Route path="/webpanel">
@@ -64,8 +65,11 @@ const Routes = () => {
 													<LoginPage />
 												)}
 											</Route>
-											<Route path="/Sammenlign/:id">
+											<Route path="/sammenlign/:id">
 												<ComparePage />
+											</Route>
+											<Route path="/omoss">
+												<AboutUsPage />
 											</Route>
 											<Route path="/anmeldelser/:id">
 												<AddReview />
