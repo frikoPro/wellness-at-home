@@ -3,13 +3,11 @@ import { Form, Input, Button, Space } from 'antd';
 import { MinusCircleOutlined } from '@ant-design/icons';
 
 const EventsPanelWeekday = () => {
-
     const [concerts, setConcerts] = useState([]);
 
     const onFinish = values => {
         console.log('Received values of form:', values);
     };
-
 
     return (
         <>
@@ -18,12 +16,6 @@ const EventsPanelWeekday = () => {
                 {JSON.stringify(value)}
             </h1><Button>Remove</Button></>)
             }
-
-
-
-
-
-
 
         <Form name="dynamic_form_nest_item" onFinish={onFinish} autoComplete="off"   initialValues={{
             remember: true,
