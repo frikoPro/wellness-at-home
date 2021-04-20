@@ -85,6 +85,7 @@ const CardFilter = ({ setFilter }) => {
 						<Form.Label>Kategori</Form.Label>
 						{categories.map((item, i) => (
 							<Form.Check
+								key={i}
 								type="checkbox"
 								label={item}
 								value={item}
@@ -94,8 +95,9 @@ const CardFilter = ({ setFilter }) => {
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>Merke</Form.Label>
-						{brands.map((item) => (
+						{brands.map((item, i) => (
 							<Form.Check
+								key={i}
 								type="checkbox"
 								label={item}
 								value={item}

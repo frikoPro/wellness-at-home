@@ -12,7 +12,7 @@ import TechSpec from '../../components/TechSpec';
 const ProductPage = () => {
 	const { id } = useParams();
 
-	const { products } = useContext(ProductsContext);
+	const { products, addToCart } = useContext(ProductsContext);
 
 	const [product, setProduct] = useState({});
 
@@ -20,12 +20,6 @@ const ProductPage = () => {
 
 	useEffect(() => {
 		const productTemp = products.find((item) => item._id === id);
-
-		if (productTemp) {
-			const relatedProducts = products.filter((item) =>
-				productTemp.relatedProducts.includes(item._id)
-			);
-		}
 
 		setProduct(productTemp);
 	}, [products]);
@@ -49,7 +43,11 @@ const ProductPage = () => {
 
 						<h3 className="mt-5">{PriceFormatter(product.price)}</h3>
 						<div className="text-center mt-5">
-							<Button className="btn-warning">Kjøp</Button>
+							<Button
+								className="btn-warning"
+								onClick={() => addToCart(product)}>
+								Kjøp
+							</Button>
 						</div>
 					</Col>
 				</Row>
