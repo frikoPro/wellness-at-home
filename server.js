@@ -37,6 +37,7 @@ const slideshowRouter = require('./routes/slideshow');
 const facebookRouter = require('./routes/facebook');
 const FAQRouter = require('./routes/FAQs');
 const SendMailRouter = require('./routes/sendMail');
+const orderRouter = require('./routes/orders');
 
 const errorController = require('./controllers/ErrorController');
 
@@ -48,6 +49,7 @@ app.use('/slideshow', slideshowRouter);
 app.use('/facebook', facebookRouter);
 app.use('/FAQ', FAQRouter);
 app.use('/sendmail', SendMailRouter);
+app.use('/orders', orderRouter);
 
 app.use(errorController);
 

@@ -7,13 +7,13 @@ const UseForm = ({ initialValues, url }) => {
 	const [onSuccess, setSuccess] = useState(null);
 
 	// useEffect is called everytime when the api is successful. If successful, then timeout 500ms, then update page for reloading new items.
-	useEffect(() => {
-		if (onSuccess) {
-			setTimeout(() => {
-				window.location.reload();
-			}, 500);
-		}
-	}, [onSuccess]);
+	// useEffect(() => {
+	// 	if (onSuccess) {
+	// 		setTimeout(() => {
+	// 			window.location.reload();
+	// 		}, 500);
+	// 	}
+	// }, [onSuccess]);
 
 	//Setting value for corresponding name/property.
 	const handleChange = (event) => {
