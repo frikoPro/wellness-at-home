@@ -80,6 +80,7 @@ const Routes = () => {
 									</ReviewInvProvider>
 								</FAQProvider>
 							</SlideshowProvider>
+							<div style={{ height: '200px', width: '100%' }}></div>
 						</main>
 					</ScrollProvider>
 				</ProductsProvider>
