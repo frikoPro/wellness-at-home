@@ -23,11 +23,15 @@ const CompareList = ({ selectedJacuzzi, jacuzzis }) => {
 					alt=""></img>
 			</Row>
 			<Row className="justify-content-center text-center">
-                <h1>
-                    <a href={jacuzzis[selectedJacuzzi] && `/spabad/${jacuzzis[selectedJacuzzi].link}`}>
-                        {jacuzzis[selectedJacuzzi] && jacuzzis[selectedJacuzzi].name}
-                    </a>
-                </h1>
+				<h1>
+					<a
+						href={
+							jacuzzis[selectedJacuzzi] &&
+							`/spabad/${jacuzzis[selectedJacuzzi].link}`
+						}>
+						{jacuzzis[selectedJacuzzi] && jacuzzis[selectedJacuzzi].name}
+					</a>
+				</h1>
 			</Row>
 			<Row className="justify-content-center">
 				<StarRating rating={averageRating} size={2} />

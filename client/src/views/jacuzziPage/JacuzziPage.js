@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ScrollDiv from '../../components/scrolldiv/ScrollDiv';
 import Slideshow from '../../components/Slideshow';
 
@@ -106,7 +106,7 @@ const JacuzziPage = () => {
 						<Button className="btn-warning mb-sm-3">
 							Interessert? Ta kontakt
 						</Button>
-						<Button href={`/Sammenlign/${id}`} className="ml-3 mb-sm-3">
+						<Button as={Link} to={`/Sammenlign/${id}`} className="ml-3 mb-sm-3">
 							Sammenlign
 						</Button>
 					</Col>

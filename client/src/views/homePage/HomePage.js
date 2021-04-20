@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import styles from './HomePage.module.css';
@@ -18,6 +18,10 @@ const HomePage = () => {
 	const slideshows = useContext(SlideshowContext);
 
 	const [currentSlideImg, setCurrentSlideImg] = useState(0);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<>

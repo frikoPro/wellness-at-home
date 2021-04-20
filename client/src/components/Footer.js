@@ -1,4 +1,5 @@
 import { Nav, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
 	return (
@@ -27,12 +28,19 @@ const Footer = () => {
 				</Nav.Link>
 			</Nav>
 			<Nav>
-				<Nav.Link className="nav-text-color hover-gold" href="/kundeservice">Kontakt oss</Nav.Link>
-				<Nav.Link className="nav-text-color hover-gold" href="/omoss">Om oss</Nav.Link>
-				<Nav.Link className="nav-text-color hover-gold">
+				<Nav.Link
+					as={Link}
+					className="nav-text-color hover-gold"
+					to="/kundeservice">
+					Kontakt oss
+				</Nav.Link>
+				<Nav.Link as={Link} className="nav-text-color hover-gold" to="/omoss">
+					Om oss
+				</Nav.Link>
+				<Nav.Link as={Link} className="nav-text-color hover-gold">
 					Terms and conditions
 				</Nav.Link>
-				<Nav.Link className="nav-text-color hover-gold">
+				<Nav.Link as={Link} className="nav-text-color hover-gold">
 					Privacy and cookies policy
 				</Nav.Link>
 			</Nav>
