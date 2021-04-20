@@ -48,7 +48,7 @@ const Routes = () => {
 											<Route path="/Arrangementer">
 												<Events />
 											</Route>
-											<Route path="/Kundeserivce">
+											<Route path="/Kundeservice">
 												<SupportPage />
 											</Route>
 											<Route path="/spabad/:id">

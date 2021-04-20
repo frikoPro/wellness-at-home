@@ -1,10 +1,7 @@
-
 [![MIT License][license-shield]][license-url]
 [![LinkedIn Ole Nørholm][linkedin-shield]][linkedin-url1]
 [![LinkedIn Fredrik Jansen][linkedin-shield]][linkedin-url2]
 [![LinkedIn Cenxus][linkedin-shield]][linkedin-url3]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -24,8 +21,6 @@
     <a href="https://github.com/FrikoPro/wellness-at-home/issues">Request Feature</a>
   </p>
 </p>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -49,12 +44,9 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 This is a project created for Wellness at home. It is made by four bachelor students for their thesis.
-
 
 ### Built With
 * [React.js](https://reactjs.org/)
@@ -64,7 +56,6 @@ This is a project created for Wellness at home. It is made by four bachelor stud
 * [Ant design](https://ant.design/)
 * [React-google-maps/api](https://react-google-maps-api-docs.netlify.app/)
 * [Dayjs](https://day.js.org/)
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -95,9 +86,6 @@ This is an example of how to list things you need to use the software and how to
    const API_KEY = 'ENTER YOUR API';
    ```
 
-
-
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -114,16 +102,12 @@ Contributions are what make the open source community such an amazing place to b
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
 ## Contact
 
 Welness at home - [Facebook](https://www.facebook.com/wellnessathome.no) - email@example.com
 
 Project Link: [https://github.com/FrikoPro/wellness-at-home](https://github.com/FrikoPro/wellness-at-home)
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

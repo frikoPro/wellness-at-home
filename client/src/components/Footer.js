@@ -27,6 +27,7 @@ const Footer = () => {
 				</Nav.Link>
 			</Nav>
 			<Nav>
+				<Nav.Link className="nav-text-color hover-gold" href="/Kundeservice">Kontakt oss</Nav.Link>
 				<Nav.Link className="nav-text-color hover-gold">Om oss</Nav.Link>
 				<Nav.Link className="nav-text-color hover-gold">
 					Terms and conditions

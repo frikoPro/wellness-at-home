@@ -5,6 +5,8 @@ import EventsPanelMap from "./EventsPanelMap";
 import EventsPanelImg from "./EventsPanelImg";
 import EventsPanelInfo from "./EventsPanelInfo";
 import UseForm from "../UseForm";
+import EventsPanelWeekday from "./EventsPanelWeekday";
+import EventPage from "../../../views/eventsPage/EventPage";
 
 const EventsPanel = () => {
 
@@ -25,7 +27,7 @@ const EventsPanel = () => {
 				city: "Drammen",
 				postalcode: "3044"
 			},
-			venue: "Drammenshallen",
+			venue: "Drammenshallen123123123",
 			pos: {
 				lat: 59.73521,
 				lng: 10.20528
@@ -53,7 +55,6 @@ const EventsPanel = () => {
 								<EventsPanelInfo
 								//venue={event.venue}
 								// description={event.meta.desc}
-									handleChange={handleChange}
 									onVenueChange={(venue) => {setEvent({...event2, venue})}}
 									onTextChange={(description) => {setEvent({
 									// dump the contents of event2
@@ -65,7 +66,8 @@ const EventsPanel = () => {
 									}
 								})
 							}}
-								/>
+									// onPlacesChanged={(address) => console.log(address)} //todo: lykke til, setEvent address and pos
+ 								/>
 								<EventsPanelDate
 									// start={event.date.date_start}
 									// end={event.date.date_end}
@@ -90,9 +92,9 @@ const EventsPanel = () => {
 									}}
 								/>
 							<hr/>
-								<EventsPanelImg/>
-							<hr/>
-
+								<EventsPanelImg
+								handleImage={handleImages}
+								/>
 						</Form>
 				</Card.Body>
 				<Card.Footer>
@@ -109,7 +111,9 @@ const EventsPanel = () => {
 				</Card.Footer>
 			</Card>
 			{preview ? <Card>
-				<iframe style={{height: 900}} src={"www.google.com"}/>
+				<EventPage
+					{... event2}
+				/>
 			</Card> : <Card/>}
 		</>
 	)

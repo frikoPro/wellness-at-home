@@ -21,7 +21,6 @@ const EventsPanelDate = (props) => {
         props.onChange(dateString)
     },[dateString])
 
-
     // // whenever the time changes
     // useEffect(() => {
     //     // get the hour and the minutes exactly by splitting via the colon symbol, ':'
@@ -60,7 +59,6 @@ const EventsPanelDate = (props) => {
     return(
         <>
             <Form.Group>
-                <Form.Label>Dato og tid</Form.Label>
                 <div>
                     <Space direction="vertical" size={6}>
                         <RangePicker
