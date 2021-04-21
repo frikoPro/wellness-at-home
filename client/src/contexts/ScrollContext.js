@@ -91,6 +91,8 @@ export const ScrollProvider = (props) => {
 
 			window.onresize = getNewPos;
 
+			setOpacity(window.scrollY / slideShowScrollPos);
+
 			const onScroll = () => {
 				setOpacity(window.scrollY / slideShowScrollPos);
 				checkElementPos();
