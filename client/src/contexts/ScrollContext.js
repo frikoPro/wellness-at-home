@@ -86,6 +86,11 @@ export const ScrollProvider = (props) => {
 			checkElementPos();
 		};
 
+		const onScroll = () => {
+			setOpacity(window.scrollY / slideShowScrollPos);
+			checkElementPos();
+		};
+
 		if (location.pathname === '/') {
 			window.onload = getNewPos;
 
@@ -93,16 +98,17 @@ export const ScrollProvider = (props) => {
 
 			setOpacity(window.scrollY / slideShowScrollPos);
 
-			const onScroll = () => {
-				setOpacity(window.scrollY / slideShowScrollPos);
-				checkElementPos();
-			};
 			window.addEventListener('scroll', onScroll);
-			return () => window.removeEventListener('scroll', onScroll);
 		} else {
 			setOpacity(1);
 		}
-	});
+
+		return () => {
+			window.removeEventListener('scroll', onScroll);
+			window.onload = null;
+			window.onresize = null;
+		};
+	}, [location.pathname, homePageEl, slideShowScrollPos]);
 
 	const checkElementPos = () => {
 		let newArray = [];
