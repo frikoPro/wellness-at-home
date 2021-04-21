@@ -1,22 +1,15 @@
 import { useContext, useEffect } from 'react';
 import { Container, Card, Form, Row, Col } from 'react-bootstrap';
-import { ProductsContext } from '../../contexts/ProductsContext';
+import { OrderContext } from '../../contexts/OrderContext';
 import PriceFormatter from '../PriceFormatter';
 import UseForm from '../webpanel/UseForm';
 
-const Checkout = ({ setRecipt }) => {
-	const { cart, totalPrice, updateCart } = useContext(ProductsContext);
+const Checkout = ({ setRecipt, cart, totalPrice, updateCart }) => {
+	const { postData, returnErrors, onSuccess, cleanUp } = useContext(
+		OrderContext
+	);
 
-	const {
-		handleChange,
-		submitData,
-		setValues,
-		returnErrors,
-		onSuccess,
-		values,
-	} = UseForm({
-		url: 'http://localhost:8080/orders/',
-	});
+	const { handleChange, setValues, values } = UseForm({});
 
 	useEffect(() => {
 		if (cart.length > 0) {
@@ -29,6 +22,8 @@ const Checkout = ({ setRecipt }) => {
 			setRecipt({ ...values, totalPrice: totalPrice });
 			updateCart([]);
 		}
+
+		return () => cleanUp();
 	}, [onSuccess]);
 
 	return (
@@ -78,6 +73,15 @@ const Checkout = ({ setRecipt }) => {
 								onChange={handleChange}
 							/>
 						</Form.Group>
+						<Form.Group>
+							<Form.Label>Tlf</Form.Label>
+							<Form.Control
+								placeholder="45322620"
+								name="tlf"
+								onChange={handleChange}
+							/>
+							<Form.Text>{returnErrors('tlf')}</Form.Text>
+						</Form.Group>
 						<Row>
 							<Col sm={2} xs={2}>
 								<Form.Group>
@@ -109,8 +113,8 @@ const Checkout = ({ setRecipt }) => {
 					</Form>
 					<Card.Title>Dine varer</Card.Title>
 
-					{cart.map((item) => (
-						<Row className="margin-bottom-line pb-2">
+					{cart.map((item, i) => (
+						<Row className="margin-bottom-line pb-2" key={i}>
 							<Col sm={2} xs={2}>
 								<Card.Img
 									src={`http://localhost:8080/${item.images[0].image}`}
@@ -142,7 +146,7 @@ const Checkout = ({ setRecipt }) => {
 
 							<Card.Img
 								src={`http://localhost:8080/vipps.png`}
-								onClick={submitData}
+								onClick={() => postData(values)}
 							/>
 						</Col>
 					</Row>

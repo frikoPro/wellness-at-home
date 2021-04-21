@@ -6,17 +6,11 @@ export const ProductsContext = createContext();
 export const ProductsProvider = (props) => {
 	const [products, setProducts] = useState([]);
 
-	const [cart, setCart] = useState([]);
-
 	useEffect(() => {
 		const url = 'http://localhost:8080/products';
 		axios.get(url).then((response) => {
 			setProducts(response.data);
 		});
-
-		const ids = JSON.parse(localStorage.getItem('shoppedItems'));
-
-		if (ids) setCart(ids);
 	}, []);
 
 	const returnCategories = () => {
@@ -42,50 +36,12 @@ export const ProductsProvider = (props) => {
 		return unique;
 	};
 
-	const addToCart = (item) => {
-		const index = cart.findIndex((el) => el._id === item._id);
-		console.log(index);
-
-		if (index === -1) {
-			item.qty = 1;
-			setCart([...cart, item]);
-
-			localStorage.setItem('shoppedItems', JSON.stringify([...cart, item]));
-		} else {
-			let items = cart;
-
-			items[index].qty = items[index].qty + 1;
-
-			setCart([...items]);
-
-			localStorage.setItem('shoppedItems', JSON.stringify([...items]));
-		}
-	};
-
-	const updateCart = (items) => {
-		setCart([...items]);
-		localStorage.setItem('shoppedItems', JSON.stringify([...items]));
-	};
-
-	const getTotalPrice = () => {
-		const price = cart.map((item) => item.qty * item.price);
-
-		if (price.length > 0) {
-			const totalPrice = price.reduce((acc, val) => acc + val);
-			return totalPrice;
-		}
-	};
-
 	return (
 		<ProductsContext.Provider
 			value={{
 				products: products,
 				categories: returnCategories(),
 				techSpec: returnTechSpec(),
-				cart: cart,
-				addToCart: (item) => addToCart(item),
-				updateCart: (items) => updateCart(items),
-				totalPrice: getTotalPrice(),
 			}}>
 			{props.children}
 		</ProductsContext.Provider>
