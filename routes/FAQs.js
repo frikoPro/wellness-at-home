@@ -12,8 +12,8 @@ router.route('/').get(async (req, res, next) => {
 	}
 });
 
-router.route('/add').post(verify, upload.none(), async (req, res, next) => {
-	const newFAQ = new FAQ({ ...JSON.parse(req.body.data) });
+router.route('/add').post(verify, async (req, res, next) => {
+	const newFAQ = new FAQ({ ...req.body });
 
 	try {
 		await newFAQ.save();
@@ -32,11 +32,11 @@ router.route('/:id').delete(verify, async (req, res, next) => {
 	}
 });
 
-router.route('/:id').patch(verify, upload.none(), async (req, res, next) => {
+router.route('/:id').patch(verify, async (req, res, next) => {
 	try {
 		const updatedFAQ = await FAQ.findById(req.params.id).exec();
 
-		updatedFAQ.overwrite({ ...JSON.parse(req.body.data) });
+		updatedFAQ.overwrite({ ...req.body });
 
 		await updatedFAQ.save();
 

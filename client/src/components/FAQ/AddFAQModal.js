@@ -23,7 +23,7 @@ const AddFAQModal = (props) => {
 			<Modal.Footer>
 				<Row className="w-100">
 					<Col>
-						<Button onClick={props.uploadData}>Lagre</Button>
+						<Button onClick={() => props.uploadData(props.FAQ)}>Lagre</Button>
 					</Col>
 					<Col>
 						<Form.Text className="text-success">{props.onSuccess}</Form.Text>
