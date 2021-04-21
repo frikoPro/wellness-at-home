@@ -96,15 +96,15 @@ export const ScrollProvider = (props) => {
 
 			window.onresize = getNewPos;
 
-			setOpacity(window.scrollY / slideShowScrollPos);
+			window.onscroll = onScroll;
 
-			window.addEventListener('scroll', onScroll);
+			setOpacity(window.scrollY / slideShowScrollPos);
 		} else {
 			setOpacity(1);
 		}
 
 		return () => {
-			window.removeEventListener('scroll', onScroll);
+			window.onscroll = null;
 			window.onload = null;
 			window.onresize = null;
 		};
