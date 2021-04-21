@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import AddJacuzzi from '../../components/webpanel/jacuzzi/AddJacuzzi';
 import AddProduct from '../../components/webpanel/product/AddProduct';
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import UpdateJacuzzi from '../../components/webpanel/jacuzzi/UpdateJacuzzi';
 import UpdateProducts from '../../components/webpanel/product/UpdateProducts';
 import AddSlideshow from '../../components/webpanel/slideshow/AddSlideshow';
@@ -47,12 +47,12 @@ const Webpanel = ({ match }) => {
 									height: isOpen.spabad ? '100%' : '1',
 									display: isOpen.spabad ? 'block' : 'none',
 								}}>
-								<a href={`${match.url}/addJacuzzis`}>
+								<Link to={`${match.url}/addJacuzzis`}>
 									<li>legg til spabad</li>
-								</a>
-								<a href={`${match.url}/updateJacuzzi`}>
+								</Link>
+								<Link to={`${match.url}/updateJacuzzi`}>
 									<li>Oppdater spabad</li>
-								</a>
+								</Link>
 							</ul>
 						</li>
 
@@ -69,12 +69,12 @@ const Webpanel = ({ match }) => {
 									height: isOpen.products ? '100%' : '0',
 									display: isOpen.products ? 'block' : 'none',
 								}}>
-								<a href={`${match.url}/addProducts`}>
+								<Link to={`${match.url}/addProducts`}>
 									<li>Legg til produkter</li>
-								</a>
-								<a href={`${match.url}/updateProducts`}>
+								</Link>
+								<Link to={`${match.url}/updateProducts`}>
 									<li>Oppdatere produkter</li>
-								</a>
+								</Link>
 							</ul>
 						</li>
 						<li>
@@ -90,23 +90,23 @@ const Webpanel = ({ match }) => {
 									height: isOpen.slideshow ? '100%' : 0,
 									display: isOpen.slideshow ? 'block' : 'none',
 								}}>
-								<a href={`${match.url}/addSlideshow`}>
+								<Link to={`${match.url}/addSlideshow`}>
 									<li>legg til slideshow</li>
-								</a>
-								<a href={`${match.url}/updateSlideshow`}>
+								</Link>
+								<Link to={`${match.url}/updateSlideshow`}>
 									<li>oppdater slideshow</li>
-								</a>
+								</Link>
 							</ul>
 						</li>
-						<a href={`${match.url}/FAQ`}>
+						<Link to={`${match.url}/FAQ`}>
 							<li>FAQ</li>
-						</a>
-						<a href={`${match.url}/arrangementer`}>
+						</Link>
+						<Link to={`${match.url}/arrangementer`}>
 							<li>arrangementer</li>
-						</a>
-						<a href={`${match.url}/anmeldelser`}>
+						</Link>
+						<Link to={`${match.url}/anmeldelser`}>
 							<li>anmeldelser</li>
-						</a>
+						</Link>
 					</ul>
 					<Button variant="warning" onClick={() => logOut()}>
 						Logg ut
