@@ -3,20 +3,21 @@ import {GoogleMap, LoadScript, StandaloneSearchBox} from '@react-google-maps/api
 import {Alert} from "antd";
 
 const Gmap = (props) => {
-    const [address, setAddress] = useState(["Gatenavn", "GateNr", "Postkode", "By", 0, 0])
+    const [address, setAddress] = useState(["", "", "", "", 0, 0])
     const [errorMsg, setErrorMsg] = useState(false)
     const [errorMsgValue, setErrorMsgValue] = useState()
     const searchBox = useRef(null)
-    const containerStyle = {maxWidth: '1200px', height: '500px'};
+    const containerStyle = {maxWidth: '1200px', height: '500px', border: "1.5px solid #d9d9d9"};
     const center = {lat: 59.9091938697085, lng: 10.7273032197085};
     const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
     const lib = ["places"]
 
     const onLoad = ref => searchBox.current = ref;
 
+    //Searches the res array of nested objects
     function searchObj(obj, query) {
+        const value = obj[key];
         for (const key in obj) {
-            const value = obj[key];
             if (typeof value === 'object') {
                 return searchObj(value, query);
             }
@@ -28,20 +29,19 @@ const Gmap = (props) => {
 
     const onPlacesChanged = () => {
         const places = searchBox.current.getPlaces()
-
+        //Error checks
         if (places.length === 0) {
             setErrorMsg(true)
             setErrorMsgValue(<Alert message="Stedet finnes ikke, prøv igjen." type="error" closeText="Lukk"/>)
             return;
         } else if (!places[0].types.includes("point_of_interest")) {
             setErrorMsg(true)
-            setErrorMsgValue(<Alert message="Finner ikke addresse tilhørende til søket, prøv igjen." type="error"
-                                    closeText="Lukk"/>)
+            setErrorMsgValue(<Alert message="Finner ikke addresse tilhørende til søket, prøv igjen." type="error" closeText="Lukk"/>)
             return;
         } else {
-            setErrorMsg(false)
+            setErrorMsg(false) //Not needed but it removes the error when a valid query is entered
         }
-
+        //populates
         const streetName = places[0].address_components.filter(function (obj) {
             return searchObj(obj, 'route');
         })[0].long_name;
@@ -60,6 +60,7 @@ const Gmap = (props) => {
         setAddress([streetName, streetNr, postalCode, city, lat,lng])
     };
 
+    //passes new data to parent through props
     useEffect(() => {
         props.onPlacesChanged(address)
     },[address])
@@ -92,10 +93,10 @@ const Gmap = (props) => {
                                 boxSizing: `border-box`,
                                 border: `1px solid transparent`,
                                 width: `240px`,
-                                height: `32px`,
+                                height: `39px`,
                                 padding: `0 12px`,
-                                borderRadius: `3px`,
-                                boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+                                borderRadius: `1px`,
+                                boxShadow: `0 2px 6px rgba(0, 0, 0, 0.2)`,
                                 fontSize: `14px`,
                                 outline: `none`,
                                 textOverflow: `ellipses`,

@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Form} from "react-bootstrap";
 import TextArea from "antd/es/input/TextArea";
-import {Button, Input, Space} from "antd";
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import EventsPanelWeekday from "./EventsPanelWeekday";
+import {Col, Input} from "antd";
 
 const EventsPanelInfo = (props) => {
     const [venue, setVenue] = useState()
@@ -21,6 +19,7 @@ const EventsPanelInfo = (props) => {
         setTextArea(e.target.value)
     };
 
+    //passes new data to parent through props
     useEffect(() => {
         props.onTextChange(textArea)
     },[textArea])
@@ -31,14 +30,17 @@ const EventsPanelInfo = (props) => {
 
     return(
         <>
-            <Form.Group controlId="description">
-                <Form.Label>Generell informasjon</Form.Label>
-                <br/>
-                <Input allowClear={true} placeholder="Sted" onChange={onVenueChange} name="venue"/>
-                <br/>
-                <br/>
-                <TextArea allowClear={true} placeholder="Beskrivelse" showCount maxLength={500} onChange={onTextChange}/>
-            </Form.Group>
+            <Form>
+                    <Input.Group size="medium">
+                            <Col span={6}>
+                                <Input allowClear={true} placeholder="Sted" onChange={onVenueChange} name="venue"/>
+                            </Col>
+                        <br/>
+                            <Col span={10}>
+                                <TextArea allowClear={true} placeholder="Beskrivelse" showCount maxLength={500} onChange={onTextChange}/>
+                            </Col>
+                    </Input.Group>
+            </Form>
         </>
     );
 };

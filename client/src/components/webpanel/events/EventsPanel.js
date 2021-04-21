@@ -15,15 +15,15 @@ const EventsPanel = () => {
 			create_date: 1676639434,
 			update_date: 1676639434,
 			date: {
-				date_start: 1619164800,
-				date_end: 1619352000
+				date_start: 0,
+				date_end: 0
 			},
 			address: {
-				streetname: "Knoffs gate 18",
-				city: "Drammen",
-				postalnr: "3044"
+				streetname: "",
+				city: "",
+				postalnr: ""
 			},
-			venue: "Drammenshallen123123123",
+			venue: "",
 			pos: {
 				lat: 59.73521,
 				lng: 10.20528
@@ -34,13 +34,14 @@ const EventsPanel = () => {
 					{day: "Lørdag",start: 1619254800, end: 1619262000},
 					{day: "Søndag",start: 1619341200, end: 1619352000},
 				],
-				desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum\n"
+				desc: ""
 			},
 			img: "https://dhk.no/wp-content/uploads/sites/7/2019/07/Drammenshallen.jpg",
 		},
 	)
 	const { values, handleChange, handleEvent, handleImages, submitData } = UseForm(
 		{initialValues: {event2}, url: "http://localhost:8080/events"})
+
 	return (
 		<>
 			<Card>
