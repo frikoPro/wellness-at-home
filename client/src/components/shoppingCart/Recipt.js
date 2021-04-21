@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import PriceFormatter from '../PriceFormatter';
 
-const Recipt = ({ recipt }) => {
+const Recipt = ({ recipt, emptyRecipt }) => {
+	useEffect(() => {
+		return () => emptyRecipt();
+	}, []);
+
 	return (
 		<Container>
 			<Card>
