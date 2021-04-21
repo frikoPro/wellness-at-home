@@ -12,9 +12,9 @@ router.route('/').get(verify, async (req, res, next) => {
 	}
 });
 
-router.route('/add').post(upload.none(), async (req, res, next) => {
+router.route('/add').post(async (req, res, next) => {
 	const newOrder = new Orders({
-		...JSON.parse(req.body.data),
+		...req.body,
 	});
 
 	try {
