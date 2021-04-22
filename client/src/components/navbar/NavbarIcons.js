@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import { ProductsContext } from '../../contexts/ProductsContext';
+import { CartContext } from '../../contexts/CartContext';
 import PriceFormatter from '../PriceFormatter';
 
 export const Handlekurv = () => {
-	const { cart } = useContext(ProductsContext);
+	const { cart } = useContext(CartContext);
 
 	const [totalPrice, setPrice] = useState(null);
 

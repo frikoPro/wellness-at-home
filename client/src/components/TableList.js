@@ -24,7 +24,9 @@ const TableList = ({ values, removeValue, name }) => {
 				{values.map((item, i) => (
 					<tr key={i}>
 						{keys.map((key, j) => (
-							<td key={j}>{item[key]}</td>
+							<td key={j} style={{ whiteSpace: 'pre-line' }}>
+								{item[key]}
+							</td>
 						))}
 
 						{loggedIn ? (
@@ -45,6 +47,6 @@ const TableList = ({ values, removeValue, name }) => {
 
 TableList.defaultProps = {
 	values: [],
-  };
+};
 
 export default TableList;
