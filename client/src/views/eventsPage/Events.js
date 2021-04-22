@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import styles from './Events.module.css';
-import { useHistory, useRouteMatch, withRouter } from 'react-router-dom';
+import {useHistory, useRouteMatch, withRouter} from 'react-router-dom';
 import EventPage from './EventPage';
 import NotFoundPage from '../errorPage/NotFoundPage';
-import { EventContext } from '../../contexts/EventContext';
+import {EventContext} from '../../contexts/EventContext';
 import {Button, Col, Row} from "react-bootstrap";
 import {Card} from "antd"
 import {CalendarOutlined} from "@ant-design/icons";
@@ -24,7 +24,7 @@ const Events = () => {
 		if (id) {
 			// return false
 			return eventsData.data.filter(
-				(event) => event.create_date.toString() === id
+				(event) => event.createdAt.toString() === id
 			)[0];
 		} else {
 			return false;
@@ -81,7 +81,7 @@ const Events = () => {
 											<Button variant="outline-dark"
 													type="button"
 													className={`${styles.infoBtn}`}
-													onClick={() => handleClick(event.create_date)}>
+													onClick={() => handleClick(event.createdAt)}>
 												Mer info
 											</Button>
 										</div>

@@ -50,8 +50,12 @@ const Gmap = (props) => {
 				/>
 			);
 			return;
-		} else if (!places[0].types.includes('point_of_interest')) {
-			setErrorMsg(true);
+		} else {
+			setErrorMsg(false); //Not needed but it removes the error when a valid query is entered
+		}
+
+		if (!places[0].types.includes('point_of_interest') && !places[0].types.includes('street_address')) {
+			setErrorMsg(true); //Not needed but it removes the error when a valid query is entered
 			setErrorMsgValue(
 				<Alert
 					message="Finner ikke addresse tilhørende til søket, prøv igjen."
@@ -61,8 +65,9 @@ const Gmap = (props) => {
 			);
 			return;
 		} else {
-			setErrorMsg(false); //Not needed but it removes the error when a valid query is entered
+			setErrorMsg(false);
 		}
+
 		//populates
 		const streetName = places[0].address_components.filter(function (obj) {
 			return searchObj(obj, 'route');
