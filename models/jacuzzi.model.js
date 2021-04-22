@@ -42,7 +42,7 @@ const JacuzzisSchema = new Schema({
 		],
 		validate: [
 			(val) => val.length > 0,
-			'Du må ha hvertfall en teknisk spesifikasjon',
+			'Du må ha minst en teknisk spesifikasjon',
 		],
 	},
 	relatedProducts: [String],

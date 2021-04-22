@@ -1,4 +1,6 @@
+import { useContext, useEffect } from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
+import { JacuzziContext } from '../../../contexts/JacuzziContext';
 import UseForm from '../UseForm';
 import JacuzziForm from './JacuzziForm';
 
@@ -6,9 +8,6 @@ const AddJacuzzi = () => {
 	const {
 		values,
 		handleChange,
-		submitData,
-		returnErrors,
-		onSuccess,
 		handleEvent,
 		handleImages,
 		removeValues,
@@ -22,8 +21,39 @@ const AddJacuzzi = () => {
 			relatedProducts: [],
 			images: [],
 		},
-		url: 'http://localhost:8080/jacuzzis/',
 	});
+
+	const {
+		submitData,
+		returnErrors,
+		errors,
+		onSuccess,
+		removeErrors,
+	} = useContext(JacuzziContext);
+
+	useEffect(() => {
+		return () => removeErrors();
+	}, []);
+
+	const returnResponse = () => {
+		if (errors)
+			return (
+				<Card.Text
+					className="text-danger text-center"
+					style={{ whiteSpace: 'pre-line' }}>
+					{errors
+						? errors.messages.reduce(
+								(acc, val) => `${acc}
+		${val}`
+						  )
+						: null}
+				</Card.Text>
+			);
+		else if (onSuccess)
+			return (
+				<Card.Text className="text-success text-center">{onSuccess}</Card.Text>
+			);
+	};
 
 	return (
 		<Card>
@@ -42,13 +72,9 @@ const AddJacuzzi = () => {
 			<Card.Footer>
 				<Row>
 					<Col sm={2}>
-						<Button onClick={submitData}>Lagre produkt</Button>
+						<Button onClick={() => submitData(values)}>Lagre produkt</Button>
 					</Col>
-					<Col className="align-self-center">
-						<Card.Text className="text-success text-center">
-							{onSuccess}
-						</Card.Text>
-					</Col>
+					<Col className="align-self-center">{returnResponse()}</Col>
 				</Row>
 			</Card.Footer>
 		</Card>
