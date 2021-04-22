@@ -44,7 +44,7 @@ const Gmap = (props) => {
 			setErrorMsg(true);
 			setErrorMsgValue(
 				<Alert
-					message="Stedet finnes ikke, prøv igjen."
+					message="Stedet finnes ikke."
 					type="error"
 					closeText="Lukk"
 				/>
@@ -54,18 +54,20 @@ const Gmap = (props) => {
 			setErrorMsg(false); //Not needed but it removes the error when a valid query is entered
 		}
 
-		if (!places[0].types.includes('point_of_interest') && !places[0].types.includes('street_address')) {
-			setErrorMsg(true); //Not needed but it removes the error when a valid query is entered
+		if (!places[0].types.includes('point_of_interest') &&
+			!places[0].types.includes('street_address') &&
+			!places[0].types.includes('establishment')) {
+			setErrorMsg(true);
 			setErrorMsgValue(
 				<Alert
-					message="Finner ikke addresse tilhørende til søket, prøv igjen."
+					message="Finner ikke addresse tilhørende til søket."
 					type="error"
 					closeText="Lukk"
 				/>
 			);
 			return;
 		} else {
-			setErrorMsg(false);
+			setErrorMsg(false); //Not needed but it removes the error when a valid query is entered
 		}
 
 		//populates
