@@ -25,6 +25,7 @@ import CartRoute from '../components/shoppingCart/CartRoute';
 import AboutUsPage from '../views/AboutUsPage/AboutUsPage';
 import { OrderProvider } from '../contexts/OrderContext';
 import { CartProvider } from '../contexts/CartContext';
+import { EventProvider } from '../contexts/EventContext';
 
 const Routes = () => {
 	const loggedIn = useContext(LoggedInContext);
@@ -39,54 +40,56 @@ const Routes = () => {
 								<NavigationBar />
 							</header>
 							<main>
-								<OrderProvider>
-									<SlideshowProvider>
-										<FAQProvider>
-											<ReviewInvProvider>
-												<Switch>
-													<Route exact path="/">
-														<HomePage />
-													</Route>
-													<Route path="/blogg">
-														<Blogg />
-													</Route>
-													<Route path="/Arrangementer">
-														<Events />
-													</Route>
-													<Route path="/kundeservice">
-														<SupportPage />
-													</Route>
-													<Route path="/spabad/:id">
-														<JacuzziPage />
-													</Route>
-													<Route path="/leverandør/:id">
-														<SupplierPage />
-													</Route>
-													<Route path="/webpanel">
-														{loggedIn ? (
-															<Route component={Webpanel} />
-														) : (
-															<LoginPage />
-														)}
-													</Route>
-													<Route path="/sammenlign/:id">
-														<ComparePage />
-													</Route>
-													<Route path="/omoss">
-														<AboutUsPage />
-													</Route>
-													<Route path="/anmeldelser/:id">
-														<AddReview />
-													</Route>
-													<Route path="/nettbutikk" component={NetShop} />
-													<Route path="/handlekurv">
-														<CartRoute />
-													</Route>
-												</Switch>
-											</ReviewInvProvider>
-										</FAQProvider>
-									</SlideshowProvider>
-								</OrderProvider>
+								<EventProvider>
+									<OrderProvider>
+										<SlideshowProvider>
+											<FAQProvider>
+												<ReviewInvProvider>
+													<Switch>
+														<Route exact path="/">
+															<HomePage />
+														</Route>
+														<Route path="/blogg">
+															<Blogg />
+														</Route>
+														<Route path="/Arrangementer">
+															<Events />
+														</Route>
+														<Route path="/kundeservice">
+															<SupportPage />
+														</Route>
+														<Route path="/spabad/:id">
+															<JacuzziPage />
+														</Route>
+														<Route path="/leverandør/:id">
+															<SupplierPage />
+														</Route>
+														<Route path="/webpanel">
+															{loggedIn ? (
+																<Route component={Webpanel} />
+															) : (
+																<LoginPage />
+															)}
+														</Route>
+														<Route path="/sammenlign/:id">
+															<ComparePage />
+														</Route>
+														<Route path="/omoss">
+															<AboutUsPage />
+														</Route>
+														<Route path="/anmeldelser/:id">
+															<AddReview />
+														</Route>
+														<Route path="/nettbutikk" component={NetShop} />
+														<Route path="/handlekurv">
+															<CartRoute />
+														</Route>
+													</Switch>
+												</ReviewInvProvider>
+											</FAQProvider>
+										</SlideshowProvider>
+									</OrderProvider>
+								</EventProvider>
 								<div style={{ height: '200px', width: '100%' }}></div>
 							</main>
 						</ScrollProvider>
