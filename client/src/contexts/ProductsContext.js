@@ -44,6 +44,28 @@ export const ProductsProvider = (props) => {
 			.catch((err) => setErrors(err.response.data));
 	};
 
+	const updateData = (item) => {
+		const formData = new FormData();
+
+		formData.append('data', JSON.stringify(item));
+
+		if (item.newImages)
+			item.newImages.files.forEach((image) => formData.append('files', image));
+
+		axios
+			.patch(url + item._id, formData)
+			.then((res) => okResponse(res))
+			.catch((err) => setErrors(err.response.data));
+	};
+
+	const deleteData = (id) => {
+		console.log(id);
+		axios
+			.delete(url + id)
+			.then((res) => okResponse(res))
+			.catch((err) => console.log(err));
+	};
+
 	const okResponse = (res) => {
 		fetchData();
 		setErrors(null);
@@ -86,6 +108,8 @@ export const ProductsProvider = (props) => {
 			value={{
 				products: products,
 				submitData: postData,
+				updateData: updateData,
+				deleteData: deleteData,
 				onSuccess: onSuccess,
 				returnErrors: returnError,
 				errors: errors

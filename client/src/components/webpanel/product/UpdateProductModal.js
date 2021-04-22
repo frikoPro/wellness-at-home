@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Button, Col, Modal, Row, Form } from 'react-bootstrap';
 import ProductForm from './ProductForm';
 
@@ -6,12 +7,17 @@ const UpdateProductModal = (props) => {
 		values,
 		handleChange,
 		returnErrors,
-		onSuccess,
+		errors,
 		handleEvent,
 		handleImages,
 		removeValues,
 		updateData,
+		onSuccess,
 	} = props;
+
+	useEffect(() => {
+		if (onSuccess) props.onHide();
+	}, [onSuccess]);
 
 	return (
 		<Modal
@@ -37,10 +43,10 @@ const UpdateProductModal = (props) => {
 			<Modal.Footer>
 				<Row className="w-100">
 					<Col>
-						<Button onClick={updateData}>Lagre produkt</Button>
+						<Button onClick={() => updateData(values)}>Lagre produkt</Button>
 					</Col>
-					<Col>
-						<Form.Text className="text-success">{onSuccess}</Form.Text>
+					<Col className="align-self-center text-center">
+						<Form.Text className="text-danger">{errors}</Form.Text>
 					</Col>
 					<Col className="text-right">
 						<Button onClick={props.onHide}>Close</Button>

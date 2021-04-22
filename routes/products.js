@@ -29,10 +29,6 @@ router
 
 router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
-		const product = await Product.findById(req.params.id).exec();
-
-		deleteImages(product.images);
-
 		await Product.findByIdAndDelete(req.params.id);
 		res.status(200).json('Produktet er slettet');
 	} catch (err) {
@@ -43,8 +39,6 @@ router.route('/:id').delete(verify, async (req, res, next) => {
 router
 	.route('/:id')
 	.patch(verify, upload.array('files'), async (req, res, next) => {
-		updateImageFiles(req);
-
 		try {
 			const body = {
 				...JSON.parse(req.body.data),
@@ -52,7 +46,6 @@ router
 
 			// if new images, delete images not used and update new ones.
 			if (req.files.length > 0) {
-				updateImageFiles(req);
 				body.images = req.files.map((file) => ({ image: file.filename }));
 			}
 
