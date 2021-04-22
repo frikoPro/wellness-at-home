@@ -1,78 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
 
-.material-icons {
-}
-
 .header {
-    background: #d4d4d4;
+    background: #efefef;
     height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .cardContainer {
-    justify-content: center;
-    top: 1em;
     font-family: 'Mulish', sans-serif;
 }
 
 .card {
-    flex-direction: row;
-    margin: 1em 2em 2em;
-    position: relative;
-    height: 120px;
-    width: 650px;
-    transition: all .2s ease-in-out;
+    max-height: 25em;
+    max-width: 50em;
+    height: 100%;
+    width: 100%;
+    font-family: 'Mulish', sans-serif;
+    /*transition: all .2s ease-in-out;*/
+    margin-top: 1em;
 }
 
-.card:hover {
-    border: 0.1em solid #b3b3b3;
-    box-shadow: 6px 6px 6px #b3b3b3;
-    transform: scale(1.005);
-    background: #f8f8f8;
-}
+/*.card:hover {*/
+/*    border: 0.1em solid #b3b3b3;*/
+/*    box-shadow: 6px 6px 6px #b3b3b3;*/
+/*    transform: scale(1.005);*/
+/*    background: #f8f8f8;*/
+/*}*/
 
 
 .dateContainer {
-    /*background: #ffc107;*/
-    border-right: 0.01em solid #d6d6d6;
-    font-size: 25px;
-    width: 20%;
-    text-align: center;
-    padding: 15px;
+    /*background: #ffc000;*/
+    font-size: 1.8rem;
 }
 
 .bodyContainer {
-    position: relative;
-    left: 2%;
-    top: 8px;
+    /*background: #0039ff;*/
 }
 
 .linkContainer {
-    right: 1%;
-    bottom: 5%;
-    position: absolute;
-}
+    /*background: #ff0000;*/
 
-.btn {
-    width: 30px;
 }
 
 .month {
+    /*background: #ba8e00;*/
     color: #ff4a00;
 }
 
+.date {
+    /*background: #866500;*/
+}
+
 .title {
-    position: relative;
-    top: 0.2em;
+    /*background: #1e53ff;*/
     font-size: 1.3rem;
     color: #4a4a4a;
 }
 
+.dates {
+
+}
+
 .meta {
-    position: relative;
-    left: 0.7em;
+    /*background: #0029c3;*/
     font-size: 2rem;
+}
+
+.infoBtn {
+    width: 6em;
+    height: 2.4em;
 }

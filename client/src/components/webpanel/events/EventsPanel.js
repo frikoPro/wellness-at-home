@@ -1,11 +1,11 @@
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import React, { useContext, useEffect, useState } from 'react';
+import {Button, Card, Col, Form, Row} from 'react-bootstrap';
+import React, {useContext, useEffect, useState} from 'react';
 import EventsPanelDate from './EventsPanelDate';
 import EventsPanelAddress from './EventsPanelAddress';
 import EventsPanelImg from './EventsPanelImg';
 import EventsPanelInfo from './EventsPanelInfo';
 import EventPage from '../../../views/eventsPage/EventPage';
-import { EventContext } from '../../../contexts/EventContext';
+import {EventContext} from '../../../contexts/EventContext';
 import Gmap from './Gmap';
 
 const EventsPanel = () => {
@@ -33,16 +33,16 @@ const EventsPanel = () => {
 		meta: {
 			weekdays: [
 				// Think ill remove weekdays, and if needed just add them as text
-				{ day: 'Fredag', start: 1619164800, end: 1619175600 },
-				{ day: 'Lørdag', start: 1619254800, end: 1619262000 },
-				{ day: 'Søndag', start: 1619341200, end: 1619352000 },
+				{day: 'Fredag', start: 1619164800, end: 1619175600},
+				{day: 'Lørdag', start: 1619254800, end: 1619262000},
+				{day: 'Søndag', start: 1619341200, end: 1619352000},
 			],
 			desc: '',
 		},
 		img: '',
 	});
 
-	const { postData, returnErrors, onSuccess, cleanUp } = useContext(
+	const {postData, returnErrors, onSuccess, cleanUp} = useContext(
 		EventContext
 	);
 
@@ -56,10 +56,10 @@ const EventsPanel = () => {
 				<Card.Body>
 					<Card.Title>Opprett arrangement</Card.Title>
 					<Form>
-						<hr />
+						<hr/>
 						<EventsPanelInfo
 							onVenueChange={(venue) => {
-								setEvent({ ...event2, venue });
+								setEvent({...event2, venue});
 							}}
 							errors={returnErrors}
 							onTextChange={(description) => {
@@ -79,11 +79,11 @@ const EventsPanel = () => {
 							onChange={(date) => {
 								setEvent({
 									...event2,
-									date: { date_start: date[0], date_end: date[1] },
+									date: {date_start: date[0], date_end: date[1]},
 								});
 							}}
 						/>
-						<hr />
+						<hr/>
 						<Gmap
 							onPlacesChanged={(address) =>
 								setEvent({
@@ -93,7 +93,7 @@ const EventsPanel = () => {
 										city: address[2],
 										postalnr: address[3],
 									},
-									pos: { lat: address[4], lng: address[5] },
+									pos: {lat: address[4], lng: address[5]},
 								})
 							}
 						/>
@@ -128,9 +128,9 @@ const EventsPanel = () => {
 								});
 							}}
 						/>
-						<hr />
+						<hr/>
 						<EventsPanelImg
-							onChange={(file) => setEvent({ ...event2, img: file })}
+							onChange={(file) => setEvent({...event2, img: file})}
 						/>
 					</Form>
 				</Card.Body>
@@ -140,8 +140,8 @@ const EventsPanel = () => {
 							<Button onClick={() => postData(event2)}>
 								Lagre arrangement
 							</Button>
-							<br />
-							<br />
+							<br/>
+							<br/>
 							<Button onClick={() => triggerPreview()}>Forhåndvisning</Button>
 						</Col>
 						<Col className="align-self-center text-success">{onSuccess}</Col>

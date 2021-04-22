@@ -33,7 +33,7 @@ function Gmaps(props) {
                         onClick={() => setChosenMarker(
                             {
                                 title: props.venue,
-                                subTitle: `${props.address.streetname}, ${props.address.postalcode} ${props.address.city}`,
+                                subTitle: `${props.address.streetname}, ${props.address.postalnr} ${props.address.city}`,
                                 link: `https://www.google.com/maps/search/?api=1&query=${props.pos.lat},${props.pos.lng}`,
                                 coordinates: [props.pos.lat, props.pos.lng]
                             }
