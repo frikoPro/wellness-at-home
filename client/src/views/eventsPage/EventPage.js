@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import Gmaps from "../../components/Gmaps";
-import CalendarLink from "../../components/ CalendarLink";
+import Gmaps from "../../components/events/Gmaps";
+import CalendarLink from "../../components/events/CalendarLink";
 import {Tab, Tabs} from "react-bootstrap";
 import styles from "./EventPage.module.css";
-import CalendarView from "../../components/CalendarView";
+import CalendarView from "../../components/events/CalendarView";
 import {PageHeader} from "antd";
 
 const EventPage = (props) => {
@@ -51,7 +51,6 @@ const EventPage = (props) => {
                                             .toLocaleDateString("en-GB").slice(0, 5)}
                                         <br/>
                                         <br/>
-                                        {/*todo: revert this code back to original or remove it completely*/}
                                         {props.meta.weekdays.map((day) => (
                                             <>
                                                 {day.day}: {new Date(day.start * 1000)
