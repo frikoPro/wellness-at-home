@@ -8,11 +8,14 @@ import Slideshow from '../../components/Slideshow';
 import { ProductsContext } from '../../contexts/ProductsContext';
 import styles from './ProductPage.module.css';
 import TechSpec from '../../components/TechSpec';
+import { CartContext } from '../../contexts/CartContext';
 
 const ProductPage = () => {
 	const { id } = useParams();
 
-	const { products, addToCart } = useContext(ProductsContext);
+	const { products } = useContext(ProductsContext);
+
+	const { addToCart } = useContext(CartContext);
 
 	const [product, setProduct] = useState({});
 

@@ -9,22 +9,32 @@ import FAQ from './FAQ';
 
 const FAQList = () => {
 	const LoggedIn = useContext(LoggedInContext);
-	const FAQs = useContext(FAQContext);
+	const {
+		data,
+		submitData,
+		returnErrors,
+		onSuccess,
+		deleteData,
+		updateData,
+	} = useContext(FAQContext);
 
-	const { values, handleChange, submitData, returnErrors, onSuccess } = UseForm(
-		{
-			initialValues: { answer: '', question: '' },
-			url: 'http://localhost:8080/FAQ/',
-		}
-	);
+	const { values, handleChange } = UseForm({
+		initialValues: { answer: '', question: '' },
+	});
 
 	const [modalShow, setShow] = useState(false);
 
 	return (
 		<Row className="justify-content-center">
-			{FAQs.map((question, index) => (
+			{data.map((question, index) => (
 				<Col sm={12} key={index}>
-					<FAQ {...question} key={index} />
+					<FAQ
+						{...question}
+						key={index}
+						deleteData={deleteData}
+						updateData={updateData}
+						returnErrors={returnErrors}
+					/>
 				</Col>
 			))}
 

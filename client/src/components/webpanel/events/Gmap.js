@@ -24,8 +24,9 @@ const Gmap = (props) => {
 
 	//Searches the res array of nested objects
 	function searchObj(obj, query) {
-		const value = obj[obj];
 		for (const key in obj) {
+			const value = obj[key];
+
 			if (typeof value === 'object') {
 				return searchObj(value, query);
 			}

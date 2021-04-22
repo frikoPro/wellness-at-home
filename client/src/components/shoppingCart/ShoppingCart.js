@@ -1,23 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import { ProductsContext } from '../../contexts/ProductsContext';
 import QtySelector from './QtySelector';
 import PriceFormatter from '../PriceFormatter';
 import { Link } from 'react-router-dom';
 
-const ShoppingCart = () => {
-	const [shoppedItems, setItems] = useState([]);
-
-	const { cart, updateCart, totalPrice } = useContext(ProductsContext);
-
-	useEffect(() => {
-		setItems([...cart]);
-	}, [cart]);
-
+const ShoppingCart = ({ cart, updateCart, totalPrice }) => {
 	const setQty = (val, id) => {
-		const index = shoppedItems.findIndex((item) => item._id === id);
+		const index = cart.findIndex((item) => item._id === id);
 
-		let items = shoppedItems;
+		let items = cart;
 
 		if (val === '') {
 			items[index].qty = val;
@@ -30,7 +21,7 @@ const ShoppingCart = () => {
 	};
 
 	const removeItem = (index) => {
-		const tempArray = shoppedItems;
+		const tempArray = cart;
 
 		const tempStorage = JSON.parse(localStorage.getItem('shoppedItems'));
 
@@ -43,7 +34,7 @@ const ShoppingCart = () => {
 		updateCart(tempArray);
 	};
 
-	return shoppedItems.length > 0 ? (
+	return cart.length > 0 ? (
 		<Container fluid="md">
 			<Row>
 				<Col>
@@ -67,7 +58,7 @@ const ShoppingCart = () => {
 				</Col>
 			</Row>
 
-			{shoppedItems.map((item, i) => (
+			{cart.map((item, i) => (
 				<Row key={i}>
 					<Col md={11}>
 						<Card className="mb-4">

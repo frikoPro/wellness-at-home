@@ -4,28 +4,26 @@ import { Accordion, Button, Card } from 'react-bootstrap';
 import UseForm from '../webpanel/UseForm';
 import AddFAQModal from './AddFAQModal';
 
-const FAQ = ({ question, answer, _id }) => {
+const FAQ = ({
+	question,
+	answer,
+	_id,
+	deleteData,
+	updateData,
+	onSuccess,
+	returnErrors,
+}) => {
 	const loggedIn = useContext(LoggedInContext);
 
 	const [modalShow, setShow] = useState(false);
 
-	const {
-		updateData,
-		values,
-		handleChange,
-		handleImage,
-		setValues,
-		onSuccess,
-		returnErrors,
-		deleteData,
-	} = UseForm({
+	const { values, handleChange } = UseForm({
 		initialValues: { question, answer, _id },
-		url: 'http://localhost:8080/FAQ/',
 	});
 
 	return (
 		<Accordion>
-			<Card style={{cursor: "pointer"}}>
+			<Card style={{ cursor: 'pointer' }}>
 				<Accordion.Toggle as={Card.Header} eventKey="0">
 					{question}
 				</Accordion.Toggle>
@@ -34,26 +32,27 @@ const FAQ = ({ question, answer, _id }) => {
 				</Accordion.Collapse>
 				{loggedIn ? (
 					<Card.Footer>
-						<Button className="btn-danger mr-5" onClick={deleteData}>
+						<Button className="btn-danger mr-5" onClick={() => deleteData(_id)}>
 							Delete
 						</Button>
 						<Button className="btn-warning" onClick={() => setShow(true)}>
 							Update
 						</Button>
-						<Card.Text className="text-success">{onSuccess}</Card.Text>
 					</Card.Footer>
 				) : null}
 			</Card>
 
-			<AddFAQModal
-				show={modalShow}
-				onHide={() => setShow(false)}
-				FAQ={values}
-				handleChange={handleChange}
-				uploadData={updateData}
-				errors={returnErrors}
-				onSuccess={onSuccess}
-			/>
+			{modalShow ? (
+				<AddFAQModal
+					show={modalShow}
+					onHide={() => setShow(false)}
+					FAQ={values}
+					handleChange={handleChange}
+					uploadData={updateData}
+					errors={returnErrors}
+					onSuccess={onSuccess}
+				/>
+			) : null}
 		</Accordion>
 	);
 };

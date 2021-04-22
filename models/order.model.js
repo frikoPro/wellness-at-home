@@ -14,6 +14,7 @@ const OrderSchema = new Schema(
 		},
 		address: { type: String, required: [true, 'Du må skrive inn en adresse.'] },
 		email: { type: String },
+		tlf: { type: String },
 		postalCode: {
 			type: String,
 			required: [true, 'Du må skrive inn et postnummer.'],

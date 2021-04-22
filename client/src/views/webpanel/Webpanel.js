@@ -12,6 +12,7 @@ import { FAQContext } from '../../contexts/FAQContext';
 import EventsPanel from '../../components/webpanel/events/EventsPanel';
 import Invites from '../../components/webpanel/reviewInvites/Invites';
 import axios from 'axios';
+import Orders from '../../components/webpanel/orders/Orders';
 
 const Webpanel = ({ match }) => {
 	const FAQs = useContext(FAQContext);
@@ -107,6 +108,9 @@ const Webpanel = ({ match }) => {
 						<Link to={`${match.url}/anmeldelser`}>
 							<li>anmeldelser</li>
 						</Link>
+						<Link to={`${match.url}/ordrer`}>
+							<li>ordrer</li>
+						</Link>
 					</ul>
 					<Button variant="warning" onClick={() => logOut()}>
 						Logg ut
@@ -140,6 +144,9 @@ const Webpanel = ({ match }) => {
 						</Route>
 						<Route path={`${match.url}/anmeldelser`}>
 							<Invites />
+						</Route>
+						<Route path={`${match.url}/ordrer`}>
+							<Orders />
 						</Route>
 					</Switch>
 				</Col>
