@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Col, Input, Row, Form } from 'antd';
-import { Form as FormBoot } from 'react-bootstrap';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import React, {useEffect, useState} from 'react';
+import {Col, Form, Input, Row} from 'antd';
+import {Form as FormBoot} from 'react-bootstrap';
+import {InfoCircleOutlined} from '@ant-design/icons';
 
 const EventsPanelAddress = (props) => {
 	const [streetName, setStreetName] = useState();
 	const [city, setCity] = useState();
 	const [postalCode, setPostalCode] = useState();
+	const [posLat, setPosLat] = useState();
+	const [posLng, setPosLng] = useState();
 
 	const onStreetChange = (e) => {
 		console.log('onStreetChange:', e.target.value);
@@ -20,7 +22,14 @@ const EventsPanelAddress = (props) => {
 		console.log('onPostalCodeChange:', e.target.value);
 		setPostalCode(e.target.value);
 	};
-
+	const onPosLatChange = (e) => {
+		console.log('onPosLatChange:', e.target.value);
+		setPosLat(e.target.value);
+	};
+	const onPosLngChange = (e) => {
+		console.log('onPoslatChange:', e.target.value);
+		setPosLng(e.target.value);
+	};
 	//has to be its on useEffects
 	useEffect(() => {
 		props.onStreetChange(streetName);
@@ -34,15 +43,23 @@ const EventsPanelAddress = (props) => {
 		props.onPostalCodeChange(postalCode);
 	}, [postalCode]);
 
+	useEffect(() => {
+		props.onPosLatChange(posLat);
+	}, [posLat]);
+
+	useEffect(() => {
+		props.onPoslatChange(posLng);
+	}, [posLng]);
+
 	return (
 		<>
 			<Form>
-				<br />
+				<br/>
 				<Form.Item
 					label="Adresse:"
 					tooltip={{
 						title: 'Foreslått adresse, kan være feil.',
-						icon: <InfoCircleOutlined />,
+						icon: <InfoCircleOutlined/>,
 					}}>
 					<Input.Group size="medium">
 						<Row gutter={8}>
@@ -78,6 +95,33 @@ const EventsPanelAddress = (props) => {
 								<FormBoot.Text className="text-danger">
 									{props.errors('address.city')}
 								</FormBoot.Text>
+							</Col>
+						</Row>
+					</Input.Group>
+				</Form.Item>
+				<Form.Item
+					label="Posisjon:"
+					tooltip={{
+						title: 'Foreslått posisjon. NB: Ikke endre hvis du ikke vet hva du gjør!',
+						icon: <InfoCircleOutlined/>,
+					}}>
+					<Input.Group size="medium">
+						<Row gutter={8}>
+							<Col span={4}>
+								<Input
+									placeholder="Lat"
+									value={props.pos.lat}
+									allowClear={true}
+									onChange={onPosLatChange}
+								/>
+							</Col>
+							<Col span={4}>
+								<Input
+									placeholder="Lng"
+									value={props.pos.lng}
+									allowClear={true}
+									onChange={onPosLngChange}
+								/>
 							</Col>
 						</Row>
 					</Input.Group>

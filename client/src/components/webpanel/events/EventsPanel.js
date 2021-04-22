@@ -14,8 +14,8 @@ const EventsPanel = () => {
 		setPreview(!preview);
 	};
 	const [event2, setEvent] = useState({
-		create_date: 1676639434,
-		update_date: 1676639434,
+		create_date: null,
+		update_date: null,
 		date: {
 			date_start: null,
 			date_end: null,
@@ -27,8 +27,8 @@ const EventsPanel = () => {
 		},
 		venue: '',
 		pos: {
-			lat: 59.73521,
-			lng: 10.20528,
+			lat: null,
+			lng: null,
 		},
 		meta: {
 			weekdays: [
@@ -100,6 +100,7 @@ const EventsPanel = () => {
 						<EventsPanelAddress
 							errors={returnErrors}
 							address={event2.address}
+							pos={event2.pos}
 							onStreetChange={(streetname) => {
 								setEvent({
 									...event2,
@@ -124,6 +125,24 @@ const EventsPanel = () => {
 									address: {
 										...event2.address,
 										postalcode: postalcode,
+									},
+								});
+							}}
+							onPosLatChange={(lat) => {
+								setEvent({
+									...event2,
+									pos: {
+										...event2.pos,
+										lat: lat,
+									},
+								});
+							}}
+							onPoslatChange={(lng) => {
+								setEvent({
+									...event2,
+									pos: {
+										...event2.pos,
+										lng: lng,
 									},
 								});
 							}}
