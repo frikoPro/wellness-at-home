@@ -1,10 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-	GoogleMap,
-	LoadScript,
-	StandaloneSearchBox,
-} from '@react-google-maps/api';
-import { Alert } from 'antd';
+import React, {useEffect, useRef, useState} from 'react';
+import {GoogleMap, LoadScript, StandaloneSearchBox,} from '@react-google-maps/api';
+import {Alert} from 'antd';
 
 const Gmap = (props) => {
 	const [address, setAddress] = useState(['', '', '', '', 0, 0]);
@@ -24,6 +20,7 @@ const Gmap = (props) => {
 
 	//Searches the res array of nested objects
 	function searchObj(obj, query) {
+		const value = obj[obj];
 		for (const key in obj) {
 			const value = obj[key];
 
