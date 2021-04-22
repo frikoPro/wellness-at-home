@@ -61,7 +61,7 @@ export const EventProvider = (props) => {
 
 	const okResponse = (res) => {
 		setErrors(null);
-		setSuccess(res);
+		setSuccess(res.data);
 		fetchData();
 	};
 
