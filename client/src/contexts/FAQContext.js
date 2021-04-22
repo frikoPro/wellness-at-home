@@ -10,6 +10,10 @@ export const FAQProvider = (props) => {
 
 	const url = 'http://localhost:8080/FAQ';
 
+	useEffect(() => {
+		setSuccess(null);
+	}, [success]);
+
 	const fetchData = () => {
 		axios
 			.get(url)
@@ -24,21 +28,21 @@ export const FAQProvider = (props) => {
 	const postData = (item) => {
 		axios
 			.post(url + '/add', item)
-			.then(() => fetchData())
+			.then((res) => okResponse(res))
 			.catch((err) => setErrors(err.response.data));
 	};
 
 	const deleteData = (id) => {
 		axios
 			.delete(url + `/${id}`)
-			.then(() => fetchData())
+			.then((res) => okResponse(res))
 			.catch((err) => setErrors(err.response.data));
 	};
 
 	const updateData = (item) => {
 		axios
 			.patch(url + `/${item._id}`, { ...item })
-			.then(() => fetchData())
+			.then((res) => okResponse(res))
 			.catch((err) => setErrors(err.response.data));
 	};
 
@@ -48,6 +52,12 @@ export const FAQProvider = (props) => {
 
 			return errors.messages[index];
 		}
+	};
+
+	const okResponse = (res) => {
+		fetchData();
+		setSuccess(res.data);
+		setErrors(null);
 	};
 
 	return (
