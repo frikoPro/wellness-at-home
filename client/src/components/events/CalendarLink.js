@@ -1,12 +1,12 @@
 import {Dropdown} from "react-bootstrap";
-import { google, outlook, office365, yahoo, ics } from "calendar-link";
+import {google, ics, office365, outlook, yahoo} from "calendar-link";
 
 const CalendarLink = (props) => {
     let link = {
         title: `Wellness at home - ${props.venue}`,
-        start: props.date.date_start*1000,
-        end: props.date.date_end*1000,
-        location: `${props.address.streetname}, ${props.address.postalcode} ${props.address.city}`,
+        start: props.date.date_start * 1000,
+        end: props.date.date_end * 1000,
+        location: `${props.address.streetname}, ${props.address.postalnr} ${props.address.city}`,
         description: `www.wellnessathome.no/Arrangementer/eventkode=${props.create_date}`
     }
 
