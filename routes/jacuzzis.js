@@ -34,8 +34,6 @@ router
 router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
 		await ReviewInvite.deleteMany({ product: req.params.id });
-		const jacuzzi = Jacuzzi.findById(req.params.id).exec();
-		deleteImages(jaccuzzi.images);
 		await Jacuzzi.findByIdAndDelete(req.params.id);
 		res.status(200).json('Produktet er slettet');
 	} catch (err) {
@@ -52,7 +50,6 @@ router
 			};
 
 			if (req.files.length > 0) {
-				updateImageFiles(req);
 				body.images = req.files.map((file) => ({ image: file.filename }));
 			}
 

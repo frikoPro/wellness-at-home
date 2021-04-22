@@ -1,29 +1,42 @@
 import { Button, Col, Modal, Row, Form } from 'react-bootstrap';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import UseForm from '../UseForm';
 import JacuzziForm from './JacuzziForm';
+import { JacuzziContext } from '../../../contexts/JacuzziContext';
 
 const UpdateJacuzziModal = (props) => {
 	const {
 		values,
 		handleChange,
-		submitData,
-		returnErrors,
-		onSuccess,
 		handleEvent,
 		handleImages,
 		removeValues,
 		setValues,
-		deleteData,
-		updateData,
 	} = UseForm({
 		initialValues: { ...props.jacuzzi },
 		url: 'http://localhost:8080/jacuzzis/',
 	});
 
+	const {
+		deleteData,
+		updateData,
+		returnErrors,
+		onSuccess,
+		removeErrors,
+		errors,
+	} = useContext(JacuzziContext);
+
 	useEffect(() => {
 		setValues({ ...props.jacuzzi });
 	}, [props.jacuzzi, props.show]);
+
+	useEffect(() => {
+		if (onSuccess) props.onHide();
+	}, [onSuccess]);
+
+	useEffect(() => {
+		removeErrors();
+	}, [props.show]);
 
 	return (
 		<Modal
@@ -44,23 +57,28 @@ const UpdateJacuzziModal = (props) => {
 					handleImages={handleImages}
 					removeValues={removeValues}
 					values={values}
-					onSuccess={onSuccess}
-					submitData={submitData}
 				/>
 			</Modal.Body>
 			<Modal.Footer>
 				<Col sm={1} className="mr-2">
-					<Button className="btn-danger" onClick={deleteData}>
+					<Button className="btn-danger" onClick={() => deleteData(values._id)}>
 						Delete
 					</Button>
 				</Col>
 				<Col>
-					<Button className="btn-warning" onClick={updateData}>
+					<Button className="btn-warning" onClick={() => updateData(values)}>
 						Update
 					</Button>
 				</Col>
 				<Col>
-					<Form.Text className="text-success">{onSuccess}</Form.Text>
+					<Form.Text className="text-danger" style={{ whiteSpace: 'pre-line' }}>
+						{errors
+							? errors.messages.reduce(
+									(acc, val) => `${acc} 
+							${val}`
+							  )
+							: null}
+					</Form.Text>
 				</Col>
 				<Col className="text-right">
 					<Button onClick={props.onHide}>Close</Button>
