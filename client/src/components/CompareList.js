@@ -2,6 +2,7 @@ import { Col, Row } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import TableList from '../components/TableList';
 import StarRating from '../components/StarRating';
+import { Link } from 'react-router-dom';
 
 const CompareList = ({ selectedJacuzzi, jacuzzis }) => {
 	const [averageRating, setAverageRating] = useState(0);
@@ -23,15 +24,11 @@ const CompareList = ({ selectedJacuzzi, jacuzzis }) => {
 					alt=""></img>
 			</Row>
 			<Row className="justify-content-center text-center">
-				<h1>
-					<a
-						href={
-							jacuzzis[selectedJacuzzi] &&
-							`/spabad/${jacuzzis[selectedJacuzzi].link}`
-						}>
+                <Link to={jacuzzis[selectedJacuzzi] && `/spabad/${jacuzzis[selectedJacuzzi].link}`}>
+					<h1>
 						{jacuzzis[selectedJacuzzi] && jacuzzis[selectedJacuzzi].name}
-					</a>
-				</h1>
+					</h1>
+				</Link>
 			</Row>
 			<Row className="justify-content-center">
 				<StarRating rating={averageRating} size={2} />

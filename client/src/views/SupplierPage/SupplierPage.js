@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import styles from './SupplierPage.module.css';
 import { JacuzziContext } from '../../contexts/JacuzziContext';
@@ -67,7 +67,8 @@ const SupplierPage = () => {
                         </Row>
                         <Row className="justify-content-center">
                             <Button 
-                                href={mappedJacuzzis[currentJacuzzi] && `/spabad/${mappedJacuzzis[currentJacuzzi].link}`}
+                                as={Link}
+                                to={mappedJacuzzis[currentJacuzzi] && `/spabad/${mappedJacuzzis[currentJacuzzi].link}`}
                                 className="shadow btn-warning">Les mer</Button>
                         </Row>
                     </Col> 
