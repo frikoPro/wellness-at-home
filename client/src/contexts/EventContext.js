@@ -31,6 +31,19 @@ export const EventProvider = (props) => {
 			.catch((err) => setErrors(err.response.data));
 	};
 
+	const updateData = (data) => {
+		const formData = new FormData();
+
+		formData.append('data', JSON.stringify(data));
+
+		if (data.newImg) formData.append('files', data.newImg);
+
+		axios
+			.patch(url + data._id, formData)
+			.then((res) => okResponse(res))
+			.catch((err) => setErrors(err.response.data));
+	};
+
 	const deleteData = (id) => {
 		axios
 			.delete(url + id)
@@ -58,6 +71,7 @@ export const EventProvider = (props) => {
 				data: events,
 				postData: postData,
 				deleteData: deleteData,
+				updateData: updateData,
 				returnErrors: returnError,
 				onSuccess: onSuccess,
 				cleanUp: () => {

@@ -29,4 +29,22 @@ router
 		}
 	});
 
+router
+	.route('/:id')
+	.patch(verify, upload.array('files'), async (req, res, next) => {
+		try {
+			const event = await Event.findById(req.params.id).exec();
+
+			event.overwrite({ ...JSON.parse(req.body.data) });
+
+			if (req.files.length > 0) event.img = req.files[0].filename;
+
+			await event.save();
+
+			res.status(200).send('Arrangement oppdatert');
+		} catch (err) {
+			next(err);
+		}
+	});
+
 module.exports = router;
