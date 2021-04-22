@@ -10,9 +10,6 @@ import Gmap from './Gmap';
 
 const EventsPanel = () => {
 	const [preview, setPreview] = useState(false);
-	const triggerPreview = () => {
-		setPreview(!preview);
-	};
 	const [event2, setEvent] = useState({
 		create_date: null,
 		update_date: null,
@@ -156,12 +153,10 @@ const EventsPanel = () => {
 				<Card.Footer>
 					<Row>
 						<Col sm={2}>
-							<Button onClick={() => postData(event2)}>
-								Lagre arrangement
-							</Button>
+							<Button onClick={() => postData(event2)}>Lagre arrangement</Button>
 							<br/>
 							<br/>
-							<Button onClick={() => triggerPreview()}>Forhåndvisning</Button>
+							<Button onClick={() => setPreview(true)}>Forhåndvisning</Button>
 						</Col>
 						<Col className="align-self-center text-success">{onSuccess}</Col>
 					</Row>
