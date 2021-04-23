@@ -54,7 +54,7 @@ const SupportForm = () => {
 	return (
 		<Form className="mx-auto" style={{ width: '70%' }} onSubmit={handleSubmit}>
 			<Form.Group controlId="supportForm.ControlInputName">
-				<Form.Label>Navn:</Form.Label>
+				<Form.Label>Navn: <span style={{color:"#FF0000"}}>*</span></Form.Label>
 				<Form.Control
 					className="border-dark"
 					required
@@ -63,7 +63,7 @@ const SupportForm = () => {
 				/>
 			</Form.Group>
 			<Form.Group controlId="supportForm.ControlInputEmail">
-				<Form.Label>E-post:</Form.Label>
+				<Form.Label>E-post: <span style={{color:"#FF0000"}}>*</span></Form.Label>
 				<Form.Control
 					className="border-dark"
 					type="email"
@@ -82,9 +82,10 @@ const SupportForm = () => {
 				/>
 			</Form.Group>
 			<Form.Group controlId="supportForm.ControlInputProblem">
-				<Form.Label>Hva trenger du hjelp med?:</Form.Label>
+				<Form.Label>Hva trenger du hjelp med?: <span style={{color:"#FF0000"}}>*</span></Form.Label>
 				<Form.Control
 					className="border-dark"
+					required
 					onChange={(e) => setProblem(e.target.value)}
 					value={problem}
 				/>
