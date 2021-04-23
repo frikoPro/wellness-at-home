@@ -28,13 +28,13 @@ export const JacuzziProvider = (props) => {
 	}, []);
 
 	useEffect(() => {
+		setErrors(null);
 		setTimeout(() => {
 			setSuccess(null);
 		}, 1500);
 	}, [onSuccess]);
 
 	const postData = (item) => {
-		console.log(item);
 		const formData = new FormData();
 
 		formData.append('data', JSON.stringify(item));
@@ -49,6 +49,7 @@ export const JacuzziProvider = (props) => {
 	};
 
 	const updateData = (item) => {
+		console.log(item);
 		const formData = new FormData();
 
 		formData.append('data', JSON.stringify(item));
@@ -59,7 +60,12 @@ export const JacuzziProvider = (props) => {
 		axios
 			.patch(url + item._id, formData)
 			.then((res) => okResponse(res))
-			.catch((err) => setErrors(err.response.data));
+			.catch((err) => {
+				setErrors(err.response.data);
+				setTimeout(() => {
+					fetchData();
+				}, 1550);
+			});
 	};
 
 	const returnBrands = () => {
@@ -102,7 +108,12 @@ export const JacuzziProvider = (props) => {
 				submitData: postData,
 				onSuccess: onSuccess,
 				returnErrors: returnError,
-				errors: errors,
+				errors: errors
+					? errors.messages.reduce(
+							(acc, val) => `${acc} 
+				${val}`
+					  )
+					: null,
 				removeErrors: () => setErrors(null),
 				brands: returnBrands(),
 				techSpec: returnTechSpec(),

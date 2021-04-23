@@ -14,7 +14,6 @@ const UpdateJacuzziModal = (props) => {
 		setValues,
 	} = UseForm({
 		initialValues: { ...props.jacuzzi },
-		url: 'http://localhost:8080/jacuzzis/',
 	});
 
 	const {
@@ -72,12 +71,7 @@ const UpdateJacuzziModal = (props) => {
 				</Col>
 				<Col>
 					<Form.Text className="text-danger" style={{ whiteSpace: 'pre-line' }}>
-						{errors
-							? errors.messages.reduce(
-									(acc, val) => `${acc} 
-							${val}`
-							  )
-							: null}
+						{errors}
 					</Form.Text>
 				</Col>
 				<Col className="text-right">
