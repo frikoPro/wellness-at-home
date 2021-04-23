@@ -1,22 +1,18 @@
+import { useContext } from 'react';
 import { Button, Card, Row, Col } from 'react-bootstrap';
+import { SlideshowContext } from '../../../contexts/SlideshowContext';
 import UseForm from '../UseForm';
 import SlideshowForm from './SlideshowForm';
 
 const AddSlideshow = () => {
-	const {
-		submitData,
-		handleImages,
-		handleChange,
-		values,
-		onSuccess,
-		returnErrors,
-	} = UseForm({
+	const { handleImages, handleChange, values } = UseForm({
 		initialValues: {
 			textHead: '',
 			textP: '',
 		},
-		url: 'http://localhost:8080/slideshow/',
 	});
+
+	const { submitData, returnErrors, onSuccess } = useContext(SlideshowContext);
 
 	return (
 		<Card>
@@ -32,7 +28,7 @@ const AddSlideshow = () => {
 			<Card.Footer>
 				<Row className="align-items-center">
 					<Col>
-						<Button onClick={submitData}>Lagre slideshow</Button>
+						<Button onClick={() => submitData(values)}>Lagre slideshow</Button>
 					</Col>
 					<Col>
 						<Card.Text className="text-success">{onSuccess}</Card.Text>
