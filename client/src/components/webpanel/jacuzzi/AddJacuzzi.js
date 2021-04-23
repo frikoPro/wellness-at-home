@@ -41,12 +41,7 @@ const AddJacuzzi = () => {
 				<Card.Text
 					className="text-danger text-center"
 					style={{ whiteSpace: 'pre-line' }}>
-					{errors
-						? errors.messages.reduce(
-								(acc, val) => `${acc}
-		${val}`
-						  )
-						: null}
+					{errors}
 				</Card.Text>
 			);
 		else if (onSuccess)
