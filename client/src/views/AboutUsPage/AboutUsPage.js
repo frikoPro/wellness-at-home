@@ -4,12 +4,12 @@ const AboutUsPage = () => {
 
 	return (
 		<Container className="shadow" style={{ backgroundColor: 'white', marginTop: '5%' }}>
-            <Row className="justify-content-center p-3">
-                <img src="http://localhost:8080/wellnessLogo.png" alt=""></img>
+            <Row className="justify-content-center p-3" style={{ backgroundColor: 'black'}}>
+                <img src="http://localhost:8080/wellnessLogo2.png" alt="" style={{ width: '50%'}}></img>
             </Row>
-            <Row className="margin-bottom-line m-3">
-                <Col>
-                    <h3>Litt om oss</h3>
+            <Row className="m-3">
+                <Col className="shadow m-3">
+                    <h3 className="margin-bottom-line">Litt om oss</h3>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
@@ -18,18 +18,15 @@ const AboutUsPage = () => {
                     </p>
                 </Col>
                 <Col className="mb-3">
-                    <img src="http://localhost:8080/Earl4-1.png" alt="" style={{width: '100%'}}></img>
+                    <img src="http://localhost:8080/Gavel_Mot_Oslo.jpg" alt="" style={{width: '90%'}}></img>
                 </Col>
             </Row>
-            <Row className="m-4">
-                <h3>Hvem er vi?</h3>
-            </Row>
-            <Row className="margin-bottom-line margin-top-line m-3 pb-4">
+            <Row className="m-3 pb-4">
                 <Col sm={5}>
                     <img src="http://localhost:8080/default-profile-icon-16.png" alt="" style={{width: '100%'}}></img>
                 </Col>
                 <Col className="shadow mt-5 pt-5" sm={7}>
-                    <h4>Hans Petter Sandvold</h4>
+                    <h4 className="margin-bottom-line">Hans Petter Sandvold</h4>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
@@ -40,7 +37,7 @@ const AboutUsPage = () => {
             </Row>
             <Row className="m-3 pb-5">
             <Col className="shadow mt-5 pt-5" sm={7}>
-                    <h4>Kenneth Nygård</h4>
+                    <h4 className="margin-bottom-line">Kenneth Nygård</h4>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
