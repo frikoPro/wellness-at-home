@@ -6,24 +6,14 @@ import UseForm from '../UseForm';
 import UpdateSlideModal from './UpdateSlideModal';
 
 const UpdateSlideshow = () => {
-	const slideshows = useContext(SlideshowContext);
+	const { slideshows } = useContext(SlideshowContext);
 
 	const [modalShow, setModalShow] = useState(false);
 
 	const [selectedSlide, setSelected] = useState({});
 
-	const {
-		updateData,
-		values,
-		handleChange,
-		handleImages,
-		setValues,
-		onSuccess,
-		returnErrors,
-		deleteData,
-	} = UseForm({
+	const { values, handleChange, handleImages, setValues } = UseForm({
 		initialValues: { ...selectedSlide },
-		url: 'http://localhost:8080/slideshow/',
 	});
 
 	useEffect(() => {
@@ -33,6 +23,10 @@ const UpdateSlideshow = () => {
 	const onSelect = (id) => {
 		setSelected(slideshows.find((slide) => slide._id === id));
 	};
+
+	const { deleteData, onSuccess, returnErrors, updateData } = useContext(
+		SlideshowContext
+	);
 
 	return (
 		<Container fluid>

@@ -10,36 +10,29 @@ import { ReviewInvContext } from '../../../contexts/ReviewInvContext';
 const Invites = () => {
 	const { jacuzzis } = useContext(JacuzziContext);
 
-	const invites = useContext(ReviewInvContext);
+	const {
+		invites,
+		onSuccess,
+		submitData,
+		deleteData,
+		returnErrors,
+	} = useContext(ReviewInvContext);
 
 	const [links, setLinks] = useState([]);
 
-	const {
-		handleChange,
-		submitData,
-		onSuccess,
-		deleteById,
-		returnErrors,
-	} = UseForm({
+	const { handleChange, values } = UseForm({
 		initialValues: { mail: '' },
-		url: 'http://localhost:8080/reviewinvites/',
 	});
 
 	const [modalShow, setModal] = useState(false);
 
-	const onDelete = (name, i) => {
-		deleteById(links[i]._id);
-	};
-
 	useEffect(() => {
-		if (invites.length > 0 && jacuzzis.length > 0) {
-			const invTemp = invites.map((inv) => ({
-				Epost: inv.mail,
-				Produkt: jacuzzis.find((item) => item._id === inv.product).name,
-				_id: inv._id,
-			}));
-			setLinks(invTemp);
-		}
+		const invTemp = invites.map((inv) => ({
+			Epost: inv.mail,
+			Produkt: jacuzzis.find((item) => item._id === inv.product).name,
+			_id: inv._id,
+		}));
+		setLinks(invTemp);
 	}, [invites, jacuzzis]);
 
 	return (
@@ -49,7 +42,11 @@ const Invites = () => {
 					<Card.Body>
 						<Card.Title>Anmeldelser</Card.Title>
 						<Button onClick={() => setModal(true)}>Legg til</Button>
-						<TableList values={links} name="" removeValue={onDelete} />
+						<TableList
+							values={links}
+							name=""
+							removeValue={(name, i) => deleteData(i)}
+						/>
 						<Card.Text className="text-success">{onSuccess}</Card.Text>
 					</Card.Body>
 				</Card>
@@ -59,7 +56,7 @@ const Invites = () => {
 				onHide={() => setModal(false)}
 				handleChange={handleChange}
 				success={onSuccess}
-				submitData={submitData}
+				submitData={() => submitData(values)}
 				error={returnErrors}
 			/>
 		</>

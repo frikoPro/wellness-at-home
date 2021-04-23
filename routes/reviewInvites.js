@@ -12,9 +12,9 @@ router.route('/').get(async (req, res, next) => {
 	}
 });
 
-router.route('/add').post(verify, upload.none(), async (req, res, next) => {
+router.route('/add').post(verify, async (req, res, next) => {
 	try {
-		const invite = new Invites({ ...JSON.parse(req.body.data) });
+		const invite = new Invites({ ...req.body });
 
 		await invite.save();
 		res.status(200).send('Invitasjon er nå lagret');

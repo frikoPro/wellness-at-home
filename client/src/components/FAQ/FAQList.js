@@ -34,6 +34,7 @@ const FAQList = () => {
 						deleteData={deleteData}
 						updateData={updateData}
 						returnErrors={returnErrors}
+						onSuccess={onSuccess}
 					/>
 				</Col>
 			))}

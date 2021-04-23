@@ -15,7 +15,7 @@ const HomePage = () => {
 
 	const [homePageEl, slideshowRef] = homepageEl;
 
-	const slideshows = useContext(SlideshowContext);
+	const { slideshows } = useContext(SlideshowContext);
 
 	const [currentSlideImg, setCurrentSlideImg] = useState(0);
 

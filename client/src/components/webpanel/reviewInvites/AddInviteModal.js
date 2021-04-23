@@ -42,6 +42,7 @@ const AddInviteModal = (props) => {
 							onChange={handleChange}
 							name="mail"
 						/>
+						<Form.Text className="text-danger">{error('mail')}</Form.Text>
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>Velg spabad</Form.Label>

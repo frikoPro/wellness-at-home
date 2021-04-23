@@ -1,7 +1,12 @@
 import FAQForm from './FAQForm';
 import { Form, Modal, Col, Row, Button } from 'react-bootstrap';
+import { useEffect } from 'react';
 
 const AddFAQModal = (props) => {
+	useEffect(() => {
+		if (props.onSuccess) props.onHide();
+	}, [props.onSuccess]);
+
 	return (
 		<Modal
 			{...props}
@@ -25,9 +30,7 @@ const AddFAQModal = (props) => {
 					<Col>
 						<Button onClick={() => props.uploadData(props.FAQ)}>Lagre</Button>
 					</Col>
-					<Col>
-						<Form.Text className="text-success">{props.onSuccess}</Form.Text>
-					</Col>
+
 					<Col className="text-right">
 						<Button onClick={props.onHide}>Close</Button>
 					</Col>
