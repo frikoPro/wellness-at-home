@@ -7,6 +7,7 @@ import EventsPanelInfo from './EventsPanelInfo';
 import EventPage from '../../../views/eventsPage/EventPage';
 import {EventContext} from '../../../contexts/EventContext';
 import Gmap from './Gmap';
+import EventsPanelWeekday from "./EventsPanelWeekday";
 
 const EventsPanel = () => {
 	const [preview, setPreview] = useState(false);
@@ -161,7 +162,10 @@ const EventsPanel = () => {
 							</Button>
 							<br/>
 							<br/>
-							<Button onClick={() => triggerPreview()}>Forhåndvisning</Button>
+							<Button onClick={() => {
+								triggerPreview()
+								console.log(event2)
+							}}>Forhåndvisning</Button>
 						</Col>
 						<Col className="align-self-center text-success">{onSuccess}</Col>
 					</Row>
