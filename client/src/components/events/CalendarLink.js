@@ -7,7 +7,7 @@ const CalendarLink = (props) => {
         start: props.date.date_start * 1000,
         end: props.date.date_end * 1000,
         location: `${props.address.streetname}, ${props.address.postalnr} ${props.address.city}`,
-        description: `www.wellnessathome.no/Arrangementer/eventkode=${props.create_date}`
+        description: `www.wellnessathome.no/Arrangementer/eventkode=${props.createdAt}`
     }
 
     return (
