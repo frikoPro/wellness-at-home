@@ -56,7 +56,8 @@ const Gmap = (props) => {
 
 		if (!places[0].types.includes('point_of_interest') &&
 			!places[0].types.includes('street_address') &&
-			!places[0].types.includes('establishment')) {
+			!places[0].types.includes('establishment') &&
+			!places[0].types.includes('premise')) {
 			setErrorMsg(true);
 			setErrorMsgValue(
 				<Alert
@@ -84,8 +85,8 @@ const Gmap = (props) => {
 			return searchObj(obj, 'postal_town');
 		})[0].long_name;
 
-		let lat = searchBox.current.getPlaces()[0].geometry.viewport.Ua.g;
-		let lng = searchBox.current.getPlaces()[0].geometry.viewport.La.g;
+		let lat = searchBox.current.getPlaces()[0].geometry.location.lat();
+		let lng = searchBox.current.getPlaces()[0].geometry.location.lng();
 		setAddress([streetName, streetNr, postalCode, city, lat, lng]);
 	};
 

@@ -7,6 +7,7 @@ import EventsPanelInfo from './EventsPanelInfo';
 import EventPage from '../../../views/eventsPage/EventPage';
 import {EventContext} from '../../../contexts/EventContext';
 import Gmap from './Gmap';
+import EventsPanelWeekday from "./EventsPanelWeekday";
 
 const EventsPanel = () => {
 	const [preview, setPreview] = useState(false);
@@ -156,7 +157,10 @@ const EventsPanel = () => {
 							<Button onClick={() => postData(event2)}>Lagre arrangement</Button>
 							<br/>
 							<br/>
-							<Button onClick={() => setPreview(true)}>Forhåndvisning</Button>
+							<Button onClick={() => {
+								setPreview(true)
+								console.log(event2)
+							}}>Forhåndvisning</Button>
 						</Col>
 						<Col className="align-self-center text-success">{onSuccess}</Col>
 					</Row>
