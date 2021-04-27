@@ -5,13 +5,80 @@ export const ProductsContext = createContext();
 
 export const ProductsProvider = (props) => {
 	const [products, setProducts] = useState([]);
+	const [onSuccess, setSuccess] = useState(null);
+	const [errors, setErrors] = useState(null);
+
+	const url = 'http://localhost:8080/products/';
+
+	const fetchData = () => {
+		axios
+			.get(url)
+			.then((res) => {
+				setProducts(res.data);
+			})
+			.catch((err) => console.log(err));
+	};
 
 	useEffect(() => {
-		const url = 'http://localhost:8080/products';
-		axios.get(url).then((response) => {
-			setProducts(response.data);
-		});
+		fetchData();
 	}, []);
+
+	useEffect(() => {
+		if (onSuccess)
+			setTimeout(() => {
+				setSuccess(null);
+			}, 1500);
+	}, [onSuccess]);
+
+	const postData = (item) => {
+		const formData = new FormData();
+
+		formData.append('data', JSON.stringify(item));
+
+		if (item.newImages)
+			item.newImages.files.forEach((image) => formData.append('files', image));
+
+		axios
+			.post(url + 'add', formData)
+			.then((res) => okResponse(res))
+			.catch((err) => setErrors(err.response.data));
+	};
+
+	const updateData = (item) => {
+		const formData = new FormData();
+
+		formData.append('data', JSON.stringify(item));
+
+		if (item.newImages)
+			item.newImages.files.forEach((image) => formData.append('files', image));
+
+		axios
+			.patch(url + item._id, formData)
+			.then((res) => okResponse(res))
+			.catch((err) => setErrors(err.response.data));
+	};
+
+	const deleteData = (id) => {
+		console.log(id);
+		axios
+			.delete(url + id)
+			.then((res) => okResponse(res))
+			.catch((err) => console.log(err));
+	};
+
+	const okResponse = (res) => {
+		fetchData();
+		setErrors(null);
+		setSuccess(res.data);
+	};
+
+	const returnError = (field) => {
+		if (errors) {
+			const index = errors.fields.findIndex((err) => err === field);
+
+			return errors.messages[index];
+		}
+	};
 
 	const returnCategories = () => {
 		const unique = [];
@@ -29,7 +96,7 @@ export const ProductsProvider = (props) => {
 
 		products.forEach((item) => {
 			item.techSpec.forEach((tech) => {
-				if (!unique.includes(tech.property)) unique.push(tech.property);
+				if (!unique.includes(tech.egenskap)) unique.push(tech.egenskap);
 			});
 		});
 
@@ -40,6 +107,18 @@ export const ProductsProvider = (props) => {
 		<ProductsContext.Provider
 			value={{
 				products: products,
+				submitData: postData,
+				updateData: updateData,
+				deleteData: deleteData,
+				onSuccess: onSuccess,
+				returnErrors: returnError,
+				errors: errors
+					? errors.messages.reduce(
+							(acc, val) => `${acc}
+				${val}`
+					  )
+					: null,
+				removeErrors: () => setErrors(null),
 				categories: returnCategories(),
 				techSpec: returnTechSpec(),
 			}}>

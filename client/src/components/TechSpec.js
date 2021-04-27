@@ -10,7 +10,6 @@ const TechSpec = ({ techSpec, removeValues }) => {
 				</Col>
 			</Row>
 			<Row
-				style={{ maxHeight: '200px', overflowY: 'auto' }}
 				className="justify-content-center">
 				<Col sm={11}>
 					<TableList

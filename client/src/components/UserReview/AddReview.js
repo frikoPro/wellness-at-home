@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Button, Card, Container, Form, Modal } from 'react-bootstrap';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { JacuzziContext } from '../../contexts/JacuzziContext';
 import { ReviewInvContext } from '../../contexts/ReviewInvContext';
 import StarRating from '../StarRating';
@@ -10,9 +10,9 @@ import UseForm from '../webpanel/UseForm';
 const AddReview = () => {
 	const { id } = useParams();
 
-	const invites = useContext(ReviewInvContext);
+	const { invites } = useContext(ReviewInvContext);
 
-	const { jacuzzis } = useContext(JacuzziContext);
+	const { jacuzzis, updateData, onSuccess } = useContext(JacuzziContext);
 
 	const [validInv, setValid] = useState(false);
 
@@ -20,9 +20,9 @@ const AddReview = () => {
 
 	const [show, setShow] = useState(false);
 
-	const { updateData, handleChange, setValues, values, onSuccess } = UseForm({
-		url: 'http://localhost:8080/jacuzzis/',
-	});
+	const { handleChange, setValues, values } = UseForm({});
+
+	let history = useHistory();
 
 	useEffect(() => {
 		const arrInv = invites.find((inv) => inv._id === id);
@@ -52,8 +52,12 @@ const AddReview = () => {
 			.then((res) => console.log(res.data))
 			.catch((err) => console.log(err));
 
-		updateData();
+		updateData(values);
 	};
+
+	useEffect(() => {
+		if (onSuccess) history.push(`/spabad/${values._id}`);
+	}, [onSuccess]);
 
 	return (
 		<Container>

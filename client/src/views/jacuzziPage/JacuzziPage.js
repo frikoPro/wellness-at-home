@@ -18,13 +18,20 @@ import { LoggedInContext } from '../../contexts/LoggedInContext';
 const JacuzziPage = () => {
 	let { id } = useParams();
 
-	const { jacuzzis } = useContext(JacuzziContext);
+	const {
+		jacuzzis,
+		removeReview,
+		updateData,
+		onSuccess,
+		errors,
+		removeErrors,
+	} = useContext(JacuzziContext);
 
 	const { products } = useContext(ProductsContext);
 
 	const loggedIn = useContext(LoggedInContext);
 
-	const { updateData, removeValues, setValues, values } = UseForm({
+	const { removeValues, setValues, values } = UseForm({
 		url: 'http://localhost:8080/jacuzzis/',
 		initialValues: { relatedProducts: [], userReviews: [] },
 	});
@@ -47,6 +54,10 @@ const JacuzziPage = () => {
 
 		setValues(tempObj);
 	}, [jacuzzis, id, products]);
+
+	useEffect(() => {
+		removeErrors();
+	}, [values]);
 
 	const [activeSlideImg, setActiveSlideImg] = useState(0);
 
@@ -138,7 +149,20 @@ const JacuzziPage = () => {
 				</section>
 			) : null}
 
-			{loggedIn ? <Button onClick={updateData}>Lagre</Button> : null}
+			{loggedIn ? (
+				<Row>
+					<Col sm={1} xs={1}>
+						<Button onClick={() => updateData(values)}>Lagre</Button>
+					</Col>
+					<Col sm={11} xs={11} className="align-self-center text-center">
+						{onSuccess ? (
+							<span className="text-success">{onSuccess}</span>
+						) : (
+							<span className="text-danger">{errors}</span>
+						)}
+					</Col>
+				</Row>
+			) : null}
 		</Container>
 	) : (
 		<div

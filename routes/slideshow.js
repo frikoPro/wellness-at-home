@@ -39,12 +39,10 @@ router
 	.route('/:id')
 	.patch(verify, upload.array('files'), async (req, res, next) => {
 		try {
-			const body = JSON.parse(req.body.data);
-
+			const body = { ...JSON.parse(req.body.data) };
 			const updatedSlide = await Slideshow.findById(req.params.id).exec();
 
 			if (req.files.length > 0) {
-				updateImageFiles(req);
 				updatedSlide.overwrite({ ...body, image: req.files[0].filename });
 			} else {
 				updatedSlide.overwrite({ ...body });
@@ -60,11 +58,6 @@ router
 
 router.route('/:id').delete(verify, async (req, res, next) => {
 	try {
-		const slideshow = findById(req.params.id).exec();
-
-		//Accepts only array as datatype
-		deleteImages([slideshow.image]);
-
 		await Slideshow.findByIdAndDelete(req.params.id);
 		res.status(200).json('Slide slettet');
 	} catch (err) {

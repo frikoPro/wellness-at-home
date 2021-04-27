@@ -19,7 +19,7 @@ export const JacuzziProvider = (props) => {
 	const deleteData = (id) => {
 		axios
 			.delete(url + id)
-			.then(() => okResposne())
+			.then((res) => okResponse(res))
 			.catch((err) => console.log(err));
 	};
 
@@ -28,10 +28,28 @@ export const JacuzziProvider = (props) => {
 	}, []);
 
 	useEffect(() => {
-		setSuccess(null);
+		setErrors(null);
+		setTimeout(() => {
+			setSuccess(null);
+		}, 1500);
 	}, [onSuccess]);
 
+	const postData = (item) => {
+		const formData = new FormData();
+
+		formData.append('data', JSON.stringify(item));
+
+		if (item.newImages)
+			item.newImages.files.forEach((image) => formData.append('files', image));
+
+		axios
+			.post(url + 'add', formData)
+			.then((res) => okResponse(res))
+			.catch((err) => setErrors(err.response.data));
+	};
+
 	const updateData = (item) => {
+		console.log(item);
 		const formData = new FormData();
 
 		formData.append('data', JSON.stringify(item));
@@ -41,8 +59,13 @@ export const JacuzziProvider = (props) => {
 
 		axios
 			.patch(url + item._id, formData)
-			.then(() => okResposne())
-			.catch((err) => setErrors(err.response.data));
+			.then((res) => okResponse(res))
+			.catch((err) => {
+				setErrors(err.response.data);
+				setTimeout(() => {
+					fetchData();
+				}, 1550);
+			});
 	};
 
 	const returnBrands = () => {
@@ -62,10 +85,10 @@ export const JacuzziProvider = (props) => {
 		return unique;
 	};
 
-	const okResposne = () => {
+	const okResponse = (res) => {
 		fetchData();
 		setErrors(null);
-		setSuccess(true);
+		setSuccess(res.data);
 	};
 
 	const returnError = (field) => {
@@ -82,9 +105,15 @@ export const JacuzziProvider = (props) => {
 				jacuzzis: jacuzzis,
 				deleteData: deleteData,
 				updateData: updateData,
+				submitData: postData,
 				onSuccess: onSuccess,
 				returnErrors: returnError,
-				errors: errors,
+				errors: errors
+					? errors.messages.reduce(
+							(acc, val) => `${acc} 
+				${val}`
+					  )
+					: null,
 				removeErrors: () => setErrors(null),
 				brands: returnBrands(),
 				techSpec: returnTechSpec(),

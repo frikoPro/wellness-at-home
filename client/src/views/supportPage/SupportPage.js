@@ -48,6 +48,7 @@ const SupportPage = () => {
 			<Row>
 				<Col className={'text-center'}>
 					<p>Fyll ut skjemaet under så hjelper vi deg</p>
+					<span>Felter merket med <span style={{color:"#FF0000"}}>*</span> må fylles ut.</span>
 				</Col>
 			</Row>
 			<Row className="justify-content-center">

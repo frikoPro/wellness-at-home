@@ -22,7 +22,6 @@ router
 			...JSON.parse(req.body.data),
 			images: req.files.map((file) => ({ image: file.filename })),
 		});
-
 		try {
 			await newJacuzzi.save();
 			res.status(200).json('produkt lagt inn');
