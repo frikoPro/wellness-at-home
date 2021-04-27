@@ -8,7 +8,7 @@ export const ProductsProvider = (props) => {
 	const [onSuccess, setSuccess] = useState(null);
 	const [errors, setErrors] = useState(null);
 
-	const url = 'http://localhost:8080/products/';
+	const url = '/products/';
 
 	const fetchData = () => {
 		axios

@@ -8,7 +8,7 @@ export const FAQProvider = (props) => {
 	const [errors, setErrors] = useState(null);
 	const [success, setSuccess] = useState(null);
 
-	const url = 'http://localhost:8080/FAQ';
+	const url = '/FAQ';
 
 	useEffect(() => {
 		setSuccess(null);

@@ -9,7 +9,7 @@ const LoginPage = () => {
 
 	const login = () => {
 		axios
-			.post('http://localhost:8080/users/login', {
+			.post('/users/login', {
 				username: username,
 				password: password,
 			})

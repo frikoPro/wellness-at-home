@@ -6,7 +6,7 @@ const ProductCard = ({ image, name, price, _id }) => {
 	return (
 		<Card className="product-card" as={Link} to={`/nettbutikk/${_id}`}>
 			<Card.Body>
-				<Card.Img src={`http://localhost:8080/${image}`} />
+				<Card.Img src={`/${image}`} />
 				<Card.Title className="mt-3">{name}</Card.Title>
 				<Card.Text className="mt-3" style={{ fontSize: '20px' }}>
 					{PriceFormatter(price)}

@@ -116,9 +116,7 @@ const Checkout = ({ setRecipt, cart, totalPrice, updateCart }) => {
 					{cart.map((item, i) => (
 						<Row className="margin-bottom-line pb-2" key={i}>
 							<Col sm={2} xs={2}>
-								<Card.Img
-									src={`http://localhost:8080/${item.images[0].image}`}
-								/>
+								<Card.Img src={`/${item.images[0].image}`} />
 							</Col>
 							<Col>
 								<Card.Title>
@@ -144,10 +142,7 @@ const Checkout = ({ setRecipt, cart, totalPrice, updateCart }) => {
 							className="mt-4">
 							<Card.Text>Betal nå med vipps</Card.Text>
 
-							<Card.Img
-								src={`http://localhost:8080/vipps.png`}
-								onClick={() => postData(values)}
-							/>
+							<Card.Img src={`/vipps.png`} onClick={() => postData(values)} />
 						</Col>
 					</Row>
 				</Card.Body>

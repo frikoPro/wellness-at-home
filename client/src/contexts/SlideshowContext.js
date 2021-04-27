@@ -9,7 +9,7 @@ export const SlideshowProvider = (props) => {
 	const [onSuccess, setSuccess] = useState(null);
 	const [errors, setErrors] = useState(null);
 
-	const url = 'http://localhost:8080/slideshow/';
+	const url = '/slideshow/';
 
 	useEffect(() => {
 		fetchData();

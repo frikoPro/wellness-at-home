@@ -32,7 +32,6 @@ const JacuzziPage = () => {
 	const loggedIn = useContext(LoggedInContext);
 
 	const { removeValues, setValues, values } = UseForm({
-		url: 'http://localhost:8080/jacuzzis/',
 		initialValues: { relatedProducts: [], userReviews: [] },
 	});
 

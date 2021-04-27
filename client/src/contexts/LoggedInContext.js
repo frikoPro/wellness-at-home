@@ -8,7 +8,7 @@ export const LoggedInProvider = (props) => {
 
 	useEffect(() => {
 		axios
-			.get('http://localhost:8080/users', { withCredentials: true })
+			.get('/users', { withCredentials: true })
 			.then((res) => {
 				setLoggedIn(true);
 				console.log(res.data);

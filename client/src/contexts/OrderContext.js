@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from 'react';
 export const OrderContext = createContext();
 
 export const OrderProvider = (props) => {
-	const url = 'http://localhost:8080/orders';
+	const url = '/orders';
 
 	const [orders, setOrders] = useState([]);
 	const [errors, setErrors] = useState(null);

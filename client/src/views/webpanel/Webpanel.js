@@ -25,7 +25,7 @@ const Webpanel = ({ match }) => {
 
 	const logOut = () => {
 		axios
-			.get('http://localhost:8080/users/login')
+			.get('/users/login')
 			.then((res) => console.log(res.data))
 			.catch((err) => console.log(err));
 

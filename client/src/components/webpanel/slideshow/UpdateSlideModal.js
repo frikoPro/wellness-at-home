@@ -57,10 +57,7 @@ const UpdateSlideModal = (props) => {
 				</Row>
 				<Row className="w-100">
 					<Col sm={2}>
-						<img
-							src={`http://localhost:8080/${values.image}`}
-							alt=""
-							className="w-100"></img>
+						<img src={`/${values.image}`} alt="" className="w-100"></img>
 					</Col>
 				</Row>
 			</Modal.Footer>

@@ -81,10 +81,7 @@ const UpdateJacuzziModal = (props) => {
 					{values.images[0]
 						? values.images.map((img, i) => (
 								<Col sm={2} key={i}>
-									<img
-										src={`http://localhost:8080/${img.image}`}
-										alt=""
-										className="w-100"></img>
+									<img src={`/${img.image}`} alt="" className="w-100"></img>
 								</Col>
 						  ))
 						: null}

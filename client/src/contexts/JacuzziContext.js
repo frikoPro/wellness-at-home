@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from 'react';
 export const JacuzziContext = createContext();
 
 export const JacuzziProvider = (props) => {
-	const url = 'http://localhost:8080/jacuzzis/';
+	const url = '/jacuzzis/';
 
 	const [jacuzzis, setJacuzzis] = useState([]);
 	const [onSuccess, setSuccess] = useState(null);

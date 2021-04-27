@@ -48,7 +48,7 @@ const AddReview = () => {
 
 	const handleRequest = () => {
 		axios
-			.delete(`http://localhost:8080/reviewinvites/${id}`)
+			.delete(`/reviewinvites/${id}`)
 			.then((res) => console.log(res.data))
 			.catch((err) => console.log(err));
 

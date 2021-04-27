@@ -18,16 +18,17 @@ const CompareList = ({ selectedJacuzzi, jacuzzis }) => {
 				<img
 					style={{ width: '50%' }}
 					src={
-						jacuzzis[selectedJacuzzi] &&
-						`http://localhost:8080/${jacuzzis[selectedJacuzzi].image}`
+						jacuzzis[selectedJacuzzi] && `/${jacuzzis[selectedJacuzzi].image}`
 					}
 					alt=""></img>
 			</Row>
 			<Row className="justify-content-center text-center">
-                <Link to={jacuzzis[selectedJacuzzi] && `/spabad/${jacuzzis[selectedJacuzzi].link}`}>
-					<h1>
-						{jacuzzis[selectedJacuzzi] && jacuzzis[selectedJacuzzi].name}
-					</h1>
+				<Link
+					to={
+						jacuzzis[selectedJacuzzi] &&
+						`/spabad/${jacuzzis[selectedJacuzzi].link}`
+					}>
+					<h1>{jacuzzis[selectedJacuzzi] && jacuzzis[selectedJacuzzi].name}</h1>
 				</Link>
 			</Row>
 			<Row className="justify-content-center">

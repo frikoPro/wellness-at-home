@@ -19,7 +19,7 @@ const Slideshow = ({
 			{slideContent.map((item, i) => (
 				<Carousel.Item key={i}>
 					<img
-						src={`http://localhost:8080/${item.image}`}
+						src={'/' + item.image}
 						alt={`${i + 1}. slideshow`}
 						className={`d-block w-100 ${styling.slideshow}`}></img>
 

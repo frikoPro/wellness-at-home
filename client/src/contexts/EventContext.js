@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from 'react';
 export const EventContext = createContext();
 
 export const EventProvider = (props) => {
-	const url = 'http://localhost:8080/events/';
+	const url = '/events/';
 
 	const [events, setEvents] = useState([]);
 	const [errors, setErrors] = useState(null);

@@ -17,9 +17,7 @@ const Recipt = ({ recipt, emptyRecipt }) => {
 					{recipt.cart.map((item, i) => (
 						<Row className="margin-bottom-line pb-2" key={i}>
 							<Col sm={2} xs={2}>
-								<Card.Img
-									src={'http://localhost:8080/' + item.images[0].image}
-								/>
+								<Card.Img src={`/${item.images[0].image}`} />
 							</Col>
 							<Col>
 								<Card.Title>

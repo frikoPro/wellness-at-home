@@ -8,7 +8,7 @@ export const ReviewInvProvider = (props) => {
 	const [onSuccess, setSuccess] = useState(null);
 	const [errors, setErrors] = useState(null);
 
-	const url = 'http://localhost:8080/reviewinvites/';
+	const url = '/reviewinvites/';
 
 	useEffect(() => {
 		fetchData();

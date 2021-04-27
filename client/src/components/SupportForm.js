@@ -20,41 +20,43 @@ const SupportForm = () => {
 	};
 
 	const handleSubmit = (e) => {
-		if(verified) {
+		if (verified) {
 			e.preventDefault();
 
 			axios
-			.post('http://localhost:8080/sendmail/send', {
-				name: name,
-				email: email,
-				phone: phone,
-				problem: problem,
-				message: message,
-			})
-			.then((res) => console.log(res.data))
-			.catch((err) => console.log(err.response.data));
-            alert("Melding sendt.");
-            resetForm();
+				.post('/sendmail/send', {
+					name: name,
+					email: email,
+					phone: phone,
+					problem: problem,
+					message: message,
+				})
+				.then((res) => console.log(res.data))
+				.catch((err) => console.log(err.response.data));
+			alert('Melding sendt.');
+			resetForm();
 		} else {
 			e.preventDefault();
-			alert("Vennligst verifiser at du ikke er en robot.");
+			alert('Vennligst verifiser at du ikke er en robot.');
 		}
 	};
 
 	const recaptchaLoaded = () => {
 		console.log('Captcha loaded');
-	}
+	};
 
 	const verifyCaptchaCallback = (response) => {
-		if(response) {
+		if (response) {
 			setVerified(true);
 		}
-	}
+	};
 
 	return (
 		<Form className="mx-auto" style={{ width: '70%' }} onSubmit={handleSubmit}>
 			<Form.Group controlId="supportForm.ControlInputName">
-				<Form.Label>Navn: <span style={{color:"#FF0000"}}>*</span></Form.Label>
+				<Form.Label>
+					Navn: <span style={{ color: '#FF0000' }}>*</span>
+				</Form.Label>
 				<Form.Control
 					className="border-dark"
 					required
@@ -63,7 +65,9 @@ const SupportForm = () => {
 				/>
 			</Form.Group>
 			<Form.Group controlId="supportForm.ControlInputEmail">
-				<Form.Label>E-post: <span style={{color:"#FF0000"}}>*</span></Form.Label>
+				<Form.Label>
+					E-post: <span style={{ color: '#FF0000' }}>*</span>
+				</Form.Label>
 				<Form.Control
 					className="border-dark"
 					type="email"
@@ -82,7 +86,9 @@ const SupportForm = () => {
 				/>
 			</Form.Group>
 			<Form.Group controlId="supportForm.ControlInputProblem">
-				<Form.Label>Hva trenger du hjelp med?: <span style={{color:"#FF0000"}}>*</span></Form.Label>
+				<Form.Label>
+					Hva trenger du hjelp med?: <span style={{ color: '#FF0000' }}>*</span>
+				</Form.Label>
 				<Form.Control
 					className="border-dark"
 					required

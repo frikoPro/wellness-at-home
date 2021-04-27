@@ -45,10 +45,7 @@ const NavigationBar = () => {
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
 			<Navbar.Brand as={Link} to="/">
-				<img
-					src={'http://localhost:8080/wellnessLogo2.png'}
-					alt=""
-					style={{ height: '61px' }}></img>
+				<img src={'/wellnessLogo2.png'} alt="" style={{ height: '61px' }}></img>
 			</Navbar.Brand>
 
 			<Navbar.Collapse id="responsive-navbar-nav">

@@ -34,10 +34,7 @@ const ProductCard = ({ product }) => {
 		<Card>
 			<Card.Body>
 				<Card.Title>{product.name}</Card.Title>
-				<Card.Img
-					src={`http://localhost:8080/${product.images[0].image}`}
-					alt=""
-				/>
+				<Card.Img src={`/${product.images[0].image}`} alt="" />
 			</Card.Body>
 			<Card.Footer>
 				<Row>
