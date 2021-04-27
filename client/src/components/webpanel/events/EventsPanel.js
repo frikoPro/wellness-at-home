@@ -88,8 +88,8 @@ const EventsPanel = () => {
 									...event2,
 									address: {
 										streetname: address[0] + ' ' + address[1],
-										city: address[2],
-										postalnr: address[3],
+										city: address[3],
+										postalnr: address[2],
 									},
 									pos: {lat: address[4], lng: address[5]},
 								})
