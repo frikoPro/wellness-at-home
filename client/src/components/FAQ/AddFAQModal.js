@@ -1,11 +1,11 @@
 import FAQForm from './FAQForm';
-import { Form, Modal, Col, Row, Button } from 'react-bootstrap';
+import { Modal, Col, Row, Button } from 'react-bootstrap';
 import { useEffect } from 'react';
 
 const AddFAQModal = (props) => {
 	useEffect(() => {
 		if (props.onSuccess) props.onHide();
-	}, [props.onSuccess]);
+	}, [props.onSuccess], []);
 
 	return (
 		<Modal

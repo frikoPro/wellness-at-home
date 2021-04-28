@@ -32,7 +32,7 @@ const AddReview = () => {
 			const jacuzzi = jacuzzis.find((item) => item._id === arrInv.product);
 			setValues({ ...jacuzzi });
 		}
-	}, [invites, jacuzzis]);
+	}, [invites, jacuzzis], []);
 
 	const handleUpdate = () => {
 		const review = {
@@ -57,7 +57,7 @@ const AddReview = () => {
 
 	useEffect(() => {
 		if (onSuccess) history.push(`/spabad/${values._id}`);
-	}, [onSuccess]);
+	}, [onSuccess], []);
 
 	return (
 		<Container>
@@ -88,7 +88,7 @@ const AddReview = () => {
 									className="form-control"
 									rows={5}
 									onChange={handleChange}
-									name="text"></textarea>
+									name="text"/>
 							</Form.Group>
 						</Form>
 						<Form.Group>
