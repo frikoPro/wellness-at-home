@@ -23,7 +23,7 @@ const NetShop = ({ match }) => {
 						<Col sm={{ offset: 2, span: 10 }}>
 							<h1>Tilbehør</h1>
 						</Col>
-						<Col sm={2} className="h-100 mb-5 mb-sm-0">
+						<Col xl={2} lg={3} sm={4} className="h-100 mb-5 mb-sm-0">
 							<CardFilter setFilter={(filtered) => setProducts(filtered)} />
 						</Col>
 						<Col>
