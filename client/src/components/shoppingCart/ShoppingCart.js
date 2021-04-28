@@ -80,7 +80,7 @@ const ShoppingCart = ({ cart, updateCart, totalPrice }) => {
 									</Col>
 									<Col
 										sm={2}
-										xs={7}
+										xs={5}
 										lg={2}
 										className="mt-5 mt-sm-0 text-center text-sm-left">
 										<span style={{ whiteSpace: 'nowrap' }}>
