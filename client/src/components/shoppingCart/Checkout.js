@@ -55,16 +55,15 @@ const Checkout = ({ setRecipt, cart, totalPrice, updateCart }) => {
 							</Form.Text>
 						</Form.Group>
 						<Form.Group>
-							<Form.Label>Adresse</Form.Label>
+							<Form.Label>Tlf</Form.Label>
 							<Form.Control
-								placeholder="Dælengata 30"
-								name="address"
+								placeholder="45322620"
+								name="tlf"
 								onChange={handleChange}
 							/>
-							<Form.Text className="text-danger">
-								{returnErrors('address')}
-							</Form.Text>
+							<Form.Text>{returnErrors('tlf')}</Form.Text>
 						</Form.Group>
+
 						<Form.Group>
 							<Form.Label>Epost</Form.Label>
 							<Form.Control
@@ -74,13 +73,15 @@ const Checkout = ({ setRecipt, cart, totalPrice, updateCart }) => {
 							/>
 						</Form.Group>
 						<Form.Group>
-							<Form.Label>Tlf</Form.Label>
+							<Form.Label>Adresse</Form.Label>
 							<Form.Control
-								placeholder="45322620"
-								name="tlf"
+								placeholder="Dælengata 30"
+								name="address"
 								onChange={handleChange}
 							/>
-							<Form.Text>{returnErrors('tlf')}</Form.Text>
+							<Form.Text className="text-danger">
+								{returnErrors('address')}
+							</Form.Text>
 						</Form.Group>
 						<Row>
 							<Col sm={2} xs={2}>
