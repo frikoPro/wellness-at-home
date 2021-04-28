@@ -17,7 +17,7 @@ const SupplierPage = () => {
 		} else if (id === 'Svenska Bad') {
 			return '/svenskaBadLogoNoBackground.png';
 		} else if (id === 'Svenska Pro') {
-			return '/svenskaProLogo.png';
+			return '/SvenskaProLogo.png';
 		}
 	};
 
@@ -72,7 +72,7 @@ const SupplierPage = () => {
 									mappedJacuzzis[currentJacuzzi].textHead}
 							</h1>
 						</Row>
-						<Row className="justify-content-center text-center pr-5 pl-5 mr-5 ml-5">
+						<Row className="justify-content-center text-center">
 							<p>
 								{mappedJacuzzis[currentJacuzzi] &&
 									mappedJacuzzis[currentJacuzzi].about}
