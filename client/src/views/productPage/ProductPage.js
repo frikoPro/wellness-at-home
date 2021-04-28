@@ -30,7 +30,7 @@ const ProductPage = () => {
 	return product ? (
 		<Container className="bg-white pb-5 pt-5 shadow">
 			<section>
-				<Row className="mt-5 justify-content-center">
+				<Row className="mt-0 mt-sm-5 justify-content-center">
 					<Col sm={5} className="p-sm-0 mr-sm-5">
 						<Slideshow
 							slideContent={product.images}

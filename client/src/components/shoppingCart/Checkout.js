@@ -84,7 +84,7 @@ const Checkout = ({ setRecipt, cart, totalPrice, updateCart }) => {
 							</Form.Text>
 						</Form.Group>
 						<Row>
-							<Col sm={2} xs={2}>
+							<Col sm={2} xs={12}>
 								<Form.Group>
 									<Form.Label>Postnummer</Form.Label>
 									<Form.Control
@@ -137,7 +137,7 @@ const Checkout = ({ setRecipt, cart, totalPrice, updateCart }) => {
 					</Row>
 					<Row>
 						<Col
-							xs={{ span: 3, offset: 9 }}
+							xs={{ span: 4, offset: 8 }}
 							sm={{ span: 3, offset: 9 }}
 							md={{ span: 2, offset: 10 }}
 							className="mt-4">
