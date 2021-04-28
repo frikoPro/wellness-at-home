@@ -4,7 +4,7 @@ import PriceFormatter from '../PriceFormatter';
 
 const ProductCard = ({ image, name, price, _id }) => {
 	return (
-		<Card className="product-card" as={Link} to={`/nettbutikk/${_id}`}>
+		<Card as={Link} to={`/nettbutikk/${_id}`} className="h-100 product-card">
 			<Card.Body>
 				<Card.Img src={`/${image}`} />
 				<Card.Title className="mt-3">{name}</Card.Title>
