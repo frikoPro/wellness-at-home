@@ -98,8 +98,8 @@ const JacuzziPage = () => {
 					</Col>
 				</Row>
 				<Row className="justify-content-between">
-					<Col sm={12} lg={6} className="mx-auto p-5 text-center">
-						<p>{values.aboutProduct}</p>
+					<Col sm={12} lg={6} className="mx-auto p-5">
+						<p style={{ whiteSpace: 'pre-line' }}>{values.aboutProduct}</p>
 					</Col>
 					<Col sm={12} lg={6} className="text-center align-self-center">
 						<h1 className="mb-3">{PriceFormatter(values.price)}</h1>

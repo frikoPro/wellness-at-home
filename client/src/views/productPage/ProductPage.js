@@ -45,7 +45,9 @@ const ProductPage = () => {
 						style={{ border: '0.5px solid rgb(221, 220, 220)' }}>
 						<h3 className="text-center">{product.name}</h3>
 
-						<p className="mt-5">{product.aboutProduct}</p>
+						<p className="mt-5" style={{ whiteSpace: 'pre-line' }}>
+							{product.aboutProduct}
+						</p>
 
 						<h3 className="mt-5">{PriceFormatter(product.price)}</h3>
 						<div className="mt-5">
