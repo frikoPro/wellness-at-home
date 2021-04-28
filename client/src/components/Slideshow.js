@@ -23,7 +23,7 @@ const Slideshow = ({
 						alt={`${i + 1}. slideshow`}
 						className={`d-block w-100 ${styling.slideshow}`}></img>
 
-					<Carousel.Caption className="mb-5">
+					<Carousel.Caption className="mb-sm-5">
 						<h1
 							className={`${styling.textResponsiveH1} ${styling.animateFade1}`}>
 							{item.textHead}
