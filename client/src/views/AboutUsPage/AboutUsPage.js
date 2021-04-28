@@ -11,7 +11,7 @@ const AboutUsPage = () => {
 				<img src="/wellnessLogo2.png" alt="" style={{ width: '50%' }}></img>
 			</Row>
 			<Row className="m-3">
-				<Col className="shadow m-3">
+				<Col sm={7} className="shadow p-3">
 					<h3 className="margin-bottom-line">Litt om oss</h3>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -23,7 +23,7 @@ const AboutUsPage = () => {
 						culpa qui officia deserunt mollit anim id est laborum.
 					</p>
 				</Col>
-				<Col className="mb-3">
+				<Col sm={5}>
 					<img src="/Gavel_Mot_Oslo.jpg" alt="" style={{ width: '90%' }}></img>
 				</Col>
 			</Row>

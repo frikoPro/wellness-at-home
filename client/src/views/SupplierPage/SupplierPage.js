@@ -17,7 +17,7 @@ const SupplierPage = () => {
 		} else if (id === 'Svenska Bad') {
 			return '/svenskaBadLogoNoBackground.png';
 		} else if (id === 'Svenska Pro') {
-			return '/svenskaProLogo.png';
+			return '/SvenskaProLogo.png';
 		}
 	};
 
