@@ -5,7 +5,9 @@ const Footer = () => {
 	return (
 		<Navbar sticky="bottom" as="footer">
 			<Nav className="mr-auto">
-				<Nav.Link className="p-0">
+				<Nav.Link
+					className="p-0"
+					href="https://www.facebook.com/wellnessathome.no">
 					<svg
 						width="80"
 						height="34"
