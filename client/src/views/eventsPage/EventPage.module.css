@@ -1,22 +1,22 @@
 .mainContainer {
-    max-width: 57em;
-    margin: auto;
+    /*max-width: 57em;*/
+    /*margin: auto;*/
 }
 
 .bannerImg {
-    max-width: 1200px;
-    max-height: 500px;
+    /*max-width: 1200px;*/
+    /*max-height: 500px;*/
     box-shadow: 5px 5px 5px #b3b3b3;
 }
 
-.title {
-    text-align: left;
-}
+/*.title {*/
+/*    text-align: left;*/
+/*}*/
 
 .tabs{
-    padding-left: 1.1em;
-    width: 60em;
-    height: 28em;
-    max-height: 40em;
+    /*padding-left: 1.1em;*/
+    /*width: 60em;*/
+    /*height: 28em;*/
+    /*max-height: 40em;*/
     /*max-width: 150em;*/
 }
