@@ -21,6 +21,11 @@ const ProductPage = () => {
 
 	const [activeSlideImg, setActiveSlideImg] = useState(0);
 
+	const getStyledDesc = () => {
+		if (window.innerWidth > 576)
+			return { border: '1px solid rgb(221, 220, 220)' };
+	};
+
 	useEffect(() => {
 		const productTemp = products.find((item) => item._id === id);
 
@@ -41,8 +46,8 @@ const ProductPage = () => {
 					</Col>
 					<Col
 						sm={5}
-						className="shadow p-4"
-						style={{ border: '0.5px solid rgb(221, 220, 220)' }}>
+						className={window.innerWidth > 576 ? 'shadow p-4' : 'p-4'}
+						style={getStyledDesc()}>
 						<h3 className="text-center">{product.name}</h3>
 
 						<p className="mt-5" style={{ whiteSpace: 'pre-line' }}>
@@ -67,9 +72,7 @@ const ProductPage = () => {
 						<h1>Kompatibel med disse badene</h1>
 					</Col>
 				</Row>
-				<Row
-					style={{ maxHeight: '200px', overflowY: 'auto' }}
-					className="justify-content-center">
+				<Row className="justify-content-center">
 					<Col sm={11}>
 						<TableList
 							values={product.affiliation || []}
