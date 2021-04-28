@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import styles from './EventPage.module.css';
 import { PageHeader, Tabs, Col, Row } from 'antd';
 import { AimOutlined, UnorderedListOutlined } from '@ant-design/icons';
@@ -17,7 +17,7 @@ const EventPage = (props) => {
 	}, []);
 
 	return (
-		<>
+		<Container>
 			<div>
 				<PageHeader
 					className="site-page-header"
@@ -138,7 +138,7 @@ const EventPage = (props) => {
 					</Row>
 				</Col>
 			</Col>
-		</>
+		</Container>
 	);
 };
 
