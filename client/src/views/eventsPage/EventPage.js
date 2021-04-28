@@ -34,7 +34,7 @@ const EventPage = (props) => {
 			<Row className={`justify-content-center`}>
 				<Col sm={11}>
 					<img
-						src={`http://localhost:8080/` + props.img}
+						src={`/${props.img}`}
 						className={`w-100 ${styles.bannerImg}`}
 						alt={'img'}
 					/>
