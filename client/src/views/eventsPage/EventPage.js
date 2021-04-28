@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import {} from 'react-bootstrap';
 import styles from './EventPage.module.css';
-import { Button, PageHeader, Tabs } from 'antd';
-import { AndroidOutlined, AppleOutlined } from '@ant-design/icons';
+import { PageHeader, Tabs, Col, Row } from 'antd';
+import { AimOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import Gmaps from '../../components/events/Gmaps';
 import CalendarView from '../../components/events/CalendarView';
 import CalendarLink from '../../components/events/CalendarLink';
@@ -26,31 +26,30 @@ const EventPage = (props) => {
 					subTitle={props.venue}
 				/>
 			</div>
-			<Row className="justify-content-center">
+			<Col className={`${styles.mainContainer}`}>
 				<img
-					src={`/${props.img}`}
-					className="d-flex justify-content-center"
+					src={`http://localhost:8080/` + props.img}
 					className={`${styles.bannerImg}`}
 					alt={'img'}
 				/>
-				<Row>
-					<Col>
-						<Row>
-							<div className={`${styles.title}`}>
-								<h1>Wellness at home - {props.venue}</h1>
-							</div>
-						</Row>
+				<Col>
+					<Row>
+						<div className={`${styles.title}`}>
+							<h1>Wellness at home - {props.venue}</h1>
+						</div>
+					</Row>
+					<Row>
 						<Tabs defaultActiveKey="1">
 							<TabPane
 								tab={
 									<span>
-										<AppleOutlined />
+										<UnorderedListOutlined />
 										Main
 									</span>
 								}
 								key="1">
 								<Row className={`${styles.tabs}`}>
-									<Col xs={8} sm={6}>
+									<Col span={18} flex="300px">
 										<Row>
 											<div>
 												<h5 style={{ textDecoration: 'underline' }}>
@@ -99,8 +98,8 @@ const EventPage = (props) => {
 											</div>
 										</Row>
 									</Col>
-									<Col xs={4} sm={6}>
-										<Row xs={12} sm={12}>
+									<Col span={6} flex="auto">
+										<Row>
 											<div className={`${styles.mainSideView}`}>
 												<CalendarView {...props} />
 												<br />
@@ -126,17 +125,19 @@ const EventPage = (props) => {
 							<TabPane
 								tab={
 									<span>
-										<AndroidOutlined />
+										<AimOutlined />
 										Kart og transport
 									</span>
 								}
 								key="2">
-								<Gmaps {...props} />
+								<Row>
+									<Gmaps {...props} />
+								</Row>
 							</TabPane>
 						</Tabs>
-					</Col>
-				</Row>
-			</Row>
+					</Row>
+				</Col>
+			</Col>
 		</>
 	);
 };
