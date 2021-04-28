@@ -31,7 +31,7 @@ const ProductPage = () => {
 		<Container className="bg-white pb-5 pt-5 shadow">
 			<section>
 				<Row className="mt-5 justify-content-center">
-					<Col sm={5}>
+					<Col sm={5} className="p-sm-0 mr-sm-5">
 						<Slideshow
 							slideContent={product.images}
 							styling={styles}
@@ -39,13 +39,16 @@ const ProductPage = () => {
 							setIndex={(index) => setActiveSlideImg(index)}
 						/>
 					</Col>
-					<Col sm={5}>
+					<Col
+						sm={5}
+						className="shadow p-4"
+						style={{ border: '0.5px solid rgb(221, 220, 220)' }}>
 						<h3 className="text-center">{product.name}</h3>
 
 						<p className="mt-5">{product.aboutProduct}</p>
 
 						<h3 className="mt-5">{PriceFormatter(product.price)}</h3>
-						<div className="text-center mt-5">
+						<div className="mt-5">
 							<Button
 								className="btn-warning"
 								onClick={() => addToCart(product)}>
