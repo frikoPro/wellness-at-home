@@ -4,18 +4,19 @@ body{
 
 .mainContainer{
     margin: auto;
-    width: 50%;
+    /*width: 50%;*/
+    justify-content: center;
 }
 
 .post{
     padding-top: 1em;
-    position: relative;
-    top: 2em;
-    left: 25%;
+    /*position: relative;*/
+    /*top: 2em;*/
+    /*left: 25%;*/
 }
 
 .SkeletonLoader{
-    position: relative;
-    left: 25%;
+    /*position: relative;*/
+    /*left: 25%;*/
     top: 2.3em;
 }

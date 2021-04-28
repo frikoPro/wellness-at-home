@@ -45,19 +45,21 @@ const Blogg = () => {
 			<div className={`${styles.mainContainer}`}>
 				{loading ? (
 					fbData.map((post) => (
-						<div className={`${styles.post}`}>
+						<div key={post.post_id} className={`align-self-center text-center ${styles.post}`}>
 							<div
 								data-href={`https://www.facebook.com/102417811874407/posts/${post.post_id}/`}
 								key={post.post_id} //PostID is unique and a good key
 								className="fb-post"
-								data-width="500"
+								data-width="1200"
 								data-show-text="true"
 								style={{ boxShadow: '5px 5px 5px #b3b3b3' }}
 							/>
 						</div>
 					))
 				) : (
-					<SkeletonLoader />
+					<div className={`align-self-center text-center ${styles.post}`}>
+						<SkeletonLoader />
+					</div>
 				)}
 			</div>
 		</>
