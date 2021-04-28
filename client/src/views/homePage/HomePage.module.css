@@ -50,6 +50,18 @@
 	animation-fill-mode: backwards;
 }
 
+@keyframes up-and-down {
+	from {
+		bottom: 40px;
+	} to {
+		bottom: 60px;
+	}
+}
+
+.upAndDown{
+	animation: up-and-down 1s ease 0s infinite alternate;
+}
+
 .slideshow {
 	width: auto;
 	max-height: 100vh;

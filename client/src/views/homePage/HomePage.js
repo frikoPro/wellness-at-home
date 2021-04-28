@@ -39,6 +39,7 @@ const HomePage = () => {
 						activeIndex={currentSlideImg}
 						styling={styles}
 					/>
+					<ArrowDown />
 				</div>
 			</section>
 
@@ -70,6 +71,34 @@ const HomePage = () => {
 				<SupplierCardList />
 			</Container>
 		</>
+	);
+};
+
+const ArrowDown = () => {
+	const style = {
+		position: 'absolute',
+		opacity: '0.8',
+		left: '2%',
+		bottom: '5%',
+		zIndex: '1',
+		cursor: 'pointer',
+	};
+
+	return (
+		<svg
+			style={style}
+			onClick={() =>
+				window.scrollBy({ top: window.innerHeight, behavior: 'smooth' })
+			}
+			className={`${styles.upAndDown} d-none d-lg-block`}
+			xmlns="http://www.w3.org/2000/svg"
+			height="5rem"
+			viewBox="0 0 24 24"
+			width="5rem"
+			fill="#FFFFFF">
+			<path d="M0 0h24v24H0V0z" fill="none" />
+			<path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
+		</svg>
 	);
 };
 
