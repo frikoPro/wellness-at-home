@@ -18,6 +18,8 @@ const NavigationBar = () => {
 
 	const [open, setOpen] = useState(false);
 
+	const [mobileOpen, setMobOpen] = useState(false);
+
 	const dropdown = useRef(null);
 
 	const { jacuzzis, brands } = useContext(JacuzziContext);
@@ -39,8 +41,9 @@ const NavigationBar = () => {
 
 	return (
 		<NavBarStyled
+			expanded={mobileOpen}
+			onToggle={() => setMobOpen(!mobileOpen)}
 			opacity={opacity}
-			collapseOnSelect
 			expand="lg"
 			fixed="top"
 			variant="dark"
@@ -61,9 +64,10 @@ const NavigationBar = () => {
 			</Navbar.Brand>
 
 			<Navbar.Collapse id="responsive-navbar-nav">
-				<Nav className="mr-auto ml-auto ">
+				<Nav className="mr-auto ml-auto" onSelect={() => setMobOpen(false)}>
 					{/* Had to make a div on top of Nav.Link Spabad to fire the event correctly */}
 					<div
+						className="d-lg-block d-none"
 						style={{
 							position: 'absolute',
 							height: '61px',
@@ -86,27 +90,35 @@ const NavigationBar = () => {
 						iscollapsed={navCollapsed}
 						open={open}
 						className={`shadow ${styling.dropmenu}`}>
-						<DropdownSection styling={styling} section={mappedJacuzzis} />
+						<DropdownSection
+							styling={styling}
+							section={mappedJacuzzis}
+							onSelect={() => setMobOpen(false)}
+						/>
 					</Dropdown>
 					<Nav.Link
+						onClick={() => setMobOpen(false)}
 						as={Link}
 						to="/nettbutikk"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
 						Tilbehør
 					</Nav.Link>
 					<Nav.Link
+						onClick={() => setMobOpen(false)}
 						as={Link}
 						to="/Blogg"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
 						Blogg
 					</Nav.Link>
 					<Nav.Link
+						onClick={() => setMobOpen(false)}
 						as={Link}
 						to="/Arrangementer"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
 						Arrangementer
 					</Nav.Link>
 					<Nav.Link
+						onClick={() => setMobOpen(false)}
 						as={Link}
 						to="/Kundeservice"
 						className={`${styling.navItem} nav-text-color hover-gold`}>
@@ -116,6 +128,7 @@ const NavigationBar = () => {
 				<Nav>
 					<Nav.Link
 						as={Link}
+						onClick={() => setMobOpen(false)}
 						to="/handlekurv"
 						style={!navCollapsed ? { height: '50px', width: '90px' } : null}
 						className={`${styling.navItem} nav-text-color hover-gold`}>
