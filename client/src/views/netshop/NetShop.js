@@ -20,7 +20,10 @@ const NetShop = ({ match }) => {
 			<Route exact path={match.url}>
 				<Container fluid className="h-100">
 					<Row className="h-100">
-						<Col sm={2} className="h-100 mt-5">
+						<Col sm={{ offset: 2, span: 10 }}>
+							<h1>Tilbehør</h1>
+						</Col>
+						<Col sm={2} className="h-100 mb-5 mb-sm-0">
 							<CardFilter setFilter={(filtered) => setProducts(filtered)} />
 						</Col>
 						<Col>
