@@ -7,6 +7,8 @@
 
 	.textResponsiveP {
 		font-size: 1.5vw;
+		color: white;
+
 	}
 }
 
@@ -18,10 +20,14 @@
 
 	.textResponsiveH1 {
 		font-size: 2.5vw;
+		color: white;
+
 	}
 
 	.textResponsiveP {
 		font-size: 2vw;
+		color: white;
+
 	}
 }
 

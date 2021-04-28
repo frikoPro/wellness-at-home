@@ -137,7 +137,7 @@ export const ScrollProvider = (props) => {
 		<ScrollContext.Provider
 			value={{
 				homepageEl: [homePageEl, slideshowRef],
-				navbar: [opacity, isNavCollapsed],
+				navbar: { opacity: opacity, navCollapsed: isNavCollapsed },
 			}}>
 			{props.children}
 		</ScrollContext.Provider>

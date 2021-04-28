@@ -1,17 +1,20 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { Nav, Navbar, Row } from 'react-bootstrap';
+import { Col, Nav, Navbar, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { JacuzziContext } from '../../contexts/JacuzziContext';
 import { ScrollContext } from '../../contexts/ScrollContext';
 import DropdownSection from './DropdownSection';
-import { Handlekurv, SearchIcon } from './NavbarIcons';
+import { Handlekurv, QtyCartCount } from './NavbarIcons';
 import styling from './NavigationBar.module.css';
+import { CartContext } from '../../contexts/CartContext';
 
 const NavigationBar = () => {
 	const { navbar } = useContext(ScrollContext);
 
-	const [opacity, isCollapsed] = navbar;
+	const { cart } = useContext(CartContext);
+
+	const { opacity, navCollapsed } = navbar;
 
 	const [open, setOpen] = useState(false);
 
@@ -42,8 +45,17 @@ const NavigationBar = () => {
 			fixed="top"
 			variant="dark"
 			className={styling.notOpacity}>
-			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+			{navCollapsed ? (
+				<Row>
+					<Col className="p-0">
+						<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+					</Col>
 
+					<Col className="align-self-center p-0">
+						<QtyCartCount cart={cart} />
+					</Col>
+				</Row>
+			) : null}
 			<Navbar.Brand as={Link} to="/">
 				<img src={'/wellnessLogo2.png'} alt="" style={{ height: '61px' }}></img>
 			</Navbar.Brand>
@@ -71,7 +83,7 @@ const NavigationBar = () => {
 						onMouseOut={() => setOpen(false)}
 						ref={dropdown}
 						dropdownref={dropdown}
-						iscollapsed={isCollapsed}
+						iscollapsed={navCollapsed}
 						open={open}
 						className={`shadow ${styling.dropmenu}`}>
 						<DropdownSection styling={styling} section={mappedJacuzzis} />
@@ -102,14 +114,12 @@ const NavigationBar = () => {
 					</Nav.Link>
 				</Nav>
 				<Nav>
-					<Nav.Link className={`${styling.navItem} nav-text-color hover-gold`}>
-						{isCollapsed ? 'Search' : <SearchIcon />}
-					</Nav.Link>
 					<Nav.Link
 						as={Link}
 						to="/handlekurv"
+						style={!navCollapsed ? { height: '50px', width: '90px' } : null}
 						className={`${styling.navItem} nav-text-color hover-gold`}>
-						{isCollapsed ? 'Handlekurv' : <Handlekurv />}
+						{<Handlekurv cart={cart} navCollapsed={navCollapsed} />}
 					</Nav.Link>
 				</Nav>
 			</Navbar.Collapse>

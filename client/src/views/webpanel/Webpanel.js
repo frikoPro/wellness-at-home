@@ -41,7 +41,7 @@ const Webpanel = ({ match }) => {
 							<span
 								style={{ cursor: 'pointer' }}
 								onClick={() => setOpen({ ...isOpen, spabad: !isOpen.spabad })}>
-								spabad
+								Spabad
 							</span>
 							<ul
 								style={{
@@ -49,7 +49,7 @@ const Webpanel = ({ match }) => {
 									display: isOpen.spabad ? 'block' : 'none',
 								}}>
 								<Link to={`${match.url}/addJacuzzis`}>
-									<li>legg til spabad</li>
+									<li>Legg til spabad</li>
 								</Link>
 								<Link to={`${match.url}/updateJacuzzi`}>
 									<li>Oppdater spabad</li>
@@ -63,7 +63,7 @@ const Webpanel = ({ match }) => {
 									setOpen({ ...isOpen, products: !isOpen.products })
 								}
 								style={{ cursor: 'pointer' }}>
-								produkter
+								Produkter
 							</span>
 							<ul
 								style={{
@@ -84,7 +84,7 @@ const Webpanel = ({ match }) => {
 									setOpen({ ...isOpen, slideshow: !isOpen.slideshow })
 								}
 								style={{ cursor: 'pointer' }}>
-								slideshow
+								Slideshow
 							</span>
 							<ul
 								style={{
@@ -92,10 +92,10 @@ const Webpanel = ({ match }) => {
 									display: isOpen.slideshow ? 'block' : 'none',
 								}}>
 								<Link to={`${match.url}/addSlideshow`}>
-									<li>legg til slideshow</li>
+									<li>Legg til slideshow</li>
 								</Link>
 								<Link to={`${match.url}/updateSlideshow`}>
-									<li>oppdater slideshow</li>
+									<li>Oppdater slideshow</li>
 								</Link>
 							</ul>
 						</li>
@@ -103,13 +103,13 @@ const Webpanel = ({ match }) => {
 							<li>FAQ</li>
 						</Link>
 						<Link to={`${match.url}/arrangementer`}>
-							<li>arrangementer</li>
+							<li>Arrangementer</li>
 						</Link>
 						<Link to={`${match.url}/anmeldelser`}>
-							<li>anmeldelser</li>
+							<li>Anmeldelser</li>
 						</Link>
 						<Link to={`${match.url}/ordrer`}>
-							<li>ordrer</li>
+							<li>Ordrer</li>
 						</Link>
 					</ul>
 					<Button variant="warning" onClick={() => logOut()}>

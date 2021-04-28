@@ -11,11 +11,11 @@ import {Link} from "react-router-dom";
 const {TabPane} = Tabs;
 
 const EventPage = (props) => {
-    console.log(window.location.href)
+	console.log(window.location.href);
 
-    useEffect(() => {
-        window?.FB?.XFBML?.parse();
-    }, [])
+	useEffect(() => {
+		window?.FB?.XFBML?.parse();
+	}, []);
 
     return (
         <Container className={`bg-white shadow`}>

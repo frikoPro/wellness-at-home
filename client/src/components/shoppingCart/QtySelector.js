@@ -25,7 +25,7 @@ const QtySelector = ({ item, handleUpdate }) => {
 	};
 
 	return (
-		<Col className="h-100 text-center mt-5 mt-sm-0" sm={3} lg={3} xs={3}>
+		<Col className="h-100 text-center mt-5 mt-sm-0" sm={3} lg={3} xs={5}>
 			<Button
 				className=" w-25 align-top"
 				onClick={() => setQty(-1)}

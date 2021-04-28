@@ -62,6 +62,13 @@ const JacuzziPage = () => {
 
 	const reviewsRef = useRef(null);
 
+	const scrollToReview = async () => {
+		const topPos =
+			reviewsRef.current.getBoundingClientRect().top + window.scrollY - 87;
+
+		window.scrollTo({ top: topPos, behavior: 'smooth' });
+	};
+
 	return values ? (
 		<Container className="shadow p-5 bg-white">
 			<section>
@@ -91,8 +98,8 @@ const JacuzziPage = () => {
 					</Col>
 				</Row>
 				<Row className="justify-content-between">
-					<Col sm={12} lg={6} className="mx-auto p-5 text-center">
-						<p>{values.aboutProduct}</p>
+					<Col sm={12} lg={6} className="mx-auto p-sm-5 p-1">
+						<p style={{ whiteSpace: 'pre-line' }}>{values.aboutProduct}</p>
 					</Col>
 					<Col sm={12} lg={6} className="text-center align-self-center">
 						<h1 className="mb-3">{PriceFormatter(values.price)}</h1>
@@ -102,7 +109,7 @@ const JacuzziPage = () => {
 								<p
 									className="mb-3 text-secondary"
 									style={{ cursor: 'pointer' }}
-									onClick={() => reviewsRef.current.scrollIntoView(false)}>
+									onClick={scrollToReview}>
 									<u>
 										Se anmeldelser (
 										{values.userReviews !== undefined
@@ -113,7 +120,7 @@ const JacuzziPage = () => {
 								</p>
 							</>
 						) : null}
-						<Button className="btn-warning mb-sm-3">
+						<Button className="btn-warning mb-3">
 							Interessert? Ta kontakt
 						</Button>
 						<Button as={Link} to={`/Sammenlign/${id}`} className="ml-3 mb-sm-3">
@@ -122,7 +129,9 @@ const JacuzziPage = () => {
 					</Col>
 				</Row>
 			</section>
-			<TechSpec techSpec={values.techSpec} removeValues={removeValues} />
+			<div>
+				<TechSpec techSpec={values.techSpec} removeValues={removeValues} />
+			</div>
 			{values.relatedProducts.length > 0 ? (
 				<section>
 					<Row className="justify-content-center align-items-center mt-5 p-5">

@@ -16,7 +16,7 @@ const TableList = ({ values, removeValue, name }) => {
 			<thead>
 				<tr>
 					{keys.map((key, i) => (
-						<th key={i}>{key}</th>
+						<th key={i}>{key.charAt(0).toUpperCase() + key.slice(1)}</th>
 					))}
 				</tr>
 			</thead>
