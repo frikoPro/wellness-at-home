@@ -2,13 +2,11 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 const AboutUsPage = () => {
 	return (
-		<Container
-			className="shadow"
-			style={{ backgroundColor: 'white', marginTop: '5%' }}>
-			<Row
-				className="justify-content-center p-3"
-				style={{ backgroundColor: 'black' }}>
-				<img src="/wellnessLogo2.png" alt="" style={{ width: '50%' }}></img>
+		<Container className="shadow mt-0 mt-sm-5 bg-white">
+			<Row className="justify-content-center  p-sm-0 bg-dark">
+				<Col sm={7} className="p-5">
+					<img src="/wellnessLogo2.png" alt="" className="w-100"></img>
+				</Col>
 			</Row>
 			<Row className="m-3">
 				<Col sm={7} className="shadow p-3">
