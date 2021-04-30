@@ -1,22 +1,14 @@
-.mainContainer {
-    /*max-width: 57em;*/
-    /*margin: auto;*/
-}
-
 .bannerImg {
-    /*max-width: 1200px;*/
-    /*max-height: 500px;*/
+
     box-shadow: 5px 5px 5px #b3b3b3;
 }
 
-/*.title {*/
-/*    text-align: left;*/
-/*}*/
+.calendarView{
+    width: 350px;
+}
 
-.tabs{
-    /*padding-left: 1.1em;*/
-    /*width: 60em;*/
-    /*height: 28em;*/
-    /*max-height: 40em;*/
-    /*max-width: 150em;*/
+.calendarContainer {
+    justify-content: flex-end;
+    display: flex;
+    text-align: right;
 }

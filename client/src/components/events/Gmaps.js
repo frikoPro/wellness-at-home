@@ -17,9 +17,9 @@ function Gmaps(props) {
     };
     const containerStyle = {
         width: 'auto',
-        height: '500px'
+        height: '500px',
+        border: '1.5px solid #d9d9d9'
     };
-    
 
     return isLoaded ? (
         <GoogleMap

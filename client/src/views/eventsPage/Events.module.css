@@ -12,6 +12,13 @@
     font-family: 'Mulish', sans-serif;
 }
 
+
+.calendar-container {
+    justify-content: flex-end;
+    display: flex;
+    text-align: right;
+}
+
 .card {
     max-height: 25em;
     max-width: 50em;
