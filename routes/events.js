@@ -47,4 +47,14 @@ router
 		}
 	});
 
+router.route('/:id').delete(verify, async (req, res, next) => {
+	try {
+		await Event.findByIdAndDelete(req.params.id);
+		res.status(200).send('Arrangement slettet');
+	} catch (err) {
+		console.log(err);
+		next(err);
+	}
+});
+
 module.exports = router;
