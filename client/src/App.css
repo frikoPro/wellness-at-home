@@ -1,23 +1,22 @@
-html,
-body, #root {
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0;
+#root {
+	position: relative;
+	min-height: 100%;
 }
+
+
 
 header {
 	height: 87px;
 }
 
-main {
-	min-height: 85.5vh;
-
+main{
+	padding-bottom: 200px;
 }
 
 footer {
 	width: 100%;
-	
+	position: absolute !important;
+	bottom: 0;
 	background-color: black;
 }
 

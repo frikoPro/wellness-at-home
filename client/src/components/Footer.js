@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
 	return (
-		<Navbar sticky="bottom" as="footer">
+		<Navbar as="footer">
 			<Nav className="mr-auto">
 				<Nav.Link
 					className="p-0"
