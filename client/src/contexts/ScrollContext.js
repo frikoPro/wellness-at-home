@@ -70,7 +70,6 @@ export const ScrollProvider = (props) => {
 
 		const height = getHeight(slideshowRef.current);
 
-		console.log(scrollY / height);
 		setOpacity(scrollY / height);
 
 		setHomePageEl(newArray);
