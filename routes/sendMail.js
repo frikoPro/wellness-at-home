@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
+const username = process.env.MAIL_USER;
+const password = process.env.MAIL_PASS;
 
 let transport = nodemailer.createTransport({
-	host: 'smtp.ethereal.email',
-	port: 587,
-	secure: false,
+	service: "Hotmail",
 	auth: {
-		user: 'jackson16@ethereal.email',
-		pass: 'WhQcZbfSMpYvWNqe5w',
+		user: username,
+		pass: password
 	},
 });
 
@@ -21,8 +21,8 @@ transport.verify(function (error, success) {
 
 router.post('/send', (req, res, next) => {
 	var mail = {
-		from: `${req.body.name} ${req.body.email}`,
-		to: "jackson16@ethereal.email",
+		from: username,
+		to: username,
 		subject: req.body.problem,
 		html: 
 			`<p><b>Navn: </b>${req.body.name}</p>
@@ -38,6 +38,7 @@ router.post('/send', (req, res, next) => {
 			res.json({
 				status: 'fail',
 			});
+			console.log(err);
 		} else {
 			res.json({
 				status: 'success',
