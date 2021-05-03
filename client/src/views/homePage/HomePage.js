@@ -13,7 +13,13 @@ import { SlideshowContext } from '../../contexts/SlideshowContext';
 const HomePage = () => {
 	const { homepageEl } = useContext(ScrollContext);
 
-	const [homePageEl, slideshowRef] = homepageEl;
+	const [
+		homePageEl,
+		slideshowRef,
+		getNewPos,
+		onScroll,
+		removeOpacity,
+	] = homepageEl;
 
 	const { slideshows } = useContext(SlideshowContext);
 
@@ -21,6 +27,21 @@ const HomePage = () => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
+
+		getNewPos();
+
+		window.onload = getNewPos;
+
+		window.onresize = getNewPos;
+
+		window.onscroll = onScroll;
+
+		return () => {
+			window.onload = null;
+			window.onresize = null;
+			window.onscroll = null;
+			removeOpacity();
+		};
 	}, []);
 
 	return (
