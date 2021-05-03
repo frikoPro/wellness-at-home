@@ -1,11 +1,9 @@
-import { createContext, useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { createContext, useRef, useState } from 'react';
 
 export const ScrollContext = createContext();
 
 export const ScrollProvider = (props) => {
 	// Bottom position of slideshow Y-axis
-	const [slideShowScrollPos, setSlideShowScrollPos] = useState(0);
 
 	//Positon of elements on homepage
 	const [homePageEl, setHomePageEl] = useState([
@@ -47,75 +45,53 @@ export const ScrollProvider = (props) => {
 	]);
 
 	//Opacity value for homepage
-	const [opacity, setOpacity] = useState(0);
+	const [opacity, setOpacity] = useState(1);
 
 	const isNavCollapsed = window.innerWidth < 992 ? true : false;
 
 	const slideshowRef = useRef(null);
 
-	const location = useLocation();
+	const getTopPos = (element) => element.getBoundingClientRect().top;
 
-	useEffect(() => {
-		const getTopPos = (element) => element.getBoundingClientRect().top;
-		const getHeight = (element) => element.offsetHeight;
+	const getHeight = (element) => element.offsetHeight;
 
-		const getNewPos = () => {
-			const scrollY = window.scrollY;
-			const scrollX = window.scrollX;
+	const getNewPos = () => {
+		const scrollY = window.scrollY;
 
-			window.scrollTo(0, 0);
+		let newArray = [];
 
-			let newArray = [];
+		homePageEl.forEach((item) => {
+			let alteredItem = item;
+			alteredItem.position = getTopPos(item.ref.current);
+			alteredItem.height = getHeight(item.ref.current);
 
-			homePageEl.forEach((item) => {
-				let alteredItem = item;
-				alteredItem.position = getTopPos(item.ref.current);
-				alteredItem.height = getHeight(item.ref.current);
+			newArray.push(alteredItem);
+		});
 
-				newArray.push(alteredItem);
-			});
+		const height = getHeight(slideshowRef.current);
 
-			setSlideShowScrollPos(
-				getTopPos(slideshowRef.current) + getHeight(slideshowRef.current)
-			);
+		setOpacity(scrollY / height);
 
-			setHomePageEl(newArray);
+		setHomePageEl(newArray);
 
-			window.scrollTo(scrollX, scrollY);
+		checkElementPos();
+	};
 
-			checkElementPos();
-		};
+	const onScroll = () => {
+		getNewPos();
+		checkElementPos();
+	};
 
-		const onScroll = () => {
-			setOpacity(window.scrollY / slideShowScrollPos);
-			checkElementPos();
-		};
-
-		if (location.pathname === '/') {
-			window.onload = getNewPos;
-
-			window.onresize = getNewPos;
-
-			window.onscroll = onScroll;
-
-			setOpacity(window.scrollY / slideShowScrollPos);
-		} else {
-			setOpacity(1);
-		}
-
-		return () => {
-			window.onscroll = null;
-			window.onload = null;
-			window.onresize = null;
-		};
-	}, [location.pathname, homePageEl, slideShowScrollPos]);
+	const removeOpacity = () => {
+		setOpacity(1);
+	};
 
 	const checkElementPos = () => {
 		let newArray = [];
 
 		const scrollPos = window.scrollY + window.innerHeight;
 
-		homePageEl.forEach((item, i) => {
+		homePageEl.forEach((item) => {
 			let alteredItem = item;
 
 			if (alteredItem.position < scrollPos) {
@@ -136,7 +112,13 @@ export const ScrollProvider = (props) => {
 	return (
 		<ScrollContext.Provider
 			value={{
-				homepageEl: [homePageEl, slideshowRef],
+				homepageEl: [
+					homePageEl,
+					slideshowRef,
+					getNewPos,
+					onScroll,
+					removeOpacity,
+				],
 				navbar: { opacity: opacity, navCollapsed: isNavCollapsed },
 			}}>
 			{props.children}
