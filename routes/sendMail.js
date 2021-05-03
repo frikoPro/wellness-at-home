@@ -4,11 +4,18 @@ const username = process.env.MAIL_USER;
 const password = process.env.MAIL_PASS;
 
 let transport = nodemailer.createTransport({
-	service: "Hotmail",
+	host: 'smtp.ethereal.email',
+	port: 587,
+	secure: false,
+	auth: {
+		user: 'jackson16@ethereal.email',
+		pass: 'WhQcZbfSMpYvWNqe5w',
+	},
+	/* service: "Hotmail",
 	auth: {
 		user: username,
 		pass: password
-	},
+	}, */
 });
 
 transport.verify(function (error, success) {
@@ -21,8 +28,8 @@ transport.verify(function (error, success) {
 
 router.post('/send', (req, res, next) => {
 	var mail = {
-		from: username,
-		to: username,
+		from: "jackson16@ethereal.email", //change to username when ready to deploy
+		to: "jackson16@ethereal.email",	//change to username when ready to deploy
 		subject: req.body.problem,
 		html: 
 			`<p><b>Navn: </b>${req.body.name}</p>
