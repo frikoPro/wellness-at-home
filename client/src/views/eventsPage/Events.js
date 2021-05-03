@@ -1,12 +1,12 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './Events.module.css';
 import {useHistory, useRouteMatch, withRouter} from 'react-router-dom';
 import EventPage from './EventPage';
 import NotFoundPage from '../errorPage/NotFoundPage';
 import {EventContext} from '../../contexts/EventContext';
 import {Button, Col, Row} from "react-bootstrap";
-import {Card} from "antd"
-import {CalendarOutlined} from "@ant-design/icons";
+import {Card, Empty} from "antd"
+import {CalendarOutlined, LoadingOutlined} from "@ant-design/icons";
 import {LoggedInContext} from "../../contexts/LoggedInContext";
 
 const Events = () => {
@@ -14,9 +14,8 @@ const Events = () => {
     const match = useRouteMatch('/Arrangementer/events=:id');
     const {data, deleteData, updateData} = useContext(EventContext);
     const loggedIn = useContext(LoggedInContext);
-
     const eventsData = {header: 'Kommende messer og arrangementer', data: data};
-
+    const [header, setHeader] = useState(eventsData.header)
     const handleClick = (create_date) => {
         history.push(`/Arrangementer/events=${create_date}`);
     };
@@ -31,7 +30,6 @@ const Events = () => {
             return false;
         }
     };
-    // console.log(match)
 
     //checks if there is data
     if (match !== null) {
@@ -39,24 +37,27 @@ const Events = () => {
         if (getEventObj(params.id)) {
             return <EventPage {...getEventObj(params.id)} />;
         } else if (eventsData.data === null) {
-            return <p>loading...</p> //Add skeleton loading instead
+            return (<div style={{textAlign: "center"}}>
+                <LoadingOutlined style={{ color: '#08c' }}/>
+            </div>)
         } else {
             return <NotFoundPage/>;
         }
     } else { //wait whilst eventData is empty to render
         if (eventsData.data === null) {
-            return <p>loading...</p>
+            return (<div style={{textAlign: "center"}}>
+                <LoadingOutlined style={{ color: '#08c' }}/>
+            </div>)
         }
 
         return (
             <>
                 <div className={`${styles.header}`}>
-                    <h1>{eventsData.header}</h1>
+                    <h1>{header}</h1>
                 </div>
                 {eventsData.data.length === 0 ?
-                    <p className={`justify-content-center`}>Ingen planlagte messer</p> :
+                    <Empty className={`mt-3`} description={<h4>Ingen planlagte messer</h4>}/> :
                     eventsData.data.map((event) => (
-
                             <Row className="justify-content-center">
                                 <Card className={`${styles.card}`}>
                                     <Row>
@@ -103,7 +104,7 @@ const Events = () => {
                                     <Row className="align-items-center pl-2">
                                         <Col>
                                             <Button variant={"outline-danger"}
-                                                    onClick={() => deleteData(event.createdAt.toString())}>X</Button>
+                                                    onClick={() => deleteData(event._id)}>X</Button>
                                         </Col>
                                     </Row> : null}
                             </Row>

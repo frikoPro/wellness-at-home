@@ -29,12 +29,7 @@ const EventsPanel = () => {
 			lng: null,
 		},
 		meta: {
-			weekdays: [
-				// Think ill remove weekdays, and if needed just add them as text
-				{day: 'Fredag', start: 1619164800, end: 1619175600},
-				{day: 'Lørdag', start: 1619254800, end: 1619262000},
-				{day: 'Søndag', start: 1619341200, end: 1619352000},
-			],
+			weekdays: [],
 			desc: '',
 		},
 		img: '',

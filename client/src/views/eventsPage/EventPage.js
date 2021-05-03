@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import styles from './EventPage.module.css';
-import {PageHeader, Tabs} from 'antd';
+import {Button, PageHeader, Tabs} from 'antd';
 import {AimOutlined, UnorderedListOutlined} from '@ant-design/icons';
 import Gmaps from '../../components/events/Gmaps';
 import CalendarView from '../../components/events/CalendarView';
@@ -14,7 +14,10 @@ const EventPage = (props) => {
     console.log(window.location.href);
 
     useEffect(() => {
-        window?.FB?.XFBML?.parse();
+        const timer = setTimeout(() => {
+            window?.FB?.XFBML?.parse();
+        }, 1000);
+        return () => clearTimeout(timer);
     }, []);
 
     return (
@@ -108,7 +111,7 @@ const EventPage = (props) => {
                                         </Col>
                                     </Row>
                                 </Col>
-                                <Col xs={12} sm={6} xl={6} md={6} lg={6} className={`${styles.calendarContainer}`}>
+                                <Col xs={12} sm={6} xl={6} md={6} lg={6} className={`mb-4 ${styles.calendarContainer}`}>
                                     <div className={`${styles.calendarView}`}>
                                         <CalendarView {...props} />
                                         <br/>
@@ -138,9 +141,15 @@ const EventPage = (props) => {
 								</span>
                             }
                             key="2">
-                            <Row className={`mb-3`}>
-                                <Col>
-                                    <Gmaps {...props} />
+                            <Row>
+                                <Col className={`mb-3 `}>
+                                    <div className={`mb-2`}>
+                                        <a target="_blank"
+                                           href={`https://www.google.com/maps/search/?api=1&query=${props.pos.lat},${props.pos.lng}`}>
+                                            <Button>Veibeskrivelse</Button>
+                                        </a>
+                                    </div>
+                                        <Gmaps {...props} />
                                 </Col>
                             </Row>
                         </TabPane>
