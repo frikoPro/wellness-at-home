@@ -8,6 +8,7 @@ import EventPage from '../../../views/eventsPage/EventPage';
 import {EventContext} from '../../../contexts/EventContext';
 import Gmap from './Gmap';
 import EventsPanelWeekday from "./EventsPanelWeekday";
+import {notification} from "antd";
 
 const EventsPanel = () => {
 	const [preview, setPreview] = useState(false);
@@ -43,6 +44,19 @@ const EventsPanel = () => {
 		return () => cleanUp();
 	}, []);
 
+	const notificationMsg = () => {
+		notification.success({
+			message: 'Arrangement lagret',
+			description:
+				'Arrangmentet har blitt lagret i databasen! ',
+			className: 'custom-class',
+			placement: 'bottomLeft',
+			style: {
+				width: 350,
+			},
+		});
+	};
+
 	return (
 		<>
 			<Card>
@@ -67,6 +81,7 @@ const EventsPanel = () => {
 								});
 							}}
 						/>
+						{/*<EventsPanelWeekday/>*/}
 						<EventsPanelDate
 							errors={returnErrors}
 							onChange={(date) => {
@@ -154,6 +169,7 @@ const EventsPanel = () => {
 							<br/>
 							<Button onClick={() => {
 								setPreview(true)
+								notificationMsg()
 								console.log(event2)
 							}}>Forhåndvisning</Button>
 						</Col>

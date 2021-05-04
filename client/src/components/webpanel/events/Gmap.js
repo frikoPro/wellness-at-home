@@ -6,7 +6,7 @@ const Gmap = (props) => {
     const [address, setAddress] = useState(['', '', '', '', 0, 0]);
     const [errorMsg, setErrorMsg] = useState(false);
     const [errorMsgValue, setErrorMsgValue] = useState();
-    const [currentPos, setCurrentPos] = useState({lat: 59.9091938697085, lng: 10.7273032197085})
+    const [currentPos, setCurrentPos] = useState()
     const searchBox = useRef(null);
 
     const containerStyle = {
@@ -77,7 +77,14 @@ const Gmap = (props) => {
             setErrorMsg(false); //Not needed but it removes the error when a valid query is entered
         }
         if (places[0].address_components === undefined) {
-            return; // add error msg
+            setErrorMsg(true)
+            setErrorMsgValue(
+                <Alert
+                    message="Ikke et gyldig søk, velg en av søkene."
+  L                type="error"
+                    closeText="Lukk"
+                />)
+            return;
         }
 
         //populates

@@ -8,6 +8,7 @@ const EventsPanelImg = (props) => {
 	const handleImage = {
 		name: 'files',
 		maxCount: 1,
+		accept: `.png, .jpg, .jpeg`,
 		onPreview(file) {
 			console.log(file);
 		},
@@ -16,7 +17,6 @@ const EventsPanelImg = (props) => {
 			return false;
 		},
 		onChange(info) {
-			// Not needed tbh but good for debugging
 			const { status } = info.file;
 			if (status !== 'uploading') {
 				console.log(info.file, info.fileList);
@@ -31,13 +31,14 @@ const EventsPanelImg = (props) => {
 
 	return (
 		<>
-			<Form.Group>
+			<Form.Group className={`w-50`}>
 				<Dragger {...handleImage}>
 					<p className="ant-upload-drag-icon">
 						<InboxOutlined />
 					</p>
 					<p className="ant-upload-text">Klikk og dra bildet inn her</p>
-					<p className="ant-upload-hint">Kun ett bilde.</p>
+					<p className="ant-upload-hint">Kun ett .png, .jpg, eller .jpeg bilde.</p>
+					<p className="ant-upload-hint">1200x500</p>
 				</Dragger>
 			</Form.Group>
 		</>
