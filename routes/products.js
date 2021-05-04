@@ -4,11 +4,18 @@ let Product = require('../models/product.model');
 const upload = require('./uploadImages').upload;
 const updateImageFiles = require('./uploadImages').onUpdate;
 const deleteImages = require('./uploadImages').onDelete;
+const sortArray = require('../controllers/SortFunction');
 
-router.route('/').get((req, res) => {
-	Product.find()
-		.then((products) => res.json(products))
-		.catch((err) => res.status(400).json('Error: ', err));
+router.route('/').get(async (req, res, next) => {
+	try {
+		const result = await Product.find();
+
+		sortArray(result);
+
+		res.status(200).json(result);
+	} catch (err) {
+		next(err);
+	}
 });
 
 router
