@@ -18,14 +18,9 @@ import { LoggedInContext } from '../../contexts/LoggedInContext';
 const JacuzziPage = () => {
 	let { id } = useParams();
 
-	const {
-		jacuzzis,
-		removeReview,
-		updateData,
-		onSuccess,
-		errors,
-		removeErrors,
-	} = useContext(JacuzziContext);
+	const { jacuzzis, updateData, onSuccess, errors, removeErrors } = useContext(
+		JacuzziContext
+	);
 
 	const { products } = useContext(ProductsContext);
 
