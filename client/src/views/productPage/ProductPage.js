@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import PriceFormatter from '../../components/PriceFormatter';
 import TableList from '../../components/TableList';
 import Slideshow from '../../components/Slideshow';
-
+import { Link } from 'react-router-dom';
 import { ProductsContext } from '../../contexts/ProductsContext';
 import styles from './ProductPage.module.css';
 import TechSpec from '../../components/TechSpec';
@@ -19,6 +19,8 @@ const ProductPage = () => {
 
 	const [product, setProduct] = useState({});
 
+	const [addToCartRes, setResponse] = useState(null);
+
 	const [activeSlideImg, setActiveSlideImg] = useState(0);
 
 	const getStyledDesc = () => {
@@ -31,6 +33,11 @@ const ProductPage = () => {
 
 		setProduct(productTemp);
 	}, [products]);
+
+	const onAddToCart = () => {
+		addToCart(product);
+		setResponse('Produkt lagt til i handlekurven');
+	};
 
 	return product ? (
 		<Container className="bg-white pb-5 pt-5 shadow">
@@ -56,11 +63,17 @@ const ProductPage = () => {
 
 						<h3 className="mt-5">{PriceFormatter(product.price)}</h3>
 						<div className="mt-5">
-							<Button
-								className="btn-warning"
-								onClick={() => addToCart(product)}>
-								Kjøp
+							<Button className="btn-warning" onClick={onAddToCart}>
+								Legg i handlevogn
 							</Button>
+							{addToCartRes ? (
+								<>
+									<div className="text-success">{addToCartRes}</div>
+									<Button variant="success" as={Link} to="/handlekurv">
+										Se handlevogn
+									</Button>
+								</>
+							) : null}
 						</div>
 					</Col>
 				</Row>
