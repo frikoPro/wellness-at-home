@@ -44,7 +44,7 @@ const NavigationBar = () => {
 			expanded={mobileOpen}
 			onToggle={() => setMobOpen(!mobileOpen)}
 			opacity={opacity}
-			expand="lg"
+			expand={!navCollapsed}
 			fixed="top"
 			variant="dark"
 			className={styling.notOpacity}>

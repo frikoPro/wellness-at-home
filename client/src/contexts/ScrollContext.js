@@ -1,4 +1,4 @@
-import { createContext, useRef, useState } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
 
 export const ScrollContext = createContext();
 
@@ -47,7 +47,16 @@ export const ScrollProvider = (props) => {
 	//Opacity value for homepage
 	const [opacity, setOpacity] = useState(1);
 
-	const isNavCollapsed = window.innerWidth < 992 ? true : false;
+	const [isNavCollapsed, setNavCollapsed] = useState(false);
+
+	const checkNavCollapsed = () => {
+		if (window.innerWidth >= 992) setNavCollapsed(false);
+		else if (window.innerWidth < 992) setNavCollapsed(true);
+	};
+
+	useEffect(() => {
+		window.onresize = checkNavCollapsed;
+	}, []);
 
 	const slideshowRef = useRef(null);
 
@@ -119,7 +128,11 @@ export const ScrollProvider = (props) => {
 					onScroll,
 					removeOpacity,
 				],
-				navbar: { opacity: opacity, navCollapsed: isNavCollapsed },
+				navbar: {
+					opacity: opacity,
+					navCollapsed: isNavCollapsed,
+					checkNavCollapsed: checkNavCollapsed,
+				},
 			}}>
 			{props.children}
 		</ScrollContext.Provider>
