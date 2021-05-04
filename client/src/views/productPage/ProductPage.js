@@ -9,15 +9,19 @@ import { ProductsContext } from '../../contexts/ProductsContext';
 import styles from './ProductPage.module.css';
 import TechSpec from '../../components/TechSpec';
 import { CartContext } from '../../contexts/CartContext';
+import UseForm from '../../components/webpanel/UseForm';
+import { LoggedInContext } from '../../contexts/LoggedInContext';
 
 const ProductPage = () => {
 	const { id } = useParams();
 
-	const { products } = useContext(ProductsContext);
+	const { products, updateData, onSuccess, errors } = useContext(
+		ProductsContext
+	);
 
 	const { addToCart } = useContext(CartContext);
 
-	const [product, setProduct] = useState({});
+	const loggedIn = useContext(LoggedInContext);
 
 	const [addToCartRes, setResponse] = useState(null);
 
@@ -28,10 +32,14 @@ const ProductPage = () => {
 			return { border: '1px solid rgb(221, 220, 220)' };
 	};
 
+	const { setValues, values: product, removeValues } = UseForm({
+		initialValues: {},
+	});
+
 	useEffect(() => {
 		const productTemp = products.find((item) => item._id === id);
 
-		setProduct(productTemp);
+		setValues(productTemp);
 	}, [products]);
 
 	const onAddToCart = () => {
@@ -89,13 +97,27 @@ const ProductPage = () => {
 					<Col sm={11}>
 						<TableList
 							values={product.affiliation || []}
-							removeValue={() => console.log('test')}
+							removeValue={removeValues}
 							name="affiliation"
 						/>
 					</Col>
 				</Row>
 			</section>
-			<TechSpec techSpec={product.techSpec} />
+			<TechSpec techSpec={product.techSpec} removeValues={removeValues} />
+			{loggedIn ? (
+				<Row>
+					<Col sm={1} xs={1}>
+						<Button onClick={() => updateData(product)}>Lagre</Button>
+					</Col>
+					<Col sm={11} xs={11} className="align-self-center text-center">
+						{onSuccess ? (
+							<span className="text-success">{onSuccess}</span>
+						) : (
+							<span className="text-danger">{errors}</span>
+						)}
+					</Col>
+				</Row>
+			) : null}
 		</Container>
 	) : (
 		<div
