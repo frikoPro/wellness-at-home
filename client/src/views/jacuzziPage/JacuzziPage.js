@@ -14,6 +14,7 @@ import TechSpec from '../../components/TechSpec';
 import PriceFormatter from '../../components/PriceFormatter';
 import UseForm from '../../components/webpanel/UseForm';
 import { LoggedInContext } from '../../contexts/LoggedInContext';
+import OrderJacuzziModal from './OrderJacuzziModal';
 
 const JacuzziPage = () => {
 	let { id } = useParams();
@@ -25,6 +26,8 @@ const JacuzziPage = () => {
 	const { products } = useContext(ProductsContext);
 
 	const loggedIn = useContext(LoggedInContext);
+
+	const [modalShow, setModalShow] = useState(false);
 
 	const { removeValues, setValues, values } = UseForm({
 		initialValues: { relatedProducts: [], userReviews: [] },
@@ -115,7 +118,7 @@ const JacuzziPage = () => {
 								</p>
 							</>
 						) : null}
-						<Button className="btn-warning mb-3">
+						<Button className="btn-warning mb-3" onClick={() => setModalShow(true)}>
 							Interessert? Ta kontakt
 						</Button>
 						<Button as={Link} to={`/Sammenlign/${id}`} className="ml-3 mb-sm-3">
@@ -123,6 +126,10 @@ const JacuzziPage = () => {
 						</Button>
 					</Col>
 				</Row>
+				<OrderJacuzziModal
+					show={modalShow}
+					onHide={()=> setModalShow(false)}
+				/>
 			</section>
 			<div>
 				<TechSpec techSpec={values.techSpec} removeValues={removeValues} />

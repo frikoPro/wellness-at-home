@@ -47,12 +47,9 @@ const SupplierPage = () => {
 			<Row className="justify-content-center m-4">
 				<Col>
 					<h5>
-						Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-						accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-						ab illo inventore veritatis et quasi architecto beatae vitae dicta
-						sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-						aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-						qui ratione voluptatem sequi nesciunt.
+					Svenska Bad er blitt utviklet for å klare det skandinaviske klimaets ekstreme utfordringer. 
+					Vi benytter det beste av materialer, mest effektive isoleringen og den mest moderne 
+					teknologien for å holde et balansert badevann, som er enkelt å bruke.
 					</h5>
 				</Col>
 			</Row>

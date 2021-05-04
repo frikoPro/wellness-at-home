@@ -25,7 +25,7 @@ function Gmaps(props) {
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={initialPos}
-            zoom={10}
+            zoom={13}
         >
             <>
                 <Marker position={initialPos}
@@ -49,7 +49,7 @@ function Gmaps(props) {
                             <h5>{chosenMarker.subTitle}</h5>
                             <h6>{`${chosenMarker.coordinates[0]}, ${chosenMarker.coordinates[1]}`}</h6>
                             <Button href={chosenMarker.link} target="_blank"
-                                    rel="noreferrer noopener">Directions</Button>
+                                    rel="noreferrer noopener">Veibeskrivelse</Button>
                         </div>
                     </InfoWindow> : undefined}
             </>
