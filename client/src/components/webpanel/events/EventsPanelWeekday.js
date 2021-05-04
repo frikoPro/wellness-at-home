@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import {Button, Input} from 'antd';
 
+
 const EventsPanelWeekday = () => {
     const [events, setEvents] = useState([]);
 
     return (
         <>
+            {/*<PickerWithType type={time} onChange={value => console.log(value)} />*/}
+
             <Button onClick={() => setEvents(
                 [...events, {"first_name": 'Ari'}]
             )}>Add</Button>

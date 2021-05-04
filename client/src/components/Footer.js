@@ -42,8 +42,8 @@ const Footer = () => {
 				<Nav.Link as={Link} className="nav-text-color hover-gold">
 					Terms and conditions
 				</Nav.Link>
-				<Nav.Link as={Link} className="nav-text-color hover-gold">
-					Privacy and cookies policy
+				<Nav.Link as={Link} className="nav-text-color hover-gold" to='/personvern'>
+					Personvern
 				</Nav.Link>
 			</Nav>
 		</Navbar>

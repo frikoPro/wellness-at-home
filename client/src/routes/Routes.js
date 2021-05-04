@@ -26,6 +26,7 @@ import AboutUsPage from '../views/AboutUsPage/AboutUsPage';
 import { OrderProvider } from '../contexts/OrderContext';
 import { CartProvider } from '../contexts/CartContext';
 import { EventProvider } from '../contexts/EventContext';
+import PrivacyPage from '../views/privacyPage/PrivacyPage'
 
 const Routes = () => {
 	const loggedIn = useContext(LoggedInContext);
@@ -48,6 +49,9 @@ const Routes = () => {
 													<Switch>
 														<Route exact path="/">
 															<HomePage />
+														</Route>
+														<Route path="/personvern">
+															<PrivacyPage />
 														</Route>
 														<Route path="/blogg">
 															<Blogg />
