@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import PriceFormatter from '../../components/PriceFormatter';
@@ -9,6 +9,7 @@ import { ProductsContext } from '../../contexts/ProductsContext';
 import styles from './ProductPage.module.css';
 import TechSpec from '../../components/TechSpec';
 import { CartContext } from '../../contexts/CartContext';
+import {Helmet} from "react-helmet";
 
 const ProductPage = () => {
 	const { id } = useParams();
@@ -34,6 +35,9 @@ const ProductPage = () => {
 
 	return product ? (
 		<Container className="bg-white pb-5 pt-5 shadow">
+			<Helmet>
+				<title>{`Tilbehør - ${product.name ? product.name : `Tilbehør`}`}</title>
+			</Helmet>
 			<section>
 				<Row className="mt-0 mt-sm-5 justify-content-center">
 					<Col sm={5} className="p-sm-0 mr-sm-5">

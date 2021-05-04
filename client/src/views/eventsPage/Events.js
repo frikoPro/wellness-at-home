@@ -5,24 +5,37 @@ import EventPage from './EventPage';
 import NotFoundPage from '../errorPage/NotFoundPage';
 import {EventContext} from '../../contexts/EventContext';
 import {Button, Col, Row} from "react-bootstrap";
-import {Card, Empty} from "antd"
+import {Card, Empty, notification} from "antd"
 import {CalendarOutlined, LoadingOutlined} from "@ant-design/icons";
 import {LoggedInContext} from "../../contexts/LoggedInContext";
+import {Helmet} from "react-helmet";
 
 const Events = () => {
     let history = useHistory();
     const match = useRouteMatch('/Arrangementer/events=:id');
-    const {data, deleteData, updateData} = useContext(EventContext);
+    const {data, deleteData} = useContext(EventContext);
     const loggedIn = useContext(LoggedInContext);
     const eventsData = {header: 'Kommende messer og arrangementer', data: data};
-    const [header, setHeader] = useState(eventsData.header)
-    const handleClick = (create_date) => {
-        history.push(`/Arrangementer/events=${create_date}`);
+
+    const handleClick = (event) => {
+        history.push(`/Arrangementer/events=${event}`);
     };
-    //if no data in event show 404
+
+    const openNotification = () => {
+        notification.success({
+            message: 'Arrangement slettet',
+            description:
+                'Arrangmentet har blitt slettet! ',
+            className: 'custom-class',
+            placement: 'bottomLeft',
+            style: {
+                width: 350,
+            },
+        });
+    };
+
     const getEventObj = (id) => {
         if (id && eventsData !== null && eventsData.data !== null) {
-            // return false
             return eventsData.data.filter(
                 (event) => event.createdAt.toString() === id
             )[0];
@@ -31,7 +44,7 @@ const Events = () => {
         }
     };
 
-    //checks if there is data
+    //if no data in event, show 404
     if (match !== null) {
         const {params} = match;
         if (getEventObj(params.id)) {
@@ -52,8 +65,11 @@ const Events = () => {
 
         return (
             <>
+                <Helmet>
+                    <title>Arrangementer</title>
+                </Helmet>
                 <div className={`${styles.header}`}>
-                    <h1>{header}</h1>
+                    <h1>{eventsData.header}</h1>
                 </div>
                 {eventsData.data.length === 0 ?
                     <Empty className={`mt-3`} description={<h4>Ingen planlagte messer</h4>}/> :
@@ -104,7 +120,10 @@ const Events = () => {
                                     <Row className="align-items-center pl-2">
                                         <Col>
                                             <Button variant={"outline-danger"}
-                                                    onClick={() => deleteData(event._id)}>X</Button>
+                                                    onClick={() => {
+                                                        deleteData(event._id)
+                                                        openNotification()
+                                                    }}>X</Button>
                                         </Col>
                                     </Row> : null}
                             </Row>

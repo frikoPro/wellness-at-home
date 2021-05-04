@@ -1,8 +1,13 @@
 import { Col, Container, Row } from 'react-bootstrap';
+import {Helmet} from "react-helmet";
+import React from "react";
 
 const AboutUsPage = () => {
 	return (
 		<Container className="shadow mt-0 mt-sm-5 bg-white">
+			<Helmet>
+				<title>Om oss</title>
+			</Helmet>
 			<Row className="justify-content-center  p-sm-0 bg-dark">
 				<Col sm={7} className="p-5">
 					<img src="/wellnessLogo2.png" alt="" className="w-100"></img>

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import AddJacuzzi from '../../components/webpanel/jacuzzi/AddJacuzzi';
 import AddProduct from '../../components/webpanel/product/AddProduct';
@@ -13,6 +13,7 @@ import EventsPanel from '../../components/webpanel/events/EventsPanel';
 import Invites from '../../components/webpanel/reviewInvites/Invites';
 import axios from 'axios';
 import Orders from '../../components/webpanel/orders/Orders';
+import {Helmet} from "react-helmet";
 
 const Webpanel = ({ match }) => {
 	const FAQs = useContext(FAQContext);
@@ -34,6 +35,9 @@ const Webpanel = ({ match }) => {
 
 	return (
 		<Container fluid className="pl-0">
+			<Helmet>
+				<title>Webpanel</title>
+			</Helmet>
 			<Row>
 				<Col sm={2} className="bg-white shadow">
 					<ul>

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import styles from './HomePage.module.css';
@@ -9,6 +9,7 @@ import { ScrollContext } from '../../contexts/ScrollContext';
 
 import SupplierCardList from '../../components/supplierCard/SupplierCardList';
 import { SlideshowContext } from '../../contexts/SlideshowContext';
+import {Helmet} from "react-helmet";
 
 const HomePage = () => {
 	const { homepageEl } = useContext(ScrollContext);

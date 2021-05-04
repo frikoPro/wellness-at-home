@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Blogg.module.css';
 import axios from 'axios';
 import ContentLoader from 'react-content-loader';
+import {Helmet} from "react-helmet";
 
 const Blogg = () => {
 	let [fbData, setFbData] = useState([]);
@@ -42,6 +43,9 @@ const Blogg = () => {
 
 	return (
 		<>
+			<Helmet>
+				<title>Blogg</title>
+			</Helmet>
 			<div className={`${styles.mainContainer}`}>
 				{loading ? (
 					fbData.map((post) => (

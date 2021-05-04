@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import ScrollDiv from '../../components/scrolldiv/ScrollDiv';
@@ -15,6 +15,7 @@ import PriceFormatter from '../../components/PriceFormatter';
 import UseForm from '../../components/webpanel/UseForm';
 import { LoggedInContext } from '../../contexts/LoggedInContext';
 import OrderJacuzziModal from './OrderJacuzziModal';
+import {Helmet} from "react-helmet";
 
 const JacuzziPage = () => {
 	let { id } = useParams();
@@ -71,9 +72,11 @@ const JacuzziPage = () => {
 
 		window.scrollTo({ top: topPos, behavior: 'smooth' });
 	};
-
 	return values ? (
 		<Container className="shadow p-5 bg-white">
+			<Helmet>
+				<title>{`Spabad -  ${values.name ? values.name.toUpperCase() : `Spabad`}`}</title>
+			</Helmet>
 			<section>
 				<Row>
 					<Col sm={12} className="mx-auto">

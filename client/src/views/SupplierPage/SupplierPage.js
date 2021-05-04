@@ -1,9 +1,9 @@
-import { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Col, Container, Row, Button } from 'react-bootstrap';
-import styles from './SupplierPage.module.css';
 import { JacuzziContext } from '../../contexts/JacuzziContext';
 import ScrollDiv from '../../components/scrolldiv/ScrollDiv';
+import {Helmet} from "react-helmet";
 
 const SupplierPage = () => {
 	let { id } = useParams();
@@ -22,7 +22,7 @@ const SupplierPage = () => {
 	};
 
 	useEffect(() => {
-		var tempArr = jacuzzis.filter((jacuzzi) => jacuzzi.brand === id);
+		const tempArr = jacuzzis.filter((jacuzzi) => jacuzzi.brand === id);
 		const mapped = tempArr.map((obj) => ({
 			textHead: obj.name,
 			about: obj.aboutProduct,
@@ -36,11 +36,14 @@ const SupplierPage = () => {
 		<Container
 			className="shadow"
 			style={{ backgroundColor: 'white', marginTop: '5%' }}>
+			<Helmet>
+				<title>{`Levrandørside - ${id}`}</title>
+			</Helmet>
 			<Row
 				className="justify-content-center p-5"
 				style={{ backgroundColor: '#F2F3F7' }}>
 				<Col sm={6}>
-					<img src={getLogo()} alt="" className="w-100"></img>
+					<img src={getLogo()} alt="" className="w-100"/>
 				</Col>
 				
 			</Row>
@@ -112,7 +115,6 @@ const SupplierPage = () => {
 							size={3}
 						/>
 					</Col>
-					
 				</Row>
 			</section>
 		</Container>

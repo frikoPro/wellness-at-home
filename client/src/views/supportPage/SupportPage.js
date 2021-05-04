@@ -3,6 +3,8 @@ import FAQList from '../../components/FAQ/FAQList';
 import ContactCard from '../../components/ContactCard';
 import SupportForm from '../../components/SupportForm';
 import styles from './SupportPage.module.css';
+import {Helmet} from "react-helmet";
+import React from "react";
 
 const SupportPage = () => {
 	const supportPageContent = {
@@ -32,6 +34,9 @@ const SupportPage = () => {
 		<Container 
 			className="shadow"
 			style={{ backgroundColor: 'white', marginTop: '5%' }}>
+			<Helmet>
+				<title>Kundeservice</title>
+			</Helmet>
 			<Row className="justify-content-center p-5">
 				<Col className={'text-center'}>
 					<h1>Ofte stilte spørsmål</h1>

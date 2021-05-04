@@ -1,8 +1,9 @@
 import { Col, Container, Form, Row } from 'react-bootstrap';
-import { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { JacuzziContext } from '../../contexts/JacuzziContext';
 import CompareList from '../../components/CompareList';
+import {Helmet} from "react-helmet";
 
 const ComparePage = () => {
 	let { id } = useParams();
@@ -31,6 +32,9 @@ const ComparePage = () => {
 		<Container
 			className="shadow"
 			style={{ backgroundColor: 'white', marginTop: '5%' }}>
+			<Helmet>
+				<title>Sammenlign</title>
+			</Helmet>
 			<Row className="justify-content-center p-3">
 				<h1>Sammenlign Bad</h1>
 			</Row>

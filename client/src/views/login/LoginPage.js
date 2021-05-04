@@ -1,6 +1,7 @@
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {Helmet} from "react-helmet";
 
 const LoginPage = () => {
 	const [username, setUsername] = useState('');
@@ -37,6 +38,9 @@ const LoginPage = () => {
 				minHeight: '88vh',
 				display: 'flex',
 			}}>
+			<Helmet>
+				<title>Logg inn</title>
+			</Helmet>
 			<Card className="mx-auto my-auto shadow w-25">
 				<Card.Body>
 					<Card.Title>Login</Card.Title>
