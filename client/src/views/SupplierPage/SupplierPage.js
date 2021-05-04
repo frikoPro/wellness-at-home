@@ -21,6 +21,16 @@ const SupplierPage = () => {
 		}
 	};
 
+	const getText = () => {
+		if (id === 'Nordpool') {
+			return "Spabad fra NordPool gir den perfekte badeopplevelsen for avslapping med familie og barn. Spabadene er nå også klargjort for saltvannsrensing og styring med WIFI app!";
+		} else if (id === 'Svenska Bad') {
+			return "Svenska Bad er blitt utviklet for å klare det skandinaviske klimaets ekstreme utfordringer. Vi benytter det beste av materialer, mest effektive isoleringen og den mest moderne teknologien for å holde et balansert badevann, som er enkelt å bruke.";
+		} else if (id === 'Svenska Pro') {
+			return "Svenska Pro har tatt spabad til et nytt nivå. Et nivå fullt av muligheter som betyr at du kan designe ditt personlige spabad og lage ditt eget unike bademiljø.";
+		}
+	}
+
 	useEffect(() => {
 		const tempArr = jacuzzis.filter((jacuzzi) => jacuzzi.brand === id);
 		const mapped = tempArr.map((obj) => ({
@@ -37,7 +47,7 @@ const SupplierPage = () => {
 			className="shadow"
 			style={{ backgroundColor: 'white', marginTop: '5%' }}>
 			<Helmet>
-				<title>{`Levrandørside - ${id}`}</title>
+				<title>{`Leverandør - ${id}`}</title>
 			</Helmet>
 			<Row
 				className="justify-content-center p-5"
@@ -50,9 +60,7 @@ const SupplierPage = () => {
 			<Row className="justify-content-center m-4">
 				<Col>
 					<h5>
-					Svenska Bad er blitt utviklet for å klare det skandinaviske klimaets ekstreme utfordringer. 
-					Vi benytter det beste av materialer, mest effektive isoleringen og den mest moderne 
-					teknologien for å holde et balansert badevann, som er enkelt å bruke.
+						{getText()}
 					</h5>
 				</Col>
 			</Row>
