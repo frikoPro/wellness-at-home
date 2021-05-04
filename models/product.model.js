@@ -36,7 +36,6 @@ const ProductsSchema = new Schema({
 			'Du må ha hvertfall en teknisk spesifikasjon',
 		],
 	},
-	relatedProducts: [String],
 });
 
 const Products = mongoose.model('Products', ProductsSchema);

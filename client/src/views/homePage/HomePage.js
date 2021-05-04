@@ -12,7 +12,7 @@ import { SlideshowContext } from '../../contexts/SlideshowContext';
 import {Helmet} from "react-helmet";
 
 const HomePage = () => {
-	const { homepageEl } = useContext(ScrollContext);
+	const { homepageEl, navbar } = useContext(ScrollContext);
 
 	const [
 		homePageEl,
@@ -21,6 +21,8 @@ const HomePage = () => {
 		onScroll,
 		removeOpacity,
 	] = homepageEl;
+
+	const { checkNavCollapsed } = navbar;
 
 	const { slideshows } = useContext(SlideshowContext);
 
@@ -33,13 +35,16 @@ const HomePage = () => {
 
 		window.onload = getNewPos;
 
-		window.onresize = getNewPos;
+		window.onresize = () => {
+			getNewPos();
+			checkNavCollapsed();
+		};
 
 		window.onscroll = onScroll;
 
 		return () => {
 			window.onload = null;
-			window.onresize = null;
+			window.onresize = checkNavCollapsed;
 			window.onscroll = null;
 			removeOpacity();
 		};

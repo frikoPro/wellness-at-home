@@ -7,7 +7,7 @@ import Slideshow from '../../components/Slideshow';
 import styles from './JacuzziPage.module.css';
 import StarRating from '../../components/StarRating';
 import UserReviewList from '../../components/UserReview/UserReviewList';
-
+import { useHistory } from 'react-router-dom';
 import { JacuzziContext } from '../../contexts/JacuzziContext';
 import { ProductsContext } from '../../contexts/ProductsContext';
 import TechSpec from '../../components/TechSpec';
@@ -20,14 +20,9 @@ import {Helmet} from "react-helmet";
 const JacuzziPage = () => {
 	let { id } = useParams();
 
-	const {
-		jacuzzis,
-		removeReview,
-		updateData,
-		onSuccess,
-		errors,
-		removeErrors,
-	} = useContext(JacuzziContext);
+	const { jacuzzis, updateData, onSuccess, errors, removeErrors } = useContext(
+		JacuzziContext
+	);
 
 	const { products } = useContext(ProductsContext);
 
@@ -39,10 +34,12 @@ const JacuzziPage = () => {
 		initialValues: { relatedProducts: [], userReviews: [] },
 	});
 
-	useEffect(() => {
-		let tempObj = jacuzzis.find((product) => product._id === id);
+	let history = useHistory();
 
-		if (tempObj !== undefined) {
+	useEffect(() => {
+		const tempObj = { ...jacuzzis.find((product) => product._id === id) };
+
+		if (Object.keys(tempObj).length > 0) {
 			let productsFiltered = products.filter((item) =>
 				tempObj.relatedProducts.includes(item._id)
 			);
@@ -50,12 +47,13 @@ const JacuzziPage = () => {
 			productsFiltered = productsFiltered.map((item) => ({
 				image: item.images[0].image,
 				textHead: item.name,
+				_id: item._id,
 			}));
 
 			tempObj.relatedProducts = productsFiltered;
-		}
 
-		setValues(tempObj);
+			setValues(tempObj);
+		}
 	}, [jacuzzis, id, products]);
 
 	useEffect(() => {
@@ -126,7 +124,9 @@ const JacuzziPage = () => {
 								</p>
 							</>
 						) : null}
-						<Button className="btn-warning mb-3" onClick={() => setModalShow(true)}>
+						<Button
+							className="btn-warning mb-3"
+							onClick={() => setModalShow(true)}>
 							Interessert? Ta kontakt
 						</Button>
 						<Button as={Link} to={`/Sammenlign/${id}`} className="ml-3 mb-sm-3">
@@ -136,7 +136,7 @@ const JacuzziPage = () => {
 				</Row>
 				<OrderJacuzziModal
 					show={modalShow}
-					onHide={()=> setModalShow(false)}
+					onHide={() => setModalShow(false)}
 				/>
 			</section>
 			<div>
@@ -149,7 +149,15 @@ const JacuzziPage = () => {
 							<h1>Relatert tilbehør</h1>
 						</Col>
 					</Row>
-					<ScrollDiv content={values.relatedProducts} size={3} />
+
+					<ScrollDiv
+						content={values.relatedProducts}
+						size={3}
+						returnFunction={(i, id) => {
+							window.scrollTo(0, 0);
+							history.push(`/nettbutikk/${id}`);
+						}}
+					/>
 				</section>
 			) : null}
 
