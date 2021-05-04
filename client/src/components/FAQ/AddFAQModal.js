@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 const AddFAQModal = (props) => {
 	useEffect(() => {
 		if (props.onSuccess) props.onHide();
-	}, [props.onSuccess], []);
+	}, [props.onSuccess]);
 
 	return (
 		<Modal
