@@ -47,7 +47,9 @@ export const ScrollProvider = (props) => {
 	//Opacity value for homepage
 	const [opacity, setOpacity] = useState(1);
 
-	const [isNavCollapsed, setNavCollapsed] = useState(false);
+	const [isNavCollapsed, setNavCollapsed] = useState(
+		window.innerWidth >= 992 ? false : true
+	);
 
 	const checkNavCollapsed = () => {
 		if (window.innerWidth >= 992) setNavCollapsed(false);
