@@ -7,7 +7,6 @@ const ProductCard = ({ item, image, addToCart }) => {
 		<Card
 			as={Link}
 			to={`/nettbutikk/${item._id}`}
-			style={{ border: 0 }}
 			className="h-100 product-card">
 			<Card.Body style={{ display: 'flex', flexFlow: 'column' }}>
 				<Card.Img src={`/${image}`} />
