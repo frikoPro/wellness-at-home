@@ -164,9 +164,9 @@ const EventsPanel = () => {
 				<Card.Footer>
 					<Row>
 						<Col sm={2}>
-							<Button onClick={() => postData(event2)}>Lagre arrangement</Button>
-							<br/>
-							<br/>
+							<Button style={{width: 200}} onClick={() => postData(event2)}>Lagre arrangement</Button>
+						</Col>
+						<Col>
 							<Button onClick={() => {
 								setPreview(true)
 								notificationMsg()
