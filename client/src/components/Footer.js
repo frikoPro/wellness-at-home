@@ -7,7 +7,8 @@ const Footer = () => {
 			<Nav className="mr-auto">
 				<Nav.Link
 					className="p-0"
-					href="https://www.facebook.com/wellnessathome.no">
+					href="https://www.facebook.com/wellnessathome.no"
+					target="_blank" rel="noreferrer noopener">
 					<svg
 						width="80"
 						height="34"
