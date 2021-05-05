@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import SelectInput from './SelectInput';
 import TableList from '../TableList';
+import {DoubleRightOutlined, MergeCellsOutlined} from "@ant-design/icons";
 
 const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 	const [newProp, setNewProp] = useState('');
@@ -77,7 +78,7 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 					</Form.Text>
 				</Col>
 				<Col sm={1} className="text-center">
-					<div>:</div>
+					<DoubleRightOutlined />
 				</Col>
 				<Col sm={2}>
 					<Form.Control
@@ -92,7 +93,7 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 					</Form.Text>
 				</Col>
 				<Col>
-					<Button name="techSpec" onClick={onSubmit}>
+					<Button name="techSpec" onClick={onSubmit} variant="success">
 						Legg til
 					</Button>
 				</Col>
@@ -101,7 +102,7 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 			<Row className="mt-5">
 				<Col sm={2}>
 					<Form.Control
-						placeholder="legg til ny egenskap"
+						placeholder="Legg til ny egenskap"
 						name="newProp"
 						onChange={(e) => setNewProp(e.target.value)}
 					/>

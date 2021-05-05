@@ -13,7 +13,7 @@ const SlideshowForm = ({ handleChange, handleImage, values, error }) => {
 				/>
 			</Form.Group>
 			<Form.Group>
-				<Form.Label>tekst</Form.Label>
+				<Form.Label>Undertittel</Form.Label>
 				<Form.Control
 					value={values.textP}
 					placeholder="Velkommen til vår side"

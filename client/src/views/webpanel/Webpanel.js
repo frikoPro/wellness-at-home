@@ -35,14 +35,14 @@ const Webpanel = ({ match }) => {
 	};
 
 	return (
-		<Container fluid className="pl-0">
+		<Container fluid className="pl-0" style={{textDecoration: 'none'}}>
 			<Helmet>
 				<title>Webpanel</title>
 			</Helmet>
 			<Row>
 				<Col sm={2} className="bg-white shadow">
 					<ul>
-						<li>
+						<li >
 							<span
 								style={{ cursor: 'pointer' }}
 								onClick={() => setOpen({ ...isOpen, spabad: !isOpen.spabad })}>
@@ -53,10 +53,10 @@ const Webpanel = ({ match }) => {
 									height: isOpen.spabad ? '100%' : '1',
 									display: isOpen.spabad ? 'block' : 'none',
 								}}>
-								<Link to={`${match.url}/addJacuzzis`}>
+								<Link to={`${match.url}/addJacuzzis`} style={{ color: '#000000' }}>
 									<li>Legg til spabad</li>
 								</Link>
-								<Link to={`${match.url}/updateJacuzzi`}>
+								<Link to={`${match.url}/updateJacuzzi`} style={{ color: '#000000' }}>
 									<li>Oppdater spabad</li>
 								</Link>
 							</ul>
@@ -68,18 +68,18 @@ const Webpanel = ({ match }) => {
 									setOpen({ ...isOpen, products: !isOpen.products })
 								}
 								style={{ cursor: 'pointer' }}>
-								Produkter
+								Tilbehør
 							</span>
 							<ul
 								style={{
 									height: isOpen.products ? '100%' : '0',
 									display: isOpen.products ? 'block' : 'none',
 								}}>
-								<Link to={`${match.url}/addProducts`}>
-									<li>Legg til produkter</li>
+								<Link to={`${match.url}/addProducts`} style={{ color: '#000000' }}>
+									<li>Legg til tilbehør</li>
 								</Link>
-								<Link to={`${match.url}/updateProducts`}>
-									<li>Oppdatere produkter</li>
+								<Link to={`${match.url}/updateProducts`} style={{ color: '#000000' }}>
+									<li>Oppdatere tilbehør</li>
 								</Link>
 							</ul>
 						</li>
@@ -89,38 +89,38 @@ const Webpanel = ({ match }) => {
 									setOpen({ ...isOpen, slideshow: !isOpen.slideshow })
 								}
 								style={{ cursor: 'pointer' }}>
-								Slideshow
+								Forsidebilder
 							</span>
 							<ul
 								style={{
 									height: isOpen.slideshow ? '100%' : 0,
 									display: isOpen.slideshow ? 'block' : 'none',
 								}}>
-								<Link to={`${match.url}/addSlideshow`}>
-									<li>Legg til slideshow</li>
+								<Link to={`${match.url}/addSlideshow`} style={{ color: '#000000' }}>
+									<li>Legg til forsidebilder</li>
 								</Link>
-								<Link to={`${match.url}/updateSlideshow`}>
-									<li>Oppdater slideshow</li>
+								<Link to={`${match.url}/updateSlideshow`} style={{ color: '#000000' }}>
+									<li>Oppdater forsidebilder</li>
 								</Link>
 							</ul>
 						</li>
-						<Link to={`${match.url}/FAQ`}>
+						<Link to={`${match.url}/FAQ`} style={{ color: '#000000' }}>
 							<li>FAQ</li>
 						</Link>
-						<Link to={`${match.url}/arrangementer`}>
+						<Link to={`${match.url}/arrangementer`} style={{ color: '#000000' }}>
 							<li>Arrangementer</li>
 						</Link>
-						<Link to={`${match.url}/anmeldelser`}>
+						<Link to={`${match.url}/anmeldelser`} style={{ color: '#000000' }}>
 							<li>Anmeldelser</li>
 						</Link>
-						<Link to={`${match.url}/ordrer`}>
+						<Link to={`${match.url}/ordrer`} style={{ color: '#000000' }}>
 							<li>Ordrer</li>
 						</Link>
-						<Link to={`${match.url}/privacypanel`}>
+						<Link to={`${match.url}/privacypanel`} style={{ color: '#000000' }}>
 							<li>Personvern</li>
 						</Link>
 					</ul>
-					<Button variant="warning" onClick={() => logOut()}>
+					<Button className={`m-2`} variant="warning" onClick={() => logOut()}>
 						Logg ut
 					</Button>
 				</Col>

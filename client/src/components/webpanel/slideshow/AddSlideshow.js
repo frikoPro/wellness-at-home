@@ -17,7 +17,7 @@ const AddSlideshow = () => {
 	return (
 		<Card>
 			<Card.Body>
-				<Card.Title>Legg til slideshow</Card.Title>
+				<Card.Title>Legg til forsidebilder</Card.Title>
 				<SlideshowForm
 					handleChange={handleChange}
 					handleImage={handleImages}
@@ -28,7 +28,7 @@ const AddSlideshow = () => {
 			<Card.Footer>
 				<Row className="align-items-center">
 					<Col>
-						<Button onClick={() => submitData(values)}>Lagre slideshow</Button>
+						<Button onClick={() => submitData(values)}>Lagre forsidebilder</Button>
 					</Col>
 					<Col>
 						<Card.Text className="text-success">{onSuccess}</Card.Text>

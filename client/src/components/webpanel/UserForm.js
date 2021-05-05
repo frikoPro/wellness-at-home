@@ -15,7 +15,6 @@ const UserForm = ({
 			<Form.Group>
 				<Form.Label>Navn</Form.Label>
 				<Form.Control
-					placeholder="navn"
 					name="name"
 					value={values.name}
 					onChange={handleChange}
@@ -40,7 +39,6 @@ const UserForm = ({
 				<Form.Label>Pris</Form.Label>
 				<Form.Control
 					type="number"
-					placeholder="pris"
 					name="price"
 					value={values.price}
 					onChange={handleChange}
