@@ -18,11 +18,7 @@ const ProductCard = ({ item, image, addToCart }) => {
 						justifyContent: 'flex-end',
 					}}>
 					<Card.Text style={{ fontSize: '20px' }}>{item.name}</Card.Text>
-					<Card.Text>
-						{item.aboutProduct.length > 100
-							? item.aboutProduct.substring(0, 100) + '...'
-							: item.aboutProduct}
-					</Card.Text>
+					<Card.Text className="limit-text">{item.aboutProduct}</Card.Text>
 					<Card.Text className="mt-3" style={{ fontSize: '20px' }}>
 						{PriceFormatter(item.price)}
 					</Card.Text>
