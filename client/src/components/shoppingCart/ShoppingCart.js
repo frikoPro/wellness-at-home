@@ -109,7 +109,7 @@ const ShoppingCart = ({cart, updateCart, totalPrice}) => {
 
             <Row>
                 <Col md={{span: 3, offset: 8}} className="text-right">
-                    Total sum varer: {PriceFormatter(totalPrice)}
+                    Total sum: {PriceFormatter(totalPrice)}
                 </Col>
             </Row>
             <Row>
