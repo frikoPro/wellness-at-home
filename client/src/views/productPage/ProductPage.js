@@ -131,7 +131,7 @@ const ProductPage = () => {
 				left: '50%',
 				transform: 'translate(-50%, -50%)',
 			}}>
-			<h1>finner ikke dette produktet</h1>
+			<h1>Finner ikke dette produktet</h1>
 		</div>
 	);
 };

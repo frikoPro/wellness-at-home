@@ -41,7 +41,7 @@ const Invites = () => {
 				<Card>
 					<Card.Body>
 						<Card.Title>Anmeldelser</Card.Title>
-						<Button onClick={() => setModal(true)}>Legg til</Button>
+						<Button className={`mb-2`} onClick={() => setModal(true)}>Legg til</Button>
 						<TableList
 							values={links}
 							name=""

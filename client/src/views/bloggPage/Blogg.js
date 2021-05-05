@@ -54,7 +54,7 @@ const Blogg = () => {
 								data-href={`https://www.facebook.com/102417811874407/posts/${post.post_id}/`}
 								key={post.post_id} //PostID is unique and a good key
 								className="fb-post"
-								data-width="1200"
+								data-width="750"
 								data-show-text="true"
 								style={{ boxShadow: '5px 5px 5px #b3b3b3' }}
 							/>

@@ -16,6 +16,7 @@ const ProductCard = ({ item, image, addToCart }) => {
 						flexFlow: 'column',
 						flexGrow: 2,
 						justifyContent: 'flex-end',
+						color: "black",
 					}}>
 					<Card.Text style={{ fontSize: '20px' }}>{item.name}</Card.Text>
 					<Card.Text className="limit-text">{item.aboutProduct}</Card.Text>

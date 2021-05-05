@@ -54,7 +54,7 @@ const AddProduct = () => {
 	return (
 		<Card>
 			<Card.Body>
-				<Card.Title>Legg til produkt</Card.Title>
+				<Card.Title>Legg til tilbehør</Card.Title>
 				<ProductForm
 					handleChange={handleChange}
 					handleEvent={handleEvent}
@@ -67,7 +67,7 @@ const AddProduct = () => {
 			<Card.Footer>
 				<Row>
 					<Col sm={2}>
-						<Button onClick={() => submitData(values)}>Lagre produkt</Button>
+						<Button onClick={() => submitData(values)}>Lagre tilbehør</Button>
 					</Col>
 					<Col className="align-self-center">{getResponse()}</Col>
 				</Row>

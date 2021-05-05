@@ -20,7 +20,7 @@ export const Handlekurv = ({ cart, navCollapsed }) => {
 		<Row className="w-100">
 			<Col xs={6} className="p-lg-0 text-right">
 				{navCollapsed ? (
-					<span>handlekurv</span>
+					<span>Handlekurv</span>
 				) : (
 					<svg
 						xmlns="http://www.w3.org/2000/svg"

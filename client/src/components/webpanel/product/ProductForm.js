@@ -50,7 +50,7 @@ const ProductForm = ({
 									...values.affiliation,
 									{ serie: serie, bad: bath },
 								])
-							}>
+							} variant="success">
 							Legg til
 						</Button>
 					</Col>
