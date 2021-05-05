@@ -14,6 +14,7 @@ import Invites from '../../components/webpanel/reviewInvites/Invites';
 import axios from 'axios';
 import Orders from '../../components/webpanel/orders/Orders';
 import {Helmet} from "react-helmet";
+import PrivacyPanel from "../../components/webpanel/privacy/PrivacyPanel";
 
 const Webpanel = ({ match }) => {
 	const FAQs = useContext(FAQContext);
@@ -115,6 +116,9 @@ const Webpanel = ({ match }) => {
 						<Link to={`${match.url}/ordrer`}>
 							<li>Ordrer</li>
 						</Link>
+						<Link to={`${match.url}/privacypanel`}>
+							<li>Personvern</li>
+						</Link>
 					</ul>
 					<Button variant="warning" onClick={() => logOut()}>
 						Logg ut
@@ -151,6 +155,9 @@ const Webpanel = ({ match }) => {
 						</Route>
 						<Route path={`${match.url}/ordrer`}>
 							<Orders />
+						</Route>
+						<Route path={`${match.url}/privacypanel`}>
+							<PrivacyPanel />
 						</Route>
 					</Switch>
 				</Col>
