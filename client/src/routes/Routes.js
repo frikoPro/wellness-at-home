@@ -26,13 +26,15 @@ import AboutUsPage from '../views/AboutUsPage/AboutUsPage';
 import { OrderProvider } from '../contexts/OrderContext';
 import { CartProvider } from '../contexts/CartContext';
 import { EventProvider } from '../contexts/EventContext';
-import PrivacyPage from '../views/privacyPage/PrivacyPage'
+import PrivacyPage from '../views/privacyPage/PrivacyPage';
+import ScrollToTop from '../components/ScrollToTop';
 
 const Routes = () => {
 	const loggedIn = useContext(LoggedInContext);
 
 	return (
 		<BrowserRouter history={history}>
+			<ScrollToTop history={history} />
 			<JacuzziProvider>
 				<ProductsProvider>
 					<CartProvider>

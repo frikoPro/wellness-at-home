@@ -9,7 +9,7 @@ import { ScrollContext } from '../../contexts/ScrollContext';
 
 import SupplierCardList from '../../components/supplierCard/SupplierCardList';
 import { SlideshowContext } from '../../contexts/SlideshowContext';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 
 const HomePage = () => {
 	const { homepageEl, navbar } = useContext(ScrollContext);
@@ -29,8 +29,6 @@ const HomePage = () => {
 	const [currentSlideImg, setCurrentSlideImg] = useState(0);
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
-
 		getNewPos();
 
 		window.onload = getNewPos;

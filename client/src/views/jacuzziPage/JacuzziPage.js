@@ -15,7 +15,7 @@ import PriceFormatter from '../../components/PriceFormatter';
 import UseForm from '../../components/webpanel/UseForm';
 import { LoggedInContext } from '../../contexts/LoggedInContext';
 import OrderJacuzziModal from './OrderJacuzziModal';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 
 const JacuzziPage = () => {
 	let { id } = useParams();
@@ -73,7 +73,9 @@ const JacuzziPage = () => {
 	return values ? (
 		<Container className="shadow p-5 bg-white">
 			<Helmet>
-				<title>{`Spabad -  ${values.name ? values.name.toUpperCase() : `Spabad`}`}</title>
+				<title>{`Spabad -  ${
+					values.name ? values.name.toUpperCase() : `Spabad`
+				}`}</title>
 			</Helmet>
 			<section>
 				<Row>
@@ -154,7 +156,6 @@ const JacuzziPage = () => {
 						content={values.relatedProducts}
 						size={3}
 						returnFunction={(i, id) => {
-							window.scrollTo(0, 0);
 							history.push(`/nettbutikk/${id}`);
 						}}
 					/>
