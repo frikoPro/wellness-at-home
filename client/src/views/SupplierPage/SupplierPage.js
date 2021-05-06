@@ -57,7 +57,7 @@ const SupplierPage = () => {
 				</Col>
 				
 			</Row>
-			<Row className="justify-content-center m-4">
+			<Row className="justify-content-center text-center m-4">
 				<Col>
 					<h5>
 						{getText()}

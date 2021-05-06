@@ -45,7 +45,7 @@ const ProductPage = () => {
 
 	const onAddToCart = () => {
 		addToCart(product);
-		setResponse('Produkt lagt til i handlekurven');
+		setResponse('Produkt lagt til i handlevognen');
 	};
 
 	return product ? (
