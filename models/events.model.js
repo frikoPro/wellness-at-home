@@ -21,10 +21,7 @@ const EventSchema = new Schema(
 		venue: { type: String, required: [true, 'Må ha et stedsnavn'] },
 		pos: { lat: Number, lng: Number },
 		meta: {
-			weekdays: {
-				type: [{ day: String, start: Number, end: Number }],
-				_id: false,
-			},
+			weekdays: String,
 			desc: String,
 		},
 		img: String,
