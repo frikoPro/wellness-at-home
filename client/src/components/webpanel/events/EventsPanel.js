@@ -30,7 +30,7 @@ const EventsPanel = () => {
 			lng: null,
 		},
 		meta: {
-			weekdays: [],
+			weekdays: '',
 			desc: '',
 		},
 		img: '',
@@ -76,12 +76,24 @@ const EventsPanel = () => {
 									meta: {
 										// dump the contents of event2.meta into meta
 										...event2.meta,
-										desc: description,
+										desc: description
 									},
-								});
+								})
 							}}
 						/>
-						{/*<EventsPanelWeekday/>*/}
+						<EventsPanelWeekday
+							onTextChange={(weekday) => {
+								setEvent({
+									// dump the contents of event2
+									...event2,
+									meta: {
+										// dump the contents of event2.meta into meta
+										...event2.meta,
+										weekdays: weekday
+									},
+								})
+							}}
+						/>
 						<EventsPanelDate
 							errors={returnErrors}
 							onChange={(date) => {
@@ -164,12 +176,15 @@ const EventsPanel = () => {
 				<Card.Footer>
 					<Row>
 						<Col sm={2}>
-							<Button style={{width: 200}} onClick={() => postData(event2)}>Lagre arrangement</Button>
+							<Button style={{width: 200}} onClick={() => {
+								postData(event2)
+								notificationMsg()
+								console.log(event2)
+							}}>Lagre arrangement</Button>
 						</Col>
 						<Col>
 							<Button onClick={() => {
 								setPreview(true)
-								notificationMsg()
 								console.log(event2)
 							}}>Forhåndvisning</Button>
 						</Col>

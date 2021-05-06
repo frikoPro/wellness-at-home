@@ -51,6 +51,7 @@ const EventsPanelInfo = (props) => {
 							showCount
 							maxLength={500}
 							onChange={onTextChange}
+							autoSize={{ minRows: 3, maxRows: 10 }}
 						/>
 					</Col>
 				</Input.Group>
