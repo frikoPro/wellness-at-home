@@ -40,11 +40,9 @@ export const SlideshowProvider = (props) => {
 			.catch((err) => setErrors(err.response.data));
 	};
 
-	const deleteData = (index) => {
-		const item = Invites[index];
-
+	const deleteData = (id) => {
 		axios
-			.delete(url + item._id)
+			.delete(url + id)
 			.then((res) => setSuccess(res.data))
 			.catch((err) => console.log(err));
 	};
