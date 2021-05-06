@@ -1,14 +1,20 @@
+import axios from 'axios';
 import { useEffect } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import PriceFormatter from '../PriceFormatter';
 
 const Recipt = ({ recipt, emptyRecipt }) => {
 	useEffect(() => {
+		axios
+			.post('/sendmail/recipt', recipt)
+			.then((res) => console.log(res.data))
+			.catch((err) => console.log(err.response));
+
 		return () => emptyRecipt();
-	}, []);
+	}, [recipt]);
 
 	return (
-		<Container>
+		<Container id="recipt">
 			<Card>
 				<Card.Body>
 					<Card.Title>
