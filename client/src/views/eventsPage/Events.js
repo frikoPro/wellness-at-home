@@ -9,6 +9,7 @@ import {Card, Empty, notification} from "antd"
 import {CalendarOutlined, LoadingOutlined} from "@ant-design/icons";
 import {LoggedInContext} from "../../contexts/LoggedInContext";
 import {Helmet} from "react-helmet";
+import InstagramSVG from "../../components/InstagramSVG";
 
 const Events = () => {
     let history = useHistory();
@@ -64,7 +65,7 @@ const Events = () => {
         }
 
         return (
-            <>
+            <div style={{overflow: `hidden`}}>
                 <Helmet>
                     <title>Arrangementer</title>
                 </Helmet>
@@ -129,7 +130,7 @@ const Events = () => {
                             </Row>
                         )
                     )}
-            </>
+            </div>
         );
     }
 };

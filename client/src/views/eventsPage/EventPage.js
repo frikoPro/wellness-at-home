@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import styles from './EventPage.module.css';
-import {Button, PageHeader, Tabs} from 'antd';
+import {Button, Empty, PageHeader, Tabs} from 'antd';
 import {AimOutlined, UnorderedListOutlined} from '@ant-design/icons';
 import Gmaps from '../../components/events/Gmaps';
 import CalendarView from '../../components/events/CalendarView';
@@ -42,11 +42,14 @@ const EventPage = (props) => {
                 </Row>
                 <Row className={`justify-content-center`}>
                     <Col sm={11}>
-                        <img
+                        {props.img ? <img
                             src={`/${props.img}`}
                             className={`w-100 ${styles.bannerImg}`}
                             alt={'img'}
+                        /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}
+                                    description={<p>Finner ikke tilhørende bilde</p>}
                         />
+                        }
                     </Col>
                 </Row>
                 <Row className={`mt-5`}>
@@ -83,28 +86,16 @@ const EventPage = (props) => {
                                                     Åpningstider
                                                 </h5>
                                                 <p>
-                                                    {new Date(props.date.date_start * 1000)
+                                                    {props.date.date_start ? new Date(props.date.date_start * 1000)
                                                         .toLocaleDateString('en-GB')
-                                                        .slice(0, 5)}
-                                                    -
-                                                    {new Date(props.date.date_end * 1000)
+                                                        .slice(0, 5) : null}
+                                                    {props.date.date_start ? `-` : null}
+                                                    {props.date.date_end ? new Date(props.date.date_end * 1000)
                                                         .toLocaleDateString('en-GB')
-                                                        .slice(0, 5)}
+                                                        .slice(0, 5) : null}
                                                     <br/>
                                                     <br/>
-                                                    {props.meta.weekdays.map((day) => (
-                                                        <>
-                                                            {day.day}:{' '}
-                                                            {new Date(day.start * 1000)
-                                                                .toLocaleTimeString('en-GB')
-                                                                .slice(0, 5)}
-                                                            -
-                                                            {new Date(day.end * 1000)
-                                                                .toLocaleTimeString('en-GB')
-                                                                .slice(0, 5)}
-                                                            <br/>
-                                                        </>
-                                                    ))}
+                                                    <p style={{whiteSpace: `pre-line`}}>{props.meta.weekdays}</p>
                                                 </p>
                                             </Col>
                                         </Row>
@@ -112,7 +103,7 @@ const EventPage = (props) => {
                                             <Col>
                                                 <h5 style={{textDecoration: 'underline'}}>Adresse</h5>
                                                 <p>
-                                                    {`${props.address.streetname}, ${props.address.postalnr} ${props.address.city}`}
+                                                    {props.address.streetname ? `${props.address.streetname}, ${props.address.postalnr} ${props.address.city}` : null}
                                                 </p>
                                             </Col>
                                         </Row>
