@@ -13,8 +13,8 @@ import EventsPanel from '../../components/webpanel/events/EventsPanel';
 import Invites from '../../components/webpanel/reviewInvites/Invites';
 import axios from 'axios';
 import Orders from '../../components/webpanel/orders/Orders';
-import {Helmet} from "react-helmet";
-import PrivacyPanel from "../../components/webpanel/privacy/PrivacyPanel";
+import { Helmet } from 'react-helmet';
+import PrivacyPanel from '../../components/webpanel/privacy/PrivacyPanel';
 
 const Webpanel = ({ match }) => {
 	const FAQs = useContext(FAQContext);
@@ -35,14 +35,16 @@ const Webpanel = ({ match }) => {
 	};
 
 	return (
-		<Container fluid className="pl-0" style={{textDecoration: 'none'}}>
+		<Container fluid className="pl-0" style={{ textDecoration: 'none' }}>
 			<Helmet>
 				<title>Webpanel</title>
 			</Helmet>
 			<Row>
-				<Col sm={2} className="bg-white shadow">
+				<div
+					className="bg-white shadow position-fixed p-2 m-2"
+					style={{ width: '15%' }}>
 					<ul>
-						<li >
+						<li>
 							<span
 								style={{ cursor: 'pointer' }}
 								onClick={() => setOpen({ ...isOpen, spabad: !isOpen.spabad })}>
@@ -53,10 +55,14 @@ const Webpanel = ({ match }) => {
 									height: isOpen.spabad ? '100%' : '1',
 									display: isOpen.spabad ? 'block' : 'none',
 								}}>
-								<Link to={`${match.url}/addJacuzzis`} style={{ color: '#000000' }}>
+								<Link
+									to={`${match.url}/addJacuzzis`}
+									style={{ color: '#000000' }}>
 									<li>Legg til spabad</li>
 								</Link>
-								<Link to={`${match.url}/updateJacuzzi`} style={{ color: '#000000' }}>
+								<Link
+									to={`${match.url}/updateJacuzzi`}
+									style={{ color: '#000000' }}>
 									<li>Oppdater spabad</li>
 								</Link>
 							</ul>
@@ -75,10 +81,14 @@ const Webpanel = ({ match }) => {
 									height: isOpen.products ? '100%' : '0',
 									display: isOpen.products ? 'block' : 'none',
 								}}>
-								<Link to={`${match.url}/addProducts`} style={{ color: '#000000' }}>
+								<Link
+									to={`${match.url}/addProducts`}
+									style={{ color: '#000000' }}>
 									<li>Legg til tilbehør</li>
 								</Link>
-								<Link to={`${match.url}/updateProducts`} style={{ color: '#000000' }}>
+								<Link
+									to={`${match.url}/updateProducts`}
+									style={{ color: '#000000' }}>
 									<li>Oppdatere tilbehør</li>
 								</Link>
 							</ul>
@@ -96,10 +106,14 @@ const Webpanel = ({ match }) => {
 									height: isOpen.slideshow ? '100%' : 0,
 									display: isOpen.slideshow ? 'block' : 'none',
 								}}>
-								<Link to={`${match.url}/addSlideshow`} style={{ color: '#000000' }}>
+								<Link
+									to={`${match.url}/addSlideshow`}
+									style={{ color: '#000000' }}>
 									<li>Legg til forsidebilder</li>
 								</Link>
-								<Link to={`${match.url}/updateSlideshow`} style={{ color: '#000000' }}>
+								<Link
+									to={`${match.url}/updateSlideshow`}
+									style={{ color: '#000000' }}>
 									<li>Oppdater forsidebilder</li>
 								</Link>
 							</ul>
@@ -107,7 +121,9 @@ const Webpanel = ({ match }) => {
 						<Link to={`${match.url}/FAQ`} style={{ color: '#000000' }}>
 							<li>FAQ</li>
 						</Link>
-						<Link to={`${match.url}/arrangementer`} style={{ color: '#000000' }}>
+						<Link
+							to={`${match.url}/arrangementer`}
+							style={{ color: '#000000' }}>
 							<li>Arrangementer</li>
 						</Link>
 						<Link to={`${match.url}/anmeldelser`} style={{ color: '#000000' }}>
@@ -123,8 +139,8 @@ const Webpanel = ({ match }) => {
 					<Button className={`m-2`} variant="warning" onClick={() => logOut()}>
 						Logg ut
 					</Button>
-				</Col>
-				<Col sm={10}>
+				</div>
+				<Col sm={{ offset: 2 }}>
 					<Switch>
 						<Route path={`${match.url}/addJacuzzis`}>
 							<AddJacuzzi />
