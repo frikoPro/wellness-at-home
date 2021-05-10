@@ -2,9 +2,15 @@ import { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import SelectInput from './SelectInput';
 import TableList from '../TableList';
-import {DoubleRightOutlined, MergeCellsOutlined} from "@ant-design/icons";
+import { DoubleRightOutlined, MergeCellsOutlined } from '@ant-design/icons';
 
-const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
+const TechSpecInput = ({
+	submitChange,
+	options,
+	values,
+	removeValues,
+	shiftOrder,
+}) => {
 	const [newProp, setNewProp] = useState('');
 
 	const [newTechSpec, setNewTechSpec] = useState({
@@ -22,9 +28,12 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 	const [techSpec, setSpec] = useState([]);
 
 	useEffect(() => {
-		setOptionsState(options);
 		setSpec([...values.techSpec]);
-	}, [options, values]);
+	}, [values]);
+
+	useEffect(() => {
+		setOptionsState(options);
+	}, [options]);
 
 	const onSubmit = () => {
 		let techSpecTemp = techSpec;
@@ -59,7 +68,12 @@ const TechSpecInput = ({ submitChange, options, values, removeValues }) => {
 
 	return (
 		<>
-			<TableList values={techSpec} name="techSpec" removeValue={removeValues} />
+			<TableList
+				values={techSpec}
+				name="techSpec"
+				removeValue={removeValues}
+				shiftOrder={shiftOrder}
+			/>
 			<Row>
 				<Col sm={2}>
 					<SelectInput
