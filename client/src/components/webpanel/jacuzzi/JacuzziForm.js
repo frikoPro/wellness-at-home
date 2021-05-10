@@ -7,16 +7,11 @@ import { ProductsContext } from '../../../contexts/ProductsContext';
 import ScrollDiv from '../../scrolldiv/ScrollDiv';
 import SelectInput from '../SelectInput';
 
-const JacuzziForm = ({
-	values,
-	handleChange,
-	returnErrors,
-	handleEvent,
-	handleImages,
-	removeValues,
-}) => {
+const JacuzziForm = ({ userInput, returnErrors }) => {
 	const { brands, techSpec } = useContext(JacuzziContext);
 	const { products } = useContext(ProductsContext);
+
+	const { handleChange, handleEvent, values, removeValues } = userInput;
 
 	return (
 		<Form>
@@ -31,13 +26,9 @@ const JacuzziForm = ({
 				/>
 			</Form.Group>
 			<UserForm
-				handleChange={handleChange}
-				handleEvent={handleEvent}
 				returnErrors={returnErrors}
-				handleImages={handleImages}
-				removeValues={removeValues}
-				values={values}
 				techSpec={techSpec}
+				{...userInput}
 			/>
 			<Form.Group>
 				<Form.Label>Relaterte produkter</Form.Label>

@@ -30,9 +30,11 @@ const JacuzziPage = () => {
 
 	const [modalShow, setModalShow] = useState(false);
 
-	const { removeValues, setValues, values } = UseForm({
+	const userInput = UseForm({
 		initialValues: { relatedProducts: [], userReviews: [] },
 	});
+
+	const { setValues, values, removeValues } = userInput;
 
 	let history = useHistory();
 
@@ -142,7 +144,7 @@ const JacuzziPage = () => {
 				/>
 			</section>
 			<div>
-				<TechSpec techSpec={values.techSpec} removeValues={removeValues} />
+				<TechSpec {...userInput} />
 			</div>
 			{values.relatedProducts.length > 0 ? (
 				<section>

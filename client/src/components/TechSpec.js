@@ -1,20 +1,19 @@
 import { Col, Row } from 'react-bootstrap';
 import TableList from './TableList';
 
-const TechSpec = ({ techSpec, removeValues }) => {
-	return techSpec ? (
+const TechSpec = (props) => {
+	return props.values ? (
 		<section>
 			<Row className="justify-content-center align-items-center p-5">
 				<Col className={`text-left margin-bottom-line`}>
 					<h1>Tekniske spesifikasjoner</h1>
 				</Col>
 			</Row>
-			<Row
-				className="justify-content-center">
+			<Row className="justify-content-center">
 				<Col sm={11}>
 					<TableList
-						values={techSpec}
-						removeValue={removeValues}
+						{...props}
+						values={props.values.techSpec}
 						name="techSpec"
 					/>
 				</Col>

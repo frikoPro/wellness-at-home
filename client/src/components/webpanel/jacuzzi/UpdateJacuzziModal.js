@@ -5,14 +5,7 @@ import JacuzziForm from './JacuzziForm';
 import { JacuzziContext } from '../../../contexts/JacuzziContext';
 
 const UpdateJacuzziModal = (props) => {
-	const {
-		values,
-		handleChange,
-		handleEvent,
-		handleImages,
-		removeValues,
-		setValues,
-	} = UseForm({
+	const userInput = UseForm({
 		initialValues: { ...props.jacuzzi },
 	});
 
@@ -26,7 +19,7 @@ const UpdateJacuzziModal = (props) => {
 	} = useContext(JacuzziContext);
 
 	useEffect(() => {
-		setValues({ ...props.jacuzzi });
+		userInput.setValues({ ...props.jacuzzi });
 	}, [props.jacuzzi, props.show]);
 
 	useEffect(() => {
@@ -49,23 +42,20 @@ const UpdateJacuzziModal = (props) => {
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<JacuzziForm
-					handleChange={handleChange}
-					handleEvent={handleEvent}
-					returnErrors={returnErrors}
-					handleImages={handleImages}
-					removeValues={removeValues}
-					values={values}
-				/>
+				<JacuzziForm returnErrors={returnErrors} userInput={userInput} />
 			</Modal.Body>
 			<Modal.Footer>
 				<Col sm={1} className="mr-2">
-					<Button className="btn-danger" onClick={() => deleteData(values._id)}>
+					<Button
+						className="btn-danger"
+						onClick={() => deleteData(userInput.values._id)}>
 						Delete
 					</Button>
 				</Col>
 				<Col>
-					<Button className="btn-warning" onClick={() => updateData(values)}>
+					<Button
+						className="btn-warning"
+						onClick={() => updateData(userInput.values)}>
 						Update
 					</Button>
 				</Col>
@@ -78,8 +68,8 @@ const UpdateJacuzziModal = (props) => {
 					<Button onClick={props.onHide}>Close</Button>
 				</Col>
 				<Row className="w-100">
-					{values.images[0]
-						? values.images.map((img, i) => (
+					{userInput.values.images[0]
+						? userInput.values.images.map((img, i) => (
 								<Col sm={2} key={i}>
 									<img src={`/${img.image}`} alt="" className="w-100"></img>
 								</Col>
