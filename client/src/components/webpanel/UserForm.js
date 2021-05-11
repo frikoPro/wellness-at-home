@@ -8,17 +8,14 @@ const UserForm = ({
 	returnErrors,
 	handleImages,
 	removeValues,
+	shiftOrder,
 	techSpec,
 }) => {
 	return (
 		<>
 			<Form.Group>
 				<Form.Label>Navn</Form.Label>
-				<Form.Control
-					name="name"
-					value={values.name}
-					onChange={handleChange}
-				/>
+				<Form.Control name="name" value={values.name} onChange={handleChange} />
 
 				<Form.Text className="text-danger">{returnErrors('name')}</Form.Text>
 			</Form.Group>
@@ -52,6 +49,7 @@ const UserForm = ({
 					values={values}
 					options={techSpec}
 					removeValues={removeValues}
+					shiftOrder={shiftOrder}
 				/>
 				<Form.Text className="text-danger text-center">
 					{returnErrors('techSpec')}

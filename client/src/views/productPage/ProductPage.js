@@ -9,7 +9,7 @@ import { ProductsContext } from '../../contexts/ProductsContext';
 import styles from './ProductPage.module.css';
 import TechSpec from '../../components/TechSpec';
 import { CartContext } from '../../contexts/CartContext';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 import UseForm from '../../components/webpanel/UseForm';
 import { LoggedInContext } from '../../contexts/LoggedInContext';
 
@@ -33,7 +33,7 @@ const ProductPage = () => {
 			return { border: '1px solid rgb(221, 220, 220)' };
 	};
 
-	const { setValues, values: product, removeValues } = UseForm({
+	const { setValues, values: product, removeValues, shiftOrder } = UseForm({
 		initialValues: {},
 	});
 
@@ -51,7 +51,9 @@ const ProductPage = () => {
 	return product ? (
 		<Container className="bg-white pb-5 pt-5 shadow">
 			<Helmet>
-				<title>{`Tilbehør - ${product.name ? product.name : `Tilbehør`}`}</title>
+				<title>{`Tilbehør - ${
+					product.name ? product.name : `Tilbehør`
+				}`}</title>
 			</Helmet>
 			<section>
 				<Row className="mt-0 mt-sm-5 justify-content-center">
@@ -103,6 +105,7 @@ const ProductPage = () => {
 							values={product.affiliation || []}
 							removeValue={removeValues}
 							name="affiliation"
+							shiftOrder={shiftOrder}
 						/>
 					</Col>
 				</Row>

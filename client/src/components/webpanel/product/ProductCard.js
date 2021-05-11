@@ -7,19 +7,12 @@ import UpdateProductModal from './UpdateProductModal';
 const ProductCard = ({ product }) => {
 	const [modalShow, setModalShow] = useState(false);
 
-	const {
-		values,
-		handleChange,
-		setValues,
-		handleEvent,
-		handleImages,
-		removeValues,
-	} = UseForm({
+	const userInput = UseForm({
 		initialValues: { ...product },
 	});
 
 	useEffect(() => {
-		setValues(product);
+		userInput.setValues(product);
 	}, [modalShow]);
 
 	const {
@@ -58,13 +51,9 @@ const ProductCard = ({ product }) => {
 				<UpdateProductModal
 					show={modalShow}
 					onHide={() => setModalShow(false)}
-					handleChange={handleChange}
-					handleEvent={handleEvent}
+					userInput={userInput}
 					returnErrors={returnErrors}
-					handleImages={handleImages}
-					removeValues={removeValues}
 					onSuccess={onSuccess}
-					values={values}
 					errors={errors}
 					updateData={updateData}
 				/>

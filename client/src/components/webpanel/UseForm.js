@@ -31,6 +31,20 @@ const UseForm = ({ initialValues }) => {
 		handleEvent(target, newArray);
 	};
 
+	const shiftOrder = (draggedItem, selectedItem, target) => {
+		const techSpecState = [...values[target]];
+
+		if (!(selectedItem - draggedItem)) return;
+
+		const removedElement = techSpecState.splice(draggedItem, 1)[0];
+
+		const offset = draggedItem < selectedItem ? -1 : 0;
+
+		techSpecState.splice(selectedItem + offset, 0, removedElement);
+
+		handleEvent(target, techSpecState);
+	};
+
 	// Is called when you are uploading images through the "Velg filer" button.
 	const handleImages = (event) => {
 		let tempImages = {
@@ -52,6 +66,7 @@ const UseForm = ({ initialValues }) => {
 		handleImages,
 		setValues,
 		removeValues,
+		shiftOrder,
 	};
 };
 

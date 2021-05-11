@@ -1,21 +1,20 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { JacuzziContext } from '../../../contexts/JacuzziContext';
 import { ProductsContext } from '../../../contexts/ProductsContext';
 import SelectAddText from '../SelectAddText';
 import TableList from '../../TableList';
 import UserForm from '../UserForm';
 
-const ProductForm = ({
-	values,
-	handleChange,
-	returnErrors,
-	handleEvent,
-	handleImages,
-	removeValues,
-}) => {
+const ProductForm = ({ returnErrors, userInput }) => {
 	const { categories, techSpec } = useContext(ProductsContext);
-	const { brands } = useContext(JacuzziContext);
+
+	const {
+		values,
+		removeValues,
+		handleEvent,
+		handleChange,
+		shiftOrder,
+	} = userInput;
 
 	const [serie, setSerie] = useState('');
 
@@ -29,6 +28,7 @@ const ProductForm = ({
 					values={values.affiliation}
 					name="affiliation"
 					removeValue={removeValues}
+					shiftOrder={shiftOrder}
 				/>
 				<Row>
 					<Col>
@@ -50,7 +50,8 @@ const ProductForm = ({
 									...values.affiliation,
 									{ serie: serie, bad: bath },
 								])
-							} variant="success">
+							}
+							variant="success">
 							Legg til
 						</Button>
 					</Col>
@@ -70,12 +71,8 @@ const ProductForm = ({
 				</Form.Text>
 			</Form.Group>
 			<UserForm
-				handleChange={handleChange}
-				handleEvent={handleEvent}
 				returnErrors={returnErrors}
-				handleImages={handleImages}
-				removeValues={removeValues}
-				values={values}
+				{...userInput}
 				techSpec={techSpec}
 			/>
 		</Form>

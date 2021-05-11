@@ -3,17 +3,7 @@ import { Button, Col, Modal, Row, Form } from 'react-bootstrap';
 import ProductForm from './ProductForm';
 
 const UpdateProductModal = (props) => {
-	const {
-		values,
-		handleChange,
-		returnErrors,
-		errors,
-		handleEvent,
-		handleImages,
-		removeValues,
-		updateData,
-		onSuccess,
-	} = props;
+	const { returnErrors, userInput, errors, updateData, onSuccess } = props;
 
 	useEffect(() => {
 		if (onSuccess) props.onHide();
@@ -31,19 +21,14 @@ const UpdateProductModal = (props) => {
 				</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<ProductForm
-					handleChange={handleChange}
-					handleEvent={handleEvent}
-					returnErrors={returnErrors}
-					handleImages={handleImages}
-					removeValues={removeValues}
-					values={values}
-				/>
+				<ProductForm returnErrors={returnErrors} userInput={userInput} />
 			</Modal.Body>
 			<Modal.Footer>
 				<Row className="w-100">
 					<Col>
-						<Button onClick={() => updateData(values)}>Lagre produkt</Button>
+						<Button onClick={() => updateData(userInput.values)}>
+							Lagre produkt
+						</Button>
 					</Col>
 					<Col className="align-self-center text-center">
 						<Form.Text className="text-danger">{errors}</Form.Text>
@@ -53,8 +38,8 @@ const UpdateProductModal = (props) => {
 					</Col>
 				</Row>
 				<Row className="w-100">
-					{values.images[0]
-						? values.images.map((img, i) => (
+					{userInput.values.images[0]
+						? userInput.values.images.map((img, i) => (
 								<Col sm={2} key={i}>
 									<img src={`/${img.image}`} alt="" className="w-100"></img>
 								</Col>

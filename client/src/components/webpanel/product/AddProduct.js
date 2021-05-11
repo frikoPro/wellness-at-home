@@ -5,13 +5,7 @@ import UseForm from '../UseForm';
 import ProductForm from './ProductForm';
 
 const AddProduct = () => {
-	const {
-		values,
-		handleChange,
-		handleEvent,
-		handleImages,
-		removeValues,
-	} = UseForm({
+	const userInput = UseForm({
 		initialValues: {
 			name: '',
 			aboutProduct: '',
@@ -55,19 +49,14 @@ const AddProduct = () => {
 		<Card>
 			<Card.Body>
 				<Card.Title>Legg til tilbehør</Card.Title>
-				<ProductForm
-					handleChange={handleChange}
-					handleEvent={handleEvent}
-					returnErrors={returnErrors}
-					handleImages={handleImages}
-					removeValues={removeValues}
-					values={values}
-				/>
+				<ProductForm userInput={userInput} returnErrors={returnErrors} />
 			</Card.Body>
 			<Card.Footer>
 				<Row>
 					<Col sm={2}>
-						<Button onClick={() => submitData(values)}>Lagre tilbehør</Button>
+						<Button onClick={() => submitData(userInput.values)}>
+							Lagre tilbehør
+						</Button>
 					</Col>
 					<Col className="align-self-center">{getResponse()}</Col>
 				</Row>
