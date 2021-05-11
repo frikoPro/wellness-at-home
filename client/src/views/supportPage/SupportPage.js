@@ -53,14 +53,14 @@ const SupportPage = () => {
 				<Col>
 					<ContactCard
 						name="Hans Petter Sandvold"
-						phone="456 20 830"
+						phone="xxx xx xxx"
 						email="hanspetter@wellnessathome.no"
 					/>
 				</Col>
 				<Col>
 					<ContactCard
 						name="Kenneth Nygård"
-						phone="654 45 560"
+						phone="xxx xx xxx"
 						email="kenneth@wellnessathome.no"
 					/>
 				</Col>
