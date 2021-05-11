@@ -1,19 +1,23 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import styles from './EventPage.module.css';
 import {Button, Empty, PageHeader, Tabs} from 'antd';
-import {AimOutlined, UnorderedListOutlined} from '@ant-design/icons';
+import {AimOutlined, EditOutlined, UnorderedListOutlined} from '@ant-design/icons';
 import Gmaps from '../../components/events/Gmaps';
 import CalendarView from '../../components/events/CalendarView';
 import CalendarLink from '../../components/events/CalendarLink';
 import {Link} from 'react-router-dom';
 import {Helmet} from "react-helmet";
+import {LoggedInContext} from "../../contexts/LoggedInContext";
+import EventsPanel from "../../components/webpanel/events/EventsPanel";
+import {EventContext} from "../../contexts/EventContext";
 
 const {TabPane} = Tabs;
 
 const EventPage = (props) => {
     console.log(window.location.href);
-
+    const loggedIn = useContext(LoggedInContext);
+    const {updateData} = useContext(EventContext);
     //fb sdk a bit slow to load
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -66,7 +70,7 @@ const EventPage = (props) => {
                                 tab={
                                     <span>
 									<UnorderedListOutlined/>
-									Main
+									Hoved
 								</span>
                                 }
                                 key="1">
@@ -150,6 +154,13 @@ const EventPage = (props) => {
                                     </Col>
                                 </Row>
                             </TabPane>
+                            {loggedIn ?
+                                <TabPane tab={<span><EditOutlined />Rediger arrangement</span>} key="3">
+                                    <EventsPanel
+                                        eventData={props}
+                                        submitData={updateData}
+                                    />
+                            </TabPane> : null}
                         </Tabs>
                     </Col>
                 </Row>

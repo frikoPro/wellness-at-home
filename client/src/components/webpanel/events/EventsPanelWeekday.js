@@ -25,6 +25,7 @@ const EventsPanelWeekday = props => {
                             maxLength={500}
                             onChange={onTextChange}
                             autoSize={{ minRows: 2, maxRows: 7 }}
+                            value={props.weekdayValue}
                         />
                     </Col>
                 </Row>

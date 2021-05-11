@@ -9,7 +9,6 @@ import {Card, Empty, notification} from "antd"
 import {CalendarOutlined, LoadingOutlined} from "@ant-design/icons";
 import {LoggedInContext} from "../../contexts/LoggedInContext";
 import {Helmet} from "react-helmet";
-import InstagramSVG from "../../components/InstagramSVG";
 
 const Events = () => {
     let history = useHistory();
@@ -37,9 +36,9 @@ const Events = () => {
 
     const getEventObj = (id) => {
         if (id && eventsData !== null && eventsData.data !== null) {
-            return eventsData.data.filter(
+            return eventsData.data.find(
                 (event) => event.createdAt.toString() === id
-            )[0];
+            );
         } else {
             return false;
         }

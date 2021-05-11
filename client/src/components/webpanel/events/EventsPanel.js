@@ -10,9 +10,9 @@ import Gmap from './Gmap';
 import EventsPanelWeekday from "./EventsPanelWeekday";
 import {notification} from "antd";
 
-const EventsPanel = () => {
+const EventsPanel = ({eventData, submitData}) => {
 	const [preview, setPreview] = useState(false);
-	const [event2, setEvent] = useState({
+	const [event2, setEvent] = useState(eventData || {
 		create_date: null,
 		update_date: null,
 		date: {
@@ -36,9 +36,8 @@ const EventsPanel = () => {
 		img: '',
 	});
 
-	const {postData, returnErrors, onSuccess, cleanUp} = useContext(
-		EventContext
-	);
+	console.log(eventData)
+	const {returnErrors, onSuccess, cleanUp} = useContext(EventContext);
 
 	useEffect(() => {
 		return () => cleanUp();
@@ -61,10 +60,12 @@ const EventsPanel = () => {
 		<>
 			<Card>
 				<Card.Body>
-					<Card.Title>Opprett arrangement</Card.Title>
+					{!eventData ? <Card.Title>Nytt arrangement</Card.Title> : null}
 					<Form>
 						<hr/>
 						<EventsPanelInfo
+							venueValue={event2.venue}
+							descValue={event2.meta.desc}
 							onVenueChange={(venue) => {
 								setEvent({...event2, venue});
 							}}
@@ -82,6 +83,7 @@ const EventsPanel = () => {
 							}}
 						/>
 						<EventsPanelWeekday
+							weekdayValue={event2.meta.weekdays}
 							onTextChange={(weekday) => {
 								setEvent({
 									// dump the contents of event2
@@ -94,7 +96,7 @@ const EventsPanel = () => {
 								})
 							}}
 						/>
-						<EventsPanelDate
+						{ !eventData ? <EventsPanelDate
 							errors={returnErrors}
 							onChange={(date) => {
 								setEvent({
@@ -102,9 +104,9 @@ const EventsPanel = () => {
 									date: {date_start: date[0], date_end: date[1]},
 								});
 							}}
-						/>
+						/> : null}
 						<hr/>
-						<Gmap
+						{!eventData ? <Gmap
 							onPlacesChanged={(address) =>
 								setEvent({
 									...event2,
@@ -116,10 +118,12 @@ const EventsPanel = () => {
 									pos: {lat: address[4], lng: address[5]},
 								})
 							}
-						/>
+						/> : null}
 						<EventsPanelAddress
 							errors={returnErrors}
 							address={event2.address}
+							lat={event2.pos.lat}
+							lng={event2.pos.lng}
 							pos={event2.pos}
 							onStreetChange={(streetname) => {
 								setEvent({
@@ -157,7 +161,7 @@ const EventsPanel = () => {
 									},
 								});
 							}}
-							onPoslatChange={(lng) => {
+							onPosLngChange={(lng) => {
 								setEvent({
 									...event2,
 									pos: {
@@ -177,7 +181,7 @@ const EventsPanel = () => {
 					<Row>
 						<Col sm={2}>
 							<Button style={{width: 200}} onClick={() => {
-								postData(event2)
+								submitData(event2)
 								notificationMsg()
 								console.log(event2)
 							}}>Lagre arrangement</Button>

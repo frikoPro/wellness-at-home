@@ -25,16 +25,18 @@
     height: 100%;
     width: 100%;
     font-family: 'Mulish', sans-serif;
-    /*transition: all .2s ease-in-out;*/
-    margin-top: 1em;
+    transition: all .2s ease-in-out;
+    margin-top: 0.5em;
+    margin-bottom: 0.7em;
+    border: 0.1em solid #b3b3b3;
 }
 
-/*.card:hover {*/
-/*    border: 0.1em solid #b3b3b3;*/
-/*    box-shadow: 6px 6px 6px #b3b3b3;*/
-/*    transform: scale(1.005);*/
-/*    background: #f8f8f8;*/
-/*}*/
+.card:hover {
+    border: 0.1em solid #969696;
+    box-shadow: 6px 6px 6px #b3b3b3;
+    transform: scale(1.005);
+    background: #f8f8f8;
+}
 
 
 .dateContainer {

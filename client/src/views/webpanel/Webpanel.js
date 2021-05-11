@@ -13,12 +13,13 @@ import EventsPanel from '../../components/webpanel/events/EventsPanel';
 import Invites from '../../components/webpanel/reviewInvites/Invites';
 import axios from 'axios';
 import Orders from '../../components/webpanel/orders/Orders';
-import { Helmet } from 'react-helmet';
-import PrivacyPanel from '../../components/webpanel/privacy/PrivacyPanel';
+import {Helmet} from "react-helmet";
+import PrivacyPanel from "../../components/webpanel/privacy/PrivacyPanel";
+import {EventContext} from "../../contexts/EventContext";
 
 const Webpanel = ({ match }) => {
 	const FAQs = useContext(FAQContext);
-
+	const {postData} = useContext(EventContext);
 	const [isOpen, setOpen] = useState({
 		spabad: false,
 		products: false,
@@ -164,7 +165,7 @@ const Webpanel = ({ match }) => {
 							<FAQList FAQs={FAQs} />
 						</Route>
 						<Route path={`${match.url}/arrangementer`}>
-							<EventsPanel />
+							<EventsPanel submitData={postData}/>
 						</Route>
 						<Route path={`${match.url}/anmeldelser`}>
 							<Invites />
