@@ -1,5 +1,6 @@
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import InstagramSVG from "./InstagramSVG";
 
 const Footer = () => {
 	return (
@@ -28,6 +29,12 @@ const Footer = () => {
 							fill="#FEFEFE"
 						/>
 					</svg>
+				</Nav.Link>
+				<Nav.Link
+					className="p-0 mt-1"
+					href="https://www.instagram.com/wellnessathome.no"
+					target="_blank" rel="noreferrer noopener">
+					<InstagramSVG style={{height: 28}}/>
 				</Nav.Link>
 			</Nav>
 			<Nav>

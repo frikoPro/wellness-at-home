@@ -36,9 +36,9 @@ const Events = () => {
 
     const getEventObj = (id) => {
         if (id && eventsData !== null && eventsData.data !== null) {
-            return eventsData.data.filter(
+            return eventsData.data.find(
                 (event) => event.createdAt.toString() === id
-            )[0];
+            );
         } else {
             return false;
         }
@@ -64,7 +64,7 @@ const Events = () => {
         }
 
         return (
-            <>
+            <div style={{overflow: `hidden`}}>
                 <Helmet>
                     <title>Arrangementer</title>
                 </Helmet>
@@ -129,7 +129,7 @@ const Events = () => {
                             </Row>
                         )
                     )}
-            </>
+            </div>
         );
     }
 };

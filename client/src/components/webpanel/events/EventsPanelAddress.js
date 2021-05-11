@@ -27,7 +27,7 @@ const EventsPanelAddress = (props) => {
 		setPosLat(e.target.value);
 	};
 	const onPosLngChange = (e) => {
-		console.log('onPoslatChange:', e.target.value);
+		console.log('onPosLngChange:', e.target.value);
 		setPosLng(e.target.value);
 	};
 	//has to be its on useEffects
@@ -48,7 +48,7 @@ const EventsPanelAddress = (props) => {
 	}, [posLat]);
 
 	useEffect(() => {
-		props.onPoslatChange(posLng);
+		props.onPosLngChange(posLng);
 	}, [posLng]);
 
 	return (
@@ -110,7 +110,7 @@ const EventsPanelAddress = (props) => {
 							<Col span={4}>
 								<Input
 									placeholder="Lat"
-									value={props.pos.lat}
+									value={props.lat}
 									allowClear={true}
 									onChange={onPosLatChange}
 								/>

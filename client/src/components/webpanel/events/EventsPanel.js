@@ -10,9 +10,9 @@ import Gmap from './Gmap';
 import EventsPanelWeekday from "./EventsPanelWeekday";
 import {notification} from "antd";
 
-const EventsPanel = () => {
+const EventsPanel = ({eventData, submitData}) => {
 	const [preview, setPreview] = useState(false);
-	const [event2, setEvent] = useState({
+	const [event2, setEvent] = useState(eventData || {
 		create_date: null,
 		update_date: null,
 		date: {
@@ -30,15 +30,14 @@ const EventsPanel = () => {
 			lng: null,
 		},
 		meta: {
-			weekdays: [],
+			weekdays: '',
 			desc: '',
 		},
 		img: '',
 	});
 
-	const {postData, returnErrors, onSuccess, cleanUp} = useContext(
-		EventContext
-	);
+	console.log(eventData)
+	const {returnErrors, onSuccess, cleanUp} = useContext(EventContext);
 
 	useEffect(() => {
 		return () => cleanUp();
@@ -61,10 +60,12 @@ const EventsPanel = () => {
 		<>
 			<Card>
 				<Card.Body>
-					<Card.Title>Opprett arrangement</Card.Title>
+					{!eventData ? <Card.Title>Nytt arrangement</Card.Title> : null}
 					<Form>
 						<hr/>
 						<EventsPanelInfo
+							venueValue={event2.venue}
+							descValue={event2.meta.desc}
 							onVenueChange={(venue) => {
 								setEvent({...event2, venue});
 							}}
@@ -76,13 +77,26 @@ const EventsPanel = () => {
 									meta: {
 										// dump the contents of event2.meta into meta
 										...event2.meta,
-										desc: description,
+										desc: description
 									},
-								});
+								})
 							}}
 						/>
-						{/*<EventsPanelWeekday/>*/}
-						<EventsPanelDate
+						<EventsPanelWeekday
+							weekdayValue={event2.meta.weekdays}
+							onTextChange={(weekday) => {
+								setEvent({
+									// dump the contents of event2
+									...event2,
+									meta: {
+										// dump the contents of event2.meta into meta
+										...event2.meta,
+										weekdays: weekday
+									},
+								})
+							}}
+						/>
+						{ !eventData ? <EventsPanelDate
 							errors={returnErrors}
 							onChange={(date) => {
 								setEvent({
@@ -90,9 +104,9 @@ const EventsPanel = () => {
 									date: {date_start: date[0], date_end: date[1]},
 								});
 							}}
-						/>
+						/> : null}
 						<hr/>
-						<Gmap
+						{!eventData ? <Gmap
 							onPlacesChanged={(address) =>
 								setEvent({
 									...event2,
@@ -104,10 +118,12 @@ const EventsPanel = () => {
 									pos: {lat: address[4], lng: address[5]},
 								})
 							}
-						/>
+						/> : null}
 						<EventsPanelAddress
 							errors={returnErrors}
 							address={event2.address}
+							lat={event2.pos.lat}
+							lng={event2.pos.lng}
 							pos={event2.pos}
 							onStreetChange={(streetname) => {
 								setEvent({
@@ -145,7 +161,7 @@ const EventsPanel = () => {
 									},
 								});
 							}}
-							onPoslatChange={(lng) => {
+							onPosLngChange={(lng) => {
 								setEvent({
 									...event2,
 									pos: {
@@ -164,12 +180,15 @@ const EventsPanel = () => {
 				<Card.Footer>
 					<Row>
 						<Col sm={2}>
-							<Button style={{width: 200}} onClick={() => postData(event2)}>Lagre arrangement</Button>
+							<Button style={{width: 200}} onClick={() => {
+								submitData(event2)
+								notificationMsg()
+								console.log(event2)
+							}}>Lagre arrangement</Button>
 						</Col>
 						<Col>
 							<Button onClick={() => {
 								setPreview(true)
-								notificationMsg()
 								console.log(event2)
 							}}>Forhåndvisning</Button>
 						</Col>

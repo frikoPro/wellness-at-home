@@ -38,6 +38,7 @@ const EventsPanelInfo = (props) => {
 							placeholder="Sted"
 							onChange={onVenueChange}
 							name="venue"
+							value={props.venueValue}
 						/>
 						<Form.Text className="text-danger">
 							{props.errors('venue')}
@@ -51,6 +52,8 @@ const EventsPanelInfo = (props) => {
 							showCount
 							maxLength={500}
 							onChange={onTextChange}
+							autoSize={{ minRows: 3, maxRows: 10 }}
+							value={props.descValue}
 						/>
 					</Col>
 				</Input.Group>

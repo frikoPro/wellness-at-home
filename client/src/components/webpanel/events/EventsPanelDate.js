@@ -2,6 +2,7 @@ import { Form } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { DatePicker, Space } from 'antd';
 import 'antd/dist/antd.css';
+import dayjs from "dayjs";
 
 const EventsPanelDate = (props) => {
 	const [dateString, setDateString] = useState([]);
