@@ -9,7 +9,6 @@ import { ScrollContext } from '../../contexts/ScrollContext';
 
 import SupplierCardList from '../../components/supplierCard/SupplierCardList';
 import { SlideshowContext } from '../../contexts/SlideshowContext';
-import { Helmet } from 'react-helmet';
 
 const HomePage = () => {
 	const { homepageEl, navbar } = useContext(ScrollContext);
@@ -75,23 +74,10 @@ const HomePage = () => {
 							ref={homePageEl[0].ref}
 							animate={homePageEl[0].show}
 							animatePercent={homePageEl[0].percent}>
-							<h2>Våre produkter</h2>
+							<h2>Våre leverandører</h2>
 						</Div>
 					</Row>
-					<Row className="justify-content-center text-center mx-auto w-50 m-5">
-						<Div
-							right
-							ref={homePageEl[1].ref}
-							animate={homePageEl[1].show}
-							animatePercent={homePageEl[1].percent}>
-							<span>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-								enim ad minim veniam, quis nostrud exercitation ullamco laboris
-								nisi ut aliquip ex ea commodo consequat.
-							</span>
-						</Div>
-					</Row>
+					
 				</section>
 				<SupplierCardList />
 			</Container>

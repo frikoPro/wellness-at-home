@@ -24,13 +24,6 @@ export const ScrollProvider = (props) => {
 		{
 			show: false,
 			percent: 0,
-			position: 0,
-			height: 0,
-			ref: useRef(null),
-		},
-		{
-			show: false,
-			percent: 0,
 			position: null,
 			height: null,
 			ref: useRef(null),

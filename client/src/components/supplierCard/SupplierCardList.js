@@ -14,21 +14,21 @@ const SupplierCardList = () => {
 			image: 'nordpoolCardImg.png',
 			logo: 'nordpoolLogo.png',
 			text:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+				'NordPool badene gir deg den perfekte spaopplevelse for kropp, sjel og lommebok NÅ også klargjort for Saltvannsrensing og WIFI app styring!',
 		},
 		{
 			name: 'Svenska Bad',
 			image: 'svenskaBadImg.png',
 			logo: 'svenskaBadLogo.png',
 			text:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+				'Svenska Bad er utviklet for å klare det nordiske klimaets mest ekstreme utfordringer. Vi benytter de mest hardføre materialer, den mest effektive isolering og den siste teknologien for rengjøring.',
 		},
 		{
 			name: 'Svenska Pro',
 			image: 'Gavel_Mot_Oslo.jpg',
 			logo: 'SvenskaProLogo.png',
 			text:
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+				'Med vår Pro Serie har vi tatt SPABAD TIL ET NYTT NIVÅ. Et nivå fullt av muligheter som betyr at du kan designe ditt personlige spabad og lage ditt eget unike bademiljø.',
 		},
 	];
 
@@ -38,9 +38,9 @@ const SupplierCardList = () => {
 				<StyledArticle
 					key={index}
 					right={index % 2 === 0 ? true : false}
-					ref={homePageEl[index + 2].ref}
-					animate={homePageEl[index + 2].show}
-					animatePercent={homePageEl[index + 2].percent}>
+					ref={homePageEl[index+1].ref}
+					animate={homePageEl[index+1].show}
+					animatePercent={homePageEl[index+1].percent}>
 					<SupplierCard {...card} />
 				</StyledArticle>
 			))}
