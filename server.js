@@ -39,6 +39,7 @@ const FAQRouter = require('./routes/FAQs');
 const SendMailRouter = require('./routes/sendMail');
 const orderRouter = require('./routes/orders');
 const eventRouter = require('./routes/events');
+const privacyRouter = require('./routes/privacy');
 
 const errorController = require('./controllers/ErrorController');
 
@@ -52,6 +53,7 @@ app.use('/FAQ', FAQRouter);
 app.use('/sendmail', SendMailRouter);
 app.use('/orders', orderRouter);
 app.use('/events', eventRouter);
+app.use('/privacy', privacyRouter);
 
 app.use(errorController);
 
