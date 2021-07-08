@@ -2,6 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 import React, { useState } from 'react';
 import axios from 'axios';
 import Recaptcha from 'react-recaptcha';
+const SiteKey = process.env.RECAPTCHA_SITE_KEY;
 
 const SupportForm = () => {
 	const [name, setName] = useState('');
@@ -107,7 +108,7 @@ const SupportForm = () => {
 				/>
 			</Form.Group>
 			<Recaptcha
-				sitekey="6LdIBmYaAAAAAAHs9rsOPbgsAA5UxHPozOqUlCzQ"
+				sitekey={SiteKey}
 				render="explicit"
 				onloadCallback={recaptchaLoaded}
 				verifyCallback={verifyCaptchaCallback}
