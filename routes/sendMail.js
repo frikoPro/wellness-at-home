@@ -29,8 +29,8 @@ transport.verify(function (error, success) {
 
 router.post('/send', (req, res, next) => {
 	var mail = {
-		from: 'jackson16@ethereal.email', //change to username when ready to deploy
-		to: 'jackson16@ethereal.email', //change to username when ready to deploy
+		from: username, //change to username when ready to deploy
+		to: username, //change to username when ready to deploy
 		subject: req.body.problem,
 		html: `<p><b>Navn: </b>${req.body.name}</p>
 			<p><b>E-Post: </b>${req.body.email}</p>
